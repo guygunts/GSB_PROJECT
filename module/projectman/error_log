@@ -1,0 +1,22 @@
+[16-Dec-2019 09:42:04 UTC] PHP Warning:  Illegal string offset 'channel' in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 114
+[16-Dec-2019 09:42:04 UTC] PHP Warning:  Illegal string offset 'channel' in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 114
+[16-Dec-2019 09:42:56 UTC] PHP Warning:  Illegal string offset 'channel' in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 114
+[16-Dec-2019 09:42:56 UTC] PHP Warning:  Illegal string offset 'channel' in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 114
+[16-Dec-2019 09:43:47 UTC] PHP Warning:  Illegal string offset 'channel' in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 114
+[16-Dec-2019 09:46:07 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 09:49:24 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 09:50:13 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 09:50:45 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 09:51:42 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 09:52:09 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 10:04:48 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[16-Dec-2019 10:05:24 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 10:05:41 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 10:08:26 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 10:10:38 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 10:24:20 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 10:25:35 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[16-Dec-2019 10:26:07 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/devtool77/gsb/module/projectman/projectman.inc.php on line 119
+[19-Dec-2019 02:27:20 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:48:59 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[07-Jan-2020 02:53:34 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1551

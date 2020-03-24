@@ -1,0 +1,53 @@
+[01-Dec-2019 15:08:01 UTC] PHP Fatal error:  Call to undefined function LoadPermission() in /home/devtool77/gsb/module/userman/userman.inc.php on line 48
+[09-Dec-2019 03:02:25 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1510
+[09-Dec-2019 03:02:44 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1510
+[09-Dec-2019 03:06:57 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1510
+[11-Dec-2019 03:10:03 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1510
+[12-Dec-2019 02:09:22 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1510
+[12-Dec-2019 05:19:50 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1510
+[12-Dec-2019 05:20:11 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1510
+[12-Dec-2019 17:13:18 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 17:32:03 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 17:33:36 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 17:44:02 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 17:45:13 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 17:45:46 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 17:59:24 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 18:07:15 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:07:46 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:08:27 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:08:58 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:09:17 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:09:32 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:10:04 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:10:25 UTC] PHP Warning:  Missing argument 2 for DateTimeFormat(), called in /home/devtool77/gsb/module/userman/userman.inc.php on line 113 and defined in /home/devtool77/gsb/service/func.php on line 259
+[12-Dec-2019 18:10:25 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1523
+[12-Dec-2019 18:14:33 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1537
+[12-Dec-2019 18:20:27 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1543
+[12-Dec-2019 18:20:44 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1543
+[12-Dec-2019 18:32:35 UTC] PHP Warning:  Illegal string offset 'code' in /home/devtool77/gsb/module/userman/userman.inc.php on line 29
+[12-Dec-2019 18:32:35 UTC] PHP Warning:  Illegal string offset 'msg' in /home/devtool77/gsb/module/userman/userman.inc.php on line 91
+[12-Dec-2019 18:38:33 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1543
+[12-Dec-2019 18:39:44 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1543
+[12-Dec-2019 18:43:20 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 131
+[19-Dec-2019 02:27:37 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:29:28 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:46:55 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:47:08 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:48:48 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:50:06 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:50:33 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:51:04 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:51:49 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1551
+[06-Jan-2020 03:36:20 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1551
+[06-Jan-2020 08:10:36 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1551
+[07-Jan-2020 02:53:41 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1551
+[17-Jan-2020 07:39:22 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[17-Jan-2020 07:39:35 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[17-Jan-2020 07:39:41 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[17-Jan-2020 09:14:50 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[17-Jan-2020 09:14:57 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[17-Jan-2020 09:15:03 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[17-Jan-2020 12:43:55 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[18-Jan-2020 14:33:15 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287
+[19-Jan-2020 04:11:59 UTC] PHP Parse error:  syntax error, unexpected '$result' (T_VARIABLE) in /home/devtool77/gsb/module/userman/userman.inc.php on line 287

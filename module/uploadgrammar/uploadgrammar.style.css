@@ -1,0 +1,23 @@
+/*================================================*\
+*  Author : BoyBangkhla
+*  Created Date : 24/01/2015 09:09
+*  Module : Style
+*  Description : Backoffice Style sheet
+*  Involve People : MangEak
+*  Last Updated : 24/01/2015 09:09
+\*================================================*/
+@charset "utf-8";
+
+.dt-buttons {
+    margin-bottom: 5px;
+    float: left;
+    width: 100%;
+}
+div.dt-buttons {
+    position: relative;
+    float: left;
+}
+
+.float-right {
+    float: right;
+}

@@ -1,0 +1,21 @@
+AddDefaultCharset UTF-8
+DirectoryIndex index.php
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteRule ^check-login$							login.inc.php [QSA]
+RewriteRule ^page-(.*)-(.*)$						app.php?mode=$1&id=$2 [QSA]
+RewriteRule ^page-(.*)$								app.php?mode=$1 [QSA]
+RewriteRule ^module/(.*)/(.*)-print$		       module/$1/$2.print.php [QSA]
+RewriteRule ^module/(.*)/(.*)-print/(.*)/(.*)$		       module/$1/$2.print.php?mod=$2&start_date=$3&end_date=$4 [QSA]
+RewriteRule ^module/(.*)/(.*)-(.*)-(.*)$		           module/$1/$2.inc.php?mode=$3&mod=$2&table=$4 [QSA]
+RewriteRule ^module/(.*)/(.*)-(.*)$		           module/$1/$2.inc.php?mode=$3&mod=$2 [QSA]
+
+</IfModule>
+
+

@@ -1,0 +1,99 @@
+/*================================================*\
+*  Author : BoyBangkhla
+*  Created Date : 24/01/2015 09:09
+*  Module : Style
+*  Description : Backoffice Style sheet
+*  Involve People : MangEak
+*  Last Updated : 24/01/2015 09:09
+\*================================================*/
+@charset "utf-8";
+
+#chart-container {
+    position: relative;
+    display: inline-block;
+    top: 10px;
+    left: 10px;
+    height: 650px;
+    width: calc(100% - 24px);
+    border: 0px dashed #aaa;
+    border-radius: 5px;
+    overflow: auto;
+    text-align: left;
+}
+
+
+.content {
+    min-height: 50px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.orgchart {
+    box-sizing: border-box;
+    display: inline-block;
+    min-height: 400px;
+    min-width: 200px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+     background-image: none;
+    background-size: 10px 10px;
+    border: 1px dashed rgba(0,0,0,0);
+    padding: 20px;
+}
+
+.orgchart .node .content {
+    box-sizing: border-box;
+    padding: 2px;
+    height: 20px;
+    font-size: 1.5rem;
+    border: 1px solid rgba(217, 83, 79, 0.8);
+    border-radius: 0 0 4px 4px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.orgchart .node .title {
+    box-sizing: border-box;
+    padding: 2px;
+    width: 130px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: rgba(217, 83, 79, 0.8);
+    color: #000;
+    border-radius: 4px 4px 0 0;
+}
+
+.flot-text {
+    color: rgba(0, 0, 0, 255) !important
+}
+
+.orgchart .node {
+    width: auto !important;
+}
+
+.google-visualization-orgchart-table tr td.google-visualization-orgchart-node div{
+    width: 250px!important;
+}
+
+.box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+    font-weight: bolder;
+}

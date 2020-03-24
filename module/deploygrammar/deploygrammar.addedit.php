@@ -1,0 +1,1 @@
+<table id="tbViewSub" class="table table-bordered table-striped dataTable" style="width: 100%"></table>

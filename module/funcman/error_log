@@ -1,0 +1,5 @@
+[14-Dec-2019 02:19:15 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1543
+[14-Dec-2019 02:19:57 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1543
+[14-Dec-2019 02:20:39 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1543
+[19-Dec-2019 02:28:00 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
+[19-Dec-2019 02:35:05 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/devtool77/gsb/service/func.php on line 1550
