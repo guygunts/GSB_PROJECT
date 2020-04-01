@@ -194,7 +194,7 @@ if (is_file("module/$mod/$mod.modal.php")) {
 
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<script src="plugins/alertifyjs/alertify.js"></script>
+<script src="plugins/alertifyjs/alertify.js?t=<?php echo microtime(); ?>"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 

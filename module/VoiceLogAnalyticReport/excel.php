@@ -34,6 +34,9 @@ $status['F'] = 'Fail';
 $status['G'] = 'Garbage';
 $status['O'] = 'Other';
 
+//PrintR($params);
+
+
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
 $url = URL_API . '/geniespeech/voicelog';
 $response = curlposttoken($url, $params, $token);

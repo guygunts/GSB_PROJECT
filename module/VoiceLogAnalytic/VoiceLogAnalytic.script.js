@@ -239,8 +239,9 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                             });
 
                     }
-                    me.table.column(3).visible(false);
-                    me.table.column(4).visible(false);
+                    me.table.column(1).visible(false);
+                    // me.table.column(3).visible(false);
+                    // me.table.column(4).visible(false);
 
                     me.table.columns.adjust().draw('true');
 

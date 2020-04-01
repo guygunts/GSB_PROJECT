@@ -35,7 +35,7 @@ function View(){
 
     if ($response['result'][0]['code'] == 200) {
         $columnslist = $response['columns_name'];
-        $datas = $response['recs'];
+        $datas = (array)$response['recs'];
         $name = $response['report_name'];
 
         $column[0]['className'] = 'text-center';
@@ -52,12 +52,25 @@ function View(){
             }else{
                 $column[$m]['className'] = 'text-center';
             }
+            if($item['column_data'] == 'VOICE_NAME'){
+                $item['column_data'] = 'CHNN';
+            }else if($item['column_data'] == 'RSTT'){
+                $item['column_data'] = 'input_conf';
+            }else if($item['column_data'] == 'CONF'){
+                $item['column_data'] = 'intent';
+            }else if($item['column_name'] == '% Best Intent Confidence'){
+                $item['column_data'] = 'intent_conf';
+            }else if($item['column_name'] == 'Status'){
+                $item['column_data'] = 'rstt';
+            }else if($item['column_name'] == 'Grammar'){
+                $item['column_data'] = 'GRNM';
+            }
 
             $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] =  ($item['column_data']);
+            $column[$m]['data'] =  $item['column_data'];
 
 
-            $columns[$i]['data'] = ($item['column_data']);
+            $columns[$i]['data'] = $item['column_data'];
 
             ++$m;
         }
@@ -66,6 +79,7 @@ function View(){
 
         foreach((array)$datas as $i => $item){
             if($item['DATE_TIME'] == 0)break;
+            $datalist[$i]['DT_RowId'] = 'row_'.MD5($item[$columns[1]['data']]);
             $datalist[$i]['no'] = ($i+1);
             foreach((array)$columns as $v => $value){
                 if($value['data'] == 'LOG_FILE'){
@@ -153,6 +167,7 @@ function ViewCHNN(){
 
 
         foreach((array)$datas as $i => $item){
+            $datalist[$i]['DT_RowId'] = 'rows_'.MD5($item[$columns[1]['data']]);
             $datalist[$i]['no'] = ($i+1);
             foreach((array)$columns as $v => $value){
                 if($value['data'] == 'CHNN'){

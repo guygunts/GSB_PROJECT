@@ -47,10 +47,10 @@ me.Search = function () {
         }
 
         if (cnt != 2) return false;
-        me.table.clear().destroy();
-        $('#tbView').empty();
-
-        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', compare, txtsearch);
+        // me.table.clear().destroy();
+        // $('#tbView').empty();
+        me.table.clear();
+        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', compare, txtsearch,1);
     });
 
 };
@@ -94,8 +94,9 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
                         alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
                     }
                     if (readd) {
-                        me.table.clear().draw();
-                        me.table.rows.add(data.data).draw();
+                        me.applyData(me.table,data.data,false);
+                        // me.table.clear().draw();
+                        // me.table.rows.add(data.data).draw();
 
                     } else {
                         me.table = $('#tbView')
@@ -456,7 +457,8 @@ me.UpdateBtn = function (e) {
     };
 
     $('.modal').modal('hide');
-    alertify.promptnew('Before Change Please Select Date and Time','Start Date : ','',
+
+    alertify.promptnew('Before Change Please Select Date and Time','Start Date : ',moment().format("YYYY-MM-DD HH:mm:ss"),
         function (evt,value) {
             if (value) {
 
@@ -490,6 +492,11 @@ me.UpdateBtn = function (e) {
             alertify.error('Cancel Change');
         });
 
+    $('#startdate').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm:ss',
+        sideBySide: true,
+        minDate: moment().format("YYYY-MM-DD HH:mm:ss")
+    });
 
 };
 

@@ -61,6 +61,8 @@ function View(){
 
         foreach((array)$datas as $i => $item){
             if ($item['date_time'] == 0) continue;
+            $item['DT_RowId'] = 'row_'.MD5($item[$columns[1]['data']]);
+            $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
             $datalist[$i]['no'] = ($i+1);
 
             foreach((array)$columns as $v => $value){

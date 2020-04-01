@@ -43,7 +43,7 @@ me.Search = function(){
 		}
 
 		if(cnt != 2)return false;
-
+		me.table.clear();
 		me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
 	});
 
@@ -55,7 +55,7 @@ $(document).ready(function(){
 	me.SetUrl();
 	me.SetDateTime();
 	me.Search();
-	me.LoadDataReport(me.action.menu,1,25,'','','day','');
+	me.LoadDataReport(me.action.menu,1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','day','');
 	// me.LoadCbo('project','getprojects','project_id','project_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
 });

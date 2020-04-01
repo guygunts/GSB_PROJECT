@@ -32,10 +32,12 @@
                     </div>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body" id="allbox">
+                <div class="box-body">
                     <button type="button" onclick="me.Export()" class="btn btn-default pull-right">Export</button>
+
+                    <div id="allbox" style="padding: 5px">
                     <div class="col-xs-12" style="margin-top: 10px" id="mygraph">
-                        <div class="col-xs-4"><canvas id="pieChart" height="300px"></canvas></div>
+                        <div class="col-xs-4"><div id="pieChart" style="height: 300px; width: 100%;"></div></div>
                         <div class="col-xs-4"><canvas id="barChart" height="300px"></canvas></div>
                         <div class="col-xs-4" id="mydata"></div>
 
@@ -47,7 +49,7 @@
                         <table id="tbView" class="table table-bordered table-striped dataTable" style="width: 100%">
                             <tfoot><tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></tfoot>
                         </table>
-
+                    </div>
                 </div>
                 <!-- /.box-body -->
             </div>

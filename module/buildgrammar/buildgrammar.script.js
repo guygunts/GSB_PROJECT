@@ -46,10 +46,10 @@ me.Search = function(){
 		}
 
 		if(cnt != 2)return false;
-		me.table.clear().destroy();
-		$('#tbView').empty();
-
-		me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch);
+		// me.table.clear();
+		// $('#tbView').empty();
+		me.table.clear();
+		me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
 	});
 
 };
@@ -84,9 +84,10 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
 					}
 					if(readd){
-						me.table.clear().draw();
-						me.table.rows.add(data.data).draw();
-
+						me.applyData(me.table,data.data,false);
+						// me.table.clear().draw();
+						// me.table.rows.add(data.data).draw();
+						// me.table.rows().invalidate().draw();
 					}else{
 						me.table = $('#tbView')
 							.addClass('nowrap')
@@ -140,6 +141,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 										"orderable": false
 									}
 								],
+
 								searching: false,
 								retrieve: true,
 								deferRender: true,
@@ -254,6 +256,7 @@ me.AddGrammar = function () {
 								case 'COMPLETE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
+									// me.table.rows().invalidate().draw();
 									$('#btnsearchsubmit').click();
 									break;
 								default:
@@ -368,7 +371,7 @@ me.Checkfile = function(){
 
 me.AutoReload = function () {
 
-
+		me.loading = false;
 		var myData = [];
 		myData = ft.LoadForm('searchdata');
 		myData.start_date = $('#start_date').data().date+' 00:00:00';
@@ -386,9 +389,10 @@ me.AutoReload = function () {
 			success:function(data){
 				switch(data.success){
 					case 'COMPLETE' :
-						me.table.clear().draw();
-						me.table.rows.add(data.data).draw();
-
+						me.applyData(me.table,data.data,false);
+						// me.table.clear().draw();
+						// me.table.rows.add(data.data).draw();
+						// me.table.rows().invalidate().draw();
 						break;
 					default :
 						alertify.alert(data.msg);
@@ -441,6 +445,7 @@ me.Download = function(e){
 		});
 
 };
+
 
 /*================================================*\
   :: DEFAULT ::

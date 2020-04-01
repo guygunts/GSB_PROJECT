@@ -27,8 +27,7 @@ function View(){
         'end_date' => $data['end_date'],
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
-        'compare' => $data['compare'],
-        'text_search' => $data['text_search'],
+        'text_search' => $data['text_search']
     );
 
 //    PrintR($params);
@@ -60,7 +59,9 @@ function View(){
 
 
         foreach((array)$datas as $i => $item){
-            if ($item['date_time'] == 0) continue;
+//            if ($item['date_time'] === 0) continue;
+            $item['DT_RowId'] = 'row_'.MD5($item[$columns[1]['data']]);
+            $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
             $datalist[$i]['no'] = ($i+1);
 
             foreach((array)$columns as $v => $value){

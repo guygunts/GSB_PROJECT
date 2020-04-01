@@ -96,7 +96,10 @@ function View(){
                     $pipecharts['label'][$n] = $m;
 
 //                    $pipecharts['data'][$n]['x'] = $m;
-                    $pipecharts['data'][$n] = $items[1]['%'];
+                    $pipecharts['data'][$n]['label'] = $m;
+//                    $pipecharts['data'][$n]['indexLabel'] = $m;
+                    $pipecharts['data'][$n]['name'] = $items[0]['call'];
+                    $pipecharts['data'][$n]['y'] = $items[1]['%'];
                     $pipecharts['color'][$n] = $barcolor[$n];
 
                     ++$n;

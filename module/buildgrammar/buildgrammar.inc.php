@@ -109,6 +109,7 @@ function View(){
             $column[$m]['className'] = 'text-'.$item['column_align'];
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_field'];
+//            $column[$m]["DT_RowId"] = $item['column_field'];
 
             $columns[$m]['data'] = $item['column_field'];
             $columns[$m]['type'] = $item['column_type'];
@@ -117,6 +118,7 @@ function View(){
         $column[$m]['className'] = 'text-center';
         $column[$m]['title'] = '';
         $column[$m]['data'] = 'btn';
+//        $column[$m]["DT_RowId"] = 'row_'.$m;
 
 
         $permiss = LoadPermission();
@@ -125,6 +127,7 @@ function View(){
             $btn = '';
 
 
+            $datalist[$i]['DT_RowId'] = 'row_'.$item['project_id'].'_'.strtotime($item['date_time']);
             $datalist[$i]['no'] = ($i+1);
 
             foreach((array)$columns as $v => $value){

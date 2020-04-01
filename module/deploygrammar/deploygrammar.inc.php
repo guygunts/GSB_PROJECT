@@ -29,6 +29,8 @@ function View(){
         'text_search' => $data['text_search']
     );
 
+//    PrintR($params);
+
     $url = URL_API.'/geniespeech/grammardeploy';
     $response = curlposttoken($url, $params, $token);
 

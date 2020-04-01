@@ -44,10 +44,10 @@ me.Search = function(){
 		}
 
 		if(cnt != 2)return false;
-		me.table.clear().destroy();
-		$('#tbView').empty();
-
-		me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch);
+		// me.table.clear().destroy();
+		// $('#tbView').empty();
+		// me.table.clear();
+		me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
 	});
 
 };
@@ -63,12 +63,17 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
+					$('#frmsearch').css('display','');
+					// $('#frmsearch').css('display','');
+
 					// console.log(data.data.length);
 					if(data.data.length == 0){
 						alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
 					}
 
 					if(readd){
+						// me.table.clear();
+						// me.applyData(me.table,data.data,false);
 						me.table.clear().draw();
 						me.table.rows.add(data.data).draw();
 
@@ -132,6 +137,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								paging: true,
 								lengthChange:false,
 								data: data.data,
+
 								columns: data.columns
 							});
 
@@ -156,6 +162,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						column.visible( ! column.visible() );
 					} );
 					//me.TextSerch();
+					$('#tbViewSub_wrapper').css('display','none');
+					$('#tbView_wrapper').css('display','');
 					break;
 				default :
 					alertify.alert(data.msg);
@@ -285,6 +293,8 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
+
+					$('#frmsearch').css('display','none');
 					console.log(data.data.length);
 					if(data.data.length == 0){
 						alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
@@ -292,12 +302,12 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 					}
 
 					if(readd){
-						me.table.clear().draw();
-						me.table.rows.add(data.data).draw();
+						me.tablesub.clear().draw();
+						me.tablesub.rows.add(data.data).draw();
 
 					}else{
 
-						me.table = $('#tbView')
+						me.tablesub = $('#tbViewSub')
 							.addClass('nowrap')
 							.removeAttr('width')
 							.DataTable({
@@ -308,7 +318,35 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 										text: 'ย้อนกลับ',
 										className: 'float-left',
 										action: function ( e, dt, node, config ) {
-											$('#btnsearchsubmit').click();
+
+											me.loading = true;
+
+											var page_size = $('#page_size').val();
+											var compare = $('#compare').val();
+											var txtsearch = $('#text_search').val();
+											var start = $('#start_date').data().date;
+											var stop = $('#end_date').data().date;
+											var cnt = 0;
+
+											if(start !== undefined){
+												++cnt;
+											}
+											if(stop !== undefined){
+												++cnt;
+											}
+
+											if(cnt != 2)return false;
+											// me.tablesub.clear().destroy();
+											// me.table.clear().destroy();
+											// $('#tbViewSub').empty();
+											// $('#tbView').empty();
+
+											$('#tbViewSub_wrapper').css('display','none');
+											$('#tbView_wrapper').css('display','');
+
+											// me.table.clear();
+											me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch);
+											// $('#btnsearchsubmit').click();
 										}
 									},
 									{
@@ -343,7 +381,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 									}
 								],
 								bFilter: false,
-								searching: true,
+								searching: false,
 								retrieve: true,
 								deferRender: true,
 								stateSave: true,
@@ -360,8 +398,8 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 
 					}
 
-					me.table.columns.adjust().draw('true');
-					me.table.buttons(0, null).container().addClass('col');
+					me.tablesub.columns.adjust().draw('true');
+					me.tablesub.buttons(0, null).container().addClass('col');
 
 					if(data.name){
 						$('title').text(data.name);
@@ -374,12 +412,13 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 						e.preventDefault();
 
 						// Get the column API object
-						var column = me.table.column( $(this).attr('data-column') );
+						var column = me.tablesub.column( $(this).attr('data-column') );
 
 						// Toggle the visibility
 						column.visible( ! column.visible() );
 					} );
-
+					$('#tbView_wrapper').css('display','none');
+					$('#tbViewSub').css('display','');
 					break;
 				default :
 					alertify.alert(data.msg);
@@ -390,15 +429,18 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 };
 
 me.OpenCHNN = function(code,page_id,page_size,start,stop){
-	me.table.clear().destroy();
-	$('#tbView').empty();
+	// me.table.clear().destroy();
+	// $('#tbView').empty();
 	me.LoadDataCHNN(code,page_id,page_size,start,stop);
 
 };
 
 me.OpenVOICE = function(code,page_id,page_size,start,stop){
-	me.table.clear().destroy();
-	$('#tbView').empty();
+	// $('#tbView_wrapper').css('display','none');
+	// $('#tbViewSub_wrapper').css('display','');
+	// $('#tbViewSub').css('display','');
+	// me.table.clear().destroy();
+	// $('#tbView').empty();
 	me.LoadDataVOICE(code,page_id,page_size,start,stop);
 };
 
@@ -443,6 +485,46 @@ me.UpdateVoice = function(){
 		});
 };
 
+me.TextSerch = function () {
+
+	$('#text_search').on('keyup',function (e) {
+
+		me.loading = false;
+		var myData = [];
+		myData = ft.LoadForm('searchdata');
+		myData.start_date = $('#start_date').data().date+' 00:00:00';
+		myData.end_date = $('#end_date').data().date+' 23:59:59';
+		myData.page_id = 1;
+		myData.page_size = 10000;
+		myData.menu_action = me.action.menu;
+
+		$.ajax({
+			url: me.url + '-View',
+			type:'POST',
+			dataType:'json',
+			cache:false,
+			data: myData,
+			success:function(data){
+				switch(data.success){
+					case 'COMPLETE' :
+						$('#tbViewSub').css('display','none');
+
+						// $('#tbViewSub').empty();
+						// me.tablesub.clear().destroy();
+						$('#tbView').css('display','');
+						me.table.clear().draw();
+						me.table.rows.add(data.data).draw();
+
+						break;
+					default :
+						alertify.alert(data.msg);
+						break;
+				}
+			}
+		});
+	});
+};
+
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/
@@ -450,7 +532,7 @@ $(document).ready(function(){
 	me.SetUrl();
 	me.SetDateTime();
 	me.Search();
-	me.LoadDataReport(me.action.menu,1,25,'','','','');
+	me.LoadDataReport(me.action.menu,1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
 	// me.LoadCbo('project','getprojects','project_id','project_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
 });

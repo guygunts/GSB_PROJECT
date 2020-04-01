@@ -57,6 +57,9 @@ function View(){
 
             $item['user_role'] = $item['role']['role_name'];
             $item['role_id'] = $item['role']['role_id'];
+
+            $item['DT_RowId'] = 'row_'.MD5($item[$columns[1]['data']]);
+            $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
             $datalist[$i]['no'] = ($i+1);
 
             foreach((array)$columns as $v => $value){
@@ -71,7 +74,7 @@ function View(){
                 $btn .= '<button data-code="'.$item['user_id'].'" data-item='."'".json_encode($dataattr[$i],JSON_HEX_APOS)."'".' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> '.$permiss[2]['name'].'</button>&nbsp;&nbsp;';
             }
             if($permiss[3]){
-                $btn .= '<button onclick="me.Del('.$item['user_id'].')"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> '.$permiss[3]['name'].'</button>';
+                $btn .= '<button data-code="'.$item['user_id'].'" data-item='."'".json_encode($dataattr[$i],JSON_HEX_APOS)."'".' onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> '.$permiss[3]['name'].'</button>';
             }
 
             $datalist[$i]['btn'] = $btn;

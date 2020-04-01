@@ -11,8 +11,8 @@ me.action.menu = 'QC';
 me.action.add = 'adduser';
 me.action.edit = 'updateuser';
 me.action.del = 'deleteuser';
-var ctx  = document.getElementById('pieChart').getContext('2d');
-var pieChart = '';
+// var ctx  = document.getElementById('pieChart').getContext('2d');
+// var pieChart = '';
 var ctxs = document.getElementById('barChart').getContext('2d');
 var barChart = '';
 var footerhtml = $('#tbView').clone();
@@ -47,11 +47,12 @@ me.Search = function () {
         }
 
         if (cnt != 2) return false;
-        me.table.clear().destroy();
+        // me.table.clear().destroy();
         // $('#tbView').empty();
-        pieChart.destroy();
+        // pieChart.destroy();
         barChart.destroy();
-        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59');
+        me.table.clear();
+        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59',1);
     });
 
 };
@@ -78,8 +79,15 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                     var mytext = data.text;
 
                     if (readd) {
-                        me.table.clear().draw();
-                        me.table.rows.add(data.data).draw();
+
+                        me.applyData(me.table,data.data,false);
+                        me.table.on('draw', function ( e, settings, json, xhr ) {
+                            initCompleteFunction(settings, json);
+                        } );
+
+
+                        // me.table.clear().draw();
+                        // me.table.rows.add(data.data).draw();
 
                     } else {
 
@@ -105,24 +113,24 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                                     bInfo: false,
                                     data: data.data,
                                     columns: data.columns,
-                                    initComplete: function(settings, data) {
-                                        // $('#tbView').createTFoot().insertRow(0);
-                                        // var footer = $(this).append('<tfoot><tr></tr></tfoot>');
-                                        // $('<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></tfoot>').appendTo('#tbView');
-                                        var api = this.api();
-                                        var lastRow = api.rows().count();
-                                        if(lastRow>0) {
-                                            var footer_data = datafooter ;
-                                            console.log(datafooter);
-                                            api.columns().every( function (i) {
-                                                this.footer().innerHTML = footer_data[i];
-                                            });
-                                        }
-                                    }
+                                    initComplete: initCompleteFunction
+
                                 }
                             );
 
                     }
+
+                    function initCompleteFunction(settings, json){
+                        var api = new $.fn.dataTable.Api( settings );
+                        var lastRow = api.rows().count();
+                        if(lastRow>0) {
+                            var footer_data = datafooter ;
+                            console.log(datafooter);
+                            api.columns().every( function (i) {
+                                this.footer().innerHTML = footer_data[i];
+                            });
+                        }
+                    };
 
 
                     me.table.columns.adjust().draw('true');
@@ -130,79 +138,108 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                     if (data.name) {
                         $('title').text(data.name);
                     }
-                    Chart.defaults.global.elements.point.borderWidth = 0;
-                    Chart.defaults.global.elements.arc.borderWidth = 2;
 
-                    var configs = {
 
-                        type: 'doughnut',
-                        data: {
-                            labels: pipechart.label,
-                            datasets: [{
-                                weight : 1,
-                                borderWidth : 2,
-                                data: pipechart.data,
-                                borderColor :  [
-                                    'red',
-                                    'orange',
-                                    'blue',
-                                    'green',
-
-                                ],
-                                backgroundColor: [
-                                    'red',
-                                   'orange',
-                                    'blue',
-                                   'green',
-
-                                ]
-
-                            }]
-
+                    var options = {
+                        title: {
+                            text: pipechart.capture,
+                            fontSize : 12,
+                            fontWeight : 'normal'
                         },
+                        exportEnabled: false,
+                        animationEnabled: true,
 
-                        options: {
-                            responsive: true,
+                        data: [{
+                            type: "pie",
 
-                            legend: {
-                                position: 'bottom',
-                            },
-                            title: {
-                                display: true,
-                                text: pipechart.capture,
-                                padding : 30
-                            },
-                            animation: {
-                                animateScale: true,
-                                animateRotate: true
-                            },
+                            startAngle: 240,
+                            radius: "90%",
+                            showInLegend: true,
+                            // xValueType : "number",
+                            yValueFormatString: "##0.00\"%\"",
+                            legendText: "{label}-{y}",
+                            indexLabel: "{label}({name})-{y}",
 
-                            plugins: {
-                                datalabels: {
-                                    align: 'end',
-                                    anchor: 'end',
-                                    clamp : true,
-                                    offset : 1,
-
-                                    color: function (context) {
-                                        return context.dataset.backgroundColor;
-                                    },
-                                    font: function (context) {
-                                        var w = context.chart.width;
-                                        return {
-                                            size: w < 512 ? 12 : 14
-                                        };
-                                    },
-                                    formatter: function (value, context) {
-                                        console.log(context);
-                                        return context.chart.data.labels[context.dataIndex]+' '+value;
-                                    }
-                                }
-                            }
-                        }
+                            toolTipContent: "<b>{label}</b>({name})-{y}",
+                            dataPoints: pipechart.data
+                        }]
                     };
-                    pieChart = new Chart(ctx,configs);
-                    pieChart.update();
+                    $("#pieChart").CanvasJSChart(options);
+
+                    // var configs = {
+                    //
+                    //     type: 'doughnut',
+                    //     data: {
+                    //         labels: pipechart.label,
+                    //         datasets: [{
+                    //             weight : 1,
+                    //             borderWidth : 2,
+                    //             data: pipechart.data,
+                    //             borderColor :  [
+                    //                 'red',
+                    //                 'orange',
+                    //                 'blue',
+                    //                 'green',
+                    //
+                    //             ],
+                    //             backgroundColor: [
+                    //                 'red',
+                    //                'orange',
+                    //                 'blue',
+                    //                'green',
+                    //
+                    //             ]
+                    //
+                    //         }]
+                    //
+                    //     },
+                    //
+                    //     options: {
+                    //         responsive: true,
+                    //
+                    //         legend: {
+                    //             position: 'bottom',
+                    //         },
+                    //         title: {
+                    //             display: true,
+                    //             text: pipechart.capture,
+                    //             padding : 30
+                    //         },
+                    //         animation: {
+                    //             animateScale: true,
+                    //             animateRotate: true
+                    //         },
+                    //
+                    //         plugins: {
+                    //             labels: {
+                    //                 render: 'label',
+                    //                 fontColor: '#000',
+                    //                 position: 'outside'
+                    //             },
+                    //             datalabels: {
+                    //                 align: 'end',
+                    //                 anchor: 'end',
+                    //
+                    //                 color: function (context) {
+                    //                     return context.dataset.backgroundColor;
+                    //                 },
+                    //                 font: function (context) {
+                    //                     var w = context.chart.width;
+                    //                     return {
+                    //                         size: w < 512 ? 12 : 14
+                    //                     };
+                    //                 },
+                    //                 formatter: function (value, context) {
+                    //                     console.log(context);
+                    //                     // return context.chart.data.labels[context.dataIndex]+' '+value;
+                    //                     return value;
+                    //                 }
+                    //             }
+                    //         }
+                    //     }
+                    // };
+                    // pieChart = new Chart(ctx,configs);
+                    // pieChart.update();
 
                     var config = {
                         type: 'bar',
@@ -317,13 +354,13 @@ me.Export = function(){
         form._submit_function_();
     }
 
-    html2canvas(document.querySelector('#allbox')).then(function(canvas) {
+    html2canvas(document.querySelector('#allbox')).then(canvas => {
         var start = $('#start_date').data().date;
         var stop = $('#end_date').data().date;
         var dataUrl = canvas.toDataURL();
         var newDataURL = dataUrl.replace(/^data:image\/png/, "data:application/octet-stream"); //do this to clean the url.
 
-        submitFORM('module/' + me.mod + '/excel.php', {img : newDataURL , start_date : start , end_date : stop},'POST');
+        submitFORM('module/' + me.mod + '/excel.php', {img : newDataURL , start_date : start+' 00:00:00' , end_date : stop+' 23:59:59'},'POST');
 
 
 

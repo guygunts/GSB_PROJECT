@@ -12,6 +12,11 @@
                            class="form-control project_name">
                 </div>
                 <div class="form-group">
+                    <label for="project_desc" class="control-label">Project Desc</label>
+                    <input id="project_desc" name="project_desc" type="text" required="required" maxlength="255"
+                           class="form-control project_desc">
+                </div>
+                <div class="form-group">
                     <label for="lang" class="control-label">Lang</label>
                     <select id="lang" name="lang" class="select form-control lang" required="required">
                         <option value="en">English</option>

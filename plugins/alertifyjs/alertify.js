@@ -3704,8 +3704,10 @@
             prepare: function () {
                 $('#startdate').datetimepicker({
                     format: 'YYYY-MM-DD HH:mm:ss',
-                    sideBySide: true
+                    sideBySide: true,
+                    minDate: moment().format("YYYY-MM-DD HH:mm:ss")
                 });
+                $('#startdate').datetimepicker('date',moment());
             },
             setMessage: function (message) {
                 if (typeof message === 'string') {
@@ -3721,7 +3723,7 @@
                 labels: undefined,
                 onok: undefined,
                 oncancel: undefined,
-                value: '',
+                value: moment().format("YYYY-MM-DD HH:mm:ss"),
                 type:'text',
                 reverseButtons: undefined,
             },
@@ -3771,6 +3773,7 @@
                         break;
                 }
             },
+
             callback: function (closeEvent) {
                 var returnValue;
                 switch (closeEvent.index) {

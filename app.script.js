@@ -34,7 +34,8 @@ let me = {
 	tablesub: {},
 	define: {},
 	alert: {},
-	loading:false
+	loading:false,
+	dataold: {}
 };
 
 
@@ -257,8 +258,11 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
 					}
 					if(readd){
+						// me.table.clear();
+						// let dataold = me.table.rows().data();
+						me.applyData(me.table,data.data,false);
 						// me.table.clear().draw();
-						me.table.rows.add(data.data).draw();
+						// me.table.rows.add(data.data).draw();
 					}else{
 						me.table = $('#tbView')
 							.addClass('nowrap')
@@ -298,7 +302,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 
 
 					}
-
+					me.dataold = data.data;
 					me.table.columns.adjust().draw('true');
 
 					$('a.toggle-vis').on( 'click', function (e) {
@@ -336,8 +340,10 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					}
 
 					if(readd){
-						me.table.clear().draw();
-						me.table.rows.add(data.data).draw();
+						// let dataold = me.table.rows().data();
+						me.applyData(me.table,data.data,false);
+						// me.table.clear().draw();
+						// me.table.rows.add(data.data).draw();
 
 					}else{
 						me.table = $('#tbView')
@@ -541,6 +547,73 @@ me.Clear = function () {
 	$('#lyAddEdit input').first().focus();
 };
 
+me.applyDatanew = function(table, data, append){
+
+	if(append == true){
+		table.rows.add(data);
+
+		//Locate and update rows by rowId or add if new
+	}else {
+		let index;
+		let indexes;
+		$.each(data, function (i, v) {
+			index = table.row('#' + v.DT_RowId);
+			if(index.length > 0){
+				table.row(index[0]).data(data[i]).invalidate();
+
+			}else{
+				indexes = table.rows().eq(0).filter(function (idx) {
+					return table.cell(idx, 1).data() === v.DT_RowId ? true : false;
+				});
+				console.log(indexes);
+				table.rows(indexes).remove();
+				table.row.add(data[i]);
+			}
+
+
+		});
+	}
+	table.draw(true);
+};
+
+me.applyData = function(table, data, append){
+
+	//Quickly appends new data rows.  Does not update rows
+	if(append == true){
+		table.rows.add(data);
+
+		//Locate and update rows by rowId or add if new
+	}else{
+		let index;
+		let chk;
+		let indexes;
+		// $.each(dataold, function (i, v) {
+		// 	indexes = table.row('#' + v.DT_RowId);
+		// });
+			for (var x = 0;x < data.length;x++){
+			//Find row index by rowId if row exists
+			index = table.row('#' + data[x].DT_RowId);
+
+			//Update row data if existing, and invalidate for redraw
+			if(index.length > 0){
+				table.row(index[0]).data(data[x]).invalidate();
+
+				//Add row data if new
+			}else{
+				// var indexes = table.rows().eq(0).filter(function(idx){
+				// 	return table.cell(idx, 1).data() === v.id ? true : false;
+				// });
+				// table.rows(indexes).remove();
+				table.row.add(data[x]);
+
+			}
+		}
+	}
+
+	//Redraw table maintaining paging
+	table.draw(false);
+};
+
 me.Load = function (e) {
 	me.ClearData();
 	var code = $(e).attr('data-code');
@@ -581,7 +654,8 @@ me.Add = function () {
 								case 'COMPLETE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
-									me.table.clear().draw();
+									// $('#btnsearchsubmit').click();
+									// me.table.clear().draw();
 									me.LoadData(me.action.menu, 1, 30, 1);
 									break;
 								default:
@@ -621,7 +695,8 @@ me.Edit = function () {
 								case 'COMPLETE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
-									me.table.clear().draw();
+									// $('#btnsearchsubmit').click();
+									// me.table.clear().draw();
 									me.LoadData(me.action.menu, 1, 30, 1);
 									break;
 								default:
@@ -640,7 +715,9 @@ me.Edit = function () {
 	}).click();
 };
 
-me.Del = function (code) {
+me.Del = function (e) {
+	var code = $(e).attr('data-code');
+	var attr = JSON.parse($(e).attr('data-item'));
 	alertify.confirm("Do you want Delete.",
 		function () {
 			$.ajax({
@@ -654,7 +731,8 @@ me.Del = function (code) {
 						case 'COMPLETE':
 							$('.modal').modal('hide');
 							alertify.success(data.msg);
-							me.table.clear().draw();
+							// $('#btnsearchsubmit').click();
+							me.table.row('#'+attr.DT_RowId).remove().draw();
 							me.LoadData(me.action.menu, 1, 30, 1);
 							break;
 						default:
@@ -1491,7 +1569,7 @@ me.SumbitConvertJson = function () {
 me.TextSerch = function () {
 
 	$('#text_search').on('keyup',function (e) {
-
+		me.loading = false;
 		var myData = [];
 		myData = ft.LoadForm('searchdata');
 		myData.start_date = $('#start_date').data().date+' 00:00:00';
