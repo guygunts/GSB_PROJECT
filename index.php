@@ -58,7 +58,7 @@ include_once 'service/service.php';
 <!--            </div>-->
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="button" class="btn btn-danger btn-block btn-flat" onclick="Setting();">Setting</button>
+                    <a href="setting.php" class="btn btn-danger btn-block btn-flat">Setting</a>
                 </div>
                 <div class="col-xs-4">
 
