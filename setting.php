@@ -32,6 +32,9 @@ include_once 'service/service.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
+<div class="col-md-6">
+
+
 <div class="login-box">
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -99,8 +102,8 @@ include_once 'service/service.php';
     </div>
     <!-- /.login-box-body -->
 </div>
-
-<!-- /.login-box -->
+</div>
+<div class="col-md-6"></div>
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
