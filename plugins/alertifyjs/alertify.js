@@ -64,7 +64,7 @@
             }
         },
         glossary:{
-            title:':: GSB ::',
+            title:':: GENIE ::',
             ok: 'OK',
             cancel: 'Cancel',
             acccpt: 'Accept',
