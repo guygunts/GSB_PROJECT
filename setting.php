@@ -42,7 +42,7 @@ include_once 'service/service.php';
 
         <form action="" method="post" onsubmit="return false;" id="frmsite">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Sitename" name="sitename">
+                <input type="text" class="form-control" placeholder="Sitename" name="sitename" value="<?php echo SITE?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="row">
@@ -61,11 +61,9 @@ include_once 'service/service.php';
     <!-- /.login-logo -->
     <div class="login-box-body">
 
-
-
         <form action="" method="post" onsubmit="return false;" id="frmurl">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Site url" name="url">
+                <input type="text" class="form-control" placeholder="Site url" name="url" value="<?php echo URL?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="row">
@@ -76,7 +74,6 @@ include_once 'service/service.php';
                 </div>
             </div>
         </form>
-
 
     </div>
     <!-- /.login-box-body -->
@@ -87,7 +84,7 @@ include_once 'service/service.php';
 
         <form action="" method="post" onsubmit="return false;" id="frmapi">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Site Api" name="api">
+                <input type="text" class="form-control" placeholder="Site Api" name="api" value="<?php echo URL_API?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="row">
