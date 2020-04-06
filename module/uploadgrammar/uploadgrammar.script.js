@@ -64,7 +64,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 			switch(data.success){
 				case 'COMPLETE' :
 					if(data.data.length == 0){
-						alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
+						alertify.alert('No data, Please select other date');
 					}
 					if(readd){
 						me.table.clear().draw();

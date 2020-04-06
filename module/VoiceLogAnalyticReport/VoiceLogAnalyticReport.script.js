@@ -71,7 +71,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
 
                 case 'COMPLETE' :
                     if(data.data.length == 0){
-                        alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
+                        alertify.alert('No data, Please select other date');
                     }
                     var datafooter = data.datafooter;
                     var pipechart = data.pipechart;

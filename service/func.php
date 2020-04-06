@@ -144,11 +144,7 @@ function PleaseLogin($url){
 				
 			</div>
 			<script language="JavaScript">
-			Pace.options = {
-                  restartOnRequestAfter: 1000
-                };
-			Pace.restart();
-				setTimeout("window.location.href=\''.$url.'/\'", 3000);
+				setTimeout("window.location.href=\''.$url.'/\'", 1000);
 			</script>
 		</body>
 		</html>

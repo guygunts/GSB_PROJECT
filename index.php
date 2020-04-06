@@ -110,17 +110,10 @@ include_once 'service/service.php';
                     switch(data.success){
                         case 'COMPLETE' :
 
+                            setTimeout(function(){
+                                window.location.replace('<?php echo URL;?>/page-'+data.menu);
+                            }, 2000);
 
-                            alertify.alert().set({
-                                onshow:function(){
-                                    setTimeout(function(){
-                                        window.location.replace('<?php echo URL;?>/page-'+data.menu);
-                                    }, 2000);
-                                }});
-                            alertify
-                                .alert(data.msg, function(){
-                                    window.location.replace('<?php echo URL;?>/page-'+data.menu);
-                                });
                             break;
                         default :
                             alertify.alert(data.msg);
