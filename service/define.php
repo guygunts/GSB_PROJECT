@@ -34,8 +34,14 @@ define('PRINT', '4');
 
 /* :: http://creation.ctdserver.com :: */
 define("SITE", "GENIE");
-define("URL", "https://gsb.devtool77.com");
-define("BASEURL", "https://gsb.devtool77.com");
+$c_url = "../config/URL.txt";
+$c_url_open = fopen($c_url, 'r');
+if ($c_url_open) {
+    $c_file = fgets($c_url_open, 4096);
+}
+fclose($c_url_open);
+define("URL", $c_file);
+define("BASEURL", $c_file);
 define("URL_API", "https://wso2ei.snapz.mobi");
 //define("URL", "http://localhost");
 //define("BASEURL", "http://localhost");
