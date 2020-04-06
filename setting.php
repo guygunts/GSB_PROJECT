@@ -230,7 +230,10 @@ include_once 'service/service.php';
                 url:'api.inc.php?mode=D9F5719F10F152E8378FE8A3D2505194',
                 type:'POST',
                 dataType:'json',
-                cache:false,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
                 data:formData,
                 success:function(data){
                     switch(data.success){
