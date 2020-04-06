@@ -33,9 +33,6 @@ include_once 'service/service.php';
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="login-logo">
-        <a href="index.php"><b><img src="images/logo.png?v=2" style="width: 45%;"></b></a>
-    </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
        
@@ -45,13 +42,37 @@ include_once 'service/service.php';
                 <input type="text" class="form-control" placeholder="Sitename" name="sitename">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
-
             <div class="row">
                 <div class="col-xs-8">
-
                 </div>
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                </div>
+            </div>
+        </form>
 
-                <!-- /.col -->
+        <form action="" method="post" onsubmit="return false;" id="frmurl">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Site url" name="url">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                </div>
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                </div>
+            </div>
+        </form>
+
+        <form action="" method="post" onsubmit="return false;" id="frmapi">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Site Api" name="api">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                </div>
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
                 </div>
