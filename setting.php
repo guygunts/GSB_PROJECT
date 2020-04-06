@@ -169,6 +169,84 @@ include_once 'service/service.php';
             });
 
         });
+
+        $('#frmurl').submit(function( event ) {
+            event.preventDefault();
+            var form = $(this);
+
+            $.ajax({
+                url:'api.inc.php?mode=CE5CA4A7D2A1A0A68250B4A6364EA43A',
+                type:'POST',
+                dataType:'json',
+                cache:false,
+                data:form.serialize(),
+                success:function(data){
+                    switch(data.success){
+                        case 'COMPLETE' :
+
+                            alertify.alert(data.msg);
+
+                            break;
+                        default :
+                            alertify.alert(data.msg);
+                            break;
+                    }
+                }
+            });
+
+        });
+
+        $('#frmurlapi').submit(function( event ) {
+            event.preventDefault();
+            var form = $(this);
+
+            $.ajax({
+                url:'api.inc.php?mode=EA8122F50A48F89DB8A4BD0C4127E17E',
+                type:'POST',
+                dataType:'json',
+                cache:false,
+                data:form.serialize(),
+                success:function(data){
+                    switch(data.success){
+                        case 'COMPLETE' :
+
+                            alertify.alert(data.msg);
+
+                            break;
+                        default :
+                            alertify.alert(data.msg);
+                            break;
+                    }
+                }
+            });
+
+        });
+
+        $('#frmlogo').submit(function( event ) {
+            event.preventDefault();
+            var form = $(this);
+
+            $.ajax({
+                url:'api.inc.php?mode=D9F5719F10F152E8378FE8A3D2505194',
+                type:'POST',
+                dataType:'json',
+                cache:false,
+                data:form.serialize(),
+                success:function(data){
+                    switch(data.success){
+                        case 'COMPLETE' :
+
+                            alertify.alert(data.msg);
+
+                            break;
+                        default :
+                            alertify.alert(data.msg);
+                            break;
+                    }
+                }
+            });
+
+        });
     });
 </script>
 </body>

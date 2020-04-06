@@ -347,6 +347,84 @@ function SaveSite()
 
 }
 
+function SaveUrl()
+
+{
+
+    global $json;
+    global $token;
+
+    $result['data'] = array();
+
+    $str = file_get_contents("php://input");
+    parse_str($str, $data);
+
+    $strFileName = "config/URL.txt";
+    $objFopen = fopen($strFileName, 'w');
+
+    fwrite($objFopen, $data['name']);
+    if($objFopen)
+    {
+        $result['success'] = 'COMPLETE';
+        $result['msg'] = 'COMPLETE';
+    }
+
+    fclose($objFopen);
+
+    $json = json_encode($result);
+
+}
+
+function SaveUrlApi()
+
+{
+
+    global $json;
+    global $token;
+
+    $result['data'] = array();
+
+    $str = file_get_contents("php://input");
+    parse_str($str, $data);
+
+    $strFileName = "config/URL_API.txt";
+    $objFopen = fopen($strFileName, 'w');
+
+    fwrite($objFopen, $data['name']);
+    if($objFopen)
+    {
+        $result['success'] = 'COMPLETE';
+        $result['msg'] = 'COMPLETE';
+    }
+
+    fclose($objFopen);
+
+    $json = json_encode($result);
+
+}
+
+function SaveLogo()
+
+{
+
+    global $json;
+    global $token;
+
+    $result['data'] = array();
+
+    $img = $_POST['name']; //get the image string from ajax post
+    $img = substr(explode(";", $img)[1], 7); //this extract the exact image
+    $target = 'logo.png';
+    $image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/images/' . $target, base64_decode($img));
+    $path = $_SERVER['DOCUMENT_ROOT'] . '/images/' . $target;
+    if($image){
+        $result['success'] = 'COMPLETE';
+        $result['msg'] = 'COMPLETE';
+    }
+
+    $json = json_encode($result);
+
+}
 
 switch ($_REQUEST["mode"]) {
 
@@ -372,6 +450,18 @@ switch ($_REQUEST["mode"]) {
 
     case strtoupper(md5('api_savesite')) :
         SaveSite();
+        break;
+
+    case strtoupper(md5('api_saveurl')) :
+        SaveUrl();
+        break;
+
+    case strtoupper(md5('api_saveurlapi')) :
+        SaveUrlApi();
+        break;
+
+    case strtoupper(md5('api_savelogo')) :
+        SaveLogo();
         break;
 
     default :
