@@ -50,7 +50,16 @@ include_once 'service/service.php';
                 </div>
             </div>
         </form>
-        <br>
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+
+
+
         <form action="" method="post" onsubmit="return false;" id="frmurl">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Site url" name="url">
@@ -64,7 +73,15 @@ include_once 'service/service.php';
                 </div>
             </div>
         </form>
-<br>
+
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+
         <form action="" method="post" onsubmit="return false;" id="frmapi">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Site Api" name="api">
@@ -80,12 +97,9 @@ include_once 'service/service.php';
         </form>
 
     </div>
-    <div class="login-footer text-center">
-        <p>© 2020 Sun Systems Corporation Limited. All rights reserved.</p>
-    </div>
-
     <!-- /.login-box-body -->
 </div>
+
 <!-- /.login-box -->
 
 <!-- jQuery 3 -->
