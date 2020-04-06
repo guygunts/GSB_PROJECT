@@ -34,29 +34,29 @@ define('PRINT', '4');
 
 /* :: http://creation.ctdserver.com :: */
 $c_site = "SITE.txt";
-$c_site_open = fopen($c_site, 'r');
+$c_site_open = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/config/'.$c_site);
 if ($c_site_open) {
-    $c_site_file = fgets($c_site_open, 4096);
+    $c_site_file = $c_site_open;
 }else{
     $c_site_file = 'TESTER';
 }
-fclose($c_site_open);
+
 $c_url = "URL.txt";
-$c_url_open = fopen($c_url, 'r');
+$c_url_open = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/config/'.$c_url);
 if ($c_url_open) {
-    $c_file = fgets($c_url_open, 4096);
+    $c_file = $c_url_open;
 }else{
     $c_file = 'https://gsb.devtool77.com';
 }
-fclose($c_url_open);
+
 $c_api = "URL_API.txt";
-$c_urlapi_open = fopen($c_api, 'r');
+$c_urlapi_open = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/config/'.$c_api);
 if ($c_urlapi_open) {
-    $c_api_file = fgets($c_urlapi_open, 4096);
+    $c_api_file = $c_urlapi_open;
 }else{
     $c_api_file = 'https://wso2ei.snapz.mobi';
 }
-fclose($c_urlapi_open);
+
 
 
 define("SITE", $c_site_file);
