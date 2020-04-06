@@ -114,7 +114,7 @@ include_once 'service/service.php';
 
             <form action="" method="post" onsubmit="return false;" id="frmcolor">
                 <div class="form-group has-feedback">
-                    <label>URL API</label>
+                    <label>THEME COLOR</label>
                     <input type="THEME COLOR" class="form-control" placeholder="THEME COLOR" name="name"
                            value="<?php echo COLOR ?>">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
