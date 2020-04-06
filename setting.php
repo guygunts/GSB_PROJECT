@@ -40,38 +40,21 @@ include_once 'service/service.php';
     <div class="login-box-body">
        
 
-        <form action="" method="post" onsubmit="return false;" id="frmlogin">
+        <form action="" method="post" onsubmit="return false;" id="frmsite">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Username" name="username" pattern="^[a-zA-Z0-9]{0,20}$">
+                <input type="text" class="form-control" placeholder="Sitename" name="sitename">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password" name="password" pattern="^[a-zA-Z0-9]{0,20}$">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-<!--            <div class="form-group has-feedback">-->
-<!--                <select class="form-control" placeholder="Password" name="lang">-->
-<!--                    <option value="th" selected>Thai</option>-->
-<!--                    <option value="en">Eng</option>-->
-<!--                </select>-->
-<!---->
-<!--            </div>-->
+
             <div class="row">
-                <div class="col-xs-4">
-                    <button type="button" class="btn btn-danger btn-block btn-flat" onclick="Setting();">Setting</button>
-                </div>
-                <div class="col-xs-4">
+                <div class="col-xs-9">
 
                 </div>
+
                 <!-- /.col -->
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                 </div>
-
-<!--                <div class="col-xs-12 text-center" style="margin-top: 10px">-->
-<!--                    <small>© 2020 Sun Systems Corporation Limited. All rights reserved.</small>-->
-<!--                </div>-->
-                <!-- /.col -->
             </div>
         </form>
 
