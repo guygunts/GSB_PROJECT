@@ -68,7 +68,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 
 					// console.log(data.data.length);
 					if(data.data.length == 0){
-						alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
+						alertify.alert('No data, Please select other date');
 					}
 
 					if(readd){
@@ -297,7 +297,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 					$('#frmsearch').css('display','none');
 					console.log(data.data.length);
 					if(data.data.length == 0){
-						alertify.alert('ไม่มีข้อมูล โปรดเลือกช่วงวันอื่น');
+						alertify.alert('No data, Please select other date');
 						return false;
 					}
 
