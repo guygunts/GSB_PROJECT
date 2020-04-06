@@ -112,7 +112,7 @@ include_once 'service/service.php';
             <form action="" method="post" onsubmit="return false;" id="frmlogo">
                 <div class="form-group has-feedback">
                     <label>Logo (Support .PNG Only)</label>
-                    <input type="file" class="form-control" placeholder="Sitename" name="logo">
+                    <input type="file" class="form-control" placeholder="logo.png" name="logo">
 
                 </div>
                 <div class="row">
