@@ -34,7 +34,7 @@ define('PRINT', '4');
 
 /* :: http://creation.ctdserver.com :: */
 define("SITE", "GENIE");
-$c_url = "../config/URL.txt";
+$c_url = "config/URL.txt";
 $c_url_open = fopen($c_url, 'r');
 if ($c_url_open) {
     $c_file = fgets($c_url_open, 4096);
