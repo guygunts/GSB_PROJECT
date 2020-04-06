@@ -42,6 +42,7 @@ include_once 'service/service.php';
 
         <form action="" method="post" onsubmit="return false;" id="frmsite">
             <div class="form-group has-feedback">
+                <label>SATE NAME</label>
                 <input type="text" class="form-control" placeholder="Sitename" name="sitename" value="<?php echo SITE?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
@@ -63,6 +64,7 @@ include_once 'service/service.php';
 
         <form action="" method="post" onsubmit="return false;" id="frmurl">
             <div class="form-group has-feedback">
+                <label>BASE URL</label>
                 <input type="text" class="form-control" placeholder="Site url" name="url" value="<?php echo URL?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
@@ -84,7 +86,7 @@ include_once 'service/service.php';
 
         <form action="" method="post" onsubmit="return false;" id="frmapi">
             <div class="form-group has-feedback">
-                <label>Site Name</label>
+                <label>URL API</label>
                 <input type="text" class="form-control" placeholder="Site Api" name="api" value="<?php echo URL_API?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
