@@ -11,6 +11,7 @@ include_once 'service/service.php';
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -115,7 +116,7 @@ include_once 'service/service.php';
             <form action="" method="post" onsubmit="return false;" id="frmcolor">
                 <div class="form-group has-feedback">
                     <label>THEME COLOR</label>
-                    <input type="THEME COLOR" class="form-control" placeholder="THEME COLOR" name="name"
+                    <input type="THEME COLOR" class="form-control" placeholder="THEME COLOR" name="name" id="colorname"
                            value="<?php echo COLOR ?>">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
@@ -162,6 +163,7 @@ include_once 'service/service.php';
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 <!-- iCheck -->
 <script src="plugins/alertifyjs/alertify.min.js"></script>
 <script src="plugins/iCheck/icheck.min.js"></script>
@@ -173,6 +175,8 @@ include_once 'service/service.php';
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' /* optional */
         });
+
+        $('#colorname').colorpicker();
 
         $('#frmsite').submit(function (event) {
             event.preventDefault();
