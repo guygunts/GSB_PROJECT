@@ -84,6 +84,7 @@ include_once 'service/service.php';
 
         <form action="" method="post" onsubmit="return false;" id="frmapi">
             <div class="form-group has-feedback">
+                <label>Site Name</label>
                 <input type="text" class="form-control" placeholder="Site Api" name="api" value="<?php echo URL_API?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
