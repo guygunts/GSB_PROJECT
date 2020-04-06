@@ -58,7 +58,7 @@ if ($c_urlapi_open) {
 }
 
 $c_color = "COLOR.txt";
-$c_color_open = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/config/'.$c_api);
+$c_color_open = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/config/'.$c_color);
 if ($c_color_open) {
     $c_color_file = $c_color_open;
 }else{
