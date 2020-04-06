@@ -28,14 +28,14 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="images/logo.png?v=2" class="user-image" alt="User Image">
+                        <img src="images/logo.png?v=<?php echo microtime()?>" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs"><?php echo $member['first_name']?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="images/logo.png?v=2" class="img-circle" alt="User Image">
+                            <img src="images/logo.png?v=<?php echo microtime()?>" class="img-circle" alt="User Image">
 
                             <p>
                                 <?php echo $member['first_name']?>

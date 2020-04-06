@@ -7,7 +7,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="images/logo.png?v=2" class="img-circle" alt="User Image">
+                <img src="images/logo.png?v=<?php echo microtime()?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p><?php echo $member['first_name']?></p>

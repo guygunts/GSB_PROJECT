@@ -34,7 +34,7 @@ include_once 'service/service.php';
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="index.php"><b><img src="images/logo.png?v=2" style="width: 45%;"></b></a>
+        <a href="index.php"><b><img src="images/logo.png?v=<?php echo microtime()?>" style="width: 45%;"></b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
