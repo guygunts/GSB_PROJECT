@@ -457,8 +457,8 @@ me.New = function () {
 me.Enable = function (code) {
 	var dialog = bootbox.confirm({
 		size: "small",
-		title: "เปิดการใช้งาน",
-		message: "ยืนยันการ เปิดการใช้งาน ?",
+		title: "Enable",
+		message: "Do you confirm to enable ?",
 		centerVertical: true,
 		callback: function (result) {
 			if (!result) return;
@@ -501,8 +501,8 @@ me.Enable = function (code) {
 me.Disable = function (code) {
 	var dialog = bootbox.confirm({
 		size: "small",
-		title: "ปิดการใช้งาน",
-		message: "ยืนยันการ ปิดการใช้งาน ?",
+		title: "Disable",
+		message: "Do you confirm to disable ?",
 		centerVertical: true,
 		callback: function (result) {
 			if (!result) return;

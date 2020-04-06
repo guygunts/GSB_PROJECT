@@ -57,7 +57,10 @@ include_once 'service/service.php';
 <!---->
 <!--            </div>-->
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-4">
+                    <button type="button" class="btn btn-danger btn-block btn-flat" onclick="Setting();">Setting</button>
+                </div>
+                <div class="col-xs-4">
 
                 </div>
                 <!-- /.col -->
