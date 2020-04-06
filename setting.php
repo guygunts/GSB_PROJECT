@@ -47,13 +47,13 @@ include_once 'service/service.php';
             </div>
 
             <div class="row">
-                <div class="col-xs-9">
+                <div class="col-xs-8">
 
                 </div>
 
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
                 </div>
             </div>
         </form>
