@@ -225,13 +225,13 @@ include_once 'service/service.php';
         $('#frmlogo').submit(function( event ) {
             event.preventDefault();
             var form = $(this);
-
+            var formData = new FormData(document.forms.namedItem("frmlogo"));
             $.ajax({
                 url:'api.inc.php?mode=D9F5719F10F152E8378FE8A3D2505194',
                 type:'POST',
                 dataType:'json',
                 cache:false,
-                data:form.serialize(),
+                data:formData,
                 success:function(data){
                     switch(data.success){
                         case 'COMPLETE' :
