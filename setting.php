@@ -113,7 +113,7 @@ include_once 'service/service.php';
                 <div class="form-group has-feedback">
                     <label>Logo (Support Png Only)</label>
                     <input type="file" class="form-control" placeholder="Sitename" name="logo">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
