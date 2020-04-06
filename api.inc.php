@@ -403,6 +403,34 @@ function SaveUrlApi()
 
 }
 
+function SaveColor()
+
+{
+
+    global $json;
+    global $token;
+
+    $result['data'] = array();
+
+    $str = file_get_contents("php://input");
+    parse_str($str, $data);
+
+    $strFileName = "config/COLOR.txt";
+    $objFopen = fopen($strFileName, 'w');
+
+    fwrite($objFopen, $data['name']);
+    if($objFopen)
+    {
+        $result['success'] = 'COMPLETE';
+        $result['msg'] = 'COMPLETE';
+    }
+
+    fclose($objFopen);
+
+    $json = json_encode($result);
+
+}
+
 function SaveLogo()
 
 {
@@ -460,6 +488,10 @@ switch ($_REQUEST["mode"]) {
 
     case strtoupper(md5('api_savelogo')) :
         SaveLogo();
+        break;
+
+    case strtoupper(md5('api_savecolor')) :
+        SaveColor();
         break;
 
     default :

@@ -6,7 +6,7 @@ include_once 'service/service.php';
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo SITE?></title>
+    <title><?php echo SITE ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -29,87 +29,116 @@ include_once 'service/service.php';
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
 <div class="col-md-6">
 
 
-<div class="login-box">
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-       
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="login-box-body">
 
-        <form action="" method="post" onsubmit="return false;" id="frmsite">
-            <div class="form-group has-feedback">
-                <label>SATE NAME</label>
-                <input type="text" class="form-control" placeholder="Sitename" name="name" value="<?php echo SITE?>">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                </div>
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
-                </div>
-            </div>
-        </form>
 
+            <form action="" method="post" onsubmit="return false;" id="frmsite">
+                <div class="form-group has-feedback">
+                    <label>SATE NAME</label>
+                    <input type="text" class="form-control" placeholder="Sitename" name="name"
+                           value="<?php echo SITE ?>">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.login-box-body -->
     </div>
-    <!-- /.login-box-body -->
-</div>
-<div class="login-box">
-    <!-- /.login-logo -->
-    <div class="login-box-body">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="login-box-body">
 
-        <form action="" method="post" onsubmit="return false;" id="frmurl">
-            <div class="form-group has-feedback">
-                <label>BASE URL</label>
-                <input type="text" class="form-control" placeholder="Site url" name="name" value="<?php echo URL?>">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
+            <form action="" method="post" onsubmit="return false;" id="frmurl">
+                <div class="form-group has-feedback">
+                    <label>BASE URL</label>
+                    <input type="text" class="form-control" placeholder="Site url" name="name"
+                           value="<?php echo URL ?>">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                <div class="row">
+                    <div class="col-xs-8">
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
+        </div>
+        <!-- /.login-box-body -->
     </div>
-    <!-- /.login-box-body -->
-</div>
-<div class="login-box">
-    <!-- /.login-logo -->
-    <div class="login-box-body">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="login-box-body">
 
-        <form action="" method="post" onsubmit="return false;" id="frmapi">
-            <div class="form-group has-feedback">
-                <label>URL API</label>
-                <input type="text" class="form-control" placeholder="Site Api" name="name" value="<?php echo URL_API?>">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
+            <form action="" method="post" onsubmit="return false;" id="frmapi">
+                <div class="form-group has-feedback">
+                    <label>URL API</label>
+                    <input type="text" class="form-control" placeholder="Site Api" name="name"
+                           value="<?php echo URL_API ?>">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                <div class="row">
+                    <div class="col-xs-8">
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
+        </div>
+        <!-- /.login-box-body -->
     </div>
-    <!-- /.login-box-body -->
-</div>
 </div>
 <div class="col-md-6">
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="login-box-body">
 
+            <form action="" method="post" onsubmit="return false;" id="frmcolor">
+                <div class="form-group has-feedback">
+                    <label>URL API</label>
+                    <input type="THEME COLOR" class="form-control" placeholder="THEME COLOR" name="name"
+                           value="<?php echo COLOR ?>">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Save</button>
+                    </div>
+                </div>
+            </form>
 
-            <form action="" enctype="multipart/form-data" method="post" onsubmit="return false;" id="frmlogo" name="frmlogo">
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+
+
+            <form action="" enctype="multipart/form-data" method="post" onsubmit="return false;" id="frmlogo"
+                  name="frmlogo">
                 <div class="form-group has-feedback">
                     <label>Logo (Support .PNG Only)</label>
                     <input type="file" class="form-control" placeholder="logo.png" name="name">
@@ -145,18 +174,18 @@ include_once 'service/service.php';
             increaseArea: '20%' /* optional */
         });
 
-        $('#frmsite').submit(function( event ) {
+        $('#frmsite').submit(function (event) {
             event.preventDefault();
             var form = $(this);
 
             $.ajax({
-                url:'api.inc.php?mode=EEEA15DD1B17E8A3487CB8CAAD3EA9BB',
-                type:'POST',
-                dataType:'json',
-                cache:false,
-                data:form.serialize(),
-                success:function(data){
-                    switch(data.success){
+                url: 'api.inc.php?mode=EEEA15DD1B17E8A3487CB8CAAD3EA9BB',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: form.serialize(),
+                success: function (data) {
+                    switch (data.success) {
                         case 'COMPLETE' :
 
                             alertify.alert(data.msg);
@@ -171,18 +200,18 @@ include_once 'service/service.php';
 
         });
 
-        $('#frmurl').submit(function( event ) {
+        $('#frmurl').submit(function (event) {
             event.preventDefault();
             var form = $(this);
 
             $.ajax({
-                url:'api.inc.php?mode=CE5CA4A7D2A1A0A68250B4A6364EA43A',
-                type:'POST',
-                dataType:'json',
-                cache:false,
-                data:form.serialize(),
-                success:function(data){
-                    switch(data.success){
+                url: 'api.inc.php?mode=CE5CA4A7D2A1A0A68250B4A6364EA43A',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: form.serialize(),
+                success: function (data) {
+                    switch (data.success) {
                         case 'COMPLETE' :
 
                             alertify.alert(data.msg);
@@ -197,18 +226,18 @@ include_once 'service/service.php';
 
         });
 
-        $('#frmurlapi').submit(function( event ) {
+        $('#frmurlapi').submit(function (event) {
             event.preventDefault();
             var form = $(this);
 
             $.ajax({
-                url:'api.inc.php?mode=EA8122F50A48F89DB8A4BD0C4127E17E',
-                type:'POST',
-                dataType:'json',
-                cache:false,
-                data:form.serialize(),
-                success:function(data){
-                    switch(data.success){
+                url: 'api.inc.php?mode=EA8122F50A48F89DB8A4BD0C4127E17E',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: form.serialize(),
+                success: function (data) {
+                    switch (data.success) {
                         case 'COMPLETE' :
 
                             alertify.alert(data.msg);
@@ -223,21 +252,47 @@ include_once 'service/service.php';
 
         });
 
-        $('#frmlogo').submit(function( event ) {
+        $('#frmcolor').submit(function (event) {
+            event.preventDefault();
+            var form = $(this);
+
+            $.ajax({
+                url: 'api.inc.php?mode=5C82FE0690591DA4A0CE9659FE91FAAD',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: form.serialize(),
+                success: function (data) {
+                    switch (data.success) {
+                        case 'COMPLETE' :
+
+                            alertify.alert(data.msg);
+
+                            break;
+                        default :
+                            alertify.alert(data.msg);
+                            break;
+                    }
+                }
+            });
+
+        });
+
+        $('#frmlogo').submit(function (event) {
             event.preventDefault();
             var form = $(this);
             var formData = new FormData(document.forms.namedItem("frmlogo"));
             $.ajax({
-                url:'api.inc.php?mode=D9F5719F10F152E8378FE8A3D2505194',
-                type:'POST',
-                dataType:'json',
+                url: 'api.inc.php?mode=D9F5719F10F152E8378FE8A3D2505194',
+                type: 'POST',
+                dataType: 'json',
                 async: false,
                 cache: false,
                 contentType: false,
                 processData: false,
-                data:formData,
-                success:function(data){
-                    switch(data.success){
+                data: formData,
+                success: function (data) {
+                    switch (data.success) {
                         case 'COMPLETE' :
 
                             alertify.alert(data.msg);

@@ -57,8 +57,17 @@ if ($c_urlapi_open) {
     $c_api_file = 'https://wso2ei.snapz.mobi';
 }
 
+$c_color = "COLOR.txt";
+$c_color_open = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/config/'.$c_api);
+if ($c_color_open) {
+    $c_color_file = $c_color_open;
+}else{
+    $c_color_file = '#ec068d';
+}
 
 
+
+define("COLOR", $c_color_file);
 define("SITE", $c_site_file);
 define("URL", $c_file);
 define("BASEURL", $c_file);

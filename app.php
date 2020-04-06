@@ -77,6 +77,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        .skin-purple .main-header .navbar {
+            background-color: <?php echo COLOR?>;
+        }
+        .skin-purple .main-header .navbar .sidebar-toggle:hover {
+            background-color: <?php echo COLOR?>;
+        }
+        @media (max-width: 767px) {
+            .skin-purple .main-header .navbar .dropdown-menu li a:hover {
+                background: <?php echo COLOR?>;
+            }
+        }
+        .skin-purple .main-header .logo {
+            background-color: <?php echo COLOR?>;
+            color: #ffffff;
+            border-bottom: 0 solid transparent;
+        }
+        .skin-purple .main-header .logo:hover {
+            background-color: <?php echo COLOR?>;
+        }
+        .skin-purple .main-header li.user-header {
+            background-color: <?php echo COLOR?>;
+        }
+        .skin-purple .sidebar-menu > li.active > a {
+            border-left-color: <?php echo COLOR?>;
+        }
+    </style>
 </head>
 <!--
 BODY TAG OPTIONS:
