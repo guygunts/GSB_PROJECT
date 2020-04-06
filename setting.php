@@ -109,7 +109,7 @@ include_once 'service/service.php';
         <div class="login-box-body">
 
 
-            <form action="" method="post" onsubmit="return false;" id="frmlogo">
+            <form action="" enctype="multipart/form-data" method="post" onsubmit="return false;" id="frmlogo">
                 <div class="form-group has-feedback">
                     <label>Logo (Support .PNG Only)</label>
                     <input type="file" class="form-control" placeholder="logo.png" name="name">
