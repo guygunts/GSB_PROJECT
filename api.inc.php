@@ -412,12 +412,10 @@ function SaveLogo()
 
     $result['data'] = array();
 
-    $img = $_POST['name']; //get the image string from ajax post
-    $img = substr(explode(";", $img)[1], 7); //this extract the exact image
+
     $target = 'logo.png';
-    $image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/images/' . $target, base64_decode($img));
-    $path = $_SERVER['DOCUMENT_ROOT'] . '/images/' . $target;
-    if($image){
+    $file_tmp = $_FILES['name']['tmp_name'];
+    if(move_uploaded_file($file_tmp, "images/" . $target)){
         $result['success'] = 'COMPLETE';
         $result['msg'] = 'COMPLETE';
     }
