@@ -43,7 +43,7 @@ include_once 'service/service.php';
         <form action="" method="post" onsubmit="return false;" id="frmsite">
             <div class="form-group has-feedback">
                 <label>SATE NAME</label>
-                <input type="text" class="form-control" placeholder="Sitename" name="sitename" value="<?php echo SITE?>">
+                <input type="text" class="form-control" placeholder="Sitename" name="name" value="<?php echo SITE?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="row">
@@ -65,7 +65,7 @@ include_once 'service/service.php';
         <form action="" method="post" onsubmit="return false;" id="frmurl">
             <div class="form-group has-feedback">
                 <label>BASE URL</label>
-                <input type="text" class="form-control" placeholder="Site url" name="url" value="<?php echo URL?>">
+                <input type="text" class="form-control" placeholder="Site url" name="name" value="<?php echo URL?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="row">
@@ -87,7 +87,7 @@ include_once 'service/service.php';
         <form action="" method="post" onsubmit="return false;" id="frmapi">
             <div class="form-group has-feedback">
                 <label>URL API</label>
-                <input type="text" class="form-control" placeholder="Site Api" name="api" value="<?php echo URL_API?>">
+                <input type="text" class="form-control" placeholder="Site Api" name="name" value="<?php echo URL_API?>">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="row">
@@ -112,7 +112,7 @@ include_once 'service/service.php';
             <form action="" method="post" onsubmit="return false;" id="frmlogo">
                 <div class="form-group has-feedback">
                     <label>Logo (Support .PNG Only)</label>
-                    <input type="file" class="form-control" placeholder="logo.png" name="logo">
+                    <input type="file" class="form-control" placeholder="logo.png" name="name">
 
                 </div>
                 <div class="row">
@@ -144,12 +144,12 @@ include_once 'service/service.php';
             increaseArea: '20%' /* optional */
         });
 
-        $('#frmlogin').submit(function( event ) {
+        $('#frmurl').submit(function( event ) {
             event.preventDefault();
             var form = $(this);
 
             $.ajax({
-                url:'api.inc.php?mode=F07F1CBA4819C3888747D4F2CB81E38A',
+                url:'api.inc.php?mode=EEEA15DD1B17E8A3487CB8CAAD3EA9BB',
                 type:'POST',
                 dataType:'json',
                 cache:false,
@@ -158,9 +158,7 @@ include_once 'service/service.php';
                     switch(data.success){
                         case 'COMPLETE' :
 
-                            setTimeout(function(){
-                                window.location.replace('<?php echo URL;?>/page-'+data.menu);
-                            }, 2000);
+                            alertify.alert(data.msg);
 
                             break;
                         default :

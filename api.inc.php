@@ -4,7 +4,7 @@ header("Content-type: application/json; charset=utf-8");
 require_once "service/service.php";
 
 
-$json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
+$json = '{"success":"FAIL","msg":"Something Fail"}';
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
 
 
@@ -319,6 +319,34 @@ function ChangeTop()
 
 }
 
+function SaveSite()
+
+{
+
+    global $json;
+    global $token;
+
+    $result['data'] = array();
+
+    $str = file_get_contents("php://input");
+    parse_str($str, $data);
+
+    $strFileName = "config/SITE.txt";
+    $objFopen = fopen($strFileName, 'w');
+
+    fwrite($objFopen, $data['name']);
+    if($objFopen)
+    {
+        $result['success'] = 'COMPLETE';
+        $result['msg'] = 'COMPLETE';
+    }
+
+    fclose($objFopen);
+
+    $json = json_encode($result);
+
+}
+
 
 switch ($_REQUEST["mode"]) {
 
@@ -342,6 +370,9 @@ switch ($_REQUEST["mode"]) {
         ChangeTop();
         break;
 
+    case strtoupper(md5('api_savesite')) :
+        SaveSite();
+        break;
 
     default :
         $json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
