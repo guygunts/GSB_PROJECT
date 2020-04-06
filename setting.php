@@ -144,7 +144,7 @@ include_once 'service/service.php';
             increaseArea: '20%' /* optional */
         });
 
-        $('#frmurl').submit(function( event ) {
+        $('#frmsite').submit(function( event ) {
             event.preventDefault();
             var form = $(this);
 
