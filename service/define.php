@@ -34,19 +34,19 @@ define('PRINT', '4');
 
 /* :: http://creation.ctdserver.com :: */
 $c_site = "config/SITE.txt";
-$c_url_open = fopen($c_site, 'r');
+$c_site_open = fopen($c_site, 'r');
 if ($c_site_open) {
     $c_site_file = fgets($c_site_open, 4096);
 }else{
-    $c_site_file = 'https://gsb.devtool77.com';
+    $c_site_file = 'TESTER';
 }
 fclose($c_site_open);
-$c_url = "config/SITE.txt";
+$c_url = "config/URL.txt";
 $c_url_open = fopen($c_url, 'r');
 if ($c_url_open) {
     $c_file = fgets($c_url_open, 4096);
 }else{
-    $c_file = 'GENIE';
+    $c_file = 'https://gsb.devtool77.com';
 }
 fclose($c_url_open);
 $c_api = "config/URL_API.txt";
@@ -59,7 +59,7 @@ if ($c_urlapi_open) {
 fclose($c_urlapi_open);
 
 
-define("SITE", "GENIE");
+define("SITE", $c_site_file);
 define("URL", $c_file);
 define("BASEURL", $c_file);
 define("URL_API", $c_api_file);
