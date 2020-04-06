@@ -50,7 +50,7 @@ include_once 'service/service.php';
                 </div>
             </div>
         </form>
-
+        <br>
         <form action="" method="post" onsubmit="return false;" id="frmurl">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Site url" name="url">
@@ -64,7 +64,7 @@ include_once 'service/service.php';
                 </div>
             </div>
         </form>
-
+<br>
         <form action="" method="post" onsubmit="return false;" id="frmapi">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Site Api" name="api">
