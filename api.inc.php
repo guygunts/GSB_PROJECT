@@ -331,7 +331,7 @@ function SaveSite()
     $str = file_get_contents("php://input");
     parse_str($str, $data);
 
-    $strFileName = "config/SITE.txt";
+    $strFileName = "service/SITE.txt";
     $objFopen = fopen($strFileName, 'w');
 
     fwrite($objFopen, $data['name']);
@@ -359,7 +359,7 @@ function SaveUrl()
     $str = file_get_contents("php://input");
     parse_str($str, $data);
 
-    $strFileName = "config/URL.txt";
+    $strFileName = "service/URL.txt";
     $objFopen = fopen($strFileName, 'w');
 
     fwrite($objFopen, $data['name']);
@@ -387,7 +387,7 @@ function SaveUrlApi()
     $str = file_get_contents("php://input");
     parse_str($str, $data);
 
-    $strFileName = "config/URL_API.txt";
+    $strFileName = "service/URL_API.txt";
     $objFopen = fopen($strFileName, 'w');
 
     fwrite($objFopen, $data['name']);

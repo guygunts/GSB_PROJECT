@@ -33,7 +33,7 @@ define('DEL', '3');
 define('PRINT', '4');
 
 /* :: http://creation.ctdserver.com :: */
-$c_site = "config/SITE.txt";
+$c_site = "SITE.txt";
 $c_site_open = fopen($c_site, 'r');
 if ($c_site_open) {
     $c_site_file = fgets($c_site_open, 4096);
@@ -41,7 +41,7 @@ if ($c_site_open) {
     $c_site_file = 'TESTER';
 }
 fclose($c_site_open);
-$c_url = "config/URL.txt";
+$c_url = "URL.txt";
 $c_url_open = fopen($c_url, 'r');
 if ($c_url_open) {
     $c_file = fgets($c_url_open, 4096);
@@ -49,7 +49,7 @@ if ($c_url_open) {
     $c_file = 'https://gsb.devtool77.com';
 }
 fclose($c_url_open);
-$c_api = "config/URL_API.txt";
+$c_api = "URL_API.txt";
 $c_urlapi_open = fopen($c_api, 'r');
 if ($c_urlapi_open) {
     $c_api_file = fgets($c_urlapi_open, 4096);
