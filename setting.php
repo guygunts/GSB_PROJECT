@@ -138,6 +138,7 @@ include_once 'service/service.php';
 <script src="plugins/iCheck/icheck.min.js"></script>
 <script>
     $(function () {
+        alertify.defaults.glossary.title = '<?php echo SITE; ?>';
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',

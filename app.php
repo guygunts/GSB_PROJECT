@@ -210,6 +210,7 @@ if (is_file("module/$mod/$mod.modal.php")) {
         me.menu = '<?php echo $mod; ?>';
         me.site = '<?php echo URL; ?>';
         me.api = '<?php echo URL_API; ?>';
+        alertify.defaults.glossary.title = '<?php echo SITE; ?>';
         me.Init();
         Pace.restart();
 
