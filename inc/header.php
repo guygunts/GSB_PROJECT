@@ -37,10 +37,10 @@
                         <li class="user-header">
                             <img src="images/logo.png?v=<?php echo microtime()?>" class="img-circle" alt="User Image">
 
-                            <p>
+                            <h3>
                                 <?php echo $member['first_name']?>
 
-                            </p>
+                            </h3>
                         </li>
 
                             <!-- /.row -->
