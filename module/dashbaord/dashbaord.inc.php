@@ -234,6 +234,9 @@ function View()
                     $box5[0]['children'][$i]['type'] = 'type1';
                     $box5[0]['children'][$i]['name'] = $item['servicename'];
                     $box5[0]['children'][$i]['label'] = $item['totalcall'];
+                    $box5[0]['children'][$i]['link']['name'] = 'Link '.$item['servicename'];
+                    $box5[0]['children'][$i]['link']['nodeName'] = $item['servicename'];
+                    $box5[0]['children'][$i]['link']['direction'] = 'SYNC';
                     ++$m;
                 }
             }
@@ -245,6 +248,9 @@ function View()
         $result['box5']['tree']['type'] = 'type2';
         $result['box5']['tree']['name'] = $box5name;
         $result['box5']['tree']['label'] = $box5title;
+        $result['box5']['tree']['link']['name'] = 'Link '.$box5title;
+        $result['box5']['tree']['link']['nodeName'] = $box5title;
+        $result['box5']['tree']['link']['direction'] = 'ASYN';
         $result['box5']['tree']['children'] = $box5;
 
         $result['success'] = 'COMPLETE';
