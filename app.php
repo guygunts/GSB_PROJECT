@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             background-color: <?php echo COLOR?>;
         }
         .skin-purple .main-header li.user-header {
-            background-color: #ff88f3;
+            background-color: <?php echo COLOR?>;
         }
         .skin-purple .sidebar-menu > li.active > a {
             border-left-color: <?php echo COLOR?>;
