@@ -231,6 +231,7 @@ function View()
                 $m = 0;
                 foreach ($response['box4'] as $i => $item) {
                     $box5[0]['children'][$i]['nodeName'] = $item['servicename'];
+                    $box5[0]['children'][$i]['type'] = 'type1';
                     $box5[0]['children'][$i]['name'] = $item['servicename'];
                     $box5[0]['children'][$i]['label'] = $item['totalcall'];
                     ++$m;
@@ -241,6 +242,7 @@ function View()
 
         $result['box5s'] = $databox5;
         $result['box5']['tree']['nodeName'] = $box5name;
+        $result['box5']['tree']['type'] = 'type2';
         $result['box5']['tree']['name'] = $box5name;
         $result['box5']['tree']['label'] = $box5title;
         $result['box5']['tree']['children'] = $box5;
