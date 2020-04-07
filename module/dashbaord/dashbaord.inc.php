@@ -233,7 +233,8 @@ function View()
                     $box5[0]['children'][$i]['nodeName'] = $item['servicename'];
                     $box5[0]['children'][$i]['type'] = 'type1';
                     $box5[0]['children'][$i]['name'] = $item['servicename'];
-                    $box5[0]['children'][$i]['label'] = $item['totalcall'];
+                    $box5[0]['children'][$i]['label'] = $item['servicename'];
+                    $box5[0]['children'][$i]['code'] = $item['totalcall'];
                     $box5[0]['children'][$i]['link']['name'] = 'Link '.$item['servicename'];
                     $box5[0]['children'][$i]['link']['nodeName'] = $item['servicename'];
                     $box5[0]['children'][$i]['link']['direction'] = 'SYNC';
@@ -247,7 +248,8 @@ function View()
         $result['box5']['tree']['nodeName'] = $box5name;
         $result['box5']['tree']['type'] = 'type2';
         $result['box5']['tree']['name'] = $box5name;
-        $result['box5']['tree']['label'] = $box5title;
+        $result['box5']['tree']['label'] = $box5name;
+        $result['box5']['tree']['code'] = $box5title;
         $result['box5']['tree']['link']['name'] = 'Link '.$box5name;
         $result['box5']['tree']['link']['nodeName'] = $box5name;
         $result['box5']['tree']['link']['direction'] = 'ASYN';
