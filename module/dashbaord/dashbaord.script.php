@@ -18,5 +18,6 @@
 
 <script src="plugins/orgchart/dist/js/jquery.orgchart.js"></script>
 <script src="plugins/chartist/dist/chartist.min.js"></script>
+<script src="plugins/treebox/tree-boxes.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
