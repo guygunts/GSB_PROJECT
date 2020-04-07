@@ -215,8 +215,8 @@ function treeBoxes(urlService, jsonData)
 							+ (rectNode.width - rectNode.textMargin * 2) + 'px; height: '
 							+ (rectNode.height - rectNode.textMargin * 2) + 'px;" class="node-text wordwrap">'
 							+ '<b>' + d.nodeName + '</b><br><br>'
-							+ '<b>Code: </b>' + d.code + '<br>'
-							+ '<b>Version: </b>' + d.version + '<br>'
+							+ d.code + '<br>'
+
 							+ '</div>';
 				})
 		.on('mouseover', function(d) {
