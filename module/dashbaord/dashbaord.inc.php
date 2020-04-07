@@ -221,11 +221,21 @@ function View()
         $box5title = $result['box1'][0]['totalcall'];
         if ($result['box1'][0]['totalcall'] > 0) {
             $databox5 = true;
-//            $box5[0]['name'] = 'Recognize';
-//            $box5[0]['title'] = $result['box1'][0]['recog'];
+            $box5[0]['name'] = 'Recognize';
+            $box5[0]['nodeName'] = 'Recognize';
+            $box5[0]['label'] = 'Recognize';
+            $box5[0]['code'] = $result['box1'][0]['recog'];
+            $box5[0]['link']['name'] = 'Recognize';
+            $box5[0]['link']['nodeName'] = 'Recognize';
+            $box5[0]['link']['direction'] = 'SYNC';
 
-//            $box5[1]['name'] = 'Non-Recognize';
-//            $box5[1]['title'] = $result['box1'][0]['nonrecog'];
+            $box5[1]['name'] = 'Non-Recognize';
+            $box5[1]['nodeName'] = 'Non-Recognize';
+            $box5[1]['label'] = 'Non-Recognize';
+            $box5[1]['code'] = $result['box1'][0]['nonrecog'];
+            $box5[1]['link']['name'] = 'Non-Recognize';
+            $box5[1]['link']['nodeName'] = 'Non-Recognize';
+            $box5[1]['link']['direction'] = 'SYNC';
 
             if ($response['box4']) {
                 $m = 0;
