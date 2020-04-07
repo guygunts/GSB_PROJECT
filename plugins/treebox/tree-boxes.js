@@ -108,8 +108,8 @@ function treeBoxes(urlService, jsonData)
 					node.color = purple;
 				});
 			});
-		height = maxTreeWidth * (rectNode.height + 20) + tooltip.height + 20 - margin.right - margin.left;
-		width = maxDepth * (rectNode.width * 1.5) + tooltip.width / 2 - margin.top - margin.bottom;
+		height = maxTreeWidth * (rectNode.height + 20) + tooltip.height + 20 - margin.right - margin.left + 50;
+		width = maxDepth * (rectNode.width * 1.5) + tooltip.width / 2 - margin.top - margin.bottom + 50;
 	
 		tree = d3.layout.tree().size([ height, width ]);
 		root.x0 = height / 2;
