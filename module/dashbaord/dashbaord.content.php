@@ -211,8 +211,8 @@
                                     <h3 class="box-title" id="box5_name">Service Overview</h3>
                                 </div>
                                 <div class="box-body">
-
-                                    <div id="chart-container" class="google-visualization-orgchart-table"></div>
+                                    <ct-visualization id="tree-container"></ct-visualization>
+<!--                                    <div id="chart-container" class="google-visualization-orgchart-table"></div>-->
 
                                 </div>
 
