@@ -221,11 +221,11 @@ function View()
         $box5title = $result['box1'][0]['totalcall'];
         if ($result['box1'][0]['totalcall'] > 0) {
             $databox5 = true;
-            $box5[0]['name'] = 'Recognize';
-            $box5[0]['title'] = $result['box1'][0]['recog'];
+//            $box5[0]['name'] = 'Recognize';
+//            $box5[0]['title'] = $result['box1'][0]['recog'];
 
-            $box5[1]['name'] = 'Non-Recognize';
-            $box5[1]['title'] = $result['box1'][0]['nonrecog'];
+//            $box5[1]['name'] = 'Non-Recognize';
+//            $box5[1]['title'] = $result['box1'][0]['nonrecog'];
 
             if ($response['box4']) {
                 $m = 0;
