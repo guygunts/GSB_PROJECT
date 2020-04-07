@@ -248,8 +248,8 @@ function View()
         $result['box5']['tree']['type'] = 'type2';
         $result['box5']['tree']['name'] = $box5name;
         $result['box5']['tree']['label'] = $box5title;
-        $result['box5']['tree']['link']['name'] = 'Link '.$box5title;
-        $result['box5']['tree']['link']['nodeName'] = $box5title;
+        $result['box5']['tree']['link']['name'] = 'Link '.$box5name;
+        $result['box5']['tree']['link']['nodeName'] = $box5name;
         $result['box5']['tree']['link']['direction'] = 'ASYN';
         $result['box5']['tree']['children'] = $box5;
 
