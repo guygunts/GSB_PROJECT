@@ -243,7 +243,7 @@ function View()
                 $m = 0;
                 foreach ($response['box4'] as $i => $item) {
                     $box5[0]['children'][$i]['nodeName'] = $item['servicename'];
-                    $box5[0]['children'][$i]['type'] = 'type1';
+                    $box5[0]['children'][$i]['type'] = 'type'.($i+2);
                     $box5[0]['children'][$i]['name'] = $item['servicename'];
                     $box5[0]['children'][$i]['label'] = $item['servicename'];
                     $box5[0]['children'][$i]['code'] = $item['totalcall'];

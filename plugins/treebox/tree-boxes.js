@@ -32,7 +32,8 @@ function treeBoxes(urlService, jsonData)
 		green = '#5cb85c',
 		yellow = '#f0ad4e',
 		blueText = '#4ab1eb',
-		purple = '#9467bd';
+		purple = '#9467bd',
+		red = '#f90005';
 
 	var margin = {
 					top : 0,
@@ -103,9 +104,9 @@ function treeBoxes(urlService, jsonData)
 				if (node.type == 'type2')
 					node.color = green;
 				if (node.type == 'type3')
-					node.color = yellow;
+					node.color = red;
 				if (node.type == 'type4')
-					node.color = purple;
+					node.color = green;
 				});
 			});
 		height = maxTreeWidth * (rectNode.height + 20) + tooltip.height + 20 - margin.right - margin.left + 50;
