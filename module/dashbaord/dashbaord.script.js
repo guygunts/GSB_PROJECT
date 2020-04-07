@@ -148,10 +148,10 @@ me.LoadDashBoard = function () {
                 $('#box5').css('display','');
                 $('#box5_name').text(data.name[4]);
                 var datascource = data.box5;
-
-                d3.json("data-example.json", function(error, json) {
-                    treeBoxes('', json.tree);
-                });
+                treeBoxes('', datascource.tree);
+                // d3.json("data-example.json", function(error, json) {
+                //     treeBoxes('', json.tree);
+                // });
 
                 // $('#chart-container').orgchart({
                 //     'data': datascource,
