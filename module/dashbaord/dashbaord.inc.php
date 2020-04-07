@@ -259,7 +259,7 @@ function View()
 
         $result['box5s'] = $databox5;
         $result['box5']['tree']['nodeName'] = $box5name;
-        $result['box5']['tree']['type'] = 'type2';
+        $result['box5']['tree']['type'] = 'type1';
         $result['box5']['tree']['name'] = $box5name;
         $result['box5']['tree']['label'] = $box5name;
         $result['box5']['tree']['code'] = $box5title;
