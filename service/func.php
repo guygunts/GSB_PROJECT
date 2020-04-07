@@ -130,24 +130,9 @@ function CheckSession($mode){
 
 function PleaseLogin($url){
 	return '
-		<html>
-		<head>
-			<title>Please Login!!</title>
-			<link rel="stylesheet" href="bower_components/PACE/themes/purple/pace-theme-center-circle.css">
-			<script src="bower_components/jquery/dist/jquery.min.js"></script>
-			<script src="bower_components/PACE/pace.min.js"></script>
-		</head>
-		<body>
-      <br/><br/><br/><br/>
-      <h1 align="center">Please Login!!</h1>
-			<div style="font-style:italic; color:#F00; font-size:16px; text-align:center; margin:10px 0 0 0;">
-				
-			</div>
-			<script language="JavaScript">
+		<script language="JavaScript">
 				setTimeout("window.location.href=\''.$url.'/\'", 1000);
 			</script>
-		</body>
-		</html>
 	';
 }
 
