@@ -224,6 +224,7 @@ function View()
             $box5[0]['name'] = 'Recognize';
             $box5[0]['nodeName'] = 'Recognize';
             $box5[0]['label'] = 'Recognize';
+            $box5[0]['type'] = 'type2';
             $box5[0]['code'] = $result['box1'][0]['recog'];
             $box5[0]['version'] = '';
             $box5[0]['link']['name'] = 'Recognize';
@@ -233,6 +234,7 @@ function View()
             $box5[1]['name'] = 'Non-Recognize';
             $box5[1]['nodeName'] = 'Non-Recognize';
             $box5[1]['label'] = 'Non-Recognize';
+            $box5[1]['type'] = 'type3';
             $box5[1]['code'] = $result['box1'][0]['nonrecog'];
             $box5[1]['version'] = '';
             $box5[1]['link']['name'] = 'Non-Recognize';
@@ -243,7 +245,7 @@ function View()
                 $m = 0;
                 foreach ($response['box4'] as $i => $item) {
                     $box5[0]['children'][$i]['nodeName'] = $item['servicename'];
-                    $box5[0]['children'][$i]['type'] = 'type'.($i+2);
+                    $box5[0]['children'][$i]['type'] = 'type4';
                     $box5[0]['children'][$i]['name'] = $item['servicename'];
                     $box5[0]['children'][$i]['label'] = $item['servicename'];
                     $box5[0]['children'][$i]['code'] = $item['totalcall'];
