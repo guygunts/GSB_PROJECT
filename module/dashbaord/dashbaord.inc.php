@@ -225,6 +225,7 @@ function View()
             $box5[0]['nodeName'] = 'Recognize';
             $box5[0]['label'] = 'Recognize';
             $box5[0]['code'] = $result['box1'][0]['recog'];
+            $box5[0]['version'] = '';
             $box5[0]['link']['name'] = 'Recognize';
             $box5[0]['link']['nodeName'] = 'Recognize';
             $box5[0]['link']['direction'] = 'SYNC';
@@ -233,6 +234,7 @@ function View()
             $box5[1]['nodeName'] = 'Non-Recognize';
             $box5[1]['label'] = 'Non-Recognize';
             $box5[1]['code'] = $result['box1'][0]['nonrecog'];
+            $box5[1]['version'] = '';
             $box5[1]['link']['name'] = 'Non-Recognize';
             $box5[1]['link']['nodeName'] = 'Non-Recognize';
             $box5[1]['link']['direction'] = 'SYNC';
@@ -245,6 +247,7 @@ function View()
                     $box5[0]['children'][$i]['name'] = $item['servicename'];
                     $box5[0]['children'][$i]['label'] = $item['servicename'];
                     $box5[0]['children'][$i]['code'] = $item['totalcall'];
+                    $box5[0]['children'][$i]['version'] = '';
                     $box5[0]['children'][$i]['link']['name'] = 'Link '.$item['servicename'];
                     $box5[0]['children'][$i]['link']['nodeName'] = $item['servicename'];
                     $box5[0]['children'][$i]['link']['direction'] = 'SYNC';
@@ -260,6 +263,7 @@ function View()
         $result['box5']['tree']['name'] = $box5name;
         $result['box5']['tree']['label'] = $box5name;
         $result['box5']['tree']['code'] = $box5title;
+        $result['box5']['tree']['version'] = '';
         $result['box5']['tree']['link']['name'] = 'Link '.$box5name;
         $result['box5']['tree']['link']['nodeName'] = $box5name;
         $result['box5']['tree']['link']['direction'] = 'ASYN';
