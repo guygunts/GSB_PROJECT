@@ -153,14 +153,14 @@ me.LoadDashBoard = function () {
                     treeBoxes('', json.tree);
                 });
 
-                $('#chart-container').orgchart({
-                    'data': datascource,
-                    'nodeContent': 'title',
-                    'direction': 'l2r',
-                    'zoom': false
-                });
+                // $('#chart-container').orgchart({
+                //     'data': datascource,
+                //     'nodeContent': 'title',
+                //     'direction': 'l2r',
+                //     'zoom': false
+                // });
             }
-            $('.orgchart').addClass('noncollapsable');
+            // $('.orgchart').addClass('noncollapsable');
 
         }
 
