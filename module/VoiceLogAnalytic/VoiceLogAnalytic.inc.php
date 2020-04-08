@@ -385,7 +385,8 @@ function Add()
         'qc_status' => $data['qc_status'],
         'expec_intent' => $data['Expected'],
         'new_sentence' => $data['input_qc'],
-        'remark' => $data['remark']
+        'remark' => $data['remark'],
+        'action' => $data['action']
     );
 
 //    PrintR($params);
@@ -654,8 +655,7 @@ function SaveVoice()
     unset($data['active']);
     unset($data['code']);
 
-    PrintR($data);
-    exit;
+
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
