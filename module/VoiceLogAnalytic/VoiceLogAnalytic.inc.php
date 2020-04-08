@@ -120,6 +120,8 @@ function View()
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
                 } else if ($value['data'] == 'qc_status') {
                     $datalist[$i][$value['data']] = '<select name="'.$value['data'].'" class="form-control qc_status'. $item['rec_id'].' row'.$item['rec_id'].' empty'.$item['rec_id'].' "><option value="" ' . ($item[$value['data']] == 0 ? 'selected' : '') . '>= Status =</option><option value="P" ' . ($item[$value['data']] == 'P' ? 'selected' : '') . '>Pass</option><option value="F" ' . ($item[$value['data']] == 'F' ? 'selected' : '') . '>Fail</option><option value="G" ' . ($item[$value['data']] == 'G' ? 'selected' : '') . '>Garbage</option><option value="O" ' . ($item[$value['data']] == 'O' ? 'selected' : '') . '>Other</option></select>';
+                } else if ($value['data'] == 'action') {
+                    $datalist[$i][$value['data']] = '<select name="'.$value['data'].'" class="form-control action'. $item['rec_id'].' row'.$item['rec_id'].' empty'.$item['rec_id'].' "><option value="" ' . ($item[$value['data']] == 0 ? 'selected' : '') . '>= Status =</option><option value="0" ' . ($item[$value['data']] == '0' ? 'selected' : '') . '>Train</option><option value="1" ' . ($item[$value['data']] == '1' ? 'selected' : '') . '>Test</option></select>';
 
                 } else if ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
                     switch ($value['data']) {

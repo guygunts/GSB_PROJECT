@@ -17,7 +17,7 @@
                 </button>
                 <?php if ($permiss[1]) { ?>
                     <button type="button" id="btn_add" class="btn_add btn btn-danger btn-rounded btn-sm"
-                            onclick="me.AddGrammar();" title="เพิ่มข้อมูล"><i class="fa fa-plus"></i> เพิ่มข้อมูล
+                            onclick="me.AddGrammar();" title="เพิ่มข้อมูล"><i class="fa fa-plus"></i> Add
                     </button>
                 <?php } ?>
             </div>
