@@ -13,7 +13,7 @@
                 <?php include "module/$mod/$mod.buildgrammar.php"; ?>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-rounded btn-sm pull-left" data-dismiss="modal">ปิด
+                <button type="button" class="btn btn-default btn-rounded btn-sm pull-left" data-dismiss="modal">Close
                 </button>
                 <?php if ($permiss[1]) { ?>
                     <button type="button" id="btn_add" class="btn_add btn btn-danger btn-rounded btn-sm"
@@ -30,7 +30,7 @@
         <div class="modal-content">
 
             <div class="modal-body text-center">
-                <p>โปรดรอสักครู่ ...</p>
+                <p>Waiting ...</p>
             </div>
 
         </div><!-- /.modal-content -->
