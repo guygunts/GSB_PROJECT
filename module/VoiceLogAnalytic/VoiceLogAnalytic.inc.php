@@ -39,7 +39,7 @@ function View()
         'text_search' => $data['text_search']
     );
 
-    PrintR($params);
+//    PrintR($params);
 
     $url = URL_API . '/geniespeech/voicelog';
     $response = curlposttoken($url, $params, $token);
@@ -654,6 +654,8 @@ function SaveVoice()
     unset($data['active']);
     unset($data['code']);
 
+    PrintR($data);
+    exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
