@@ -39,6 +39,7 @@ function View()
         'text_search' => $data['text_search']
     );
 
+    PrintR($params);
 
     $url = URL_API . '/geniespeech/voicelog';
     $response = curlposttoken($url, $params, $token);
