@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="GSB" uploadOnCheckin="b0a1c78c-2bde-4dbc-8eb2-41fe72c72bd4">
+  <component name="PublishConfigData" serverName="GSBTEST" uploadOnCheckinGroup="GSBTEST">
     <serverData>
       <paths name="GSB">
         <serverdata>
@@ -13,10 +13,10 @@
         <serverdata>
           <mappings>
             <mapping deploy="/test" local="$PROJECT_DIR$" web="/" />
+            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="GSB" />
   </component>
 </project>
