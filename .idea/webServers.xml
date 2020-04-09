@@ -2,6 +2,14 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
+      <webServer id="89120670-e39a-4802-95f6-445bb3d208d0" name="TEST" url="http://35.240.242.91">
+        <fileTransfer host="35.240.242.91" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
       <webServer id="b0a1c78c-2bde-4dbc-8eb2-41fe72c72bd4" name="GSB" url="http://35.240.242.91">
         <fileTransfer host="35.240.242.91" port="21">
           <advancedOptions>
@@ -11,5 +19,14 @@
         </fileTransfer>
       </webServer>
     </option>
+    <groups>
+      <group>
+        <name>GSBTEST</name>
+        <servers>
+          <name value="TEST" />
+          <name value="GSB" />
+        </servers>
+      </group>
+    </groups>
   </component>
 </project>

@@ -71,7 +71,7 @@ include_once 'service/service.php';
 <!--                <div class="col-xs-12 text-center" style="margin-top: 10px">-->
 <!--                    <small>© 2020 Sun Systems Corporation Limited. All rights reserved.</small>-->
 <!--                </div>-->
-                <!-- /.col -->
+                <!-- /.col --->
             </div>
         </form>
 

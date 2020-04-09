@@ -6,6 +6,12 @@
         <serverdata>
           <mappings>
             <mapping deploy="/gsb" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="TEST">
+        <serverdata>
+          <mappings>
             <mapping deploy="/test" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
