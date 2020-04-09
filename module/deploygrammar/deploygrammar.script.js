@@ -453,7 +453,8 @@ me.UpdateBtn = function (e) {
         build_version: attr.build_version,
         deploy_desc: attr.deploy_desc,
         pre_active: pre,
-        pro_active: pro
+        pro_active: pro,
+        type: code
     };
 
     $('.modal').modal('hide');

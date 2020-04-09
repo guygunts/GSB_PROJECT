@@ -239,11 +239,18 @@ function Edit()
     $date1 = explode(' ',$data['startdate']);
     if(strtotime($date1[0]) == strtotime($today)){
         $data['action_type'] = 1;
+
+    }else{
+        if($data['type'] == 'pro'){
+            $data['pro_active'] = 2;
+        }else if($data['type'] == 'pre'){
+            $data['pre_active'] = 2;
+        }
     }
 
     $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
-
+    unset($data['type']);
 //    PrintR($data);
 //    exit;
 
