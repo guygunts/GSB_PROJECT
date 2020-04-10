@@ -251,8 +251,8 @@ function Edit()
     $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
     unset($data['type']);
-//    PrintR($data);
-//    exit;
+    PrintR($data);
+    exit;
 
     $url = URL_API.'/geniespeech/grammardeploy';
     $response = curlposttoken($url, $data, $token);
