@@ -587,6 +587,18 @@ me.CheckSelect = function () {
             $(this).prop('checked', true);
         }
     })
+
+    $('#tbViewSub tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            $('input[name="build_version"]',this).prop('checked', false);
+        }
+        else {
+            me.tablesub.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            $('input[name="build_version"]',this).prop('checked', true);
+        }
+    } );
 };
 
 me.Add = function () {
@@ -635,6 +647,8 @@ me.Add = function () {
             alertify.error('Cancel Submit');
         });
 };
+
+
 
 /*================================================*\
   :: DEFAULT ::
