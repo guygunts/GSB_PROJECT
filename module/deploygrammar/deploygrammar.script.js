@@ -546,7 +546,7 @@ me.LoadDataSub = function (menu, page_id, page_size, readd = '') {
                             .removeAttr('width')
                             .DataTable({
                                 searching: true,
-                                paging: false,
+                                paging: true,
                                 columnDefs: [
                                     {
                                         "width": "5%",
