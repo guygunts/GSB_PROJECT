@@ -589,6 +589,7 @@ me.CheckSelect = function () {
     })
 
     $('#tbViewSub tbody').on( 'click', 'tr', function () {
+        $('input[name="build_version"]').prop('checked', false);
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
             $('input[name="build_version"]').prop('checked', false);
