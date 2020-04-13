@@ -163,15 +163,23 @@ function Edit(){
     parse_str($str, $data);
 
     $a = 0;
+    $c = 0;
     $ch = array();
     foreach((array)$data['channels'] as $i => $item){
-        if($item['channel'] == "0")continue;
+        if($item['channel'] == "0"){
+            ++$c;
+            continue;
+        }
         $data['channel'][$a] = $item['channel'];
         ++$a;
 
     }
+    if($c == 2){
+        $data['channel'] = null;
+    }else{
+        $data['channel'] = implode(",",$data['channel']);
+    }
 
-    $data['channel'] = implode(",",$data['channel']);
 
 //    $data['role_desc'] = $data['role_description'];
     $data['user_login'] = $user;
