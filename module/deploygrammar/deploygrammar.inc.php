@@ -123,6 +123,8 @@ function ViewSub(){
         'page_size' => $data['page_size']
     );
 
+    PrintR($params);
+    exit;
     $url = URL_API.'/geniespeech/grammardeploy';
     $response = curlposttoken($url, $params, $token);
 
@@ -202,8 +204,8 @@ function Add()
     $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
 
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
     $url = URL_API.'/geniespeech/grammardeploy';
     $response = curlposttoken($url, $data, $token);
