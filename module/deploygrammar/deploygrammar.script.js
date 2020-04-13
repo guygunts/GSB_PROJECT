@@ -460,7 +460,7 @@ me.UpdateBtn = function (e) {
 
     $('.modal').modal('hide');
 
-    alertify.promptnew('Before Change Please Select Date and Time','Start Date : ',moment().format("YYYY-MM-DD HH:mm:ss"),
+    alertify.promptnew('Before Change Please Select Date and Time','Start Date : ','',
         function (evt,value) {
             if (value) {
 
