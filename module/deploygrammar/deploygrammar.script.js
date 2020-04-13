@@ -591,7 +591,7 @@ me.CheckSelect = function () {
     $('#tbViewSub tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
-            $('input[name="build_version"]',this).prop('checked', false);
+            $('input[name="build_version"]').prop('checked', false);
         }
         else {
             me.tablesub.$('tr.selected').removeClass('selected');
