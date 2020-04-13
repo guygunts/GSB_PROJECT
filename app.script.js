@@ -341,7 +341,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 
 					if(readd){
 						// let dataold = me.table.rows().data();
-						me.applyData(me.table,data.data,false);
+						me.applyData(me.table,data.data,true);
 						// me.table.clear().draw();
 						// me.table.rows.add(data.data).draw();
 
