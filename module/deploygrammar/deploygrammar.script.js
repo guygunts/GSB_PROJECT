@@ -495,12 +495,7 @@ me.UpdateBtn = function (e) {
         });
 
     if(thisval == 2){
-        $('#startdate').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            sideBySide: true,
-            minDate: moment().format("YYYY-MM-DD HH:mm:ss"),
-            defaultDate: moment(attr.schedule_deploy).format("YYYY-MM-DD HH:mm:ss")
-        });
+        $('#startdate').datetimepicker({defaultDate: moment(attr.schedule_deploy).format("YYYY-MM-DD HH:mm:ss")});
     }else{
         $('#startdate').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
