@@ -175,7 +175,7 @@ function Edit(){
 
     }
     if($c == 2){
-        $data['channel'] = null;
+        $data['channel'] = NULL;
     }else{
         $data['channel'] = implode(",",$data['channel']);
     }
