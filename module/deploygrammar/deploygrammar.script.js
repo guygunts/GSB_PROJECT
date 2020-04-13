@@ -510,7 +510,7 @@ me.UpdateBtn = function (e) {
 
 me.New = function () {
     me.ClearData();
-    $('#tbViewSub_filter').find('input[type="search"]').val('');
+
     $('.btn_edit').hide();
     $('.btn_add').show();
     $('#frm_addedit input[name="menu_action"]').val(me.action.add);
@@ -521,7 +521,7 @@ me.New = function () {
     }else{
         me.LoadDataSub(me.action.add, 1, 25);
     }
-
+    me.tablesub.search('').draw();
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 
 };
