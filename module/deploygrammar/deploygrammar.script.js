@@ -506,7 +506,7 @@ me.New = function () {
     $('.btn_edit').hide();
     $('.btn_add').show();
     $('#frm_addedit input[name="menu_action"]').val(me.action.add);
-    if(me.tablesub == 0){
+    if(me.tablesub.length == 0){
         me.tablesub.clear().destroy();
         $('#tbViewSub').empty();
         me.LoadDataSub(me.action.add, 1, 25);
