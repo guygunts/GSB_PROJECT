@@ -438,6 +438,7 @@ me.UpdateBtn = function (e) {
     var pro = 0;
     var pre = 0;
     var code = $(e).attr('data-code');
+    var thisval = $(e).attr('data-this');
     var val = $(e).attr('data-val');
     var attr = JSON.parse($(e).attr('data-item'));
     if (code == 'pro') {
@@ -493,11 +494,21 @@ me.UpdateBtn = function (e) {
             alertify.error('Cancel Change');
         });
 
-    $('#startdate').datetimepicker({
-        format: 'YYYY-MM-DD HH:mm:ss',
-        sideBySide: true,
-        minDate: moment().format("YYYY-MM-DD HH:mm:ss")
-    });
+    if(thisval == 2){
+        $('#startdate').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            sideBySide: true,
+            minDate: moment().format("YYYY-MM-DD HH:mm:ss"),
+            defaultDate: moment(attr.schedule_deploy).format("YYYY-MM-DD HH:mm:ss")
+        });
+    }else{
+        $('#startdate').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            sideBySide: true,
+            minDate: moment().format("YYYY-MM-DD HH:mm:ss")
+        });
+    }
+
 
 };
 
