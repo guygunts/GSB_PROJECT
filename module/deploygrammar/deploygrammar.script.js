@@ -592,7 +592,7 @@ me.CheckSelect = function () {
         $('input[name="build_version"]').prop('checked', false);
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
-            $('input[name="build_version"]').prop('checked', false);
+            $('input[name="build_version"]',this).prop('checked', false);
         }
         else {
             me.tablesub.$('tr.selected').removeClass('selected');
