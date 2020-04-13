@@ -496,7 +496,7 @@ me.UpdateBtn = function (e) {
         });
 
     if(thisval == 2){
-        $('#startdate').datetimepicker({defaultDate: moment(curdate).format("YYYY-MM-DD HH:mm:ss")});
+            $('#startdate').datetimepicker('date', moment(curdate).format("YYYY-MM-DD HH:mm:ss"));
     }else{
         $('#startdate').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
