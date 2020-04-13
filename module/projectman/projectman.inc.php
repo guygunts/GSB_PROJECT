@@ -186,8 +186,8 @@ function Edit(){
     unset($data['channels']);
 //    unset($data['role_description']);
 
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
     $url = URL_API.'/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
