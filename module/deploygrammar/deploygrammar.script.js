@@ -521,9 +521,9 @@ me.New = function () {
     }else{
         me.LoadDataSub(me.action.add, 1, 25);
     }
-    me.tablesub.search('').draw();
-    $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 
+    $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+    me.tablesub.search('').draw();
 };
 
 me.LoadDataSub = function (menu, page_id, page_size, readd = '') {
