@@ -441,6 +441,7 @@ me.UpdateBtn = function (e) {
     var thisval = $(e).attr('data-this');
     var val = $(e).attr('data-val');
     var attr = JSON.parse($(e).attr('data-item'));
+    var curdate = attr.schedule_deploy;
     if (code == 'pro') {
         pro = 1;
         pre = val;
@@ -495,7 +496,7 @@ me.UpdateBtn = function (e) {
         });
 
     if(thisval == 2){
-        $('#startdate').datetimepicker({defaultDate: moment(attr.schedule_deploy).format("YYYY-MM-DD HH:mm:ss")});
+        $('#startdate').datetimepicker({defaultDate: moment(curdate).format("YYYY-MM-DD HH:mm:ss")});
     }else{
         $('#startdate').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
