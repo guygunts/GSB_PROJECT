@@ -77,10 +77,10 @@ function View(){
 
 
 //            if($permiss[2]){
-                $btn .= '<button data-code="pro" data-val="'.$item['pre_active'].'" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs '.($item['pro_active'] == 1?'btn-success':($item['pro_active'] == 2?'btn-warning':'btn-default')).'" '.($item['pro_active'] == 1?'disabled':'onclick="me.UpdateBtn(this)"').'>Production</button>&nbsp;&nbsp;';
+                $btn .= '<button data-code="pro" data-val="'.$item['pre_active'].'" data-this="'.$item['pro_active'].'" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs '.($item['pro_active'] == 1?'btn-success':($item['pro_active'] == 2?'btn-warning':'btn-default')).'" '.($item['pro_active'] == 1?'disabled':'onclick="me.UpdateBtn(this)"').'>Production</button>&nbsp;&nbsp;';
 //            }
 //            if($permiss[3]){
-                $btn .= '<button data-code="pre" data-val="'.$item['pro_active'].'" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs '.($item['pre_active'] == 1?'btn-success':($item['pre_active'] == 2?'btn-warning':'btn-default')).'" '.($item['pre_active'] == 1?'disabled':'onclick="me.UpdateBtn(this)"').'>Pre-Production</button>';
+                $btn .= '<button data-code="pre" data-val="'.$item['pro_active'].'" data-this="'.$item['pre_active'].'" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs '.($item['pre_active'] == 1?'btn-success':($item['pre_active'] == 2?'btn-warning':'btn-default')).'" '.($item['pre_active'] == 1?'disabled':'onclick="me.UpdateBtn(this)"').'>Pre-Production</button>';
 //            }
 
             $datalist[$i]['btn'] = $btn;
