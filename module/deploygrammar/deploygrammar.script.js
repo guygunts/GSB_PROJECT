@@ -523,7 +523,7 @@ me.New = function () {
     }
 
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
-    me.tablesub.search('').draw();
+
 };
 
 me.LoadDataSub = function (menu, page_id, page_size, readd = '') {
@@ -570,6 +570,7 @@ me.LoadDataSub = function (menu, page_id, page_size, readd = '') {
                     }
 
                     me.tablesub.columns.adjust().draw('true');
+                    me.tablesub.search('').draw();
                     me.CheckSelect();
                     break;
                 default :
