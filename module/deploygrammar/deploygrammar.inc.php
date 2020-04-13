@@ -202,8 +202,8 @@ function Add()
     $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
 
-//    PrintR($params);
-//    exit;
+    PrintR($data);
+    exit;
 
     $url = URL_API.'/geniespeech/grammardeploy';
     $response = curlposttoken($url, $data, $token);
