@@ -175,7 +175,7 @@ function Edit(){
 
     }
     if($c == 2){
-        $data['channel'] = NULL;
+        $data['channel'] = 'null';
     }else{
         $data['channel'] = implode(",",$data['channel']);
     }
@@ -186,7 +186,7 @@ function Edit(){
     unset($data['channels']);
 //    unset($data['role_description']);
 
-    PrintR($c.$data);
+    PrintR($data);
     exit;
 
     $url = URL_API.'/geniespeech/adminmenu';
