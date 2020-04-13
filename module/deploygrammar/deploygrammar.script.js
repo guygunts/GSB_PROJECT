@@ -520,9 +520,9 @@ me.New = function () {
     }else{
         me.LoadDataSub(me.action.add, 1, 25);
     }
-    $('#tbViewSub_filter').find('input[type="search"]').val('');
-    $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 
+    $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+    $('#tbViewSub_filter').find('input[type="search"]').val('');
 };
 
 me.LoadDataSub = function (menu, page_id, page_size, readd = '') {
