@@ -544,7 +544,7 @@ me.LoadDataSub = function (menu, page_id, page_size, readd = '') {
                             .addClass('nowrap')
                             .removeAttr('width')
                             .DataTable({
-                                searching: false,
+                                searching: true,
                                 paging: false,
                                 columnDefs: [
                                     {
