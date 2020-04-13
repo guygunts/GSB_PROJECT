@@ -611,7 +611,7 @@ me.applyData = function(table, data, append){
 	}
 
 	//Redraw table maintaining paging
-	table.draw(false);
+	table.draw(true);
 };
 
 me.Load = function (e) {
