@@ -506,7 +506,14 @@ me.New = function () {
     $('.btn_edit').hide();
     $('.btn_add').show();
     $('#frm_addedit input[name="menu_action"]').val(me.action.add);
-    me.LoadDataSub(me.action.add, 1, 25);
+    if(me.tablesub == 0){
+        me.tablesub.clear().destroy();
+        $('#tbViewSub').empty();
+        me.LoadDataSub(me.action.add, 1, 25);
+    }else{
+        me.LoadDataSub(me.action.add, 1, 25);
+    }
+
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 
 };
@@ -526,7 +533,7 @@ me.LoadDataSub = function (menu, page_id, page_size, readd = '') {
                         // me.table.clear().draw();
                         me.tablesub.rows.add(data.data).draw();
                     } else {
-                        me.tablesub = $('#tbViewSub')
+                            me.tablesub = $('#tbViewSub')
                             .addClass('nowrap')
                             .removeAttr('width')
                             .DataTable({
