@@ -40,6 +40,7 @@ var me = {
 
 
 me.Init = function () {
+
 	$.fn.dataTable.ext.errMode = 'throw';
 	me.SetLoading();
 	// me.CharLoading();
@@ -110,11 +111,11 @@ me.SetFocus = function () {
 me.CharLoading = function(){
 
 		var textWrapper = document.querySelector('.ml2');
-		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='varter'>$&</span>");
+		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
 		anime.timeline({loop: true})
 			.add({
-				targets: '.ml2 .varter',
+				targets: '.ml2 .letter',
 				scale: [4,1],
 				opacity: [0,1],
 				translateZ: 0,
@@ -181,7 +182,7 @@ me.LoadCboMain = function(val,menu,code,name) {
 		success: function(data) {
 			$("#"+val+' option').remove();
 			switch (data.success) {
-				case "COMPvarE":
+				case "COMPLETE":
 					// $("<option>")
 					// 	.attr("value", '')
 					// 	.text('==  Project List = =')
@@ -229,7 +230,7 @@ me.LoadCbo = function(val,menu,code,name) {
 		success: function(data) {
 			$("#"+val+' option').remove();
 			switch (data.success) {
-				case "COMPvarE":
+				case "COMPLETE":
 					$("<option>")
 						.attr("value", '')
 						.text('==  List = =')
@@ -259,7 +260,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 		data:{ menu_action : menu , page_id : page_id , page_size : page_size},
 		success:function(data){
 			switch(data.success){
-				case 'COMPvarE' :
+				case 'COMPLETE' :
 					if(data.data.length == 0){
 						alertify.alert('No data, Please select other date');
 					}
@@ -340,7 +341,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 		data:{ menu_action : menu , page_id : page_id , page_size : 10000 , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
 			switch(data.success){
-				case 'COMPvarE' :
+				case 'COMPLETE' :
 					if(data.data.length == 0){
 						alertify.alert('No data, Please select other date');
 					}
@@ -481,7 +482,7 @@ me.Enable = function (code) {
 				data: myData,
 				success: function (data) {
 					switch (data.success) {
-						case 'COMPvarE':
+						case 'COMPLETE':
 
 							me.table.ajax.reload(null, false);
 							me.MsgSuccessNew(data.msg, '');
@@ -525,7 +526,7 @@ me.Disable = function (code) {
 				data: myData,
 				success: function (data) {
 					switch (data.success) {
-						case 'COMPvarE':
+						case 'COMPLETE':
 
 							me.table.ajax.reload(null, false);
 							me.MsgSuccessNew(data.msg, '');
@@ -657,7 +658,7 @@ me.Add = function () {
 						}),
 						success: function (data) {
 							switch (data.success) {
-								case 'COMPvarE':
+								case 'COMPLETE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
 									// $('#btnsearchsubmit').click();
@@ -698,7 +699,7 @@ me.Edit = function () {
 						}),
 						success: function (data) {
 							switch (data.success) {
-								case 'COMPvarE':
+								case 'COMPLETE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
 									// $('#btnsearchsubmit').click();
@@ -724,7 +725,7 @@ me.Edit = function () {
 me.Del = function (e) {
 	var code = $(e).attr('data-code');
 	var attr = JSON.parse($(e).attr('data-item'));
-	alertify.confirm("Do you want Devare.",
+	alertify.confirm("Do you want Delete.",
 		function () {
 			$.ajax({
 				url: me.url + '-Del',
@@ -734,7 +735,7 @@ me.Del = function (e) {
 				data: { 'code' : code , 'menu_action' : me.action.del , 'main' : me.action.main },
 				success: function (data) {
 					switch (data.success) {
-						case 'COMPvarE':
+						case 'COMPLETE':
 							$('.modal').modal('hide');
 							alertify.success(data.msg);
 							// $('#btnsearchsubmit').click();
@@ -749,7 +750,7 @@ me.Del = function (e) {
 			});
 		},
 		function () {
-			alertify.error('Cancel Devare');
+			alertify.error('Cancel Delete');
 		});
 };
 
@@ -809,7 +810,7 @@ me.Messenger=function(msg, id){
 		showCloseButton: false,
 		hideAfter :false,
 		id: id,
-		singvaron: true,
+		singleton: true,
 		actions : {
 			cancel: {
 				label: "Read",
@@ -1190,11 +1191,11 @@ me.UploadFile = {
 		})
 
 	},
-	Compvare: function (pic, id) {
+	Complete: function (pic, id) {
 		$('#' + id).val(pic);
 		$('#upload_' + id).css('display', '');
 		$('#loading_upload_' + id).css('display', 'none');
-		me.MsgSuccessNew('Upload compvare!!');
+		me.MsgSuccessNew('Upload complete!!');
 
 		return true;
 
@@ -1592,7 +1593,7 @@ me.TextSerch = function () {
 			data: myData,
 			success:function(data){
 				switch(data.success){
-					case 'COMPvarE' :
+					case 'COMPLETE' :
 						me.table.clear().draw();
 						me.table.rows.add(data.data).draw();
 
