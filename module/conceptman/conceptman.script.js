@@ -53,18 +53,20 @@ me.OpenPopup_ = function (){
 
 me.OpenPopup = function(){
 	var cloneCount = $('div.variationsub').length;
+	var cloneCount2 = $('input[name="variation-active"]').length;
 	var maininput = me.variation;
+	maininput = maininput[0].outerHTML.replace(/dvvariation-active/g, 'dvvariation-active' + cloneCount2);
 	if(cloneCount == 0){
 		$('div[id=variation]').append(maininput);
-
+		$('input[id="dvvariation-active"]').val(1);
+		$('input[id="dvvariation-active"]').iCheck('check');
 	}else{
 		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
 		$('div[id^=dvvariation]').last().after(maininput);
+		$('input[id="dvvariation-active'+cloneCount2+'"]').val(1);
+		$('input[id="dvvariation-active'+cloneCount2+'"]').iCheck('check');
 	}
 
-	$('#frm_addedit .sub input[type="checkbox"]').iCheck();
-	$('#frm_addedit .sub input[type="checkbox"].active').val(1);
-	$('#frm_addedit .sub input[type="checkbox"].active').iCheck('check');
 };
 
 me.Add = function () {
