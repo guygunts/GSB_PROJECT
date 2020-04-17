@@ -12,7 +12,7 @@ me.action.add = 'addconcept';
 me.action.edit = 'updateconcept';
 me.action.del = 'deleteconcept';
 me.variation = $('div#dvvariation').clone();
-$('div#variation').html('');
+
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -68,12 +68,7 @@ me.OpenPopup = function(){
 		$('#dvvariation'+cloneCount+' input[type="checkbox"]').val(1);
 		$('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck('check');
 	}
-	$('#dvvariation input[type="checkbox"]').iCheck({
-		checkboxClass: 'icheckbox_square-blue',
-		radioClass: 'iradio_square-blue',
-		labelHover: true,
-		increaseArea: '20%' // optional
-	});
+
 
 };
 
@@ -132,4 +127,11 @@ $(document).ready(function(){
 	});
 	me.LoadData(me.action.menu,1,30);
 
+	$('#dvvariation input[type="checkbox"]').iCheck({
+		checkboxClass: 'icheckbox_square-blue',
+		radioClass: 'iradio_square-blue',
+		labelHover: true,
+		increaseArea: '20%' // optional
+	});
+	$('div#variation').html('');
 });
