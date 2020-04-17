@@ -57,12 +57,23 @@ me.OpenPopup = function(){
 	var maininput = me.variation;
 	if(cloneCount == 0){
 		$('div[id=variation]').append(maininput);
-
+		$('#dvvariation input[type="checkbox"]').iCheck({
+			checkboxClass: 'icheckbox_square-blue',
+			radioClass: 'iradio_square-blue',
+			labelHover: true,
+			increaseArea: '20%' // optional
+		});
 		$('#dvvariation input[type="checkbox"]').val(1);
 		$('#dvvariation input[type="checkbox"]').iCheck('check');
 	}else{
 		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
 		$('div[id^=dvvariation]').last().after(maininput);
+		$('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck({
+			checkboxClass: 'icheckbox_square-blue',
+			radioClass: 'iradio_square-blue',
+			labelHover: true,
+			increaseArea: '20%' // optional
+		});
 		$('#dvvariation'+cloneCount+' input[type="checkbox"]').val(1);
 		$('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck('check');
 	}
