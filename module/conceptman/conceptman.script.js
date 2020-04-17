@@ -24,6 +24,7 @@ me.ClearData = function () {
 	$('#frm_addedit input[type="checkbox"].active').val(1);
 	$('#frm_addedit input[type="checkbox"].active').iCheck('check');
 	$('div#variation').html('');
+	$('input[name="variation-active"]').iCheck('destroy');
 	// $('#frm_addedit .sub').css('display','');
 	// me.DelStar('variation-concept_result');
 	// me.DelStar('variation-variation_text');
