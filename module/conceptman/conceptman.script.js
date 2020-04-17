@@ -53,8 +53,13 @@ me.OpenPopup_ = function (){
 me.OpenPopup = function(){
 	var cloneCount = $('div.variationsub').length;
 	var maininput = me.variation;
-	maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
-	$('div#variation').find('div[id^=dvvariation]').last().after(maininput);
+	if(cloneCount == 0){
+		$('div[id=variation]').append(maininput);
+	}else{
+		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+		$('div[id^=dvvariation]').last().after(maininput);
+	}
+
 };
 
 me.Add = function () {
