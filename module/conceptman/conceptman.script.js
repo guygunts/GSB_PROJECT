@@ -31,7 +31,7 @@ me.ClearData = function () {
 };
 
 
-me.OpenPopup = function (){
+me.OpenPopup_ = function (){
 	if($('#frm_addedit .sub').css('display') == 'none'){
 		$('#frm_addedit .sub').css('display','block');
 		$('#variation-concept_result').attr('required',true);
