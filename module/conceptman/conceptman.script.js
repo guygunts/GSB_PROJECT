@@ -12,6 +12,7 @@ me.action.add = 'addconcept';
 me.action.edit = 'updateconcept';
 me.action.del = 'deleteconcept';
 me.variation = $('div#dvvariation').clone();
+$('div#dvvariation').remove();
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -22,11 +23,11 @@ me.ClearData = function () {
 	$('#frm_addedit input[type="checkbox"]').iCheck('uncheck');
 	$('#frm_addedit input[type="checkbox"].active').val(1);
 	$('#frm_addedit input[type="checkbox"].active').iCheck('check');
-	$('#frm_addedit .sub').css('display','none');
-	me.DelStar('variation-concept_result');
-	me.DelStar('variation-variation_text');
-	$('#variation-concept_result').attr('required',false);
-	$('#variation-variation_text').attr('required',false);
+	// $('#frm_addedit .sub').css('display','');
+	// me.DelStar('variation-concept_result');
+	// me.DelStar('variation-variation_text');
+	// $('#variation-concept_result').attr('required',false);
+	// $('#variation-variation_text').attr('required',false);
 
 };
 

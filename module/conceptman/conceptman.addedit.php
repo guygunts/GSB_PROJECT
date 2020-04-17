@@ -35,12 +35,12 @@
                 <div class="form-group">
                     <label for="variation-concept_result" class="control-label">Concept Result</label>
                     <input id="variation-concept_result" name="variation-concept_result" type="text" maxlength="100"
-                           class="form-control">
+                           class="form-control empty" required>
                 </div>
                 <div class="form-group">
                     <label for="variation-variation_text" class="control-label">Variation Name</label>
                     <input id="variation-variation_text"  name="variation-variation_text" type="text" maxlength="100"
-                           class="form-control variation-variation_text">
+                           class="form-control variation-variation_text empty" required>
                 </div>
                 <div class="form-group">
                     <label>
