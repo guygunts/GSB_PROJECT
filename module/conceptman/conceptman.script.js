@@ -61,8 +61,10 @@ me.OpenPopup = function(){
 		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
 		$('div[id^=dvvariation]').last().after(maininput);
 	}
-	$('#frm_addedit .sub).find(input[type="checkbox"].active').val(1);
-	$('#frm_addedit .sub).find(input[type="checkbox"].active').iCheck('check');
+
+	$('#frm_addedit .sub input[type="checkbox"]').iCheck();
+	$('#frm_addedit .sub input[type="checkbox"].active').val(1);
+	$('#frm_addedit .sub input[type="checkbox"].active').iCheck('check');
 };
 
 me.Add = function () {
