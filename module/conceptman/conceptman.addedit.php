@@ -33,12 +33,12 @@
             <div class="col-md-12 sub" id="variation">
                 <div style="margin-left: 30px;margin-right: 30px;padding:10px" id="dvvariation" class="variationsub">
                 <div class="form-group">
-                    <label for="variation-concept_result" class="control-label">Concept Result</label>
+                    <label for="variation-concept_result" class="control-label">Concept Result <small style="color:red">*</small></label>
                     <input id="variation-concept_result" name="variation-concept_result" type="text" maxlength="100"
                            class="form-control empty" required>
                 </div>
                 <div class="form-group">
-                    <label for="variation-variation_text" class="control-label">Variation Name</label>
+                    <label for="variation-variation_text" class="control-label">Variation Name <small style="color:red">*</small></label>
                     <input id="variation-variation_text"  name="variation-variation_text" type="text" maxlength="100"
                            class="form-control variation-variation_text empty" required>
                 </div>
