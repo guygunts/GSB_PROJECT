@@ -54,7 +54,7 @@ me.OpenPopup = function(){
 	var cloneCount = $('div.variationsub').length;
 	var maininput = me.variation;
 	maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
-	$('div[id=variation]').last().after(maininput);
+	$('div#variation').find('div[id^=dvvariation]').last().after(maininput);
 };
 
 me.Add = function () {
