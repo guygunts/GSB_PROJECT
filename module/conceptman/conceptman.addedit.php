@@ -30,8 +30,8 @@
 
             </div>
 
-            <div class="col-md-12 sub" id="variation" style="border: 1px dashed">
-                <div style="margin-left: 30px;margin-right: 30px;padding:10px">
+            <div class="col-md-12 sub" id="variation">
+                <div style="margin-left: 30px;margin-right: 30px;padding:10px" id="variationsub">
                 <div class="form-group">
                     <label for="variation-concept_result" class="control-label">Concept Result</label>
                     <input id="variation-concept_result" name="variation-concept_result" type="text" maxlength="100"

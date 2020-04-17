@@ -11,6 +11,7 @@ me.action.menu = 'getconcepts';
 me.action.add = 'addconcept';
 me.action.edit = 'updateconcept';
 me.action.del = 'deleteconcept';
+me.variation = $('div#variation').clone();
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -46,6 +47,13 @@ me.OpenPopup = function (){
 		me.DelStar('variation-concept_result');
 		me.DelStar('variation-variation_text');
 	}
+};
+
+me.OpenPopup = function(){
+	var cloneCount = $('div.variationsub').length;
+	var maininput = me.variation;
+	maininput = maininput[0].outerHTML.replace(/variationsub/g, 'variationsub' + cloneCount);
+	$('div[id^=variationsub]').last().after(maininput);
 };
 
 me.Add = function () {
