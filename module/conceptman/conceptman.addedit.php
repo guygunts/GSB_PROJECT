@@ -31,7 +31,7 @@
             </div>
 
             <div class="col-md-12 sub" id="variation">
-                <div style="margin-left: 30px;margin-right: 30px;padding:10px" id="dvvariation" class="variationsub">
+                <div style="margin-left: 20px;margin-right: 20px;padding:20px;border: 1px dashed;" id="dvvariation" class="variationsub">
                 <div class="form-group">
                     <label for="variation-concept_result" class="control-label">Concept Result <small style="color:red">*</small></label>
                     <input id="variation-concept_result" name="variation-concept_result" type="text" maxlength="100"
@@ -47,6 +47,7 @@
                         <input type="checkbox" class="active" name="variation-active" id="variation-active" value="1"> &nbsp&nbsp&nbsp Active
                     </label>
                 </div>
+                    <button type="button" class="btn btn-danger" style="float: right;"><i class="fa fa-minus"></i></button>
                 </div>
             </div>
 
