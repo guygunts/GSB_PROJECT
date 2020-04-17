@@ -31,6 +31,7 @@
             </div>
 
             <div class="col-md-12 sub" id="variation">
+                <div class="row">
                 <div class="form-group">
                     <label for="variation-concept_result" class="control-label">Concept Result</label>
                     <input id="variation-concept_result" name="variation-concept_result" type="text" maxlength="100"
@@ -45,6 +46,7 @@
                     <label>
                         <input type="checkbox" class="active" name="variation-active" id="variation-active" value="1"> &nbsp&nbsp&nbsp Active
                     </label>
+                </div>
                 </div>
             </div>
 
