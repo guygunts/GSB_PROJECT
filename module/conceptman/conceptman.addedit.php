@@ -35,7 +35,7 @@
 
             <div class="col-md-12 sub" id="variation">
                 <div style="margin-left: 20px;margin-right: 20px;padding:20px;border: 1px dashed;" id="dvvariation"
-                     class="variationsub">
+                     class="variationsub row">
                     <div class="col-md-12">
                     <div class="form-group col-md-6">
                         <label for="variation-concept_result" class="control-label">Concept Result <small
