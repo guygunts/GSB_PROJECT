@@ -53,7 +53,7 @@
                             <input type="checkbox" class="active" name="variation-active" id="variation-active"
                                    value="1"> &nbsp&nbsp&nbsp Active
                         </label>
-                        <button type="button" class="btn btn-danger" style="float: right;"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-danger btn-xs" style="float: right;"><i class="fa fa-minus"></i></button>
 
                     </div>
                 </div>

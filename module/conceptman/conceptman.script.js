@@ -59,7 +59,12 @@ me.OpenPopup = function(){
 		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
 		$('div[id^=dvvariation]').last().after(maininput);
 	}
-
+	$('input[type="checkbox"], input[type="radio"]').iCheck({
+		checkboxClass: 'icheckbox_square-blue',
+		radioClass: 'iradio_square-blue',
+		labelHover: true,
+		increaseArea: '20%' // optional
+	});
 };
 
 me.Add = function () {
