@@ -17,6 +17,7 @@ $('div#variation').html('');
   :: FUNCTION ::
 \*================================================*/
 me.ClearData = function () {
+	$('input[name="variation-active"]').iCheck('destroy');
 	$('#frm_addedit input').val('');
 	$('#frm_addedit select option:eq(0)').prop("selected", true);
 	$('#frm_addedit textarea').val('');
@@ -24,7 +25,7 @@ me.ClearData = function () {
 	$('#frm_addedit input[type="checkbox"].active').val(1);
 	$('#frm_addedit input[type="checkbox"].active').iCheck('check');
 	$('div#variation').html('');
-	$('input[name="variation-active"]').iCheck('destroy');
+
 	// $('#frm_addedit .sub').css('display','');
 	// me.DelStar('variation-concept_result');
 	// me.DelStar('variation-variation_text');
