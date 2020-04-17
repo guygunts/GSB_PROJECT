@@ -42,9 +42,9 @@ function View(){
         foreach((array)$columnslist as $i => $item){
             $column[$m]['className'] = 'text-'.$item['column_align'];
             $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] = $item['column_field'];
+            $column[$m]['data'] = $item['column_data'];
 
-            $columns[$m]['data'] = $item['column_field'];
+            $columns[$m]['data'] = $item['column_data'];
             $columns[$m]['type'] = $item['column_type'];
             ++$m;
         }
