@@ -11,7 +11,7 @@ me.action.menu = 'getconcepts';
 me.action.add = 'addconcept';
 me.action.edit = 'updateconcept';
 me.action.del = 'deleteconcept';
-me.variation = $('div#variationsub').clone();
+me.variation = $('div#dvvariation').clone();
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -52,8 +52,8 @@ me.OpenPopup_ = function (){
 me.OpenPopup = function(){
 	var cloneCount = $('div.variationsub').length;
 	var maininput = me.variation;
-	maininput = maininput[0].outerHTML.replace(/variationsub/g, 'variationsub' + cloneCount);
-	$('div[id^=variationsub]').last().after(maininput);
+	maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+	$('div[id^=dvvariation]').last().after(maininput);
 };
 
 me.Add = function () {
