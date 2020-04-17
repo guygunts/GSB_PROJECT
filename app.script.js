@@ -1,5 +1,5 @@
 
-let me = {
+var me = {
 	debug: [],
 	site: '',
 	url: '',
@@ -40,6 +40,7 @@ let me = {
 
 
 me.Init = function () {
+	$.fn.dataTable.ext.errMode = 'throw';
 	me.SetLoading();
 	// me.CharLoading();
 	me.PutStar();
@@ -109,11 +110,11 @@ me.SetFocus = function () {
 me.CharLoading = function(){
 
 		var textWrapper = document.querySelector('.ml2');
-		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+		textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='varter'>$&</span>");
 
 		anime.timeline({loop: true})
 			.add({
-				targets: '.ml2 .letter',
+				targets: '.ml2 .varter',
 				scale: [4,1],
 				opacity: [0,1],
 				translateZ: 0,
@@ -180,7 +181,7 @@ me.LoadCboMain = function(val,menu,code,name) {
 		success: function(data) {
 			$("#"+val+' option').remove();
 			switch (data.success) {
-				case "COMPLETE":
+				case "COMPvarE":
 					// $("<option>")
 					// 	.attr("value", '')
 					// 	.text('==  Project List = =')
@@ -228,7 +229,7 @@ me.LoadCbo = function(val,menu,code,name) {
 		success: function(data) {
 			$("#"+val+' option').remove();
 			switch (data.success) {
-				case "COMPLETE":
+				case "COMPvarE":
 					$("<option>")
 						.attr("value", '')
 						.text('==  List = =')
@@ -258,13 +259,13 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 		data:{ menu_action : menu , page_id : page_id , page_size : page_size},
 		success:function(data){
 			switch(data.success){
-				case 'COMPLETE' :
+				case 'COMPvarE' :
 					if(data.data.length == 0){
 						alertify.alert('No data, Please select other date');
 					}
 					if(readd){
 						// me.table.clear();
-						// let dataold = me.table.rows().data();
+						// var dataold = me.table.rows().data();
 						me.applyData(me.table,data.data,false);
 						// me.table.clear().draw();
 						// me.table.rows.add(data.data).draw();
@@ -339,13 +340,13 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 		data:{ menu_action : menu , page_id : page_id , page_size : 10000 , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
 			switch(data.success){
-				case 'COMPLETE' :
+				case 'COMPvarE' :
 					if(data.data.length == 0){
 						alertify.alert('No data, Please select other date');
 					}
 
 					if(readd){
-						// let dataold = me.table.rows().data();
+						// var dataold = me.table.rows().data();
 						me.applyData(me.table,data.data,true);
 						// me.table.clear().draw();
 						// me.table.rows.add(data.data).draw();
@@ -480,7 +481,7 @@ me.Enable = function (code) {
 				data: myData,
 				success: function (data) {
 					switch (data.success) {
-						case 'COMPLETE':
+						case 'COMPvarE':
 
 							me.table.ajax.reload(null, false);
 							me.MsgSuccessNew(data.msg, '');
@@ -524,7 +525,7 @@ me.Disable = function (code) {
 				data: myData,
 				success: function (data) {
 					switch (data.success) {
-						case 'COMPLETE':
+						case 'COMPvarE':
 
 							me.table.ajax.reload(null, false);
 							me.MsgSuccessNew(data.msg, '');
@@ -559,8 +560,8 @@ me.applyDatanew = function(table, data, append){
 
 		//Locate and update rows by rowId or add if new
 	}else {
-		let index;
-		let indexes;
+		var index;
+		var indexes;
 		$.each(data, function (i, v) {
 			index = table.row('#' + v.DT_RowId);
 			if(index.length > 0){
@@ -589,9 +590,9 @@ me.applyData = function(table, data, append){
 
 		//Locate and update rows by rowId or add if new
 	}else{
-		let index;
-		let chk;
-		let indexes;
+		var index;
+		var chk;
+		var indexes;
 		// $.each(dataold, function (i, v) {
 		// 	indexes = table.row('#' + v.DT_RowId);
 		// });
@@ -656,7 +657,7 @@ me.Add = function () {
 						}),
 						success: function (data) {
 							switch (data.success) {
-								case 'COMPLETE':
+								case 'COMPvarE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
 									// $('#btnsearchsubmit').click();
@@ -697,7 +698,7 @@ me.Edit = function () {
 						}),
 						success: function (data) {
 							switch (data.success) {
-								case 'COMPLETE':
+								case 'COMPvarE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
 									// $('#btnsearchsubmit').click();
@@ -723,7 +724,7 @@ me.Edit = function () {
 me.Del = function (e) {
 	var code = $(e).attr('data-code');
 	var attr = JSON.parse($(e).attr('data-item'));
-	alertify.confirm("Do you want Delete.",
+	alertify.confirm("Do you want Devare.",
 		function () {
 			$.ajax({
 				url: me.url + '-Del',
@@ -733,7 +734,7 @@ me.Del = function (e) {
 				data: { 'code' : code , 'menu_action' : me.action.del , 'main' : me.action.main },
 				success: function (data) {
 					switch (data.success) {
-						case 'COMPLETE':
+						case 'COMPvarE':
 							$('.modal').modal('hide');
 							alertify.success(data.msg);
 							// $('#btnsearchsubmit').click();
@@ -748,7 +749,7 @@ me.Del = function (e) {
 			});
 		},
 		function () {
-			alertify.error('Cancel Delete');
+			alertify.error('Cancel Devare');
 		});
 };
 
@@ -808,7 +809,7 @@ me.Messenger=function(msg, id){
 		showCloseButton: false,
 		hideAfter :false,
 		id: id,
-		singleton: true,
+		singvaron: true,
 		actions : {
 			cancel: {
 				label: "Read",
@@ -1189,11 +1190,11 @@ me.UploadFile = {
 		})
 
 	},
-	Complete: function (pic, id) {
+	Compvare: function (pic, id) {
 		$('#' + id).val(pic);
 		$('#upload_' + id).css('display', '');
 		$('#loading_upload_' + id).css('display', 'none');
-		me.MsgSuccessNew('Upload complete!!');
+		me.MsgSuccessNew('Upload compvare!!');
 
 		return true;
 
@@ -1591,7 +1592,7 @@ me.TextSerch = function () {
 			data: myData,
 			success:function(data){
 				switch(data.success){
-					case 'COMPLETE' :
+					case 'COMPvarE' :
 						me.table.clear().draw();
 						me.table.rows.add(data.data).draw();
 
