@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="variation-variation_text" class="control-label">Variation Name</label>
                     <input id="variation-variation_text"  name="variation-variation_text" type="text" maxlength="100"
-                           class="form-control variation-variation_tex">
+                           class="form-control variation-variation_text">
                 </div>
                 <div class="form-group">
                     <label>
