@@ -20,6 +20,7 @@ function View(){
     parse_str($str, $data);
 
     $params = array(
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
@@ -29,8 +30,8 @@ function View(){
 
 
     if ($response['code'] == 200) {
-        $columnslist = $response['result']['header'];
-        $datas = $response['result']['data'];
+        $columnslist = $response['result'];
+        $datas = $response['data'];
 
         $column[0]['className'] = 'text-center';
         $column[0]['title'] = 'No';
