@@ -11,7 +11,7 @@ me.action.menu = 'getconcepts';
 me.action.add = 'addconcept';
 me.action.edit = 'updateconcept';
 me.action.del = 'deleteconcept';
-me.variation = $('div#variation').clone();
+me.variation = $('div#variationsub').clone();
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
