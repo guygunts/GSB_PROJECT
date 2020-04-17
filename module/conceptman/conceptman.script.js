@@ -55,16 +55,16 @@ me.OpenPopup = function(){
 	var cloneCount = $('div.variationsub').length;
 	var cloneCount2 = $('input[name="variation-active"]').length;
 	var maininput = me.variation;
-	maininput = maininput[0].outerHTML.replace(/dvvariation-active/g, 'dvvariation-active' + cloneCount2);
 	if(cloneCount == 0){
 		$('div[id=variation]').append(maininput);
-		$('input[id="dvvariation-active"]').val(1);
-		$('input[id="dvvariation-active"]').iCheck('check');
+
+		$('#dvvariation input[type="checkbox"]').val(1);
+		$('#dvvariation input[type="checkbox"]').iCheck('check');
 	}else{
 		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
 		$('div[id^=dvvariation]').last().after(maininput);
-		$('input[id="dvvariation-active'+cloneCount2+'"]').val(1);
-		$('input[id="dvvariation-active'+cloneCount2+'"]').iCheck('check');
+		$('#dvvariation'+cloneCount+' input[type="checkbox"]').val(1);
+		$('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck('check');
 	}
 
 };
