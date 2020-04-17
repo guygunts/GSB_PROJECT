@@ -12,7 +12,7 @@ me.action.add = 'addconcept';
 me.action.edit = 'updateconcept';
 me.action.del = 'deleteconcept';
 me.variation = $('div#dvvariation').clone();
-$('div#dvvariation').remove();
+$('div#variation').html('');
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
