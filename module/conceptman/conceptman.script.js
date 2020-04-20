@@ -308,7 +308,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						// var row = me.table.row( tr );
 						// console.log(row);
 						var rowData = $(this).attr('data-name');
-						console.log(rowData);
+						console.log('data-name '+rowData);
 return false;
 						if ( row.child.isShown() ) {
 							// This row is already open - close it
