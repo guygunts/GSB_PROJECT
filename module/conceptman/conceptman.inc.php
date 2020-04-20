@@ -46,7 +46,7 @@ function View(){
 
         $m = 2;
         foreach((array)$columnslist as $i => $item){
-            $column[$m]['className'] = 'text-'.$item['column_align'];
+            $column[$m]['className'] = 'text-'.($item['column_align']?$item['column_align']:'center');
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_data'];
 
@@ -66,6 +66,8 @@ function View(){
             $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
             $datalist[$i]['no'] = ($i+1);
 
+            $datasub = array();
+            $datasub[$i] = $item['variation'];
             foreach((array)$columns as $v => $value){
                 if($value['data'] == 'type'){
                     $datalist[$i][$value['data']] = $types[$item[$value['data']]];
@@ -73,7 +75,7 @@ function View(){
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
-
+                $column[$v]['name'] = $datasub[$i];
             }
 
 
