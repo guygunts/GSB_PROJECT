@@ -309,20 +309,20 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						// console.log(row);
 						// var rowData = row.data();
 						var rowData = JSON.parse($(tr).find('td:eq(0)').attr('data-name'));
-						console.log(rowData);
-return false;
+						// console.log(rowData);
+// return false;
 						if ( row.child.isShown() ) {
 							// This row is already open - close it
 							row.child.hide();
 							tr.removeClass('shown');
 
 							// Destroy the Child Datatable
-							$('#' + rowData.name.replace(' ', '-')).DataTable().destroy();
+							$('#' + rowData[0].name.replace(' ', '-')).DataTable().destroy();
 						}
 						else {
 							// Open this row
-							row.child(me.format(rowData)).show();
-							var id = rowData.name.replace(' ', '-');
+							row.child(me.format(rowData[0])).show();
+							var id = rowData[0].name.replace(' ', '-');
 
 
 							$('#' + id).DataTable({
