@@ -255,6 +255,12 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									{
 										"width": "5%",
 										"targets": 0,
+										"searchable": false,
+										"orderable": false
+									},
+									{
+										"width": "5%",
+										"targets": 1,
 										"searchable": false
 									},
 									{
