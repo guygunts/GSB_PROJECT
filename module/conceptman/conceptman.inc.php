@@ -75,7 +75,7 @@ function View(){
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
-                $column[$v]['name'] = $datasub[$i];
+                $columns[$v]['name'] = $datasub[$i];
             }
 
 
