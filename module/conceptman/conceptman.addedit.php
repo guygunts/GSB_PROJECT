@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label>
-                            <input type="checkbox" class="active" name="variation-active" id="dvvariation-active"
+                            <input type="checkbox" class="active" name="variation-active" id="variation-active"
                                    value="1"> &nbsp&nbsp&nbsp Active
                         </label>
                         <button type="button" class="btn btn-danger btn-xs" style="float: right;" data-code="dvvariation" onclick="me.RemoveSub(this)"><i class="fa fa-minus"></i></button>

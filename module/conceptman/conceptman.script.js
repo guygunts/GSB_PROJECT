@@ -60,12 +60,14 @@ me.OpenPopup = function(){
 	console.log(maininput);
 	var mapObj = {
 		'dvvariation':"dvvariation",
-		'variation-variation_text':"variation-variation_text"
+		'variation-variation_text':"variation-variation_text",
+		'variation-concept_result':"variation-concept_result",
+		'variation-active':"variation-active",
 	};
 	if(cloneCount == 0){
 
 		// maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
-		maininput = maininput[0].outerHTML.replace(/dvvariation|variation-variation_text/g, function(matched){
+		maininput = maininput[0].outerHTML.replace(/dvvariation|variation-variation_text|variation-concept_result|variation-active/g, function(matched){
 			return mapObj[matched]+cloneCount;
 		});
 
@@ -73,7 +75,7 @@ me.OpenPopup = function(){
 		$('div[id=variation]').append(maininput);
 	}else{
 		// maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
-		maininput = maininput[0].outerHTML.replace(/dvvariation|variation-variation_text/g, function(matched){
+		maininput = maininput[0].outerHTML.replace(/dvvariation|variation-variation_text|variation-concept_result|variation-active/g, function(matched){
 			return mapObj[matched]+cloneCount;
 		});
 		// maininput = maininput.outerHTML.replace(/variation-variation_text/g, 'variation-variation_text' + cloneCount);
