@@ -321,7 +321,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 							var id = rowData[0].name.replace(' ', '-');
 
 
-							$('#' + id).DataTable({
+							me.tablesub = $('#' + id).DataTable({
 								dom: "t",
 								data: rowData,
 								columns: [
@@ -338,6 +338,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 							});
 
 							tr.addClass('shown');
+							me.tablesub.columns.adjust().draw('true');
 						}
 					} );
 
