@@ -80,6 +80,7 @@ function View(){
             $vartiation = array();
             if(count($item['variation']) > 0){
                 foreach($item['variation'] as $z => $itemsub){
+                    $vartiation[$z]['name'] = 'subrow_'.MD5($item[$columns[1]['data']]);
                     $vartiation[$z] = $itemsub;
                 }
             }

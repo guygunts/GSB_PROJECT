@@ -309,7 +309,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						// console.log(row);
 						// var rowData = row.data();
 						var rowData = JSON.parse($(tr).find('td:eq(0)').attr('data-name'));
-						// console.log(rowData);
+						console.log(rowData[0]);
 // return false;
 						if ( row.child.isShown() ) {
 							// This row is already open - close it
