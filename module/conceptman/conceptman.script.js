@@ -307,9 +307,10 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						// var row = me.table.cell(this).index().row;
 						var row = me.table.row( tr );
 						// console.log(row);
-						var rowData = $(tr).find('td:eq(0)').attr('data-name');
-						// console.log('rowData '+rowData);
-// return false;
+						var rowData = row.data();
+						// var rowData = $(tr).find('td:eq(0)').attr('data-name');
+						console.log('rowData '+rowData);
+return false;
 						if ( row.child.isShown() ) {
 							// This row is already open - close it
 							row.child.hide();
