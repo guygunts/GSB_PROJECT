@@ -297,7 +297,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						column.visible( ! column.visible() );
 					} );
 
-					('#tbView tbody').on('click', 'td.details-control', function () {
+					$('#tbView tbody').on('click', 'td.details-control', function () {
 						var tr = $(this).closest('tr');
 						var row = me.table.row( tr );
 						var rowData = row.data();
