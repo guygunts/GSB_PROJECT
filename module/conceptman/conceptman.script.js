@@ -140,6 +140,16 @@ me.OpenPopupItem = function(data){
 	}
 	// console.log('after');
 	// console.log(maininput);
+
+
+	$('#mconcept_variation_id'+cloneCount).val(data.concept_variation_id);
+	$('#mvariation-concept_result'+cloneCount).val(data.concept_result);
+	$('#mvariation-variation_text'+cloneCount).val(data.variation_text);
+	$('#mvariation-active'+cloneCount).val(data.active);
+	if(data.active == 1){
+		$('#mvariation-active'+cloneCount).iCheck('check');
+	}
+
 	$("#mvariation-variation_text"+cloneCount).tagsinput({
 		trimValue: true
 	});
@@ -150,15 +160,6 @@ me.OpenPopupItem = function(data){
 		labelHover: true,
 		increaseArea: '20%' // optional
 	});
-
-	$('#mconcept_variation_id'+cloneCount).val(data.concept_variation_id);
-	$('#mvariation-concept_result'+cloneCount).val(data.concept_result);
-	$('#mvariation-variation_text'+cloneCount).val(data.variation_text);
-	$('#mvariation-active'+cloneCount).val(data.active);
-	if(data.active == 1){
-		$('#mvariation-active'+cloneCount).iCheck('check');
-	}
-
 
 
 };
