@@ -32,3 +32,7 @@ table.dataTable.table-condensed > thead > tr > th {
 table.dataTable.table-red > thead > tr > th {
     background-color: red !important;
 }
+
+table.dataTable.table-yellow > thead > tr > th {
+    background-color: yellowgreen !important;
+}
