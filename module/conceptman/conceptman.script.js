@@ -275,6 +275,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									$( row ).find('td:eq(0)')
 										.attr('data-name', data.variation);
 								},
+								ordering: false,
 								retrieve: true,
 								deferRender: true,
 								stateSave: true,
