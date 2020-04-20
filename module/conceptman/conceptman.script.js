@@ -305,8 +305,8 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 					$('#tbView tbody').on('click', 'td.details-control', function () {
 						var tr = $(this).closest('tr');
 						// var row = me.table.cell(this).index().row;
-						var row = me.table.row( tr );
-						// console.log(row);
+						var row = me.table.row( tr ).data();
+						console.log(row);
 						var rowData = row.data();
 						// var rowData = $(tr).find('td:eq(0)').attr('data-name');
 						console.log('rowData '+rowData);
