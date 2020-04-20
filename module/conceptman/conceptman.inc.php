@@ -165,22 +165,12 @@ function Edit(){
     $str = file_get_contents("php://input");
     parse_str($str, $data);
 
-    $a = 0;
-    $ch = array();
-    foreach((array)$data['channels'] as $i => $item){
-        if($item['channel'] == "0")continue;
-        $data['channel'][$a] = $item['channel'];
-        ++$a;
 
-    }
 
-    $data['channel'] = implode(",",$data['channel']);
-
-//    $data['role_desc'] = $data['role_description'];
     $data['user_login'] = $user;
-    unset($data['channels']);
-//    unset($data['role_description']);
 
+    PrintR($data);
+    exit;
 
     $url = URL_API.'/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
