@@ -332,7 +332,15 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									{ data: "concept_result", title: 'Concept Result' },
 									{ data: "variation_text", title: 'Variation Text' },
 									{ data: "active", title: 'Active' },
-								]
+								],
+								retrieve: true,
+								deferRender: true,
+								stateSave: true,
+								iDisplayLength : page_size,
+								responsive: false,
+								scrollX: true,
+								pageLength: page_size,
+								lengthMenu: [[ page_size, (page_size * 2), -1 ],[ page_size, (page_size * 2), 'All' ]]
 
 							});
 
