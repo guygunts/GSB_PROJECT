@@ -66,8 +66,8 @@ function View(){
             $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
             $datalist[$i]['no'] = ($i+1);
 
-            $datasub = array();
-            $datasub[$i] = $item['variation'];
+//            $datasub = array();
+//            $datasub[$i] = $item['variation'];
 
             foreach((array)$columns as $v => $value){
                 if($value['data'] == 'type'){
@@ -76,7 +76,7 @@ function View(){
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
-                $column[$v]['name'] = $datasub[$i];
+                $column[$v]['name'] = $datalist[$i]['variation'];
             }
 
 
