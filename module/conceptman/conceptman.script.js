@@ -321,7 +321,9 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 							var id = rowData[0].name.replace(' ', '-');
 
 
-							me.tablesub = $('#' + id).DataTable({
+							me.tablesub = $('#' + id)
+								.addClass('nowrap')
+								.removeAttr('width').DataTable({
 								dom: "t",
 								data: rowData,
 								columns: [
