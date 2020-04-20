@@ -82,7 +82,7 @@ function View(){
                 foreach($item['variation'] as $z => $itemsub){
 
                     $vartiation[$z] = $itemsub;
-                    $vartiation[$z]['name'] = 'subrow_'.MD5($item[$columns[1]['data']]);
+                    $vartiation[$z]['name'] = 'subrow_'.$z.'_'.MD5($item[$columns[1]['data']]);
                 }
             }
             $datalist[$i]['variation'] = json_encode($vartiation,JSON_HEX_APOS);
