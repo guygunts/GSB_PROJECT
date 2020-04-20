@@ -34,11 +34,17 @@ function View(){
         $datas = $response['data'];
 
         $column[0]['className'] = 'text-center details-control';
-        $column[0]['title'] = 'No';
-        $column[0]['data'] = 'no';
+        $column[0]['title'] = '';
+        $column[0]['data'] = null;
+        $column[0]['defaultContent'] = '';
 
 
-        $m = 1;
+        $column[1]['className'] = 'text-center';
+        $column[1]['title'] = 'No';
+        $column[1]['data'] = 'no';
+
+
+        $m = 2;
         foreach((array)$columnslist as $i => $item){
             $column[$m]['className'] = 'text-'.$item['column_align'];
             $column[$m]['title'] = $item['column_name'];
