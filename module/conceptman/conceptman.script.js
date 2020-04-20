@@ -275,7 +275,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									$( row ).find('td:eq(0)')
 										.attr('data-name', data.variation);
 								},
-								ordering: false,
+
 								retrieve: true,
 								deferRender: true,
 								stateSave: true,
@@ -333,9 +333,10 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									{ data: "active", title: 'Active', className: 'text-center' },
 								],
 								iDisplayLength : page_size,
-									retrieve: true,
-									deferRender: true,
-									stateSave: true,
+								ordering: false,
+								retrieve: true,
+								deferRender: true,
+								stateSave: true,
 								scrollX: true,
 								pageLength: page_size,
 								lengthMenu: [[ page_size, (page_size * 2), -1 ],[ page_size, (page_size * 2), 'All' ]]
