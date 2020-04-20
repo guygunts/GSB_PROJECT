@@ -332,7 +332,9 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									{ data: "active", title: 'Active', className: 'text-center' },
 								],
 								iDisplayLength : page_size,
-								select: true,
+									retrieve: true,
+									deferRender: true,
+									stateSave: true,
 								scrollX: true,
 								pageLength: page_size,
 								lengthMenu: [[ page_size, (page_size * 2), -1 ],[ page_size, (page_size * 2), 'All' ]]
@@ -354,7 +356,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 };
 
 me.format = function (rowData) {
-	return '<table id="' + rowData.name.replace(' ', '-') + '" class="table table-bordered table-striped dataTable" style="width: 100%;"></table>';
+	return '<table id="' + rowData.name.replace(' ', '-') + '" class="table table-bordered table-striped table-condensed dataTable" style="width: 100%;"></table>';
 }
 
 
