@@ -62,7 +62,7 @@
                             <input type="checkbox" class="active" name="variation[zero][active]" id="mvariation-active"
                                    value="1"> &nbsp&nbsp&nbsp Active
                         </label>
-                        <button type="button" class="btn btn-danger btn-xs btn_add" style="float: right;" data-code="dvvariation" onclick="me.RemoveSub(this)"><i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-danger btn-xs btn_add" style="float: right;" data-code="dvvariation" onclick="me.RemoveSub(this)"><i class="fa fa-trash-o"></i></button>
 
                     </div>
                     </div>
