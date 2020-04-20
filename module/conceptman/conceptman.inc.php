@@ -116,6 +116,15 @@ function Add(){
     $str = file_get_contents("php://input");
     parse_str($str, $data);
 
+    $a = 0;
+    $ch = array();
+    foreach((array)$data['variation'] as $i => $item){
+        unset($item['concept_variation_id']);
+        $data['variation'][$a] = $item;
+        ++$a;
+
+    }
+
     $data['user_login'] = $user;
 
 
@@ -123,8 +132,8 @@ function Add(){
     unset($data['concept_id']);
     unset($data['sub']);
 
-//    PrintR($data);
-//    exit;
+    PrintR($data);
+    exit;
 
 
 

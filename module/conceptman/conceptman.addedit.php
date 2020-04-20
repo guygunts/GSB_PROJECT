@@ -45,6 +45,7 @@
                      class="variationsub row">
                     <div class="col-md-12">
                     <div class="form-group col-md-6">
+                        <input name="variation[zero][concept_variation_id]" id="mconcept_variation_id" type="hidden">
                         <label for="variation-concept_result" class="control-label">Concept Result <small
                                     style="color:red">*</small></label>
                         <input id="mvariation-concept_result" name="variation[zero][concept_result]" type="text" maxlength="100"

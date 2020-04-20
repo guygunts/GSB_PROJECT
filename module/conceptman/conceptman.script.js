@@ -34,6 +34,26 @@ me.ClearData = function () {
 
 };
 
+me.Load = function (e) {
+	me.ClearData();
+	var code = $(e).attr('data-code');
+	var attr = JSON.parse($(e).attr('data-item'));
+	var result = [];
+
+	for(var i in attr)
+		result.push({name : i,value : attr [i]});
+
+	ft.PutFormID('frm_addedit',result);
+	$('#frm_addedit input[name="code"]').val(code);
+	$('#frm_addedit input[name="menu_action"]').val(me.action.edit);
+	$.each(attr.variation, function (i, result) {
+		me.OpenPopupItem(result);
+	});
+	$('.btn_edit').show();
+	$('.btn_add').hide();
+	$('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+
+};
 
 me.OpenPopup_ = function (){
 	if($('#frm_addedit .sub').css('display') == 'none'){
@@ -90,6 +110,54 @@ me.OpenPopup = function(){
 	});
 	$('#dvvariation'+cloneCount+' input[type="checkbox"]').val(1);
 	$('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck('check');
+
+
+
+};
+
+me.OpenPopupItem = function(data){
+	var cloneCount = $('div.variationsub').length;
+	var cloneCount2 = $('input[name="variation-active"]').length;
+	var maininput = me.variation;
+	console.log(maininput);
+	var mapObj = {
+		'dvvariation':"dvvariation",
+		'mvariation-variation_text':"mvariation-variation_text",
+		'mvariation-concept_result':"mvariation-concept_result",
+		'mvariation-active':"mvariation-active",
+		'zero':"",
+	};
+	maininput = maininput[0].outerHTML.replace(/dvvariation|mvariation-variation_text|mvariation-concept_result|mvariation-active|zero/g, function(matched){
+		return mapObj[matched]+cloneCount;
+	});
+
+	if(cloneCount == 0){
+
+		$('div[id=variation]').append(maininput);
+	}else{
+		$('div[id^=dvvariation]').last().after(maininput);
+
+	}
+	// console.log('after');
+	// console.log(maininput);
+	$("#mvariation-variation_text"+cloneCount).tagsinput({
+		trimValue: true
+	});
+
+	$('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck({
+		checkboxClass: 'icheckbox_square-blue',
+		radioClass: 'iradio_square-blue',
+		labelHover: true,
+		increaseArea: '20%' // optional
+	});
+
+	$('#mconcept_variation_id'+cloneCount).val(data.concept_variation_id);
+	$('#mvariation-concept_result'+cloneCount).val(data.concept_result);
+	$('#mvariation-variation_text'+cloneCount).val(data.variation_text);
+	$('#mvariation-active'+cloneCount).val(data.active);
+	if(data.active == 1){
+		$('#mvariation-active'+cloneCount).iCheck('check');
+	}
 
 
 
