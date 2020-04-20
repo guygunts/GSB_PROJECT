@@ -14,7 +14,7 @@ function View(){
 
     $result['data'] = array();
     $result['columns'] = array();
-
+    $types = ['1'=>'Normal','2'=>'Build in'];
 
     $str = file_get_contents("php://input");
     parse_str($str, $data);
@@ -60,7 +60,12 @@ function View(){
             $datalist[$i]['no'] = ($i+1);
 
             foreach((array)$columns as $v => $value){
-                $datalist[$i][$value['data']] = $item[$value['data']];
+                if($value['data'] == 'type'){
+                    $datalist[$i][$value['data']] = $types[$item[$value['data']]];
+                }else{
+                    $datalist[$i][$value['data']] = $item[$value['data']];
+                }
+
 
             }
 
