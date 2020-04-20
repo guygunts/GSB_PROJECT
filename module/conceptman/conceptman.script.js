@@ -59,12 +59,18 @@ me.OpenPopup = function(){
 	var maininput = me.variation;
 	if(cloneCount == 0){
 		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+		maininput = maininput.outerHTML.replace(/variation-variation_text/g, 'variation-variation_text' + cloneCount);
 		$('div[id=variation]').append(maininput);
 	}else{
 		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+		maininput = maininput.outerHTML.replace(/variation-variation_text/g, 'variation-variation_text' + cloneCount);
 		$('div[id^=dvvariation]').last().after(maininput);
 
 	}
+	$("#variation-variation_text"+cloneCount).tagsinput({
+		trimValue: true
+	});
+
 	$('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck({
 		checkboxClass: 'icheckbox_square-blue',
 		radioClass: 'iradio_square-blue',
@@ -133,8 +139,6 @@ me.Add = function () {
 \*================================================*/
 $(document).ready(function(){
 	me.SetUrl();
-	$(".variation-variation_text").tagsinput({
-		trimValue: true
-	});
+
 	me.LoadData(me.action.menu,1,30);
 });
