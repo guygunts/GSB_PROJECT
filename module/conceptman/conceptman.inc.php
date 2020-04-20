@@ -23,7 +23,7 @@ function View(){
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'page_id' => $data['page_id'],
-        'page_size' => $data['page_size'],
+        'page_size' => 100000,
     );
     $url = URL_API.'/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
@@ -110,17 +110,9 @@ function Add(){
     $str = file_get_contents("php://input");
     parse_str($str, $data);
 
-    $a = 0;
-    $ch = array();
-    foreach((array)$data['sub'] as $i => $item){
-        $data['variation'][$a] = $item;
-        ++$a;
-    }
-
-//    $data['role_desc'] = $data['role_description'];
     $data['user_login'] = $user;
 
-//    unset($data['role_description']);
+
     unset($data['code']);
     unset($data['concept_id']);
     unset($data['sub']);
@@ -132,7 +124,7 @@ function Add(){
 
     $url = URL_API.'/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
-PrintR($response);
+
     if ($response['code'] == 200) {
         $result['success'] = 'COMPLETE';
     } else {
