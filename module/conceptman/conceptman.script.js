@@ -270,6 +270,11 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 										"orderable": false
 									}
 								],
+								createdRow: function( row, data, dataIndex ) {
+									// Set the data-status attribute, and add a class
+									$( row ).find('td:eq(0)')
+										.attr('data-name', data.variation);
+								},
 								retrieve: true,
 								deferRender: true,
 								stateSave: true,
