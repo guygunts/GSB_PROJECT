@@ -301,7 +301,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						var tr = $(this).closest('tr');
 						var row = me.table.row( tr );
 						var rowData = row.data();
-
+						console.log(rowData);
 
 						if ( row.child.isShown() ) {
 							// This row is already open - close it
