@@ -332,9 +332,8 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									{ data: "concept_result", title: 'Concept Result' },
 									{ data: "variation_text", title: 'Variation Text' },
 									{ data: "active", title: 'Active' },
-								],
-								scrollY: '100px',
-								select: true,
+								]
+
 							});
 
 							tr.addClass('shown');
