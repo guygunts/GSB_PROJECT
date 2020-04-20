@@ -78,6 +78,11 @@ me.OpenPopup = function(){
 
 };
 
+me.RemoveSub = function (e){
+	var code = $(e).attr('data-code');
+	$('#'+code).remove();
+}
+
 me.Add = function () {
 	$('#btnsubmit').click(function (e) {
 		e.stopPropagation();
