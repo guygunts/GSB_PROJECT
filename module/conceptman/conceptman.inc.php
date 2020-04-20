@@ -33,7 +33,7 @@ function View(){
         $columnslist = $response['result'];
         $datas = $response['data'];
 
-        $column[0]['className'] = 'text-center';
+        $column[0]['className'] = 'text-center details-control';
         $column[0]['title'] = 'No';
         $column[0]['data'] = 'no';
 
