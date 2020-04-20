@@ -21,8 +21,8 @@
                 <div class="form-group">
                     <label for="lang" class="control-label">Lang</label>
                     <select id="lang" name="lang" class="select form-control lang" required="required">
+                        <option value="Thai" selected>Thai</option>
                         <option value="English">English</option>
-                        <option value="Thai">Thai</option>
                     </select>
                 </div>
                 <div class="form-group">
