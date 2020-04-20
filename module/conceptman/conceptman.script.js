@@ -308,8 +308,8 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						var row = me.table.row( tr );
 						// console.log(row);
 						var rowData = $(tr).find('td:eq(0)').attr('data-name');
-						console.log('rowData '+rowData);
-return false;
+						// console.log('rowData '+rowData);
+// return false;
 						if ( row.child.isShown() ) {
 							// This row is already open - close it
 							row.child.hide();
