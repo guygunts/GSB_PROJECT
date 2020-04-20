@@ -133,7 +133,7 @@ me.Add = function () {
 \*================================================*/
 $(document).ready(function(){
 	me.SetUrl();
-	$("#variation-variation_text").tagsinput({
+	$(".variation-variation_text").tagsinput({
 		trimValue: true
 	});
 	me.LoadData(me.action.menu,1,30);
