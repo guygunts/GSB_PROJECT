@@ -58,13 +58,24 @@ me.OpenPopup = function(){
 	var cloneCount2 = $('input[name="variation-active"]').length;
 	var maininput = me.variation;
 	console.log(maininput);
+	var mapObj = {
+		'dvvariation':"dvvariation",
+		'variation-variation_text':"variation-variation_text"
+	};
 	if(cloneCount == 0){
-		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+
+		// maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+		maininput = maininput[0].outerHTML.replace(/dvvariation/g, function(matched){
+			return mapObj[matched]+cloneCount;
+		});
 
 		// maininput = maininput.outerHTML.replace(/variation-variation_text/g, 'variation-variation_text' + cloneCount);
 		$('div[id=variation]').append(maininput);
 	}else{
-		maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+		// maininput = maininput[0].outerHTML.replace(/dvvariation/g, 'dvvariation' + cloneCount);
+		maininput = maininput[0].outerHTML.replace(/dvvariation/g, function(matched){
+			return mapObj[matched]+cloneCount;
+		});
 		// maininput = maininput.outerHTML.replace(/variation-variation_text/g, 'variation-variation_text' + cloneCount);
 		$('div[id^=dvvariation]').last().after(maininput);
 
