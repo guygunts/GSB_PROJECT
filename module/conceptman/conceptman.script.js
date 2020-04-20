@@ -308,7 +308,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						var row = me.table.row( tr );
 						// console.log(row);
 						// var rowData = row.data();
-						var rowData = $(tr).find('td:eq(0)').attr('data-name');
+						var rowData = JSON.parse($(tr).find('td:eq(0)').attr('data-name'));
 						console.log(rowData);
 return false;
 						if ( row.child.isShown() ) {
