@@ -330,7 +330,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 									{ data: "active", title: 'Active' },
 								],
 								iDisplayLength : page_size,
-								responsive: false,
+								select: true,
 								scrollX: true,
 								pageLength: page_size,
 								lengthMenu: [[ page_size, (page_size * 2), -1 ],[ page_size, (page_size * 2), 'All' ]]
