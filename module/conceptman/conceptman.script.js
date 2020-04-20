@@ -302,7 +302,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						column.visible( ! column.visible() );
 					} );
 
-					$('.details-control').on('click', 'td', function () {
+					$('td.details-control').on('click', function () {
 						// var tr = $(this).closest('tr');
 						// var row = me.table.cell(this).index().row;
 						// var row = me.table.row( tr );
