@@ -76,7 +76,14 @@ function View(){
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
             }
-            $datalist[$i]['variation'] = json_encode($item['variation'],JSON_HEX_APOS);
+
+            $vartiation = array();
+            if(count($item['variation']) > 0){
+                foreach($item['variation'] as $z => $itemsub){
+                    $vartiation[$z] = $itemsub;
+                }
+            }
+            $datalist[$i]['variation'] = json_encode($vartiation,JSON_HEX_APOS);
 
 
             $dataattr = array();
