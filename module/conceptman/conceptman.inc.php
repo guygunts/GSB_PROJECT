@@ -34,7 +34,7 @@ function View(){
         $datas = $response['data'];
 
         $column[0]['className'] = 'details-control';
-        $column[0]['title'] = 'Variation';
+        $column[0]['title'] = '';
         $column[0]['data'] = null;
         $column[0]['defaultContent'] = '';
 

@@ -248,7 +248,12 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 								buttons: [{
 									extend: 'colvis',
 									columnText: function ( dt, idx, title ) {
-										return (idx+1)+': '+(title?title:'Action');
+										if(idx == 0){
+											return (idx+1)+': Variation';
+										}else{
+											return (idx+1)+': '+(title?title:'Action');
+										}
+
 									}
 								}],
 								columnDefs: [
