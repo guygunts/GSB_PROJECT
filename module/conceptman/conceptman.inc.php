@@ -110,8 +110,8 @@ function Add(){
     $str = file_get_contents("php://input");
     parse_str($str, $data);
 
-    $a = 0;
-    $ch = array();
+//    $a = 0;
+//    $ch = array();
 //    foreach((array)$data['sub'] as $i => $item){
 //        if($item['channel'] == "0")continue;
 //        $data['variation'][$a]['concept_result'] = $item['channel'];
@@ -124,11 +124,11 @@ function Add(){
 
 //    unset($data['role_description']);
     unset($data['code']);
-    unset($data['project_id']);
+    unset($data['concept_id']);
     unset($data['channels']);
 
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
 
 
