@@ -325,9 +325,9 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 								dom: "t",
 								data: rowData,
 								columns: [
-									{ data: "concept_result", title: 'Concept Result' },
-									{ data: "variation_text", title: 'Variation Text' },
-									{ data: "active", title: 'Active' },
+									{ data: "concept_result", title: 'Concept Result', className: 'text-center' },
+									{ data: "variation_text", title: 'Variation', className: 'text-center' },
+									{ data: "active", title: 'Active', className: 'text-center' },
 								],
 								iDisplayLength : page_size,
 								select: true,
