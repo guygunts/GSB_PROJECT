@@ -363,7 +363,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 };
 
 me.format = function (rowData) {
-	return '<table id="' + rowData.name.replace(' ', '-') + '" class="table table-yellow table-bordered table-striped table-condensed dataTable" style="width: 100%;"></table>';
+	return '<div class="col-md-10" style="margin: 0 auto;float: none;"><table id="' + rowData.name.replace(' ', '-') + '" class="table table-yellow table-bordered table-striped table-condensed dataTable" style="width: 100%;"></table></div>';
 }
 
 
