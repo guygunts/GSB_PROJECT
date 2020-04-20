@@ -168,7 +168,7 @@ function Edit(){
 
 
     $data['user_login'] = $user;
-
+    unset($data['code']);
     PrintR($data);
     exit;
 
