@@ -125,8 +125,8 @@ function Add(){
     unset($data['concept_id']);
     unset($data['sub']);
 
-//    PrintR($data);
-//    exit;
+    PrintR($data);
+    exit;
 
 
 
