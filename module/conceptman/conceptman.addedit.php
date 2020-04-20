@@ -32,7 +32,7 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <button type="button" onclick="me.OpenPopup();" class="btn btn-info btn_add" id="addvariation"><i class="fa fa-plus"></i> Add
+                    <button type="button" onclick="me.OpenPopup();" class="btn btn-info btn_add btn-xs" id="addvariation"><i class="fa fa-plus"></i> Add
                         Variation
                     </button>
                 </div>
