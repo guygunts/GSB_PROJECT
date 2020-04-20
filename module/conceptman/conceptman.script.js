@@ -327,7 +327,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 
 							$('#' + id).DataTable({
 								dom: "t",
-								data: [rowData],
+								data: rowData,
 								columns: [
 									{ data: "concept_result", title: 'Concept Result' },
 									{ data: "variation_text", title: 'Variation Text' },
