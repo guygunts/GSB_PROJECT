@@ -149,8 +149,8 @@ function Add(){
     unset($data['concept_id']);
     unset($data['sub']);
 
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
 
 
@@ -186,8 +186,8 @@ function Edit(){
 
     $data['user_login'] = $user;
     unset($data['code']);
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
     $url = URL_API.'/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
