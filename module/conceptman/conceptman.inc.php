@@ -68,6 +68,7 @@ function View(){
 
             $datasub = array();
             $datasub[$i] = $item['variation'];
+
             foreach((array)$columns as $v => $value){
                 if($value['data'] == 'type'){
                     $datalist[$i][$value['data']] = $types[$item[$value['data']]];
@@ -75,7 +76,7 @@ function View(){
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
-                $columns[$v]['name'] = $datasub[$i];
+                $column[$v]['name'] = $datasub[$i];
             }
 
 
