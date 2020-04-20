@@ -76,7 +76,7 @@ function View(){
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
-                $column[$v]['name'] = $datalist[$i]['variation'];
+                $column[$v]['name'] = json_encode($datalist[$i]['variation'],JSON_HEX_APOS);
             }
 
 
