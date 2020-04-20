@@ -302,13 +302,13 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 						column.visible( ! column.visible() );
 					} );
 
-					$('td.details-control').on('click', function () {
-						// var tr = $(this).closest('tr');
+					$('#tbView tbody').on('click', 'td.details-control', function () {
+						var tr = $(this).closest('tr');
 						// var row = me.table.cell(this).index().row;
-						// var row = me.table.row( tr );
+						var row = me.table.row( tr );
 						// console.log(row);
-						var rowData = $(this).attr('data-name');
-						console.log('data-name '+rowData);
+						var rowData = $(tr).find('td:eq(0)').attr('data-name');
+						console.log('rowData '+rowData);
 return false;
 						if ( row.child.isShown() ) {
 							// This row is already open - close it
