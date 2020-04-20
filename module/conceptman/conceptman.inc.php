@@ -112,14 +112,12 @@ function Add(){
 
     $a = 0;
     $ch = array();
-    foreach((array)$data['channels'] as $i => $item){
-        if($item['channel'] == "0")continue;
-        $data['channel'][$a] = $item['channel'];
-        ++$a;
-
-    }
-
-    $data['channel'] = implode(",",$data['channel']);
+//    foreach((array)$data['sub'] as $i => $item){
+//        if($item['channel'] == "0")continue;
+//        $data['variation'][$a]['concept_result'] = $item['channel'];
+//        ++$a;
+//
+//    }
 
 //    $data['role_desc'] = $data['role_description'];
     $data['user_login'] = $user;
@@ -129,8 +127,8 @@ function Add(){
     unset($data['project_id']);
     unset($data['channels']);
 
-//    PrintR($data);
-//    exit;
+    PrintR($data);
+    exit;
 
 
 

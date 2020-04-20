@@ -40,18 +40,18 @@
                     <div class="form-group col-md-6">
                         <label for="variation-concept_result" class="control-label">Concept Result <small
                                     style="color:red">*</small></label>
-                        <input id="mvariation-concept_result" name="sub[][variation-concept_result]" type="text" maxlength="100"
+                        <input id="mvariation-concept_result" name="sub[][vconcept_result]" type="text" maxlength="100"
                                class="form-control empty" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="variation-variation_text" class="control-label">Variation Name <small
                                     style="color:red">*</small></label>
-                        <input id="mvariation-variation_text" name="sub[][variation-variation_text]" type="text" maxlength="100"
+                        <input id="mvariation-variation_text" name="sub[][variation_text]" type="text" maxlength="100"
                                class="form-control variation-variation_text empty" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label>
-                            <input type="checkbox" class="active" name="sub[][variation-active]" id="mvariation-active"
+                            <input type="checkbox" class="active" name="sub[][active]" id="mvariation-active"
                                    value="1"> &nbsp&nbsp&nbsp Active
                         </label>
                         <button type="button" class="btn btn-danger btn-xs" style="float: right;" data-code="dvvariation" onclick="me.RemoveSub(this)"><i class="fa fa-minus"></i></button>
