@@ -351,8 +351,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 };
 
 me.format = function (rowData) {
-	return '<table id="' + rowData.name.replace(' ', '-') + '" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-		'</table>';
+	return '<table id="' + rowData.name.replace(' ', '-') + '" class="table table-bordered table-striped dataTable" style="padding-left:50px;"></table>';
 }
 
 
