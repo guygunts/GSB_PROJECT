@@ -19,6 +19,13 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="lang" class="control-label">Lang</label>
+                    <select id="lang" name="lang" class="select form-control lang" required="required">
+                        <option value="English">English</option>
+                        <option value="Thai">Thai</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>
                         <input type="checkbox" class="active" name="active" id="active" value="1"> &nbsp&nbsp&nbsp
                         Active
