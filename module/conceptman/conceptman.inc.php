@@ -203,13 +203,13 @@ function Del(){
 
 //    $data[$data['main']] = $data['code'];
 
-    $data['project_del'][$data['main']] = $data['code'];
+    $data['concept_del'][$data['main']] = $data['code'];
     unset($data['code']);
     unset($data[$data['main']]);
     unset($data['main']);
 
-//    PrintR($data);
-//    exit;
+    PrintR($data);
+    exit;
 
     $url = URL_API.'/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
