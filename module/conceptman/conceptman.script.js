@@ -63,8 +63,9 @@ me.OpenPopup = function(){
 		'mvariation-variation_text':"mvariation-variation_text",
 		'mvariation-concept_result':"mvariation-concept_result",
 		'mvariation-active':"mvariation-active",
+		'zero':"",
 	};
-	maininput = maininput[0].outerHTML.replace(/dvvariation|mvariation-variation_text|mvariation-concept_result|mvariation-active/g, function(matched){
+	maininput = maininput[0].outerHTML.replace(/dvvariation|mvariation-variation_text|mvariation-concept_result|mvariation-active|zero/g, function(matched){
 		return mapObj[matched]+cloneCount;
 	});
 
