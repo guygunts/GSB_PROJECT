@@ -199,7 +199,8 @@ me.Add = function () {
 								case 'COMPLETE':
 									$('.modal').modal('hide');
 									alertify.success(data.msg);
-									me.table.clear().draw();
+									// $('#btnsearchsubmit').click();
+									// me.table.clear().draw();
 									me.LoadData(me.action.menu, 1, 30, 1);
 									break;
 								default:
