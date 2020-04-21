@@ -146,11 +146,11 @@ function Add(){
 
 
     unset($data['code']);
-    unset($data['concept_id']);
+//    unset($data['concept_id']);
     unset($data['sub']);
 
-//    PrintR($data);
-//    exit;
+    PrintR($data);
+    exit;
 
 
 
