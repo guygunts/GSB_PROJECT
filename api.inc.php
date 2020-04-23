@@ -23,7 +23,7 @@ function Login()
     $_SESSION[OFFICE]['DATA'] = array();
     $_SESSION[OFFICE]['ROLE'] = array();
     $_SESSION[OFFICE]['LANG'] = 'th';
-
+    $_SESSION[OFFICE]['PROJECT_ID'] = NULL;
     $params = array(
 
         'user_name' => $data['username'],
