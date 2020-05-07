@@ -267,6 +267,8 @@ function LoadCboMain()
 
     $response = curlposttoken($url, $params, $token);
 
+    PrintR($response);
+
 
     if ($response['code'] == 200) {
 
