@@ -29,7 +29,7 @@
     "ext-curl": "*",
     "phpoffice/phpspreadsheet": "1.00",
     "ext-json": "*",
-    "symfony/http-foundation": "^5.0"
+    "laminas/laminas-http": "^2.11"
   },
   "repositories": [
     {

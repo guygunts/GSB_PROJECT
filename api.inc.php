@@ -2,9 +2,9 @@
 require_once "service/service.php";
 require_once "vendor/autoload.php";
 
-use Symfony\Component\HttpFoundation\Request;
+use Laminas\Http\Request;
 
-$request = Request::createFromGlobals();
+$request = new Request();
 
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
 
@@ -414,7 +414,7 @@ function SaveLogo(Request $request)
 
 }
 
-switch ($request->query->get('mode')) {
+switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
         Login();

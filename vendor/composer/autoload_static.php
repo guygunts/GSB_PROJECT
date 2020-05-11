@@ -7,55 +7,76 @@ namespace Composer\Autoload;
 class ComposerStaticInit69bfa1ee88068599a5a8a191f2c89141
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Php72\\' => 23,
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
-            'Symfony\\Component\\Mime\\' => 23,
-            'Symfony\\Component\\HttpFoundation\\' => 33,
-        ),
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Container\\' => 14,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
+        ),
+        'L' => 
+        array (
+            'Laminas\\ZendFrameworkBridge\\' => 28,
+            'Laminas\\Validator\\' => 18,
+            'Laminas\\Uri\\' => 12,
+            'Laminas\\Stdlib\\' => 15,
+            'Laminas\\Loader\\' => 15,
+            'Laminas\\Http\\' => 13,
+            'Laminas\\Escaper\\' => 16,
+        ),
+        'I' => 
+        array (
+            'Interop\\Container\\' => 18,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Php72\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
-        ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Intl\\Idn\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
-        ),
-        'Symfony\\Component\\Mime\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/mime',
-        ),
-        'Symfony\\Component\\HttpFoundation\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/http-foundation',
-        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
+        'Laminas\\ZendFrameworkBridge\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src',
+        ),
+        'Laminas\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-validator/src',
+        ),
+        'Laminas\\Uri\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-uri/src',
+        ),
+        'Laminas\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-stdlib/src',
+        ),
+        'Laminas\\Loader\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-loader/src',
+        ),
+        'Laminas\\Http\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-http/src',
+        ),
+        'Laminas\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
+        ),
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
         ),
     );
 
