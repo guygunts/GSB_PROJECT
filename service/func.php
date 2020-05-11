@@ -1460,30 +1460,6 @@ function PhoneFormat($data){
   }
 }
 
-function CheckCookieLogin(){
-  $uname=$_COOKIE[OFFICE];
-  $app = new AppClass();
-  if(!empty($uname)){
-    $check = $app->Login($uname);
-
-    if($check){
-      $_SESSION[OFFICE]['LOGIN'] = 'ON';
-      $_SESSION[OFFICE]['DATA'] = $check;
-    // reset expiry date
-      setcookie(OFFICE, $uname, time() + 3600 * 24 * 365, '/');
-      if($check['superadmin']=='Y'){
-        $_SESSION[OFFICE]['PERMISSION'] = $app->LoadEmpPermissionAdmin();
-      }else{
-        $_SESSION[OFFICE]['PERMISSION'] = $app->LoadEmpPermission($check['code']);
-      }
-//      PrintR($_SESSION[OFFICE]);
-    }else{
-       $_SESSION[OFFICE]['LOGIN'] = 'OFF'; 
-       echo PleaseLogin(URL);
-       exit;
-    }
-  }
-}
 
 function SysBase64_encode($value, $extend_key = "") {
 	$extend_key = (trim($extend_key) != '')?base64_encode($extend_key):base64_encode("1");

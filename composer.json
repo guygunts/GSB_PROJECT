@@ -27,7 +27,9 @@
   "require": {
     "bower-asset/jquery": ">=1.9.0 <4.0.0",
     "ext-curl": "*",
-    "phpoffice/phpspreadsheet": "1.00"
+    "phpoffice/phpspreadsheet": "1.00",
+    "ext-json": "*",
+    "symfony/http-foundation": "^5.0"
   },
   "repositories": [
     {

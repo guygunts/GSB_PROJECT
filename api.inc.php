@@ -1,20 +1,10 @@
 <?php
-session_start();
-header("Content-type: application/json; charset=utf-8");
 require_once "service/service.php";
 
-
-$json = '{"success":"FAIL","msg":"Something Fail"}';
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
-
-
-function Login()
+function Login(Request $request)
 {
 
-    global $json;
-
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
     $data['lang'] = 'th';
     unset($_SESSION[OFFICE]);
 
@@ -66,15 +56,13 @@ function Login()
 //    exit;
 
     $result['msg'] = $response['msg'];
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function LoadData()
-
+function LoadData(Request $request)
 {
 
-    global $json;
     global $token;
 
     $datalist = array();
@@ -85,8 +73,7 @@ function LoadData()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
 
     $params = array(
@@ -185,22 +172,20 @@ function LoadData()
     }
 
     $result['msg'] = $response['msg'];
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
 
-function LoadCbo()
+function LoadCbo(Request $request)
 
 {
 
-    global $json;
     global $token;
 
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
 
     $params = array(
@@ -218,10 +203,9 @@ function LoadCbo()
 
     if ($response['code'] == 200) {
 
-        $columnslist = $response['result']['header'];
         $datas = $response['result']['data'];
 
-
+        $datalist = [];
         foreach ((array)$datas as $i => $item) {
 
             $datalist[$i]['code'] = $item[$data['code']];
@@ -238,21 +222,19 @@ function LoadCbo()
     }
 
     $result['msg'] = $response['msg'];
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function LoadCboMain()
+function LoadCboMain(Request $request)
 
 {
 
-    global $json;
     global $token;
 
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
 
     $params = array(
@@ -272,13 +254,12 @@ function LoadCboMain()
 
     if ($response['code'] == 200) {
 
-        $columnslist = $response['result']['header'];
         $datas = $response['result']['data'];
-
+        $datalist = [];
 
         foreach ((array)$datas as $i => $item) {
             if ($i == 0) {
-                if(empty($_SESSION[OFFICE]['PROJECT_ID'])){
+                if (empty($_SESSION[OFFICE]['PROJECT_ID'])) {
                     $_SESSION[OFFICE]['PROJECT_ID'] = $item[$data['code']];
                 }
 
@@ -298,163 +279,138 @@ function LoadCboMain()
     }
 
     $result['msg'] = $response['msg'];
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function ChangeTop()
+function ChangeTop(Request $request)
 
 {
 
-    global $json;
-    global $token;
-
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
 
     $_SESSION[OFFICE]['PROJECT_ID'] = $data['code'];
     $result['code'] = $data['code'];
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function SaveSite()
+function SaveSite(Request $request)
 
 {
 
-    global $json;
-    global $token;
-
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
     $strFileName = "config/SITE.txt";
     $objFopen = fopen($strFileName, 'w');
 
     fwrite($objFopen, $data['name']);
-    if($objFopen)
-    {
+    if ($objFopen) {
         $result['success'] = 'COMPLETE';
         $result['msg'] = 'COMPLETE';
     }
 
     fclose($objFopen);
 
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function SaveUrl()
+function SaveUrl(Request $request)
 
 {
 
-    global $json;
-    global $token;
-
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
     $strFileName = "config/URL.txt";
     $objFopen = fopen($strFileName, 'w');
 
     fwrite($objFopen, $data['name']);
-    if($objFopen)
-    {
+    if ($objFopen) {
         $result['success'] = 'COMPLETE';
         $result['msg'] = 'COMPLETE';
     }
 
     fclose($objFopen);
 
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function SaveUrlApi()
+function SaveUrlApi(Request $request)
 
 {
 
-    global $json;
-    global $token;
 
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
     $strFileName = "config/URL_API.txt";
     $objFopen = fopen($strFileName, 'w');
 
     fwrite($objFopen, $data['name']);
-    if($objFopen)
-    {
+    if ($objFopen) {
         $result['success'] = 'COMPLETE';
         $result['msg'] = 'COMPLETE';
     }
 
     fclose($objFopen);
 
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function SaveColor()
+function SaveColor(Request $request)
 
 {
 
-    global $json;
-    global $token;
-
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    $data = $request->request->all();
 
     $strFileName = "config/COLOR.txt";
     $objFopen = fopen($strFileName, 'w');
 
     fwrite($objFopen, $data['name']);
-    if($objFopen)
-    {
+    if ($objFopen) {
         $result['success'] = 'COMPLETE';
         $result['msg'] = 'COMPLETE';
     }
 
     fclose($objFopen);
 
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function SaveLogo()
+function SaveLogo(Request $request)
 
 {
-
-    global $json;
-    global $token;
 
     $result['data'] = array();
 
 
     $target = 'logo.png';
-    $file_tmp = $_FILES['name']['tmp_name'];
-    if(move_uploaded_file($file_tmp, "images/" . $target)){
+    $file_tmp =  $request->files->get('name')['tmp_name'];
+
+    if (move_uploaded_file($file_tmp, "images/" . $target)) {
         $result['success'] = 'COMPLETE';
         $result['msg'] = 'COMPLETE';
     }
 
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-switch ($_REQUEST["mode"]) {
+switch ($request->query->get('mode')) {
 
     case strtoupper(md5('api_login')) :
         Login();
@@ -497,10 +453,7 @@ switch ($_REQUEST["mode"]) {
         break;
 
     default :
-        $json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
 }
-
-echo $json;
-exit;
-
