@@ -11,7 +11,7 @@ use Laminas\Http\Request;
 
 $request = new Request();
 
-echo $request->getQuery()->toString();
+echo $request->getUri();
 
 exit;
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
