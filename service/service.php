@@ -7,5 +7,5 @@ session_start();
 //include "connection.php";
 include "define.php";
 include "func.php";
-include "vendor.php";
+
 ?>
