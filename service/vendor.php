@@ -9,29 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 header("Access-Control-Allow-Origin: * ");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: POST,GET");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-
-Request::setFactory(function (
-    array $query = [],
-    array $request = [],
-    array $attributes = [],
-    array $cookies = [],
-    array $files = [],
-    array $server = [],
-    $content = null
-) {
-    return new SpecialRequest(
-        $query,
-        $request,
-        $attributes,
-        $cookies,
-        $files,
-        $server,
-        $content
-    );
-});
 
 $request = Request::createFromGlobals();
 //$request->getPathInfo();
