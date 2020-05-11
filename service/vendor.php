@@ -3,6 +3,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 //use Laminas\Http\PhpEnvironment\Request;
 //use Laminas\EventManager\EventInterface;
+use App\Http\SpecialRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -20,7 +21,17 @@ Request::setFactory(function (
     array $files = [],
     array $server = [],
     $content = null
-));
+) {
+    return new SpecialRequest(
+        $query,
+        $request,
+        $attributes,
+        $cookies,
+        $files,
+        $server,
+        $content
+    );
+});
 
 $request = Request::createFromGlobals();
 $request->getPathInfo();
