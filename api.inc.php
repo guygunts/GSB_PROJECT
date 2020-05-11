@@ -408,7 +408,7 @@ function SaveLogo(Request $request)
 
 }
 
-switch ($request->getContent()->get('mode')) {
+switch ($request->getContent()) {
 
     case strtoupper(md5('api_login')) :
         Login();
