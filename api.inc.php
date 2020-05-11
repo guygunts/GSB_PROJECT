@@ -410,50 +410,50 @@ function SaveLogo(EventInterface $request)
 
 
 
-//switch ($request->getQuery('mode')) {
-//
-//    case strtoupper(md5('api_login')) :
-//        Login();
-//        break;
-//
-//    case strtoupper(md5('api_loaddata')) :
-//        LoadData();
-//        break;
-//
-//    case strtoupper(md5('api_loadcbo')) :
-//        LoadCbo();
-//        break;
-//
-//    case strtoupper(md5('api_loadcbomain')) :
-//        LoadCboMain();
-//        break;
-//
-//    case strtoupper(md5('api_changetop')) :
-//        ChangeTop();
-//        break;
-//
-//    case strtoupper(md5('api_savesite')) :
-//        SaveSite();
-//        break;
-//
-//    case strtoupper(md5('api_saveurl')) :
-//        SaveUrl();
-//        break;
-//
-//    case strtoupper(md5('api_saveurlapi')) :
-//        SaveUrlApi();
-//        break;
-//
-//    case strtoupper(md5('api_savelogo')) :
-//        SaveLogo();
-//        break;
-//
-//    case strtoupper(md5('api_savecolor')) :
-//        SaveColor();
-//        break;
-//
-//    default :
-//        $result['success'] = 'FAIL';
-//        $result['msg'] = 'ไม่มีข้อมูล';
-//        echo json_encode($result);
-//}
+switch ($request->getQuery('mode')) {
+
+    case strtoupper(md5('api_login')) :
+        Login();
+        break;
+
+    case strtoupper(md5('api_loaddata')) :
+        LoadData();
+        break;
+
+    case strtoupper(md5('api_loadcbo')) :
+        LoadCbo();
+        break;
+
+    case strtoupper(md5('api_loadcbomain')) :
+        LoadCboMain();
+        break;
+
+    case strtoupper(md5('api_changetop')) :
+        ChangeTop();
+        break;
+
+    case strtoupper(md5('api_savesite')) :
+        SaveSite();
+        break;
+
+    case strtoupper(md5('api_saveurl')) :
+        SaveUrl();
+        break;
+
+    case strtoupper(md5('api_saveurlapi')) :
+        SaveUrlApi();
+        break;
+
+    case strtoupper(md5('api_savelogo')) :
+        SaveLogo();
+        break;
+
+    case strtoupper(md5('api_savecolor')) :
+        SaveColor();
+        break;
+
+    default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+}
