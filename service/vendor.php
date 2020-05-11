@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-use Laminas\Http\Request;
+use Laminas\Http\PhpEnvironment\Request;
 
 //header("Access-Control-Allow-Origin: * ");
 //header("Content-Type: application/json; charset=UTF-8");
@@ -11,7 +11,7 @@ use Laminas\Http\Request;
 
 $request = new Request();
 
-echo $request->getUri();
+echo $request->getContent();
 
 exit;
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
