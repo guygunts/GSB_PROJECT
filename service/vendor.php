@@ -12,10 +12,19 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
+Request::setFactory(function (
+    array $query = [],
+    array $request = [],
+    array $attributes = [],
+    array $cookies = [],
+    array $files = [],
+    array $server = [],
+    $content = null
+);
 
 $request = Request::createFromGlobals();
 $request->getPathInfo();
-$request->overrideGlobals();
+$request->duplicate();
 echo $request->query->get('mode');
 exit;
 
