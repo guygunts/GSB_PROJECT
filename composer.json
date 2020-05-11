@@ -30,7 +30,8 @@
     "phpoffice/phpspreadsheet": "1.00",
     "ext-json": "*",
     "laminas/laminas-http": "^2.11",
-    "laminas/laminas-eventmanager": "^3.2"
+    "laminas/laminas-eventmanager": "^3.2",
+    "symfony/http-foundation": "^5.0"
   },
   "repositories": [
     {
