@@ -6,6 +6,7 @@ function Login($request)
 {
 
     $data = $request->getPost();
+    PrintR($data);
     $data['lang'] = 'th';
     unset($_SESSION[OFFICE]);
 
