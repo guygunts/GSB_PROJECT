@@ -105,6 +105,66 @@
         ]
     },
     {
+        "name": "laminas/laminas-eventmanager",
+        "version": "3.2.1",
+        "version_normalized": "3.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laminas/laminas-eventmanager.git",
+            "reference": "ce4dc0bdf3b14b7f9815775af9dfee80a63b4748"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laminas/laminas-eventmanager/zipball/ce4dc0bdf3b14b7f9815775af9dfee80a63b4748",
+            "reference": "ce4dc0bdf3b14b7f9815775af9dfee80a63b4748",
+            "shasum": ""
+        },
+        "require": {
+            "laminas/laminas-zendframework-bridge": "^1.0",
+            "php": "^5.6 || ^7.0"
+        },
+        "replace": {
+            "zendframework/zend-eventmanager": "self.version"
+        },
+        "require-dev": {
+            "athletic/athletic": "^0.1",
+            "container-interop/container-interop": "^1.1.0",
+            "laminas/laminas-coding-standard": "~1.0.0",
+            "laminas/laminas-stdlib": "^2.7.3 || ^3.0",
+            "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2"
+        },
+        "suggest": {
+            "container-interop/container-interop": "^1.1.0, to use the lazy listeners feature",
+            "laminas/laminas-stdlib": "^2.7.3 || ^3.0, to use the FilterChain feature"
+        },
+        "time": "2019-12-31T16:44:52+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.2-dev",
+                "dev-develop": "3.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Laminas\\EventManager\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Trigger and listen to events within a PHP application",
+        "homepage": "https://laminas.dev",
+        "keywords": [
+            "event",
+            "eventmanager",
+            "events",
+            "laminas"
+        ]
+    },
+    {
         "name": "laminas/laminas-http",
         "version": "2.11.2",
         "version_normalized": "2.11.2.0",

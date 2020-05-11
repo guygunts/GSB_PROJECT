@@ -2,7 +2,7 @@
 require_once "service/service.php";
 require_once "service/vendor.php";
 
-function Login(Request $request)
+function Login(EventInterface $request)
 {
 
     $data = $request->getPost();
@@ -56,7 +56,7 @@ function Login(Request $request)
 
 }
 
-function LoadData(Request $request)
+function LoadData(EventInterface $request)
 {
 
     global $token;
@@ -173,7 +173,7 @@ function LoadData(Request $request)
 }
 
 
-function LoadCbo(Request $request)
+function LoadCbo(EventInterface $request)
 
 {
 
@@ -224,7 +224,7 @@ function LoadCbo(Request $request)
 
 }
 
-function LoadCboMain(Request $request)
+function LoadCboMain(EventInterface $request)
 
 {
 
@@ -281,7 +281,7 @@ function LoadCboMain(Request $request)
 
 }
 
-function ChangeTop(Request $request)
+function ChangeTop(EventInterface $request)
 
 {
 
@@ -296,7 +296,7 @@ function ChangeTop(Request $request)
 
 }
 
-function SaveSite(Request $request)
+function SaveSite(EventInterface $request)
 
 {
 
@@ -319,7 +319,7 @@ function SaveSite(Request $request)
 
 }
 
-function SaveUrl(Request $request)
+function SaveUrl(EventInterface $request)
 
 {
 
@@ -342,7 +342,7 @@ function SaveUrl(Request $request)
 
 }
 
-function SaveUrlApi(Request $request)
+function SaveUrlApi(EventInterface $request)
 
 {
 
@@ -366,7 +366,7 @@ function SaveUrlApi(Request $request)
 
 }
 
-function SaveColor(Request $request)
+function SaveColor(EventInterface $request)
 
 {
 
@@ -389,7 +389,7 @@ function SaveColor(Request $request)
 
 }
 
-function SaveLogo(Request $request)
+function SaveLogo(EventInterface $request)
 
 {
 

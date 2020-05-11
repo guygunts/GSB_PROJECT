@@ -29,7 +29,8 @@
     "ext-curl": "*",
     "phpoffice/phpspreadsheet": "1.00",
     "ext-json": "*",
-    "laminas/laminas-http": "^2.11"
+    "laminas/laminas-http": "^2.11",
+    "laminas/laminas-eventmanager": "^3.2"
   },
   "repositories": [
     {

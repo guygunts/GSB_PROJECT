@@ -15,6 +15,7 @@ return array(
     'Laminas\\Stdlib\\' => array($vendorDir . '/laminas/laminas-stdlib/src'),
     'Laminas\\Loader\\' => array($vendorDir . '/laminas/laminas-loader/src'),
     'Laminas\\Http\\' => array($vendorDir . '/laminas/laminas-http/src'),
+    'Laminas\\EventManager\\' => array($vendorDir . '/laminas/laminas-eventmanager/src'),
     'Laminas\\Escaper\\' => array($vendorDir . '/laminas/laminas-escaper/src'),
     'Interop\\Container\\' => array($vendorDir . '/container-interop/container-interop/src/Interop/Container'),
 );

@@ -25,6 +25,7 @@ class ComposerStaticInit69bfa1ee88068599a5a8a191f2c89141
             'Laminas\\Stdlib\\' => 15,
             'Laminas\\Loader\\' => 15,
             'Laminas\\Http\\' => 13,
+            'Laminas\\EventManager\\' => 21,
             'Laminas\\Escaper\\' => 16,
         ),
         'I' => 
@@ -69,6 +70,10 @@ class ComposerStaticInit69bfa1ee88068599a5a8a191f2c89141
         'Laminas\\Http\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-http/src',
+        ),
+        'Laminas\\EventManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-eventmanager/src',
         ),
         'Laminas\\Escaper\\' => 
         array (
