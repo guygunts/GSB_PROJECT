@@ -78,20 +78,12 @@ me.Init = function () {
 };
 
 me.Expire = function () {
-	// $.ajaxSetup({
-	// 	error: function (x, status, error) {
-	// 		if (x.status == 403) {
-	// 			alert("Sorry, your session has expired. Please login again to continue");
-	// 			window.location.href = window.location;
-	// 		}
-	// 		else {
-	// 			alert("An error occurred: " + status + "nError: " + error);
-	// 		}
-	// 	}
-	// });
 	$( document ).ajaxError(function( event, jqxhr, settings, thrownError ) {
-		if (jqxhr.status == 401) {
-			window.location.href = window.location;
+		if (jqxhr.status != 200) {
+			alertify.error(jqxhr.responseJSON.msg);
+			setTimeout(function () {
+				window.location.replace('app.logout.php');
+			}, 3000);
 		}
 	});
 };
@@ -1549,7 +1541,6 @@ me.ConvertJson = function () {
 
 		$('#json-renderer').text('please Load JSON RESULT');
 
-		return;
 
 	} else {
 

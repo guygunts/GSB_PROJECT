@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpUndefinedVariableInspection */
+/** @noinspection PhpUnusedLocalVariableInspection */
 require_once "service/service.php";
 
 function Login(Request $request)
@@ -47,13 +49,8 @@ function Login(Request $request)
 
 
     } else {
-
         $result['success'] = 'FAIL';
-
     }
-
-//    PrintR($_SESSION);
-//    exit;
 
     $result['msg'] = $response['msg'];
     echo json_encode($result);
@@ -203,6 +200,7 @@ function LoadCbo(Request $request)
 
     if ($response['code'] == 200) {
 
+        /** @noinspection PhpUnusedLocalVariableInspection */
         $datas = $response['result']['data'];
 
         $datalist = [];
@@ -214,6 +212,7 @@ function LoadCbo(Request $request)
         }
 
 
+        /** @noinspection PhpUndefinedVariableInspection */
         $result['item'] = $datalist;
         $result['success'] = 'COMPLETE';
 
