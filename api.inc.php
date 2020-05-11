@@ -2,7 +2,7 @@
 require_once "service/service.php";
 require_once "service/vendor.php";
 
-function Login(EventInterface $request)
+function Login(Request $request)
 {
 
     $data = $request->getPost();
