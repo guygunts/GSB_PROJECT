@@ -20,7 +20,7 @@ Request::setFactory(function (
     array $files = [],
     array $server = [],
     $content = null
-);
+));
 
 $request = Request::createFromGlobals();
 $request->getPathInfo();
