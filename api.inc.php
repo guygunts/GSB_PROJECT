@@ -1,4 +1,7 @@
 <?php
+
+use http\Client\Request;
+
 require_once "service/service.php";
 require_once "service/vendor.php";
 
