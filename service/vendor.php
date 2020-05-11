@@ -14,7 +14,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 $request = new Request();
-$request->overrideGlobals();
+//$request->overrideGlobals();
 //$request->getPathInfo();
 //$request->duplicate();
 echo $request->getPathInfo();
