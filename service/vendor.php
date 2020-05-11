@@ -12,7 +12,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $request = Request::createFromGlobals();
 $request->getPathInfo();
-
+$request->overrideGlobals();
 echo $request->query->get('mode');
 exit;
 
