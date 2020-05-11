@@ -10,10 +10,10 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$request = Request::createFromGlobals();
+$request = new Response();
 $request->getPathInfo();
 $request->overrideGlobals();
-echo $request->query->get('mode');
+echo $request->request->get('mode');
 exit;
 
 $request = new Request();
