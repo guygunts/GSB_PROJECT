@@ -34,9 +34,9 @@ Request::setFactory(function (
 });
 
 $request = Request::createFromGlobals();
-$request->getPathInfo();
-$request->duplicate();
-echo $request->query->get('mode');
+//$request->getPathInfo();
+//$request->duplicate();
+echo $request->getPathInfo();
 exit;
 
 $request = new Request();
