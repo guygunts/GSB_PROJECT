@@ -5,7 +5,7 @@ require_once "service/vendor.php";
 function Login($request)
 {
 
-    $data = $request->getPost()->toString();
+    $data = $request->getPost()->toString()->toString();
     PrintR($data);
     $data['lang'] = 'th';
     unset($_SESSION[OFFICE]);
