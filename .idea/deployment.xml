@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="GSBTEST" uploadOnCheckinGroup="GSBTEST" showNewOnSourceInSync="false">
+  <component name="PublishConfigData" serverName="GSBTEST" uploadOnCheckin="b0a1c78c-2bde-4dbc-8eb2-41fe72c72bd4" showNewOnSourceInSync="false">
     <serverData>
       <paths name="GSB">
         <serverdata>
@@ -17,5 +17,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="GSB" />
   </component>
 </project>
