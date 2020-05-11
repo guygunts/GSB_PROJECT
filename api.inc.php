@@ -413,43 +413,43 @@ function SaveLogo(EventInterface $request)
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        Login();
+        Login($request);
         break;
 
     case strtoupper(md5('api_loaddata')) :
-        LoadData();
+        LoadData($request);
         break;
 
     case strtoupper(md5('api_loadcbo')) :
-        LoadCbo();
+        LoadCbo($request);
         break;
 
     case strtoupper(md5('api_loadcbomain')) :
-        LoadCboMain();
+        LoadCboMain($request);
         break;
 
     case strtoupper(md5('api_changetop')) :
-        ChangeTop();
+        ChangeTop($request);
         break;
 
     case strtoupper(md5('api_savesite')) :
-        SaveSite();
+        SaveSite($request);
         break;
 
     case strtoupper(md5('api_saveurl')) :
-        SaveUrl();
+        SaveUrl($request);
         break;
 
     case strtoupper(md5('api_saveurlapi')) :
-        SaveUrlApi();
+        SaveUrlApi($request);
         break;
 
     case strtoupper(md5('api_savelogo')) :
-        SaveLogo();
+        SaveLogo($request);
         break;
 
     case strtoupper(md5('api_savecolor')) :
-        SaveColor();
+        SaveColor($request);
         break;
 
     default :
