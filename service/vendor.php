@@ -11,7 +11,4 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $request = new Request();
 
-echo $request->getQuery('mode');
-
-exit;
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
