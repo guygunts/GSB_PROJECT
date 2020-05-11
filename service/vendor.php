@@ -1,10 +1,8 @@
 <?php
-require_once "vendor/autoload.php";
+require_once __DIR__.'/../vendor/autoload.php';
 
-use Symfony\Component\HttpFoundation\Request;
+use Laminas\Http\Request;
 
-$request = Request::createFromGlobals();
-
-
+$request = new Request();
 
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';

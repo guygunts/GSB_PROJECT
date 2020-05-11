@@ -1,12 +1,6 @@
 <?php
 require_once "service/service.php";
-require_once "vendor/autoload.php";
-
-use Laminas\Http\Request;
-
-$request = new Request();
-
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
+require_once "service/vendor.php";
 
 function Login(Request $request)
 {
