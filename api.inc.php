@@ -1,6 +1,4 @@
 <?php
-/** @noinspection PhpUndefinedVariableInspection */
-/** @noinspection PhpUnusedLocalVariableInspection */
 require_once "service/service.php";
 
 function Login(Request $request)
