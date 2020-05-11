@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
-$request = new Request();
-//$request->overrideGlobals();
+$request = Request::create('/', 'POST');
+$request->overrideGlobals();
 //$request->getPathInfo();
 //$request->duplicate();
 echo $request->getPathInfo();
