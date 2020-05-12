@@ -2,11 +2,11 @@
 header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
 
-$json='{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN'])?$_SESSION[OFFICE]['TOKEN']:'';
+$json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
+$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
 
-function View(){
-    global $json;
+function View(Request $request)
+{
     global $token;
     $datalist = array();
     $columns = array();
@@ -32,7 +32,7 @@ function View(){
     );
 
 //    PrintR($params);
-    $url = URL_API.'/geniespeech/report';
+    $url = URL_API . '/geniespeech/report';
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
@@ -48,7 +48,7 @@ function View(){
         $m = 1;
 
 
-        foreach((array)$columnslist as $i => $item){
+        foreach ((array)$columnslist as $i => $item) {
             $column[$m]['className'] = 'text-center';
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_data'];
@@ -59,14 +59,14 @@ function View(){
         }
 
 
-        foreach((array)$datas as $i => $item){
+        foreach ((array)$datas as $i => $item) {
             if ($item['date_time'] == 0) continue;
-            $item['DT_RowId'] = 'row_'.MD5($item[$columns[1]['data']]);
+            $item['DT_RowId'] = 'row_' . MD5($item[$columns[1]['data']]);
             $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
 
-            $datalist[$i]['no'] = ($i+1);
+            $datalist[$i]['no'] = ($i + 1);
 
-            foreach((array)$columns as $v => $value){
+            foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
 
             }
@@ -74,9 +74,7 @@ function View(){
         }
 
 
-
-
-        $result['name'] = SITE.' : '.$name;
+        $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
         $result['success'] = 'COMPLETE';
@@ -87,11 +85,11 @@ function View(){
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Add(){
-    global $json;
+function Add(Request $request)
+{
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -115,7 +113,7 @@ function Add(){
     unset($data['user_id']);
 
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -126,11 +124,12 @@ function Add(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Edit(){
-    global $json;
+function Edit(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -153,7 +152,7 @@ function Edit(){
     unset($data['code']);
 
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -164,11 +163,11 @@ function Edit(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Del(){
-    global $json;
+function Del(Request $request)
+{
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -185,7 +184,7 @@ function Del(){
     unset($data['code']);
     unset($data['main']);
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -196,13 +195,14 @@ function Del(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function LoadPermission(){
+function LoadPermission()
+{
     $permiss = array();
     $permission = $_SESSION[OFFICE]['ROLE'][0]['function'];
-    foreach((array)$permission as $i => $item){
+    foreach ((array)$permission as $i => $item) {
         $permiss[$item['function_id']]['id'] = $item['function_id'];
         $permiss[$item['function_id']]['name'] = $item['function_name'];
     }
@@ -210,14 +210,23 @@ function LoadPermission(){
 }
 
 
-switch($_REQUEST["mode"]){
-  case "View" : View(); break;
-  case "Add" : Add(); break;
-  case "Edit" : Edit(); break;
-  case "Del" : Del(); break;
+switch ($switchmode) {
+    case "View" :
+        View($x);
+        break;
+    case "Add" :
+        Add($x);
+        break;
+    case "Edit" :
+        Edit($x);
+        break;
+    case "Del" :
+        Del($x);
+        break;
 
-  default :
+    default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+        break;
 }
-
-echo $json;
-exit;

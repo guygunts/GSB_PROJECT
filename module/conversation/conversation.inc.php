@@ -1,11 +1,9 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
+require_once "../../service/vendor.php";
 
-$json='{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN'])?$_SESSION[OFFICE]['TOKEN']:'';
-
-function View(){
+function View(Request $request)
+{
     global $json;
     global $token;
 
@@ -18,8 +16,7 @@ function View(){
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'start_date' => $data['start_date'],
@@ -30,7 +27,7 @@ function View(){
     );
 
 //    PrintR($params);
-    $url = URL_API.'/geniespeech/conver';
+    $url = URL_API . '/geniespeech/conver';
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
@@ -46,28 +43,28 @@ function View(){
         $m = 1;
 
 
-        foreach((array)$columnslist as $i => $item){
-            if($item['column_data'] == 'SPOK'){
+        foreach ((array)$columnslist as $i => $item) {
+            if ($item['column_data'] == 'SPOK') {
                 $column[$m]['className'] = 'text-left';
-            }else{
+            } else {
                 $column[$m]['className'] = 'text-center';
             }
-            if($item['column_data'] == 'VOICE_NAME'){
+            if ($item['column_data'] == 'VOICE_NAME') {
                 $item['column_data'] = 'CHNN';
-            }else if($item['column_data'] == 'RSTT'){
+            } elseif ($item['column_data'] == 'RSTT') {
                 $item['column_data'] = 'input_conf';
-            }else if($item['column_data'] == 'CONF'){
+            } elseif ($item['column_data'] == 'CONF') {
                 $item['column_data'] = 'intent';
-            }else if($item['column_name'] == '% Best Intent Confidence'){
+            } elseif ($item['column_name'] == '% Best Intent Confidence') {
                 $item['column_data'] = 'intent_conf';
-            }else if($item['column_name'] == 'Status'){
+            } elseif ($item['column_name'] == 'Status') {
                 $item['column_data'] = 'rstt';
-            }else if($item['column_name'] == 'Grammar'){
+            } elseif ($item['column_name'] == 'Grammar') {
                 $item['column_data'] = 'GRNM';
             }
 
             $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] =  $item['column_data'];
+            $column[$m]['data'] = $item['column_data'];
 
 
             $columns[$i]['data'] = $item['column_data'];
@@ -76,18 +73,17 @@ function View(){
         }
 
 
-
-        foreach((array)$datas as $i => $item){
-            if($item['DATE_TIME'] == 0)break;
-            $datalist[$i]['DT_RowId'] = 'row_'.MD5($item[$columns[1]['data']]);
-            $datalist[$i]['no'] = ($i+1);
-            foreach((array)$columns as $v => $value){
-                if($value['data'] == 'LOG_FILE'){
-                    $datalist[$i][$value['data']] = '<a href="'.$item[$value['data']].'" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
-                }elseif($value['data'] == 'CHNN'){
-                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('."'".$item['CHNN']."',".$data['page_id'].','.$data['page_size'].",'".$data['start_date']."','".$data['end_date']."'".')"><i class="glyphicon glyphicon-volume-up"></i></a>';
+        foreach ((array)$datas as $i => $item) {
+            if ($item['DATE_TIME'] == 0) break;
+            $datalist[$i]['DT_RowId'] = 'row_' . MD5($item[$columns[1]['data']]);
+            $datalist[$i]['no'] = ($i + 1);
+            foreach ((array)$columns as $v => $value) {
+                if ($value['data'] == 'LOG_FILE') {
+                    $datalist[$i][$value['data']] = '<a href="' . $item[$value['data']] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
+                } elseif ($value['data'] == 'CHNN') {
+                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE(' . "'" . $item['CHNN'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
 //                    $datalist[$i][$value['data']] = '<audio controls><source src="'.$item[$value['data']].'" type="audio/wav"></audio>';
-                }else{
+                } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
@@ -95,9 +91,7 @@ function View(){
         }
 
 
-
-
-        $result['name'] = SITE.' : '.$name;
+        $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
         $result['success'] = 'COMPLETE';
@@ -108,10 +102,11 @@ function View(){
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function ViewCHNN(){
+function ViewCHNN(Request $request)
+{
     global $json;
     global $token;
 
@@ -124,8 +119,7 @@ function ViewCHNN(){
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'chnn' => $data['menu_action'],
@@ -136,7 +130,7 @@ function ViewCHNN(){
     );
 
 //    PrintR($params);
-    $url = URL_API.'/geniespeech/logdetail';
+    $url = URL_API . '/geniespeech/logdetail';
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
@@ -152,11 +146,11 @@ function ViewCHNN(){
         $m = 1;
 
 
-        foreach((array)$columnslist as $i => $item){
+        foreach ((array)$columnslist as $i => $item) {
 
             $column[$m]['className'] = 'text-center';
             $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] =  ($item['column_data']);
+            $column[$m]['data'] = ($item['column_data']);
 
 
             $columns[$i]['data'] = ($item['column_data']);
@@ -165,16 +159,15 @@ function ViewCHNN(){
         }
 
 
-
-        foreach((array)$datas as $i => $item){
-            $datalist[$i]['DT_RowId'] = 'rows_'.MD5($item[$columns[1]['data']]);
-            $datalist[$i]['no'] = ($i+1);
-            foreach((array)$columns as $v => $value){
-                if($value['data'] == 'CHNN'){
-                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN('."'".str_replace('CHAN=','',$item[$value['data']])."'".')">'.$item[$value['data']].'</a>';
-                }elseif($value['data'] == 'VOICE_NAME'){
-                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('.'"'.$item[$value['data']].'"'.')">'.$item[$value['data']].'</a>';
-                }else{
+        foreach ((array)$datas as $i => $item) {
+            $datalist[$i]['DT_RowId'] = 'rows_' . MD5($item[$columns[1]['data']]);
+            $datalist[$i]['no'] = ($i + 1);
+            foreach ((array)$columns as $v => $value) {
+                if ($value['data'] == 'CHNN') {
+                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . str_replace('CHAN=', '', $item[$value['data']]) . "'" . ')">' . $item[$value['data']] . '</a>';
+                } elseif ($value['data'] == 'VOICE_NAME') {
+                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE(' . '"' . $item[$value['data']] . '"' . ')">' . $item[$value['data']] . '</a>';
+                } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
@@ -182,9 +175,7 @@ function ViewCHNN(){
         }
 
 
-
-
-        $result['name'] = SITE.' : '.$name;
+        $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
         $result['success'] = 'COMPLETE';
@@ -195,10 +186,11 @@ function ViewCHNN(){
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function ViewVOICE(){
+function ViewVOICE(Request $request)
+{
     global $json;
     global $token;
 
@@ -212,8 +204,7 @@ function ViewVOICE(){
     $result['chnn'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'chnn' => $data['menu_action'],
@@ -224,7 +215,7 @@ function ViewVOICE(){
     );
 
 //    PrintR($params);
-    $url = URL_API.'/geniespeech/logvoice';
+    $url = URL_API . '/geniespeech/logvoice';
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
@@ -244,15 +235,15 @@ function ViewVOICE(){
         $m = 1;
 
 
-        foreach((array)$columnslist as $i => $item){
-            if($item['column_data'] == 'spok'){
+        foreach ((array)$columnslist as $i => $item) {
+            if ($item['column_data'] == 'spok') {
                 $column[$m]['className'] = 'text-left';
-            }else{
+            } else {
                 $column[$m]['className'] = 'text-center';
             }
 
             $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] =  ($item['column_data']);
+            $column[$m]['data'] = ($item['column_data']);
 
 
             $columns[$i]['data'] = ($item['column_data']);
@@ -261,18 +252,17 @@ function ViewVOICE(){
         }
 
 
+        foreach ((array)$datas as $i => $item) {
 
-        foreach((array)$datas as $i => $item){
-
-            $datalist[$i]['pass'] = '<input type="checkbox" name="pass" ref="'.$item['vname'].'">';
-            $datalist[$i]['no'] = ($i+1);
-            foreach((array)$columns as $v => $value){
-                if($value['data'] == 'CHNN'){
-                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN('."'".str_replace('CHAN=','',$item[$value['data']])."'".')">'.$item[$value['data']].'</a>';
-                }elseif($value['data'] == 'voice_name'){
-                    $datalist[$i][$value['data']] = '<audio controls><source src="'.$item[$value['data']].'" type="audio/wav"></audio>';
+            $datalist[$i]['pass'] = '<input type="checkbox" name="pass" ref="' . $item['vname'] . '">';
+            $datalist[$i]['no'] = ($i + 1);
+            foreach ((array)$columns as $v => $value) {
+                if ($value['data'] == 'CHNN') {
+                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . str_replace('CHAN=', '', $item[$value['data']]) . "'" . ')">' . $item[$value['data']] . '</a>';
+                } elseif ($value['data'] == 'voice_name') {
+                    $datalist[$i][$value['data']] = '<audio controls><source src="' . $item[$value['data']] . '" type="audio/wav"></audio>';
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('.'"'.$item[$value['data']].'"'.')">'.$item[$value['data']].'</a>';
-                }else{
+                } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
@@ -280,9 +270,7 @@ function ViewVOICE(){
         }
 
 
-
-
-        $result['name'] = SITE.' : '.$name;
+        $result['name'] = SITE . ' : ' . $name;
         $result['chnn'] = $data['menu_action'];
         $result['columns'] = $column;
         $result['data'] = $datalist;
@@ -294,10 +282,11 @@ function ViewVOICE(){
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Add(){
+function Add(Request $request)
+{
     global $json;
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
@@ -308,12 +297,10 @@ function Add(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
 
-
-    $url = URL_API.'/geniespeech/updatevoice';
+    $url = URL_API . '/geniespeech/updatevoice';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -324,10 +311,11 @@ function Add(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Edit(){
+function Edit(Request $request)
+{
     global $json;
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
@@ -338,8 +326,7 @@ function Edit(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -351,7 +338,7 @@ function Edit(){
     unset($data['code']);
 
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -362,11 +349,12 @@ function Edit(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Del(){
-    global $json;
+function Del(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -376,14 +364,13 @@ function Del(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data[$data['main']] = $data['code'];
     unset($data['code']);
     unset($data['main']);
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -394,13 +381,14 @@ function Del(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function LoadPermission(){
+function LoadPermission()
+{
     $permiss = array();
     $permission = $_SESSION[OFFICE]['ROLE'][0]['function'];
-    foreach((array)$permission as $i => $item){
+    foreach ((array)$permission as $i => $item) {
         $permiss[$item['function_id']]['id'] = $item['function_id'];
         $permiss[$item['function_id']]['name'] = $item['function_name'];
     }
@@ -408,16 +396,29 @@ function LoadPermission(){
 }
 
 
-switch($_REQUEST["mode"]){
-  case "View" : View(); break;
-  case "ViewCHNN" : ViewCHNN(); break;
-  case "ViewVOICE" : ViewVOICE(); break;
-  case "Add" : Add(); break;
-  case "Edit" : Edit(); break;
-  case "Del" : Del(); break;
+switch ($switchmode) {
+    case "View" :
+        View($x);
+        break;
+    case "ViewCHNN" :
+        ViewCHNN($x);
+        break;
+    case "ViewVOICE" :
+        ViewVOICE($x);
+        break;
+    case "Add" :
+        Add($x);
+        break;
+    case "Edit" :
+        Edit($x);
+        break;
+    case "Del" :
+        Del($x);
+        break;
 
-  default :
+    default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+        break;
 }
-
-echo $json;
-exit;

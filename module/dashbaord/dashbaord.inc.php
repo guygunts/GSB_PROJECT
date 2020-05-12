@@ -282,7 +282,7 @@ function View(Request $request)
 }
 
 
-switch ($moderequest->getQuery('mode')) {
+switch ($switchmode) {
     case "View" :
         View($x);
         break;
@@ -291,4 +291,5 @@ switch ($moderequest->getQuery('mode')) {
         $result['success'] = 'FAIL';
         $result['msg'] = 'ไม่มีข้อมูล';
         echo json_encode($result);
+        break;
 }

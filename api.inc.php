@@ -390,7 +390,7 @@ function SaveLogo(Request $request)
 }
 
 
-switch ($moderequest->getQuery('mode')) {
+switch ($switchmode) {
 
     case strtoupper(md5('api_login')) :
         Login($x);
@@ -436,4 +436,5 @@ switch ($moderequest->getQuery('mode')) {
         $result['success'] = 'FAIL';
         $result['msg'] = 'ไม่มีข้อมูล';
         echo json_encode($result);
+        break;
 }

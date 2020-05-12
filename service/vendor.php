@@ -3,7 +3,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Laminas\Http\PhpEnvironment\Request as MainRequest;
 $moderequest = new MainRequest();
-
+$switchmode = $moderequest->getQuery('mode');
 
 interface Request
 {
@@ -18,7 +18,7 @@ class MyRequest extends MainRequest implements Request
     {
         $request = new MainRequest();
         $this->request = $request;
-        echo $this->request;
+
     }
 }
 
