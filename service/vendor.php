@@ -8,7 +8,7 @@ class Vendor
 {
 
     protected $request;
-    public function __construct(Request $request){
+    public function __construct(Vendor $request){
         global $request;
         self::$request = $request;
         return self::$request;
