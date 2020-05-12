@@ -2,6 +2,6 @@
 ini_set('session.cookie_httponly', 1);
 session_start();
 
-include "define.php";
-include "func.php";
-include "vendor.php";
+require_once "define.php";
+require_once "func.php";
+require_once "vendor.php";
