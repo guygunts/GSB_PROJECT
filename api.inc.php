@@ -476,7 +476,7 @@ switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
 
-        Login($request);
+        Login(new MyRequest());
         break;
 
     case strtoupper(md5('api_loaddata')) :
