@@ -414,12 +414,12 @@ class Api
 
 }
 
-$call = new Api(new MyRequests());
+$call = new Api;
 
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        $call->Login();
+        $call->Login(new MyRequests());
         break;
 
     case strtoupper(md5('api_loaddata')) :
