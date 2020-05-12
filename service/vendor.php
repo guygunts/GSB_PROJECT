@@ -7,12 +7,11 @@ $request = new Request();
 class Vendor
 {
     public static $instance;
-    protected  $request;
 
     public function __construct(){
         global $request;
-        $this->request = $request;
-        self::$instance = $this;
+        self::$instance = $request;
+        return self::$instance;
     }
 }
 
