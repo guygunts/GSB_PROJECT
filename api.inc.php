@@ -8,9 +8,10 @@ class Api extends Vendor
     public function __construct(array $request = []){
         parent::__construct();
     }
-    public function Login(Vendor $request)
-    {
 
+    public function Login()
+    {
+        $request = $this->request;
         parse_str($request->getPost()->toString(), $data);
         $data['lang'] = 'th';
         unset($_SESSION[OFFICE]);
