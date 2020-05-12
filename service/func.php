@@ -1582,3 +1582,157 @@ function curlposttoken($url, $params, $token)
     }
     return $response;
 }
+
+function buildMultiPartRequest($ch, $boundary, $fields, $files, $token)
+{
+    $delimiter = '-------------' . $boundary;
+    $data = '';
+
+    foreach ($fields as $name => $content) {
+        $data .= "--" . $delimiter . "\r\n"
+            . 'Content-Disposition: form-data; name="' . $name . "\"\r\n\r\n"
+            . $content . "\r\n";
+    }
+    foreach ($files as $name => $content) {
+        $data .= "--" . $delimiter . "\r\n"
+            . 'Content-Disposition: form-data; name="' . $name . '"; filename="' . $content['name'] . '"' . "\r\n\r\n"
+            . $content . "\r\n";
+    }
+
+    $data .= "--" . $delimiter . "--\r\n";
+
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: multipart/form-data; boundary=' . $delimiter,
+            'Content-Length: ' . strlen($data),
+            'Authorization:' . $token
+        ],
+        CURLOPT_POSTFIELDS => $data
+    ]);
+
+    return $ch;
+}
+
+function curlposttokenfile($url, $params, $token)
+{
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    curl_setopt($ch, CURLOPT_UPLOAD, true);
+    $headers = [
+        'Content-Type:application/json',
+        'Authorization:' . $token
+    ];
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+    curl_setopt($ch, CURLOPT_VERBOSE, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    if ($response) {
+        $response = array_filter(json_decode($response, true));
+    } else {
+        $response = array();
+    }
+    return $response;
+}
+
+function build_data_files($boundary, $fields, $files)
+{
+    $data = '';
+    $eol = "\r\n";
+
+    $delimiter = '-------------' . $boundary;
+
+    foreach ($fields as $name => $content) {
+        $data .= "--" . $delimiter . $eol
+            . 'Content-Disposition: form-data; name="' . $name . "\"" . $eol . $eol
+            . $content . $eol;
+    }
+
+
+    foreach ($files as $name => $content) {
+        $data .= "--" . $delimiter . $eol
+            . 'Content-Disposition: form-data; name="' . $name . '"; filename="' . $name . '"' . $eol
+            //. 'Content-Type: image/png'.$eol
+            . 'Content-Transfer-Encoding: binary' . $eol;
+
+        $data .= $eol;
+        $data .= $content . $eol;
+    }
+    $data .= "--" . $delimiter . "--" . $eol;
+
+
+    return $data;
+}
+
+function curl_custom_postfields($ch, array $assoc = array(), array $files = array())
+{
+    global $token;
+    // invalid characters for "name" and "filename"
+    static $disallow = array("\0", "\"", "\r", "\n");
+
+    // build normal parameters
+    foreach ($assoc as $k => $v) {
+        $k = str_replace($disallow, "_", $k);
+        $body[] = implode("\r\n", array(
+            "Content-Disposition: form-data; name=\"{$k}\"",
+            "",
+            filter_var($v),
+        ));
+    }
+
+    // build file parameters
+    foreach ($files as $k => $v) {
+        switch (true) {
+            case false === $v = realpath(filter_var($v)):
+            case !is_file($v):
+            case !is_readable($v):
+                continue; // or return false, throw new InvalidArgumentException
+        }
+        $data = file_get_contents($v);
+        $v = call_user_func("end", explode(DIRECTORY_SEPARATOR, $v));
+        $k = str_replace($disallow, "_", $k);
+        $v = str_replace($disallow, "_", $v);
+        $body[] = implode("\r\n", array(
+            "Content-Disposition: form-data; name=\"{$k}\"; filename=\"{$k}\"",
+            "Content-Type: application/octet-stream",
+            "",
+            $data,
+        ));
+    }
+
+    // generate safe boundary
+    do {
+        $boundary = "---------------------" . md5(mt_rand() . microtime());
+    } while (preg_grep("/{$boundary}/", $body));
+
+    // add boundary for each parameters
+    array_walk($body, function (&$part) use ($boundary) {
+        $part = "--{$boundary}\r\n{$part}";
+    });
+
+    // add final boundary
+    $body[] = "--{$boundary}--";
+    $body[] = "";
+
+    // set options
+
+    curl_setopt_array($ch, array(
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => implode("\r\n", $body),
+        CURLOPT_HTTPHEADER => array(
+            "Expect: 100-continue",
+//            'Content-Type:application/json',
+            "Content-Type: multipart/form-data; boundary={$boundary}",
+            'Authorization:' . $token
+        ),
+    ));
+    curl_exec($ch);
+    curl_close($ch);
+    // $response = json_decode($response, true);
+    // return $response;
+}
+

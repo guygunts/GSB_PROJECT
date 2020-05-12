@@ -1,9 +1,6 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
-
-$json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
+require_once "../../service/vendor.php";
 
 function View(Request $request)
 {
@@ -33,7 +30,6 @@ function View(Request $request)
 //    PrintR($params);
     $url = sprintf("%s/geniespeech/report", URL_API);
 
-    /** @var TYPE_NAME $response */
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
