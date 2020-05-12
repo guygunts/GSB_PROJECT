@@ -1,13 +1,10 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
+require_once "../../service/vendor.php";
 
-$json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
 
-function View()
+function View(Request $request)
 {
-    global $json;
     global $token;
 
     $datalist = array();
@@ -17,10 +14,7 @@ function View()
     $today = Today();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
-
-
+    parse_str($request->getPost()->toString(), $data);
 
     if (!$data['start'] && !$data['end']) {
         $datas['start'] = $today . ' 00:00:00';
@@ -283,27 +277,18 @@ function View()
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
 
-switch ($_REQUEST["mode"]) {
+switch ($moderequest->getQuery('mode')) {
     case "View" :
-        View();
-        break;
-    case "Add" :
-        Add();
-        break;
-    case "Edit" :
-        Edit();
-        break;
-    case "Del" :
-        Del();
+        View($x);
         break;
 
     default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
 }
-
-echo $json;
-exit;
