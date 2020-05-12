@@ -1,7 +1,30 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Laminas\Http\PhpEnvironment\Request as Requests;
+use Laminas\Http\Request as Request;
+$request = new Requests();
 
+class Vendor
+{
+    public function __construct(){
+
+        if ($_GET) {
+            $this->setQuery(new Parameters($_GET));
+        }
+        if ($_POST) {
+            $this->setPost(new Parameters($_POST));
+        }
+        if ($_COOKIE) {
+            $this->setCookies(new Parameters($_COOKIE));
+        }
+        if ($_FILES) {
+            // convert PHP $_FILES superglobal
+            $files = $this->mapPhpFiles();
+            $this->setFiles(new Parameters($files));
+        }
+    }
+}
 
 
 

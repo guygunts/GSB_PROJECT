@@ -2,30 +2,13 @@
 require_once "service/service.php";
 require_once "service/vendor.php";
 
-use Laminas\Http\PhpEnvironment\Request as Requests;
-use Laminas\Http\Request as Request;
-$request = new Requests();
-
-class Api extends Request
+class Api extends Vendor
 {
     protected $request;
 
     public function __construct(){
 
-        if ($_GET) {
-            $this->setQuery(new Parameters($_GET));
-        }
-        if ($_POST) {
-            $this->setPost(new Parameters($_POST));
-        }
-        if ($_COOKIE) {
-            $this->setCookies(new Parameters($_COOKIE));
-        }
-        if ($_FILES) {
-            // convert PHP $_FILES superglobal
-            $files = $this->mapPhpFiles();
-            $this->setFiles(new Parameters($files));
-        }
+        parent::__construct();
     }
 
     public static function Login(Request $request)
