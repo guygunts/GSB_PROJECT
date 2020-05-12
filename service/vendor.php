@@ -6,7 +6,12 @@ $request = new Request();
 
 class Vendor
 {
+    protected $request;
 
+    public function __construct(){
+        global $request;
+        return $request;
+    }
 
     public function instance()
     {
