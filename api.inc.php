@@ -6,6 +6,11 @@ class Api
 {
     protected $request;
 
+    public function __construct(Request $request)
+    {
+
+    }
+
     public function Login(Request $request)
     {
 
@@ -414,12 +419,12 @@ class Api
 
 }
 
-$call = new Api;
+$call = new Api(new MyRequest());
 
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        $call->Login(new MyRequest());
+        $call->Login();
         break;
 
     case strtoupper(md5('api_loaddata')) :
