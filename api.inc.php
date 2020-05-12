@@ -6,7 +6,7 @@ class Api extends Vendor
 {
 
 
-    public function Login(Vendor $request = null)
+    public function Login(Vendor $request)
     {
 
         parse_str($request->getPost()->toString(), $data);
