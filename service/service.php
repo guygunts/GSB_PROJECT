@@ -4,3 +4,4 @@ session_start();
 
 include "define.php";
 include "func.php";
+include "vendor.php";

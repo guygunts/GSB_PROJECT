@@ -1,6 +1,6 @@
 <?php
 require_once "service/service.php";
-require_once "service/vendor.php";
+
 
 
 function Login(Request $request)
