@@ -478,8 +478,8 @@ function Login(Request $request)
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-
-        Login(new MyRequest());
+        call_user_func('Login');
+//        Login(new MyRequest());
         break;
 
     case strtoupper(md5('api_loaddata')) :
