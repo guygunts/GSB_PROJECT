@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Controller;
 
 require_once "service/service.php";
 require_once "service/vendor.php";

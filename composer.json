@@ -31,7 +31,8 @@
     "ext-json": "*",
     "laminas/laminas-http": "^2.11",
     "laminas/laminas-eventmanager": "^3.2",
-    "symfony/http-foundation": "^5.0"
+    "symfony/http-foundation": "^5.0",
+    "illuminate/http": "^7.10"
   },
   "repositories": [
     {
