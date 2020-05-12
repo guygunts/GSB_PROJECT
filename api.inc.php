@@ -3,7 +3,7 @@ require_once "service/service.php";
 require_once "service/vendor.php";
 
 
-function Login(Request &$request = null)
+function Login(Request $request = null)
 {
 
     parse_str($request->getPost()->toString(), $data);
@@ -475,6 +475,7 @@ function Login(Request &$request = null)
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
+
         Login($request);
         break;
 
