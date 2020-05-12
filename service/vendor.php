@@ -17,6 +17,7 @@ class MyRequest extends MainRequest implements Request
     {
         $this->request = new MainRequest();
         self::$request = $this->request;
+        return self::$request;
     }
 
 }
