@@ -8,7 +8,7 @@ class Api
 {
     protected $request;
 
-    public static function Login(\Laminas\Http\Request $request)
+    public static function Login(\Illuminate\Http\Request $request)
     {
 
         parse_str($request->getPost()->toString(), $data);
