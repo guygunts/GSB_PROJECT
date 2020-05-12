@@ -18,7 +18,6 @@ class MyRequest extends MainRequest implements Request
     {
         $request = new MainRequest();
         $this->request = $request;
-
     }
 }
 
