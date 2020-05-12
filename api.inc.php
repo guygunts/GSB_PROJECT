@@ -9,7 +9,7 @@ class Api extends Vendor
         parent::__construct();
     }
 
-    public function Login(Vendor $request)
+    public function Login(&$request)
     {
 
         parse_str($request->getPost()->toString(), $data);
