@@ -4,9 +4,13 @@
 require_once "service/service.php";
 require_once "service/vendor.php";
 
-class Api
+class Api extends Request
 {
     protected $request;
+
+    public function __construct(){
+        parent::__construct();
+    }
 
     public static function Login(Request $request)
     {
