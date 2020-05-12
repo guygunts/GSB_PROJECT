@@ -1,419 +1,428 @@
 <?php
+
+use App\Http\Controllers\Controller;
+
 require_once "service/service.php";
 require_once "service/vendor.php";
 
-function Login($request)
+class Api
 {
+    protected $request;
 
-    parse_str($request->getPost()->toString(), $data);
-    $data['lang'] = 'th';
-    unset($_SESSION[OFFICE]);
+    public function Login(Request $request)
+    {
 
-    $_SESSION[OFFICE]['LOGIN'] = 'OFF';
-    $_SESSION[OFFICE]['TOKEN'] = '';
-    $_SESSION[OFFICE]['DATA'] = array();
-    $_SESSION[OFFICE]['ROLE'] = array();
-    $_SESSION[OFFICE]['LANG'] = 'th';
-    $_SESSION[OFFICE]['PROJECT_ID'] = NULL;
-    $params = array(
+        parse_str($request->getPost()->toString(), $data);
+        $data['lang'] = 'th';
+        unset($_SESSION[OFFICE]);
 
-        'user_name' => $data['username'],
-        'password' => $data['password'],
-        'lang' => $data['lang'],
-        'authen_type' => 1
+        $_SESSION[OFFICE]['LOGIN'] = 'OFF';
+        $_SESSION[OFFICE]['TOKEN'] = '';
+        $_SESSION[OFFICE]['DATA'] = array();
+        $_SESSION[OFFICE]['ROLE'] = array();
+        $_SESSION[OFFICE]['LANG'] = 'th';
+        $_SESSION[OFFICE]['PROJECT_ID'] = NULL;
+        $params = array(
 
-    );
+            'user_name' => $data['username'],
+            'password' => $data['password'],
+            'lang' => $data['lang'],
+            'authen_type' => 1
 
-    $url = URL_API . '/geniespeech/login';
-    $response = curlpost($url, $params);
+        );
+
+        $url = URL_API . '/geniespeech/login';
+        $response = curlpost($url, $params);
 
 
-    if ($response['code'] == 200) {
+        if ($response['code'] == 200) {
 
-        $_SESSION[OFFICE]['LOGIN'] = 'ON';
-        $_SESSION[OFFICE]['TOKEN'] = $response['token'];
-        $_SESSION[OFFICE]['DATA'] = $response['result']['profile'];
-        $_SESSION[OFFICE]['DATA']['user_name'] = $data['username'];
-        $_SESSION[OFFICE]['DATA']['password'] = $data['password'];
-        $_SESSION[OFFICE]['ROLE'] = $response['result']['roles'];
-        $_SESSION[OFFICE]['LANG'] = $data['lang'];
+            $_SESSION[OFFICE]['LOGIN'] = 'ON';
+            $_SESSION[OFFICE]['TOKEN'] = $response['token'];
+            $_SESSION[OFFICE]['DATA'] = $response['result']['profile'];
+            $_SESSION[OFFICE]['DATA']['user_name'] = $data['username'];
+            $_SESSION[OFFICE]['DATA']['password'] = $data['password'];
+            $_SESSION[OFFICE]['ROLE'] = $response['result']['roles'];
+            $_SESSION[OFFICE]['LANG'] = $data['lang'];
 
-        if ($response['result']['roles'][0]['menus'][0]['sub_menu'][0]['sub_menu_path']) {
-            $result['menu'] = $response['result']['roles'][0]['menus'][0]['sub_menu'][0]['sub_menu_path'];
+            if ($response['result']['roles'][0]['menus'][0]['sub_menu'][0]['sub_menu_path']) {
+                $result['menu'] = $response['result']['roles'][0]['menus'][0]['sub_menu'][0]['sub_menu_path'];
+            } else {
+                $result['menu'] = $response['result']['roles'][0]['menus'][0]['menu_path'];
+            }
+
+            $result['success'] = 'COMPLETE';
+
+
         } else {
-            $result['menu'] = $response['result']['roles'][0]['menus'][0]['menu_path'];
+            $result['success'] = 'FAIL';
         }
 
-        $result['success'] = 'COMPLETE';
+        $result['msg'] = $response['msg'];
+        echo json_encode($result);
 
-
-    } else {
-        $result['success'] = 'FAIL';
     }
 
-    $result['msg'] = $response['msg'];
-    echo json_encode($result);
+    public function LoadData(EventInterface $request)
+    {
 
-}
+        global $token;
 
-function LoadData(EventInterface $request)
-{
+        $datalist = array();
+        $columns = array();
+        $column = array();
 
-    global $token;
-
-    $datalist = array();
-    $columns = array();
-    $column = array();
-
-    $result['data'] = array();
-    $result['columns'] = array();
+        $result['data'] = array();
+        $result['columns'] = array();
 
 
-    $data = $request->request->all();
+        $data = $request->request->all();
 
 
-    $params = array(
+        $params = array(
 
-        'menu_action' => $data['menu_action'],
-        'page_id' => $data['page_id'],
-        'page_size' => $data['page_size'],
+            'menu_action' => $data['menu_action'],
+            'page_id' => $data['page_id'],
+            'page_size' => $data['page_size'],
 
-    );
+        );
 
-    $url = URL_API . '/geniespeech/adminmenu';
-
-
-    $response = curlposttoken($url, $params, $token);
+        $url = URL_API . '/geniespeech/adminmenu';
 
 
-    if ($response['code'] == 200) {
-
-        $columnslist = $response['result']['header'];
-
-        $datas = $response['result']['data'];
-
-        $column[0]['className'] = 'text-center';
-        $column[0]['title'] = '#';
-        $column[0]['data'] = 'no';
+        $response = curlposttoken($url, $params, $token);
 
 
-        $m = 1;
+        if ($response['code'] == 200) {
 
-        foreach ((array)$columnslist as $i => $item) {
+            $columnslist = $response['result']['header'];
 
-            $column[$m]['className'] = 'text-' . $item['column_align'];
-            $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] = $item['column_field'];
+            $datas = $response['result']['data'];
 
-
-            $columns[$m]['data'] = $item['column_field'];
-            $columns[$m]['type'] = $item['column_type'];
-
-            ++$m;
-
-        }
-
-        $column[$m]['className'] = 'text-center';
-
-        $column[$m]['title'] = '';
-        $column[$m]['data'] = 'btn';
+            $column[0]['className'] = 'text-center';
+            $column[0]['title'] = '#';
+            $column[0]['data'] = 'no';
 
 
-        $permiss = LoadPermission();
+            $m = 1;
+
+            foreach ((array)$columnslist as $i => $item) {
+
+                $column[$m]['className'] = 'text-' . $item['column_align'];
+                $column[$m]['title'] = $item['column_name'];
+                $column[$m]['data'] = $item['column_field'];
 
 
-        foreach ((array)$datas as $i => $item) {
+                $columns[$m]['data'] = $item['column_field'];
+                $columns[$m]['type'] = $item['column_type'];
 
-            $btn = '';
+                ++$m;
+
+            }
+
+            $column[$m]['className'] = 'text-center';
+
+            $column[$m]['title'] = '';
+            $column[$m]['data'] = 'btn';
 
 
-            $item['user_role'] = $item['role']['role_name'];
+            $permiss = LoadPermission();
 
 
-            $datalist[$i]['no'] = ($i + 1);
-            $dataattr = array();
+            foreach ((array)$datas as $i => $item) {
 
-            foreach ((array)$columns as $v => $value) {
+                $btn = '';
 
-                $datalist[$i][$value['data']] = $item[$value['data']];
-                $dataattr[$i][$value['data']] = $item[$value['data']];
+
+                $item['user_role'] = $item['role']['role_name'];
+
+
+                $datalist[$i]['no'] = ($i + 1);
+                $dataattr = array();
+
+                foreach ((array)$columns as $v => $value) {
+
+                    $datalist[$i][$value['data']] = $item[$value['data']];
+                    $dataattr[$i][$value['data']] = $item[$value['data']];
+
+                }
+
+
+                if ($permiss[2]) {
+                    $btn .= '<button data-item="' . json_encode($dataattr[$i]) . '" onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                }
+
+                if ($permiss[3]) {
+                    $btn .= '<button type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                }
+
+
+                $datalist[$i]['btn'] = $btn;
+
 
             }
 
 
-            if ($permiss[2]) {
-                $btn .= '<button data-item="' . json_encode($dataattr[$i]) . '" onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
-            }
-
-            if ($permiss[3]) {
-                $btn .= '<button type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
-            }
+            $result['columns'] = $column;
+            $result['data'] = $datalist;
+            $result['success'] = 'COMPLETE';
 
 
-            $datalist[$i]['btn'] = $btn;
+        } else {
 
+            $result['success'] = 'FAIL';
 
         }
 
-
-        $result['columns'] = $column;
-        $result['data'] = $datalist;
-        $result['success'] = 'COMPLETE';
-
-
-    } else {
-
-        $result['success'] = 'FAIL';
+        $result['msg'] = $response['msg'];
+        echo json_encode($result);
 
     }
 
-    $result['msg'] = $response['msg'];
-    echo json_encode($result);
 
-}
+    public function LoadCbo(EventInterface $request)
 
+    {
 
-function LoadCbo(EventInterface $request)
+        global $token;
 
-{
+        $result['data'] = array();
 
-    global $token;
-
-    $result['data'] = array();
-
-    $data = $request->request->all();
+        $data = $request->request->all();
 
 
-    $params = array(
+        $params = array(
 
-        'menu_action' => $data['menu_action'],
-        'page_id' => 1,
-        'page_size' => 100
+            'menu_action' => $data['menu_action'],
+            'page_id' => 1,
+            'page_size' => 100
 
-    );
+        );
 
-    $url = URL_API . '/geniespeech/adminmenu';
+        $url = URL_API . '/geniespeech/adminmenu';
 
-    $response = curlposttoken($url, $params, $token);
+        $response = curlposttoken($url, $params, $token);
 
 
-    if ($response['code'] == 200) {
+        if ($response['code'] == 200) {
 
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $datas = $response['result']['data'];
+            /** @noinspection PhpUnusedLocalVariableInspection */
+            $datas = $response['result']['data'];
 
-        $datalist = [];
-        foreach ((array)$datas as $i => $item) {
+            $datalist = [];
+            foreach ((array)$datas as $i => $item) {
 
-            $datalist[$i]['code'] = $item[$data['code']];
-            $datalist[$i]['name'] = $item[$data['name']];
+                $datalist[$i]['code'] = $item[$data['code']];
+                $datalist[$i]['name'] = $item[$data['name']];
 
+            }
+
+
+            /** @noinspection PhpUndefinedVariableInspection */
+            $result['item'] = $datalist;
+            $result['success'] = 'COMPLETE';
+
+        } else {
+            $result['success'] = 'FAIL';
         }
 
+        $result['msg'] = $response['msg'];
+        echo json_encode($result);
 
-        /** @noinspection PhpUndefinedVariableInspection */
-        $result['item'] = $datalist;
-        $result['success'] = 'COMPLETE';
-
-    } else {
-        $result['success'] = 'FAIL';
     }
 
-    $result['msg'] = $response['msg'];
-    echo json_encode($result);
+    public function LoadCboMain(EventInterface $request)
 
-}
+    {
 
-function LoadCboMain(EventInterface $request)
+        global $token;
 
-{
+        $result['data'] = array();
 
-    global $token;
-
-    $result['data'] = array();
-
-    $data = $request->request->all();
+        $data = $request->request->all();
 
 
-    $params = array(
+        $params = array(
 
-        'menu_action' => $data['menu_action'],
-        'page_id' => 1,
-        'page_size' => 100
+            'menu_action' => $data['menu_action'],
+            'page_id' => 1,
+            'page_size' => 100
 
-    );
+        );
 
-    $url = URL_API . '/geniespeech/adminmenu';
+        $url = URL_API . '/geniespeech/adminmenu';
 
-    $response = curlposttoken($url, $params, $token);
+        $response = curlposttoken($url, $params, $token);
 
 //    PrintR($response);
 
 
-    if ($response['code'] == 200) {
+        if ($response['code'] == 200) {
 
-        $datas = $response['result']['data'];
-        $datalist = [];
+            $datas = $response['result']['data'];
+            $datalist = [];
 
-        foreach ((array)$datas as $i => $item) {
-            if ($i == 0) {
-                if (empty($_SESSION[OFFICE]['PROJECT_ID'])) {
-                    $_SESSION[OFFICE]['PROJECT_ID'] = $item[$data['code']];
+            foreach ((array)$datas as $i => $item) {
+                if ($i == 0) {
+                    if (empty($_SESSION[OFFICE]['PROJECT_ID'])) {
+                        $_SESSION[OFFICE]['PROJECT_ID'] = $item[$data['code']];
+                    }
+
                 }
+                $datalist[$i]['code'] = $item[$data['code']];
+                $datalist[$i]['name'] = $item[$data['name']];
 
             }
-            $datalist[$i]['code'] = $item[$data['code']];
-            $datalist[$i]['name'] = $item[$data['name']];
 
+
+            $result['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+            $result['item'] = $datalist;
+            $result['success'] = 'COMPLETE';
+
+        } else {
+            $result['success'] = 'FAIL';
         }
 
+        $result['msg'] = $response['msg'];
+        echo json_encode($result);
 
-        $result['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
-        $result['item'] = $datalist;
-        $result['success'] = 'COMPLETE';
-
-    } else {
-        $result['success'] = 'FAIL';
     }
 
-    $result['msg'] = $response['msg'];
-    echo json_encode($result);
+    public function ChangeTop(EventInterface $request)
 
-}
+    {
 
-function ChangeTop(EventInterface $request)
+        $result['data'] = array();
 
-{
-
-    $result['data'] = array();
-
-    $data = $request->request->all();
+        $data = $request->request->all();
 
 
-    $_SESSION[OFFICE]['PROJECT_ID'] = $data['code'];
-    $result['code'] = $data['code'];
-    echo json_encode($result);
+        $_SESSION[OFFICE]['PROJECT_ID'] = $data['code'];
+        $result['code'] = $data['code'];
+        echo json_encode($result);
 
-}
-
-function SaveSite(EventInterface $request)
-
-{
-
-    $result['data'] = array();
-
-    $data = $request->request->all();
-
-    $strFileName = "config/SITE.txt";
-    $objFopen = fopen($strFileName, 'w');
-
-    fwrite($objFopen, $data['name']);
-    if ($objFopen) {
-        $result['success'] = 'COMPLETE';
-        $result['msg'] = 'COMPLETE';
     }
 
-    fclose($objFopen);
+    public function SaveSite(EventInterface $request)
 
-    echo json_encode($result);
+    {
 
-}
+        $result['data'] = array();
 
-function SaveUrl(EventInterface $request)
+        $data = $request->request->all();
 
-{
+        $strFileName = "config/SITE.txt";
+        $objFopen = fopen($strFileName, 'w');
 
-    $result['data'] = array();
+        fwrite($objFopen, $data['name']);
+        if ($objFopen) {
+            $result['success'] = 'COMPLETE';
+            $result['msg'] = 'COMPLETE';
+        }
 
-    $data = $request->request->all();
+        fclose($objFopen);
 
-    $strFileName = "config/URL.txt";
-    $objFopen = fopen($strFileName, 'w');
+        echo json_encode($result);
 
-    fwrite($objFopen, $data['name']);
-    if ($objFopen) {
-        $result['success'] = 'COMPLETE';
-        $result['msg'] = 'COMPLETE';
     }
 
-    fclose($objFopen);
+    public function SaveUrl(EventInterface $request)
 
-    echo json_encode($result);
+    {
 
-}
+        $result['data'] = array();
 
-function SaveUrlApi(EventInterface $request)
+        $data = $request->request->all();
 
-{
+        $strFileName = "config/URL.txt";
+        $objFopen = fopen($strFileName, 'w');
 
+        fwrite($objFopen, $data['name']);
+        if ($objFopen) {
+            $result['success'] = 'COMPLETE';
+            $result['msg'] = 'COMPLETE';
+        }
 
-    $result['data'] = array();
+        fclose($objFopen);
 
-    $data = $request->request->all();
+        echo json_encode($result);
 
-    $strFileName = "config/URL_API.txt";
-    $objFopen = fopen($strFileName, 'w');
-
-    fwrite($objFopen, $data['name']);
-    if ($objFopen) {
-        $result['success'] = 'COMPLETE';
-        $result['msg'] = 'COMPLETE';
     }
 
-    fclose($objFopen);
+    public function SaveUrlApi(EventInterface $request)
 
-    echo json_encode($result);
+    {
 
-}
 
-function SaveColor(EventInterface $request)
+        $result['data'] = array();
 
-{
+        $data = $request->request->all();
 
-    $result['data'] = array();
+        $strFileName = "config/URL_API.txt";
+        $objFopen = fopen($strFileName, 'w');
 
-    $data = $request->request->all();
+        fwrite($objFopen, $data['name']);
+        if ($objFopen) {
+            $result['success'] = 'COMPLETE';
+            $result['msg'] = 'COMPLETE';
+        }
 
-    $strFileName = "config/COLOR.txt";
-    $objFopen = fopen($strFileName, 'w');
+        fclose($objFopen);
 
-    fwrite($objFopen, $data['name']);
-    if ($objFopen) {
-        $result['success'] = 'COMPLETE';
-        $result['msg'] = 'COMPLETE';
+        echo json_encode($result);
+
     }
 
-    fclose($objFopen);
+    public function SaveColor(EventInterface $request)
 
-    echo json_encode($result);
+    {
 
-}
+        $result['data'] = array();
 
-function SaveLogo(EventInterface $request)
+        $data = $request->request->all();
 
-{
+        $strFileName = "config/COLOR.txt";
+        $objFopen = fopen($strFileName, 'w');
 
-    $result['data'] = array();
+        fwrite($objFopen, $data['name']);
+        if ($objFopen) {
+            $result['success'] = 'COMPLETE';
+            $result['msg'] = 'COMPLETE';
+        }
 
+        fclose($objFopen);
 
-    $target = 'logo.png';
-    $file_tmp =  $request->files->get('name')['tmp_name'];
+        echo json_encode($result);
 
-    if (move_uploaded_file($file_tmp, "images/" . $target)) {
-        $result['success'] = 'COMPLETE';
-        $result['msg'] = 'COMPLETE';
     }
 
-    echo json_encode($result);
+    public function SaveLogo(EventInterface $request)
+
+    {
+
+        $result['data'] = array();
+
+
+        $target = 'logo.png';
+        $file_tmp = $request->files->get('name')['tmp_name'];
+
+        if (move_uploaded_file($file_tmp, "images/" . $target)) {
+            $result['success'] = 'COMPLETE';
+            $result['msg'] = 'COMPLETE';
+        }
+
+        echo json_encode($result);
+
+    }
 
 }
 
-
+//$call = new Api();
 
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        Login($request);
+        Api::Login();
         break;
 
     case strtoupper(md5('api_loaddata')) :
