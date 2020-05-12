@@ -10,8 +10,8 @@ class Vendor
     public $request;
 
     public function __construct(){
-
-        $this->request = new Request();
+        global $request;
+        $this->request =& $request;
     }
 }
 
