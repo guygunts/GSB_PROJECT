@@ -7,13 +7,13 @@ $request = new MainRequest();
 
 interface Request
 {
-    public function foo();
+    public function __construct();
 }
 
 class MyRequest extends MainRequest implements Request
 {
-    public $request;
-    public function foo()
+    protected $request;
+    public function __construct()
     {
         $this->request = new MainRequest();
         self::$request = $this->request;
