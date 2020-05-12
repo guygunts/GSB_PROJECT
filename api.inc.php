@@ -2,16 +2,12 @@
 require_once "service/service.php";
 require_once "service/vendor.php";
 
-class Api extends Vendor
+class Api
 {
 
-    public function __construct(array $request = []){
-        parent::__construct();
-    }
-
-    public function Login()
+    public function Login(Vendor $request)
     {
-        $request = $this->request;
+
         parse_str($request->getPost()->toString(), $data);
         $data['lang'] = 'th';
         unset($_SESSION[OFFICE]);

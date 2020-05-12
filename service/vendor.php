@@ -10,12 +10,6 @@ class Vendor
 
     public function __construct(array $request = []){
         $request = new Request();
-        $this->request = $request;
-    }
-
-    public function instance()
-    {
-        return $this;
     }
 }
 
