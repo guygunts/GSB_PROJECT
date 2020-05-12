@@ -4,4 +4,4 @@ session_start();
 
 require_once "define.php";
 require_once "func.php";
-require_once "vendor.php";
+
