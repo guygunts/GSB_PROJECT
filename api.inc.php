@@ -8,7 +8,7 @@ class Api
 {
     protected $request;
 
-    public static function Login(Request $request)
+    public static function Login(HttpRequest $request)
     {
 
         parse_str($request->getPost()->toString(), $data);
