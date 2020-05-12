@@ -4,6 +4,10 @@ require_once "service/vendor.php";
 
 class Api
 {
+    public function __construct(){
+        parent::__construct();
+    }
+
 
     public function Login(Vendor $request)
     {
@@ -413,7 +417,7 @@ class Api
 
 }
 
-$call = new Api();
+$call = new Api($request);
 
 switch ($request->getQuery('mode')) {
 
