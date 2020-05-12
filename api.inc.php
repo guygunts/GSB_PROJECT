@@ -4,8 +4,9 @@ require_once "service/vendor.php";
 
 class Api
 {
+    protected $request;
 
-    public function Login(Vendor $request)
+    public function Login(Requests $request)
     {
 
         parse_str($request->getPost()->toString(), $data);
@@ -413,12 +414,12 @@ class Api
 
 }
 
-$call = new Api;
+$call = new Api(new MyRequests());
 
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        $call->Login($request);
+        $call->Login();
         break;
 
     case strtoupper(md5('api_loaddata')) :

@@ -4,16 +4,20 @@ require_once __DIR__.'/../vendor/autoload.php';
 use Laminas\Http\PhpEnvironment\Request as Request;
 $request = new Request();
 
-class Vendor
+
+interface Requests
 {
+    public function foo();
+}
 
-    public $request;
-    public function __construct(){
-        global $request;
-        $this->request = $request;
+class MyRequests implements Requests
+{
+    public function foo()
+    {
+        $request = new Request();
         self::$request = $request;
-
     }
+
 }
 
 
