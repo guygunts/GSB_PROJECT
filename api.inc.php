@@ -3,7 +3,7 @@ require_once "service/service.php";
 require_once "service/vendor.php";
 
 
-function Login(Request $request)
+function Login(Request &$request)
 {
 
     parse_str($request->getPost()->toString(), $data);
