@@ -6,12 +6,12 @@ $request = new Request();
 
 class Vendor
 {
-    public static $instance;
 
-    public function __construct(){
+    protected $request;
+    public function __construct(Request $request){
         global $request;
-        self::$instance = $request;
-        return self::$instance;
+        self::$request = $request;
+        return self::$request;
     }
 }
 
