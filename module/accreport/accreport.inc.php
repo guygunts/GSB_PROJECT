@@ -17,8 +17,7 @@ function View(Request $request)
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -28,11 +27,13 @@ function View(Request $request)
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
         'compare' => $data['compare'],
-        'text_search' => $data['text_search'],
+        'text_search' => $data['text_search']
     );
 
 //    PrintR($params);
-    $url = URL_API . '/geniespeech/report';
+    $url = sprintf("%s/geniespeech/report", URL_API);
+
+    /** @var TYPE_NAME $response */
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
@@ -99,8 +100,7 @@ function Add(Request $request)
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -139,8 +139,7 @@ function Edit(Request $request)
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -177,8 +176,7 @@ function Del(Request $request)
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data[$data['main']] = $data['code'];
     unset($data['code']);
