@@ -18,10 +18,11 @@ class MyRequest extends MainRequest implements Request
     {
         $request = new MainRequest();
         $this->request = $request;
-        return $this;
+        echo $this->request;
     }
-
 }
+
+$x = new MyRequest();
 
 
 

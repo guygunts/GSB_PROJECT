@@ -478,7 +478,7 @@ function Login(Request $request)
 switch ($moderequest->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        call_user_func('Login');
+        call_user_func('Login',$x);
 //        Login(new MyRequest());
         break;
 
