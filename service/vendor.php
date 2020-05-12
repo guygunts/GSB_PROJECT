@@ -12,10 +12,11 @@ interface Requests
 
 class MyRequests implements Requests
 {
+    public $request;
     public function foo()
     {
-        $request = new Request();
-        self::$request = $request;
+        $this->request = new Request();
+        self::$request = $this->request;
     }
 
 }
