@@ -7,16 +7,17 @@ $moderequest = new MainRequest();
 
 interface Request
 {
-    public function foo();
+    public function __construct();
 }
 
 class MyRequest extends MainRequest implements Request
 {
-    protected $request;
+    public $request;
 
-    public function foo()
+    public function __construct(array $request = [])
     {
-        $this->request = new MainRequest();
+        $request = new MainRequest();
+        $this->request = $request;
         return $this;
     }
 

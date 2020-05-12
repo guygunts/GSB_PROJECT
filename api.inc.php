@@ -483,39 +483,39 @@ switch ($moderequest->getQuery('mode')) {
         break;
 
     case strtoupper(md5('api_loaddata')) :
-        LoadData($request);
+        LoadData();
         break;
 
     case strtoupper(md5('api_loadcbo')) :
-        LoadCbo($request);
+        LoadCbo();
         break;
 
     case strtoupper(md5('api_loadcbomain')) :
-        LoadCboMain($request);
+        LoadCboMain();
         break;
 
     case strtoupper(md5('api_changetop')) :
-        ChangeTop($request);
+        ChangeTop();
         break;
 
     case strtoupper(md5('api_savesite')) :
-        SaveSite($request);
+        SaveSite();
         break;
 
     case strtoupper(md5('api_saveurl')) :
-        SaveUrl($request);
+        SaveUrl();
         break;
 
     case strtoupper(md5('api_saveurlapi')) :
-        SaveUrlApi($request);
+        SaveUrlApi();
         break;
 
     case strtoupper(md5('api_savelogo')) :
-        SaveLogo($request);
+        SaveLogo();
         break;
 
     case strtoupper(md5('api_savecolor')) :
-        SaveColor($request);
+        SaveColor();
         break;
 
     default :
