@@ -14,11 +14,10 @@ class MyRequest extends MainRequest implements Request
 {
     protected $request;
 
-    public function __construct()
+    public function __construct(): self
     {
-        $request = new MainRequest();
-        self::$request = $request;
-        return self::$request;
+        $this->request = new MainRequest();
+        return $this;
     }
 
 }
