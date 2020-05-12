@@ -11,6 +11,11 @@ class Vendor
         $request = new Request();
         return $request;
     }
+
+    public function instance()
+    {
+        return $this;
+    }
 }
 
 
