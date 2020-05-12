@@ -6,10 +6,12 @@ $request = new Request();
 
 class Vendor
 {
+
     public $request;
 
-    public function __construct(array $request = []){
-        $request = new Request();
+    public function __construct(){
+
+        $this->request = new Request();
     }
 }
 
