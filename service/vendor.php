@@ -1,21 +1,21 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-use Laminas\Http\PhpEnvironment\Request as Request;
-$request = new Request();
+use Laminas\Http\PhpEnvironment\Request as MainRequest;
+$request = new MainRequest();
 
 
-interface Requests
+interface Request
 {
     public function foo();
 }
 
-class MyRequests implements Requests
+class MyRequest extends MainRequest implements Request
 {
     public $request;
     public function foo()
     {
-        $this->request = new Request();
+        $this->request = new MainRequest();
         self::$request = $this->request;
     }
 

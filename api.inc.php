@@ -6,7 +6,7 @@ class Api
 {
     protected $request;
 
-    public function Login(Requests $request)
+    public function Login(Request $request)
     {
 
         parse_str($request->getPost()->toString(), $data);
@@ -419,7 +419,7 @@ $call = new Api;
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        $call->Login(new MyRequests());
+        $call->Login(new MyRequest());
         break;
 
     case strtoupper(md5('api_loaddata')) :
