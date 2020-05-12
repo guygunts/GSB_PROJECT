@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use Laminas\Http\PhpEnvironment\Request as MainRequest;
 $request = new MainRequest();
