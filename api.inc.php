@@ -5,9 +5,6 @@ require_once "service/vendor.php";
 class Api extends Vendor
 {
 
-    public function __construct(){
-        parent::__construct();
-    }
 
     public function Login(Vendor $request = null)
     {

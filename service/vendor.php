@@ -9,7 +9,7 @@ class Vendor
     protected $request;
 
     public function __construct(){
-        global $request;
+        $request = new Request();
         return $request;
     }
 
