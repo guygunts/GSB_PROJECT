@@ -4,7 +4,7 @@ require_once "service/vendor.php";
 
 
 
-function Login(Request $request)
+function Login(Request &$request)
 {
 
 //    PrintR($request->getPost()->toString());
@@ -479,7 +479,7 @@ switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
 
-        Login(new MyRequest());
+        Login($request);
         break;
 
     case strtoupper(md5('api_loaddata')) :
