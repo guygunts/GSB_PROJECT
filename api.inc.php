@@ -7,7 +7,6 @@ require_once "service/vendor.php";
 function Login(Request $request)
 {
 
-//    PrintR($request->getPost()->toString());
 
     parse_str($request->getPost()->toString(), $data);
     $data['lang'] = 'th';
@@ -28,8 +27,6 @@ function Login(Request $request)
 
     );
 
-    print_r($params);
-    exit;
 
     $url = URL_API . '/geniespeech/login';
     $response = curlpost($url, $params);
@@ -482,7 +479,7 @@ switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
 
-        Login(new MyRequest());
+        Login();
         break;
 
     case strtoupper(md5('api_loaddata')) :
