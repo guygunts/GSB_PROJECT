@@ -6,11 +6,7 @@ $request = new Request();
 
 class Vendor
 {
-    protected $request;
-    public function __construct(){
-        $request = new Request();
-        return $request;
-    }
+
 
     public function instance()
     {
