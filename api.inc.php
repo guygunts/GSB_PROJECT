@@ -475,7 +475,7 @@ function Login(Request $request)
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        Login($request);
+        Login();
         break;
 
     case strtoupper(md5('api_loaddata')) :
