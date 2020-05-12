@@ -2,10 +2,11 @@
 require_once "service/service.php";
 require_once "service/vendor.php";
 
-use Laminas\Http\PhpEnvironment\Request as Request;
-$request = new Request();
+use Laminas\Http\PhpEnvironment\Request as Requests;
+use Laminas\Http\Request as Request;
+$request = new Requests();
 
-class Api
+class Api extends Request
 {
     protected $request;
 
