@@ -9,7 +9,7 @@ class Api extends Vendor
         parent::__construct();
     }
 
-    public static function Login(Request $request)
+    public function Login(Request $request)
     {
 
         parse_str($request->getPost()->toString(), $data);
@@ -417,12 +417,12 @@ class Api extends Vendor
 
 }
 
-//$call = new Api();
+$call = new Api();
 
 switch ($request->getQuery('mode')) {
 
     case strtoupper(md5('api_login')) :
-        Api::Login();
+        $call->Login();
         break;
 
     case strtoupper(md5('api_loaddata')) :
