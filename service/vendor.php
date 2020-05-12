@@ -12,6 +12,7 @@ class Vendor
     public function __construct(){
         global $request;
         $this->request = $request;
+        return $this;
     }
 }
 
