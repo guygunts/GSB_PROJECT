@@ -4,7 +4,7 @@ require_once "service/vendor.php";
 
 
 
-function Login(Request &$request)
+function Login(Request $request)
 {
 
 //    PrintR($request->getPost()->toString());
