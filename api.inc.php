@@ -52,7 +52,7 @@ function Login(Request $request)
         $result['success'] = 'FAIL';
     }
 
-    $result['msg'] = $response['msg'];
+    $result['message'] = $response['msg'];
     echo json_encode($result);
 
 }
