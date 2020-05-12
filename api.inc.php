@@ -4,10 +4,8 @@ require_once "service/vendor.php";
 
 class Api extends Vendor
 {
-    protected $request;
 
     public function __construct(){
-
         parent::__construct();
     }
 
