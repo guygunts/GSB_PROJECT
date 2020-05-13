@@ -5,8 +5,7 @@ header("Content-Type: application/vnd.ms-excel");
 
 
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
-$str = file_get_contents("php://input");
-parse_str($str, $data);
+parse_str($request->getPost()->toString(), $data);
 
 PrintR($data);
 exit;
@@ -24,7 +23,7 @@ $response = curlposttoken($url, $params, $token);
 
 ?>
 
-<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+<html xmlns="http://www.w3.org/TR/REC-html40">
 
 <head>
     <meta http-equiv="Content-Type" content="application/vnd.ms-excel; charset=utf-8"/>

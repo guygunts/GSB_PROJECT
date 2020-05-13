@@ -1,12 +1,10 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
+require_once "../../service/vendor.php";
 
-$json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
+function View(Request $request)
+{
 
-function View(){
-    global $json;
     global $token;
     $datalist = array();
     $columns = array();
@@ -16,8 +14,7 @@ function View(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -31,7 +28,7 @@ function View(){
 
 //    PrintR($params);
 
-    $url = URL_API.'/geniespeech/grammardeploy';
+    $url = URL_API . '/geniespeech/grammardeploy';
     $response = curlposttoken($url, $params, $token);
 
 
@@ -46,8 +43,8 @@ function View(){
 
 
         $m = 1;
-        foreach((array)$columnslist as $i => $item){
-            $column[$m]['className'] = 'text-'.$item['column_align'];
+        foreach ((array)$columnslist as $i => $item) {
+            $column[$m]['className'] = 'text-' . $item['column_align'];
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_field'];
 
@@ -61,12 +58,12 @@ function View(){
 
         $permiss = LoadPermission();
 
-        foreach((array)$datas as $i => $item){
+        foreach ((array)$datas as $i => $item) {
             $btn = '';
 
-            $datalist[$i]['no'] = ($i+1);
+            $datalist[$i]['no'] = ($i + 1);
 
-            foreach((array)$columns as $v => $value){
+            foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
 
             }
@@ -77,15 +74,14 @@ function View(){
 
 
 //            if($permiss[2]){
-                $btn .= '<button data-code="pro" data-val="'.$item['pre_active'].'" data-this="'.$item['pro_active'].'" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs '.($item['pro_active'] == 1?'btn-success':($item['pro_active'] == 2?'btn-warning':'btn-default')).'" '.($item['pro_active'] == 1?'disabled':'onclick="me.UpdateBtn(this)"').'>Production</button>&nbsp;&nbsp;';
+            $btn .= '<button data-code="pro" data-val="' . $item['pre_active'] . '" data-this="' . $item['pro_active'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs ' . ($item['pro_active'] == 1 ? 'btn-success' : ($item['pro_active'] == 2 ? 'btn-warning' : 'btn-default')) . '" ' . ($item['pro_active'] == 1 ? 'disabled' : 'onclick="me.UpdateBtn(this)"') . '>Production</button>&nbsp;&nbsp;';
 //            }
 //            if($permiss[3]){
-                $btn .= '<button data-code="pre" data-val="'.$item['pro_active'].'" data-this="'.$item['pre_active'].'" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs '.($item['pre_active'] == 1?'btn-success':($item['pre_active'] == 2?'btn-warning':'btn-default')).'" '.($item['pre_active'] == 1?'disabled':'onclick="me.UpdateBtn(this)"').'>Pre-Production</button>';
+            $btn .= '<button data-code="pre" data-val="' . $item['pro_active'] . '" data-this="' . $item['pre_active'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' type="button" class="btn btn-xs ' . ($item['pre_active'] == 1 ? 'btn-success' : ($item['pre_active'] == 2 ? 'btn-warning' : 'btn-default')) . '" ' . ($item['pre_active'] == 1 ? 'disabled' : 'onclick="me.UpdateBtn(this)"') . '>Pre-Production</button>';
 //            }
 
             $datalist[$i]['btn'] = $btn;
         }
-
 
 
         $result['name'] = SITE . ' : ' . $name;
@@ -99,11 +95,12 @@ function View(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function ViewSub(){
-    global $json;
+function ViewSub(Request $request)
+{
+
     global $token;
     $datalist = array();
     $columns = array();
@@ -113,8 +110,7 @@ function ViewSub(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -125,7 +121,7 @@ function ViewSub(){
 
 //    PrintR($params);
 //    exit;
-    $url = URL_API.'/geniespeech/grammardeploy';
+    $url = URL_API . '/geniespeech/grammardeploy';
     $response = curlposttoken($url, $params, $token);
 
 
@@ -140,8 +136,8 @@ function ViewSub(){
 
 
         $m = 1;
-        foreach((array)$columnslist as $i => $item){
-            $column[$m]['className'] = 'text-'.$item['column_align'];
+        foreach ((array)$columnslist as $i => $item) {
+            $column[$m]['className'] = 'text-' . $item['column_align'];
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_field'];
 
@@ -153,12 +149,12 @@ function ViewSub(){
 
         $permiss = LoadPermission();
 
-        foreach((array)$datas as $i => $item){
+        foreach ((array)$datas as $i => $item) {
             $btn = '';
 
-            $datalist[$i]['no'] = '<input type="checkbox" name="build_version" ref="'.$item['build_version'].'">';;
+            $datalist[$i]['no'] = '<input type="checkbox" name="build_version" ref="' . $item['build_version'] . '">';
 
-            foreach((array)$columns as $v => $value){
+            foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
 
             }
@@ -169,7 +165,6 @@ function ViewSub(){
 
 
         }
-
 
 
         $result['name'] = SITE . ' : ' . $name;
@@ -183,12 +178,12 @@ function ViewSub(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Add()
+function Add(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -198,8 +193,7 @@ function Add()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
@@ -207,7 +201,7 @@ function Add()
 //    PrintR($data);
 //    exit;
 
-    $url = URL_API.'/geniespeech/grammardeploy';
+    $url = URL_API . '/geniespeech/grammardeploy';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['result'] == 200) {
@@ -218,12 +212,12 @@ function Add()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Edit()
+function Edit(Request $request)
 {
-    global $json;
+
     global $token;
     $today = Today();
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
@@ -235,20 +229,21 @@ function Edit()
 //    PrintR($today);
 //    exit;
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
     $data['action_type'] = 2;
-    $date1 = explode(' ',$data['startdate']);
-    if(strtotime($date1[0]) == strtotime($today)){
+    $date1 = explode(' ', $data['startdate']);
+
+    if (strtotime($date1[0]) == strtotime($today)) {
         $data['action_type'] = 1;
 
-    }else{
-        if($data['type'] == 'pro'){
+    } elseif (strtotime($date1[0]) != strtotime($today)) {
+        if ($data['type'] == 'pro') {
             $data['pro_active'] = 2;
-        }else if($data['type'] == 'pre'){
+        } elseif ($data['type'] == 'pre') {
             $data['pre_active'] = 2;
         }
     }
+
 
     $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
@@ -256,7 +251,7 @@ function Edit()
 //    PrintR($data);
 //    exit;
 
-    $url = URL_API.'/geniespeech/grammardeploy';
+    $url = URL_API . '/geniespeech/grammardeploy';
     $response = curlposttoken($url, $data, $token);
 
 
@@ -268,12 +263,12 @@ function Edit()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Del()
+function Del(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -283,8 +278,7 @@ function Del()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data[$data['main']] = $data['code'];
     unset($data['code']);
@@ -301,7 +295,7 @@ function Del()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
 function LoadPermission()
@@ -315,17 +309,16 @@ function LoadPermission()
     return $permiss;
 }
 
-function LoadCbo()
+function LoadCbo(Request $request)
 
 {
 
-    global $json;
+
     global $token;
 
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -346,7 +339,7 @@ function LoadCbo()
         $columnslist = $response['result']['header'];
         if ($data['menu_action'] == 'grammar') {
             $datas = $response['result']['box1'];
-        } else if ($data['menu_action'] == 'confiden') {
+        } elseif ($data['menu_action'] == 'confiden') {
             $datas = $response['result']['box2'];
         } else {
             $datas = $response['result']['box3'];
@@ -369,13 +362,13 @@ function LoadCbo()
     }
 
     $result['msg'] = $response['msg'];
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function ViewCHNN()
+function ViewCHNN(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -387,8 +380,7 @@ function ViewCHNN()
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'chnn' => $data['menu_action'],
@@ -454,12 +446,12 @@ function ViewCHNN()
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function SaveVoice()
+function SaveVoice(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -469,8 +461,7 @@ function SaveVoice()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -493,42 +484,43 @@ function SaveVoice()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
 
-switch ($_REQUEST["mode"]) {
+switch ($switchmode) {
     case "View" :
-        View();
+        View($x);
         break;
     case "ViewSub" :
-        ViewSub();
+        ViewSub($x);
         break;
     case "ViewVOICE" :
-        ViewVOICE();
+        ViewVOICE($x);
         break;
     case "Add" :
-        Add();
+        Add($x);
         break;
     case "Edit" :
-        Edit();
+        Edit($x);
         break;
     case "Del" :
-        Del();
+        Del($x);
         break;
     case "LoadCbo" :
-        LoadCbo();
+        LoadCbo($x);
         break;
     case "ViewQC" :
-        ViewQC();
+        ViewQC($x);
         break;
     case "SaveVoice" :
-        SaveVoice();
+        SaveVoice($x);
         break;
 
 
     default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+        break;
 }
-
-echo $json;
-exit;

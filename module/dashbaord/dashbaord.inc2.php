@@ -5,9 +5,9 @@ require_once "../../service/service.php";
 $json='{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
 $token = isset($_SESSION[OFFICE]['TOKEN'])?$_SESSION[OFFICE]['TOKEN']:'';
 
-function View()
+function View(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -16,8 +16,7 @@ function View()
     $today = Today();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
 //    PrintR($data);
 
@@ -193,7 +192,7 @@ function View()
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 

@@ -1,12 +1,10 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
+require_once "../../service/vendor.php";
 
-$json='{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN'])?$_SESSION[OFFICE]['TOKEN']:'';
+function View(Request $request)
+{
 
-function View(){
-    global $json;
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -19,8 +17,7 @@ function View(){
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -31,7 +28,7 @@ function View(){
     );
 
 //    PrintR($params);
-    $url = URL_API.'/geniespeech/report';
+    $url = URL_API . '/geniespeech/report';
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
@@ -49,36 +46,36 @@ function View(){
         $data_footer = $response['grand_total'];
         $name = $response['report_name:'];
 
-        $pipechart =  $response['pipechart'];
-        $barchart =  $response['barchart'];
+        $pipechart = $response['pipechart'];
+        $barchart = $response['barchart'];
 
         $mydata = '<table class="table">';
         $mydata .= '<tbody>';
         $mydata .= '<tr>';
-        $mydata .= '<td width="50%" align="right"><b>Customer</b> :</td><td align="left">'.$response['Customer'].'</td>';
+        $mydata .= '<td width="50%" align="right"><b>Customer</b> :</td><td align="left">' . $response['Customer'] . '</td>';
         $mydata .= '</tr>';
         $mydata .= '<tr>';
-        $mydata .= '<td align="right"><b>Project</b> :</td><td align="left">'.$response['Project'].'</td>';
+        $mydata .= '<td align="right"><b>Project</b> :</td><td align="left">' . $response['Project'] . '</td>';
         $mydata .= '</tr>';
         $mydata .= '<tr>';
-        $mydata .= '<td align="right"><b>Test Start Date</b> :</td><td align="left">'.$response['Test_Start_Date'].'</td>';
+        $mydata .= '<td align="right"><b>Test Start Date</b> :</td><td align="left">' . $response['Test_Start_Date'] . '</td>';
         $mydata .= '</tr>';
         $mydata .= '<tr>';
-        $mydata .= '<td align="right"><b>Report Date</b> :</td><td align="left">'.$response['Report_Date'].'</td>';
+        $mydata .= '<td align="right"><b>Report Date</b> :</td><td align="left">' . $response['Report_Date'] . '</td>';
         $mydata .= '</tr>';
         $mydata .= '<tr>';
-        $mydata .= '<td align="right"><b>Summary</b> :</td><td align="left">'.$response['Summary'][0]['Total_calls'].' Total Calls</td>';
+        $mydata .= '<td align="right"><b>Summary</b> :</td><td align="left">' . $response['Summary'][0]['Total_calls'] . ' Total Calls</td>';
         $mydata .= '</tr>';
         $mydata .= '<tr>';
-        $mydata .= '<td></td><td align="left">'.$response['Summary'][1]['Valid_calls'].' Valid calls</td>';
+        $mydata .= '<td></td><td align="left">' . $response['Summary'][1]['Valid_calls'] . ' Valid calls</td>';
         $mydata .= '</tr>';
         $mydata .= '<tr>';
-        $mydata .= '<td></td><td align="left">'.$response['Summary'][2]['Passed_calls'].' Passed alls</td>';
+        $mydata .= '<td></td><td align="left">' . $response['Summary'][2]['Passed_calls'] . ' Passed alls</td>';
         $mydata .= '</tr>';
 
         $mydata .= '</tbody>';
         $mydata .= '</table>';
-        $mydata .= '<div class="alert alert-success text-center"><p style="font-size: 30px;">'.$response['Summary'][3]['Accuary'].' Accuary</p></div>';
+        $mydata .= '<div class="alert alert-success text-center"><p style="font-size: 30px;">' . $response['Summary'][3]['Accuary'] . ' Accuary</p></div>';
 
 
         $barcolor[0] = 'window.chartColors.red';
@@ -88,11 +85,11 @@ function View(){
         $barcolor[4] = 'window.chartColors.blue';
 //        $barcolor[5] = '#d2d6de';
         $n = 0;
-        foreach((array)$pipechart as $i => $item){
-            if($i == 0){
+        foreach ((array)$pipechart as $i => $item) {
+            if ($i == 0) {
                 $pipecharts['capture'] = $item['caption'];
-            }else{
-                foreach((array)$item as $m => $items){
+            } else {
+                foreach ((array)$item as $m => $items) {
                     $pipecharts['label'][$n] = $m;
 
 //                    $pipecharts['data'][$n]['x'] = $m;
@@ -108,14 +105,14 @@ function View(){
         }
 
         $n = 0;
-        foreach((array)$barchart as $i => $item){
-            if($i == 0){
+        foreach ((array)$barchart as $i => $item) {
+            if ($i == 0) {
                 $barcharts['capture'] = $item['caption'];
-            }else{
-                foreach((array)$item as $m => $items){
+            } else {
+                foreach ((array)$item as $m => $items) {
                     $barcharts['label'][$n] = $m;
 
-                    $barcharts['data'][$n]['x'] =  $m;
+                    $barcharts['data'][$n]['x'] = $m;
                     $barcharts['data'][$n]['y'] = $items;
                     ++$n;
                 }
@@ -126,12 +123,11 @@ function View(){
 //        exit;
 
 
-
         $m = 0;
         $z = 0;
         $newfooter = array();
-        foreach((array)$data_footer as $i => $item){
-            foreach((array)$item as $v => $item2){
+        foreach ((array)$data_footer as $i => $item) {
+            foreach ((array)$item as $v => $item2) {
                 $newfooter[$z] = $item2;
                 ++$z;
             }
@@ -147,7 +143,7 @@ function View(){
 //            }
 //        }
 
-        foreach((array)$columnslist as $i => $item){
+        foreach ((array)$columnslist as $i => $item) {
             $column[$m]['className'] = 'text-center';
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_data'];
@@ -158,10 +154,10 @@ function View(){
         }
 
 
-        foreach((array)$datas as $i => $item){
+        foreach ((array)$datas as $i => $item) {
 
 
-            foreach((array)$columns as $v => $value){
+            foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
 
             }
@@ -169,9 +165,7 @@ function View(){
         }
 
 
-
-
-        $result['name'] = SITE.' : '.$name;
+        $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['datafooter'] = $newfooter;
         $result['pipechart'] = $pipecharts;
@@ -186,11 +180,12 @@ function View(){
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Add(){
-    global $json;
+function Add(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -200,8 +195,7 @@ function Add(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -214,7 +208,7 @@ function Add(){
     unset($data['user_id']);
 
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -225,11 +219,12 @@ function Add(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Edit(){
-    global $json;
+function Edit(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -239,8 +234,7 @@ function Edit(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -252,7 +246,7 @@ function Edit(){
     unset($data['code']);
 
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -263,11 +257,12 @@ function Edit(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Del(){
-    global $json;
+function Del(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -277,14 +272,13 @@ function Del(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data[$data['main']] = $data['code'];
     unset($data['code']);
     unset($data['main']);
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -295,28 +289,37 @@ function Del(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function LoadPermission(){
+function LoadPermission()
+{
     $permiss = array();
     $permission = $_SESSION[OFFICE]['ROLE'][0]['function'];
-    foreach((array)$permission as $i => $item){
+    foreach ((array)$permission as $i => $item) {
         $permiss[$item['function_id']]['id'] = $item['function_id'];
         $permiss[$item['function_id']]['name'] = $item['function_name'];
     }
     return $permiss;
 }
 
+switch ($switchmode) {
+    case "View" :
+        View($x);
+        break;
+    case "Add" :
+        Add($x);
+        break;
+    case "Edit" :
+        Edit($x);
+        break;
+    case "Del" :
+        Del($x);
+        break;
 
-switch($_REQUEST["mode"]){
-  case "View" : View(); break;
-  case "Add" : Add(); break;
-  case "Edit" : Edit(); break;
-  case "Del" : Del(); break;
-
-  default :
+    default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+        break;
 }
-
-echo $json;
-exit;

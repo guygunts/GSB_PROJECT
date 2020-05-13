@@ -1,12 +1,10 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
+require_once "../../service/vendor.php";
 
-$json='{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN'])?$_SESSION[OFFICE]['TOKEN']:'';
+function View(Request $request)
+{
 
-function View(){
-    global $json;
     global $token;
     $datalist = array();
     $columns = array();
@@ -16,15 +14,14 @@ function View(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'menu_action' => $data['menu_action'],
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
     );
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
 
 
@@ -38,8 +35,8 @@ function View(){
 
 
         $m = 1;
-        foreach((array)$columnslist as $i => $item){
-            $column[$m]['className'] = 'text-'.$item['column_align'];
+        foreach ((array)$columnslist as $i => $item) {
+            $column[$m]['className'] = 'text-' . $item['column_align'];
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_field'];
 
@@ -53,13 +50,13 @@ function View(){
 
         $permiss = LoadPermission();
 
-        foreach((array)$datas as $i => $item){
+        foreach ((array)$datas as $i => $item) {
             $btn = '';
-            $item['DT_RowId'] = 'row_'.MD5($item[$columns[1]['data']]);
+            $item['DT_RowId'] = 'row_' . MD5($item[$columns[1]['data']]);
             $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
-            $datalist[$i]['no'] = ($i+1);
+            $datalist[$i]['no'] = ($i + 1);
 
-            foreach((array)$columns as $v => $value){
+            foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
 
             }
@@ -69,18 +66,16 @@ function View(){
             $dataattr[$i] = $item;
 
 
-            if($permiss[2]){
-                $btn .= '<button data-code="'.$item['project_id'].'" data-item='."'".json_encode($dataattr[$i],JSON_HEX_APOS)."'".' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> '.$permiss[2]['name'].'</button>&nbsp;&nbsp;';
+            if ($permiss[2]) {
+                $btn .= '<button data-code="' . $item['project_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
             }
-            if($permiss[3]){
-                $btn .= '<button  data-code="'.$item['project_id'].'" data-item='."'".json_encode($dataattr[$i],JSON_HEX_APOS)."'".' onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> '.$permiss[3]['name'].'</button>';
+            if ($permiss[3]) {
+                $btn .= '<button  data-code="' . $item['project_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
             }
 
             $datalist[$i]['btn'] = $btn;
 
         }
-
-
 
 
         $result['columns'] = $column;
@@ -93,11 +88,12 @@ function View(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Add(){
-    global $json;
+function Add(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -107,19 +103,18 @@ function Add(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $a = 0;
     $ch = array();
-    foreach((array)$data['channels'] as $i => $item){
-        if($item['channel'] == "0")continue;
+    foreach ((array)$data['channels'] as $i => $item) {
+        if ($item['channel'] == "0") continue;
         $data['channel'][$a] = $item['channel'];
         ++$a;
 
     }
 
-    $data['channel'] = implode(",",$data['channel']);
+    $data['channel'] = implode(",", $data['channel']);
 
 //    $data['role_desc'] = $data['role_description'];
     $data['user_login'] = $user;
@@ -133,8 +128,7 @@ function Add(){
 //    exit;
 
 
-
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -145,11 +139,12 @@ function Add(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Edit(){
-    global $json;
+function Edit(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -159,14 +154,13 @@ function Edit(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $a = 0;
     $c = 0;
     $ch = array();
-    foreach((array)$data['channels'] as $i => $item){
-        if($item['channel'] == "0"){
+    foreach ((array)$data['channels'] as $i => $item) {
+        if ($item['channel'] == "0") {
             ++$c;
             continue;
         }
@@ -174,10 +168,10 @@ function Edit(){
         ++$a;
 
     }
-    if($c == 2){
+    if ($c == 2) {
         $data['channel'] = 'null';
-    }else{
-        $data['channel'] = implode(",",$data['channel']);
+    } else {
+        $data['channel'] = implode(",", $data['channel']);
     }
 
 
@@ -189,7 +183,7 @@ function Edit(){
 //    PrintR($data);
 //    exit;
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -200,12 +194,13 @@ function Edit(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
 
-function Del(){
-    global $json;
+function Del(Request $request)
+{
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -215,8 +210,7 @@ function Del(){
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
 //    $data[$data['main']] = $data['code'];
 
@@ -228,7 +222,7 @@ function Del(){
 //    PrintR($data);
 //    exit;
 
-    $url = URL_API.'/geniespeech/adminmenu';
+    $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
     if ($response['code'] == 200) {
@@ -239,13 +233,14 @@ function Del(){
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function LoadPermission(){
+function LoadPermission()
+{
     $permiss = array();
     $permission = $_SESSION[OFFICE]['ROLE'][0]['function'];
-    foreach((array)$permission as $i => $item){
+    foreach ((array)$permission as $i => $item) {
         $permiss[$item['function_id']]['id'] = $item['function_id'];
         $permiss[$item['function_id']]['name'] = $item['function_name'];
     }
@@ -253,14 +248,27 @@ function LoadPermission(){
 }
 
 
-switch($_REQUEST["mode"]){
-  case "View" : View(); break;
-  case "Add" : Add(); break;
-  case "Edit" : Edit(); break;
-  case "EditSub" : EditSub(); break;
-  case "Del" : Del(); break;
-
-  default :
+switch ($switchmode) {
+    case "View" :
+        View($x);
+        break;
+    case "Add" :
+        Add($x);
+        break;
+    case "Edit" :
+        Edit($x);
+        break;
+    case "EditSub" :
+        EditSub($x);
+        break;
+    case "Del" :
+        Del($x);
+        break;
+    default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+        break;
 }
 
 echo $json;

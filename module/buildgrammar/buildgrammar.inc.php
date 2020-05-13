@@ -168,7 +168,7 @@ function View(Request $request)
 
 function Add(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -199,7 +199,7 @@ function Add(Request $request)
 //    $result['msg'] = $response['msg'];
     exit;
     $result = array();
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
 function Edit(Request $request)

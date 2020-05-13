@@ -1,13 +1,10 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
+require_once "../../service/vendor.php";
 
-$json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
-
-function View()
+function View(Request $request)
 {
-    global $json;
+
     global $token;
     $datalist = array();
     $columns = array();
@@ -18,8 +15,7 @@ function View()
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -29,7 +25,7 @@ function View()
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
         'compare' => $data['compare'],
-        'text_search' => $data['text_search'],
+        'text_search' => $data['text_search']
     );
 
 //    PrintR($params);
@@ -87,12 +83,12 @@ function View()
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Add()
+function Add(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -102,8 +98,7 @@ function Add()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -127,12 +122,12 @@ function Add()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Edit()
+function Edit(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -142,8 +137,7 @@ function Edit()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -166,12 +160,12 @@ function Edit()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Del()
+function Del(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -181,8 +175,7 @@ function Del()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data[$data['main']] = $data['code'];
     unset($data['code']);
@@ -199,7 +192,7 @@ function Del()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
 function LoadPermission()
@@ -213,23 +206,23 @@ function LoadPermission()
     return $permiss;
 }
 
-
-switch ($_REQUEST["mode"]) {
+switch ($switchmode) {
     case "View" :
-        View();
+        View($x);
         break;
     case "Add" :
-        Add();
+        Add($x);
         break;
     case "Edit" :
-        Edit();
+        Edit($x);
         break;
     case "Del" :
-        Del();
+        Del($x);
         break;
 
     default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+        break;
 }
-
-echo $json;
-exit;

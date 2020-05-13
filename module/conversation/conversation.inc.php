@@ -4,7 +4,7 @@ require_once "../../service/vendor.php";
 
 function View(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -107,7 +107,7 @@ function View(Request $request)
 
 function ViewCHNN(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -191,7 +191,7 @@ function ViewCHNN(Request $request)
 
 function ViewVOICE(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -287,7 +287,7 @@ function ViewVOICE(Request $request)
 
 function Add(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -316,7 +316,7 @@ function Add(Request $request)
 
 function Edit(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();

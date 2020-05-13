@@ -1,13 +1,10 @@
 <?php
-header("Content-type: application/json; charset=utf-8");
 require_once "../../service/service.php";
+require_once "../../service/vendor.php";
 
-$json = '{"success":"FAIL","msg":"พบข้อผิดพลาดบางประการ"}';
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
-
-function View()
+function View(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -22,8 +19,7 @@ function View()
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -116,15 +112,15 @@ function View()
 //                    $datalist[$i][$value['data']] = '<i class="glyphicon glyphicon-volume-up"></i>';
                     $datalist[$i][$value['data']] = '<audio preload="auto" autobuffer controls><source src="' . $item[$value['data']] . '" type="audio/wav"></audio>';
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('.'"'.$item[$value['data']].'"'.')"><i class="glyphicon glyphicon-volume-up"></i></a>';
-                } else if ($value['data'] == 'chnn') {
-                    $datalist[$i][$value['data']] = '<a href="'.$item['log_file'].'" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
+                } elseif ($value['data'] == 'chnn') {
+                    $datalist[$i][$value['data']] = '<a href="' . $item['log_file'] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
-                } else if ($value['data'] == 'qc_status') {
-                    $datalist[$i][$value['data']] = '<select name="'.$value['data'].'" class="form-control qc_status'. $item['rec_id'].' row'.$item['rec_id'].' empty'.$item['rec_id'].' "><option value="" ' . ($item[$value['data']] == 0 ? 'selected' : '') . '>= Status =</option><option value="P" ' . ($item[$value['data']] == 'P' ? 'selected' : '') . '>Pass</option><option value="F" ' . ($item[$value['data']] == 'F' ? 'selected' : '') . '>Fail</option><option value="G" ' . ($item[$value['data']] == 'G' ? 'selected' : '') . '>Garbage</option><option value="O" ' . ($item[$value['data']] == 'O' ? 'selected' : '') . '>Other</option></select>';
-                } else if ($value['data'] == 'action') {
-                    $datalist[$i][$value['data']] = '<select name="'.$value['data'].'" class="form-control action'. $item['rec_id'].' row'.$item['rec_id'].' empty'.$item['rec_id'].' "><option value="0" ' . ($item[$value['data']] == '0' ? 'selected' : '') . '>None</option><option value="1" ' . ($item[$value['data']] == '1' ? 'selected' : '') . '>Train</option><option value="2" ' . ($item[$value['data']] == '2' ? 'selected' : '') . '>Test</option><option value="3" ' . ($item[$value['data']] == '3' ? 'selected' : '') . '>Test&Train</option></select>';
+                } elseif ($value['data'] == 'qc_status') {
+                    $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="form-control qc_status' . $item['rec_id'] . ' row' . $item['rec_id'] . ' empty' . $item['rec_id'] . ' "><option value="" ' . ($item[$value['data']] == 0 ? 'selected' : '') . '>= Status =</option><option value="P" ' . ($item[$value['data']] == 'P' ? 'selected' : '') . '>Pass</option><option value="F" ' . ($item[$value['data']] == 'F' ? 'selected' : '') . '>Fail</option><option value="G" ' . ($item[$value['data']] == 'G' ? 'selected' : '') . '>Garbage</option><option value="O" ' . ($item[$value['data']] == 'O' ? 'selected' : '') . '>Other</option></select>';
+                } elseif ($value['data'] == 'action') {
+                    $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="form-control action' . $item['rec_id'] . ' row' . $item['rec_id'] . ' empty' . $item['rec_id'] . ' "><option value="0" ' . ($item[$value['data']] == '0' ? 'selected' : '') . '>None</option><option value="1" ' . ($item[$value['data']] == '1' ? 'selected' : '') . '>Train</option><option value="2" ' . ($item[$value['data']] == '2' ? 'selected' : '') . '>Test</option><option value="3" ' . ($item[$value['data']] == '3' ? 'selected' : '') . '>Test&Train</option></select>';
 
-                } else if ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
+                } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
                     switch ($value['data']) {
                         case 'input_qc':
                             $v = 'new_sentence';
@@ -136,35 +132,35 @@ function View()
                             $v = $value['data'];
                             break;
                     }
-                    if($value['data'] == 'Expected'){
-                        $option = '<option value="" '.($item[$v] == ''?'selected':'').'>== INTENT ==</option>';
+                    if ($value['data'] == 'Expected') {
+                        $option = '<option value="" ' . ($item[$v] == '' ? 'selected' : '') . '>== INTENT ==</option>';
                         foreach ((array)$intent as $m => $item2) {
 
-                            $option .= '<option value="'.$item2['intent_tag'].'" '.($item[$v] == $item2['intent_tag']?'selected':'').'>'.$item2['intent_tag'].'</option>';
+                            $option .= '<option value="' . $item2['intent_tag'] . '" ' . ($item[$v] == $item2['intent_tag'] ? 'selected' : '') . '>' . $item2['intent_tag'] . '</option>';
                         }
                     }
 
 
                     if ($item[$v]) {
                         $datalist[$i][$value['data']] = $item[$v];
-                        if($value['data'] == 'Expected'){
+                        if ($value['data'] == 'Expected') {
 //                            $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" value="' . $item[$v] . '" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ',' . "'" . $item[$v] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '">' . $item[$v] . '</a>';
-                            $datalist[$i][$value['data']] = '<select name="'.$value['data'].'" class="select2 expected'. $item['rec_id'].' row'.$item['rec_id'].' ">'.$option.'</select>';
+                            $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="select2 expected' . $item['rec_id'] . ' row' . $item['rec_id'] . ' ">' . $option . '</select>';
 
-                        }else{
+                        } else {
                             $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" value="' . $item[$v] . '" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ',' . "'" . $item[$v] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '">' . $item[$v] . '</a>';
 
                         }
 
                     } else {
-                        if($value['data'] == 'Expected'){
-                            $datalist[$i][$value['data']] = '<select name="'.$value['data'].'" class="select2 expected'. $item['rec_id'].' row'.$item['rec_id'].' ">'.$option.'</select>';
+                        if ($value['data'] == 'Expected') {
+                            $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="select2 expected' . $item['rec_id'] . ' row' . $item['rec_id'] . ' ">' . $option . '</select>';
 
-                        }else{
+                        } else {
                             $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '"><i class="glyphicon glyphicon-edit"></i></a>';
 
                         }
-                     }
+                    }
 
                 } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
@@ -177,10 +173,10 @@ function View()
 
 
             if ($permiss[2]) {
-                if($item[$v]){
+                if ($item[$v]) {
                     $btn .= '<button data-code="' . $item['rec_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.UpdateVoice(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> Submit</button>&nbsp;&nbsp;';
 
-                }else{
+                } else {
                     $btn .= '<button data-code="' . $item['rec_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.UpdateVoice(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> Submit</button>&nbsp;&nbsp;';
 
                 }
@@ -206,12 +202,12 @@ function View()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function ViewQC()
+function ViewQC(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -226,8 +222,7 @@ function ViewQC()
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -320,11 +315,11 @@ function ViewQC()
 //                    $datalist[$i][$value['data']] = '<i class="glyphicon glyphicon-volume-up"></i>';
                     $datalist[$i][$value['data']] = '<audio preload="auto" autobuffer controls><source src="' . $item[$value['data']] . '" type="audio/wav"></audio>';
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('.'"'.$item[$value['data']].'"'.')"><i class="glyphicon glyphicon-volume-up"></i></a>';
-                } else if ($value['data'] == 'chnn') {
+                } elseif ($value['data'] == 'chnn') {
                     $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
-                } else if ($value['data'] == 'qc_status') {
+                } elseif ($value['data'] == 'qc_status') {
                     $datalist[$i][$value['data']] = '<select><option value="0" ' . ($item[$value['data']] == 0 ? 'selected' : '') . '>Status</option><option value="P" ' . ($item[$value['data']] == 'P' ? 'selected' : '') . '>Pass</option><option value="F" ' . ($item[$value['data']] == 'F' ? 'selected' : '') . '>Fail</option><option value="G" ' . ($item[$value['data']] == 'G' ? 'selected' : '') . '>Garbage</option><option value="O" ' . ($item[$value['data']] == 'O' ? 'selected' : '') . '>Other</option></select>';
-                } else if ($value['data'] == 'input_qc' || $value['data'] == 'remark') {
+                } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark') {
                     $chnn = str_replace('CHAN=', '', $item['chnn']);
                     $datalist[$i][$value['data']] = '<input type="hidden" class="' . $value['data'] . $chnn . '"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $chnn . "'" . ',' . "'" . $value['title'] . "'" . ')" id="' . $value['data'] . $chnn . '"><i class="glyphicon glyphicon-edit"></i></a>';
                 } else {
@@ -361,12 +356,12 @@ function ViewQC()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Add()
+function Add(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -376,8 +371,7 @@ function Add()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
 
     $params = array(
@@ -403,12 +397,12 @@ function Add()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Edit()
+function Edit(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -418,8 +412,7 @@ function Edit()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -442,12 +435,12 @@ function Edit()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function Del()
+function Del(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -457,8 +450,7 @@ function Del()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data[$data['main']] = $data['code'];
     unset($data['code']);
@@ -475,7 +467,7 @@ function Del()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
 function LoadPermission()
@@ -489,17 +481,12 @@ function LoadPermission()
     return $permiss;
 }
 
-function LoadCbo()
-
+function LoadCbo(Request $request)
 {
-
-    global $json;
     global $token;
-
     $result['data'] = array();
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -520,7 +507,7 @@ function LoadCbo()
         $columnslist = $response['result']['header'];
         if ($data['menu_action'] == 'grammar') {
             $datas = $response['result']['box1'];
-        } else if ($data['menu_action'] == 'confiden') {
+        } elseif ($data['menu_action'] == 'confiden') {
             $datas = $response['result']['box2'];
         } else {
             $datas = $response['result']['box3'];
@@ -543,13 +530,13 @@ function LoadCbo()
     }
 
     $result['msg'] = $response['msg'];
-    $json = json_encode($result);
+    echo json_encode($result);
 
 }
 
-function ViewCHNN()
+function ViewCHNN(Request $request)
 {
-    global $json;
+
     global $token;
 
     $datalist = array();
@@ -561,8 +548,7 @@ function ViewCHNN()
     $result['name'] = '';
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $params = array(
         'chnn' => $data['menu_action'],
@@ -628,12 +614,12 @@ function ViewCHNN()
     $result['msg'] = $response['result'][0]['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
-function SaveVoice()
+function SaveVoice(Request $request)
 {
-    global $json;
+
     global $token;
     $user = $_SESSION[OFFICE]['DATA']['user_name'];
     $datalist = array();
@@ -643,8 +629,7 @@ function SaveVoice()
     $result['columns'] = array();
 
 
-    $str = file_get_contents("php://input");
-    parse_str($str, $data);
+    parse_str($request->getPost()->toString(), $data);
 
     $data['expr_status'] = $data['expire_date_status'];
     $data['user_status'] = $data['active'];
@@ -654,7 +639,6 @@ function SaveVoice()
     unset($data['expire_date_status']);
     unset($data['active']);
     unset($data['code']);
-
 
 
     $url = URL_API . '/geniespeech/adminmenu';
@@ -668,42 +652,42 @@ function SaveVoice()
     $result['msg'] = $response['msg'];
 
 
-    $json = json_encode($result);
+    echo json_encode($result);
 }
 
 
-switch ($_REQUEST["mode"]) {
+switch ($switchmode) {
     case "View" :
-        View();
+        View($x);
         break;
     case "ViewCHNN" :
-        ViewCHNN();
+        ViewCHNN($x);
         break;
     case "ViewVOICE" :
-        ViewVOICE();
+        ViewVOICE($x);
         break;
     case "Add" :
-        Add();
+        Add($x);
         break;
     case "Edit" :
-        Edit();
+        Edit($x);
         break;
     case "Del" :
-        Del();
+        Del($x);
         break;
     case "LoadCbo" :
-        LoadCbo();
+        LoadCbo($x);
         break;
     case "ViewQC" :
-        ViewQC();
+        ViewQC($x);
         break;
     case "SaveVoice" :
-        SaveVoice();
+        SaveVoice($x);
         break;
 
-
     default :
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'ไม่มีข้อมูล';
+        echo json_encode($result);
+        break;
 }
-
-echo $json;
-exit;
