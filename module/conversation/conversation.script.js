@@ -293,7 +293,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
-
+					$('#tbViewSub_wrapper').css('display','');
 					$('#frmsearch').css('display','none');
 					console.log(data.data.length);
 					if(data.data.length == 0){
