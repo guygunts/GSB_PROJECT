@@ -345,7 +345,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 											$('#tbView_wrapper').css('display','');
 
 											// me.table.clear();
-											me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch);
+											me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
 											// $('#btnsearchsubmit').click();
 										}
 									},
