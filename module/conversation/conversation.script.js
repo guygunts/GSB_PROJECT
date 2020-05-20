@@ -99,23 +99,31 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 										extend: 'print',
 										orientation: 'landscape',
 										pageSize: 'LEGAL',
-										className: 'float-right'
+										className: 'float-right',
+										charset: 'utf-8',
+										bom: true
 									},
 									{
 										extend: 'excelHtml5',
 										text: 'Excel',
-										className: 'float-right'
+										className: 'float-right',
+										charset: 'utf-8',
+										bom: true
 									},
 									{
 										extend: 'csvHtml5',
 										text: 'CSV',
-										className: 'float-right'
+										className: 'float-right',
+										charset: 'utf-8',
+										bom: true
 									},
 									{
 										extend: 'pdfHtml5',
 										orientation: 'landscape',
 										pageSize: 'LEGAL',
-										className: 'float-right'
+										className: 'float-right',
+										charset: 'utf-8',
+										bom: true
 									},
 								],
 								columnDefs: [
