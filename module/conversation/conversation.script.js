@@ -301,6 +301,10 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 						return false;
 					}
 
+					if(me.tablesub){
+						readd = 1
+					}
+
 					if(readd){
 						me.tablesub.clear().draw();
 						me.tablesub.rows.add(data.data).draw();
