@@ -126,7 +126,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 										bom: true,
 										customize: function ( doc ) {
 											doc.defaultStyle = {
-												font:'THSarabun',
+												font:'THSarabunNew',
 												fontSize:16
 											};
 										}
