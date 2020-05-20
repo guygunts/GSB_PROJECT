@@ -123,7 +123,13 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 										pageSize: 'LEGAL',
 										className: 'float-right',
 										charset: 'utf-8',
-										bom: true
+										bom: true,
+										customize: function ( doc ) {
+											doc.defaultStyle = {
+												font:'THSarabun',
+												fontSize:16
+											};
+										}
 									},
 								],
 								columnDefs: [
