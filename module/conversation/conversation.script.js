@@ -301,7 +301,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 						return false;
 					}
 
-					if(me.tablesub){
+					if(me.tablesub.length > 0){
 						readd = 1
 					}
 
