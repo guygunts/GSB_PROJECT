@@ -361,7 +361,13 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 									{
 										extend: 'pdfHtml5',
 										orientation: 'landscape',
-										pageSize: 'LEGAL'
+										pageSize: 'LEGAL',
+										customize: function ( doc ) {
+											doc.defaultStyle = {
+												font:'THSarabunNew',
+												fontSize:16
+											};
+										}
 									},
 									'print'
 								],

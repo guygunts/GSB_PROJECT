@@ -238,7 +238,13 @@ me.LoadDataCHNN = function(menu, page_id, page_size, start, stop, readd=''){
 										extend: 'pdfHtml5',
 										orientation: 'landscape',
 										pageSize: 'LEGAL',
-										className: 'float-right'
+										className: 'float-right',
+										customize: function ( doc ) {
+											doc.defaultStyle = {
+												font:'THSarabunNew',
+												fontSize:16
+											};
+										}
 									},
 								],
 								columnDefs: [
@@ -385,7 +391,13 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 										extend: 'pdfHtml5',
 										orientation: 'landscape',
 										pageSize: 'LEGAL',
-										className: 'float-right'
+										className: 'float-right',
+										customize: function ( doc ) {
+											doc.defaultStyle = {
+												font:'THSarabunNew',
+												fontSize:16
+											};
+										}
 									},
 
 								],
