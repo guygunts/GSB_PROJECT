@@ -125,7 +125,10 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 										charset: 'utf-8',
 										bom: true,
 										customize: function ( doc ) {
-											doc.defaultStyle.font = 'Roboto';
+											doc.defaultStyle =
+												{
+													font: 'Roboto'
+												}
 										}
 									},
 								],
