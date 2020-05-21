@@ -26,3 +26,25 @@ RewriteRule ^module/(.*)/(.*)-(.*)-(.*)$		           module/$1/$2.inc.php?mode=$
 RewriteRule ^module/(.*)/(.*)-(.*)$		           module/$1/$2.inc.php?mode=$3&mod=$2 [QSA]
 
 </IfModule>
+
+
+    Header unset Content-Security-Policy
+    #Add the entire CSP key value pairs that you want below is just default-src
+    Header add Content-Security-Policy "default-src 'self'"
+    #This opens support to older browsers that support X-Content-Security-Policy but not Content-Security-Policy
+    Header unset X-Content-Security-Policy
+    Header add X-Content-Security-Policy "default-src 'self'"
+    #This opens support to older browsers that support X-WebKit-CSP but not Content-Security-Policy
+    Header unset X-WebKit-CSP
+    Header add X-WebKit-CSP "default-src 'self'"
+
+    #These headers are also helpful in increasing security
+    Header add X-Content-Type-Options "nosniff"
+    Header add X-XSS-Protection "1; mode=block"
+    Header add X-Frame-Options "DENY"
+    Header add Strict-Transport-Security "max-age=631138519; includeSubDomains"
+
+    Header add Access-Control-Allow-Credentials "true"
+    Header add Access-Control-Allow-Origin "*"
+    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type, authorization, access-control-allow-headers"
+    Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
