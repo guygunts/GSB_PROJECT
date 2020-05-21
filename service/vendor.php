@@ -26,7 +26,7 @@ class MyRequest extends MainRequest implements Request
 $x = new MyRequest();
 
 
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: POST,GET");
 
 
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
