@@ -7,6 +7,8 @@ DirectoryIndex index.php
 RewriteEngine On
 RewriteBase /
 
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' *.mycdn.com 'unsafe-inline';"
+
 RewriteCond %{HTTP:Authorization} .
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
