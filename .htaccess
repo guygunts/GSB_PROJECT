@@ -26,7 +26,7 @@ RewriteRule ^module/(.*)/(.*)-(.*)$		           module/$1/$2.inc.php?mode=$3&mod
 </IfModule>
 
 <IfModule mod_headers.c>
-      <FilesMatch ".(js|css|php)$">
+      <FilesMatch "\.(js|css|php)$">
         Header unset Content-Security-Policy
         #Add the entire CSP key value pairs that you want below is just default-src
         Header add Content-Security-Policy "default-src 'self'"
