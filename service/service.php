@@ -7,7 +7,7 @@ header("Access-Control-Allow-Origin: " . URL);
 header("X-Frame-Options: DENY");
 header("Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly");
 header("X-XSS-Protection: 1; mode=block");
-header("Content-Security-Policy: default-src https: 'unsafe-inline' 'unsafe-eval'; report-uri https://boatjunior.report-uri.com/r/d/csp/enforce");
+header("Content-Security-Policy: report-uri https://boatjunior.report-uri.com/r/d/csp/enforce");
 header("Content-Security-Policy-Report-Only: default-src https: 'unsafe-inline' 'unsafe-eval'");
 header("X-Content-Type-Options: nosniff");
 header("Referrer-Policy: same-origin");
