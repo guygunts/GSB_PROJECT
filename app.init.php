@@ -21,7 +21,7 @@ if(empty($_SESSION[OFFICE]['LANG'])){
     $lang=$_SESSION[OFFICE]['LANG'];
 }
 
-$mod=$_GET["mode"];
+$mod= filter_input(INPUT_GET, 'mode');
 
 
 $member = $_SESSION[OFFICE]['DATA'];
