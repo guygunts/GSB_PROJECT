@@ -7,7 +7,7 @@ header("Access-Control-Allow-Origin: " . URL);
 header("X-Frame-Options: DENY");
 header("Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly");
 header("X-XSS-Protection: 1; mode=block");
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net d3js.org canvasjs.com cdn.datatables.net cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' 'style-src-elem' cdn.datatables.net cdnjs.cloudflare.com fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src * data:");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net d3js.org canvasjs.com cdn.datatables.net cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.datatables.net cdnjs.cloudflare.com fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src * data:");
 header("X-Content-Type-Options: nosniff");
 header("Referrer-Policy: same-origin");
 header("Feature-Policy: vibrate 'self'; usermedia *; sync-xhr 'self'");
