@@ -26,11 +26,11 @@ class MyRequest extends MainRequest implements Request
 $x = new MyRequest();
 
 
-header("Access-Control-Allow-Origin: " . URL);
-header("X-Frame-Options: DENY");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST,GET");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+//header("Access-Control-Allow-Origin: " . URL);
+//header("X-Frame-Options: DENY");
+//header("Content-Type: application/json; charset=UTF-8");
+//header("Access-Control-Allow-Methods: POST,GET");
+//header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';

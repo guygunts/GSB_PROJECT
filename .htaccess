@@ -43,4 +43,8 @@ RewriteRule ^module/(.*)/(.*)-(.*)$		           module/$1/$2.inc.php?mode=$3&mod
     Header set X-XSS-Protection "1; mode=block"
     Header set X-Frame-Options "DENY"
     Header set Strict-Transport-Security "max-age=631138519; includeSubDomains"
+
+    Header add Access-Control-Allow-Origin "*"
+    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type, authorization, access-control-allow-headers"
+    Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
 </IfModule>
