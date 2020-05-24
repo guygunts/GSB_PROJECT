@@ -1554,12 +1554,6 @@ function curlpostmain($url, $params)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($ch);
     curl_close($ch);
-    if ($response) {
-        $response = json_decode($response, true);
-    } else {
-        $response = array();
-    }
-
 
     return $response;
 }
