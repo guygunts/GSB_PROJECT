@@ -32,7 +32,7 @@ me.LoadCbo = function(val,menu,code,name) {
 							console.log(event)
 							console.log(data)
 							if(data.level == 1){
-								if(!$('#'+val).treeview('getParent', $('#'+val).treeview('getSelected'))){
+								if(!$('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))){
 									me.LoadCboSub('tree','getsubcategory',data.id,data.index);
 								}
 
