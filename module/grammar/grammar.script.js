@@ -28,7 +28,7 @@ me.LoadCbo = function(val,menu,code,name) {
 					$('#'+val).treeview({
 						data: data.item,
 						onNodeSelected: function(event, data) {
-							me.LoadCboSub('tree','getsubcategory',data.id,data.nodeId);
+							me.LoadCboSub('tree','getsubcategory',data.id,data.nodeId,data.item);
 						}
 
 					});
@@ -41,7 +41,7 @@ me.LoadCbo = function(val,menu,code,name) {
 	});
 };
 
-me.LoadCboSub = function(val,menu,code,nodeid) {
+me.LoadCboSub = function(val,menu,code,nodeid,parentNode) {
 	$.ajax({
 		url: me.url + '-LoadCboSub',
 		type: "POST",
