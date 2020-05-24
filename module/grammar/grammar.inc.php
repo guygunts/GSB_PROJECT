@@ -283,10 +283,7 @@ function LoadCbo(Request $request)
 
         $datalist = [];
         foreach ((array)$datas as $i => $item) {
-
-            $datalist[$i]['code'] = $item[$data['code']];
-            $datalist[$i]['name'] = $item[$data['name']];
-
+            $datalist[$i]['text'] =$item[$data['name']];
         }
 
 
