@@ -25,7 +25,14 @@ me.LoadCbo = function(val,menu,code,name) {
 
 			switch (data.success) {
 				case "COMPLETE":
-					$('#tree').treeview({data: data.item});
+					$('#'+val).treeview({
+						data: data.item,
+						level: 1,
+						onNodeSelected: function(event, data) {
+							me.LoadCboSub('tree','getsubcategory',data.id);
+						}
+
+					});
 					break;
 				default:
 					alertify.alert(data.msg);
@@ -33,6 +40,27 @@ me.LoadCbo = function(val,menu,code,name) {
 			}
 		}
 	});
+};
+
+me.LoadCboSub = function(val,menu,code) {
+	$.ajax({
+		url: me.url + '-LoadCboSub',
+		type: "POST",
+		dataType: "json",
+		cache: false,
+		data: {menu_action : menu , code : code},
+		success: function(data) {
+
+			switch (data.success) {
+				case "COMPLETE":
+					$('#'+val).treeview('addNode', [ code, data.item ]);
+		break;
+		default:
+			alertify.alert(data.msg);
+		break;
+	}
+}
+});
 };
 /*================================================*\
   :: DEFAULT ::
@@ -42,6 +70,6 @@ $(document).ready(function(){
 	// me.CheckBox();
 	// me.SetDateTime();
 	me.LoadData(me.action.menu,1,30);
-	me.LoadCbo('category','getcategory','category_id','category_name');
+	me.LoadCbo('tree','getcategory','category_id','category_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
 });

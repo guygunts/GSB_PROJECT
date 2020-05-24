@@ -278,6 +278,49 @@ function LoadCbo(Request $request)
         $datalist = [];
         foreach ((array)$datas as $i => $item) {
             $datalist[$i]['text'] =$item[$data['name']];
+            $datalist[$i]['id'] =$item[$data['code']];
+        }
+
+
+        /** @noinspection PhpUndefinedVariableInspection */
+        $result['item'] = $datalist;
+        $result['success'] = 'COMPLETE';
+
+    } else {
+        $result['success'] = 'FAIL';
+    }
+
+    $result['msg'] = $response['msg'];
+    echo json_encode($result);
+
+}
+
+function LoadCboSub(Request $request)
+{
+
+    parse_str($request->getPost()->toString(), $data);
+
+    $params = array(
+        'project_id' => 1,
+        'menu_action' => $data['menu_action'],
+        'page_id' => 1,
+        'page_size'=> 100
+    );
+
+
+
+    $url = URL_API . '/geniespeech/adminmenu';
+    $response = curlpostmain($url, $params);
+
+    if ($response['data']) {
+
+        /** @noinspection PhpUnusedLocalVariableInspection */
+        $datas = $response['data'];
+
+        $datalist = [];
+        foreach ((array)$datas as $i => $item) {
+            $datalist[$i]['text'] =$item[$data['name']];
+            $datalist[$i]['id'] =$item[$data['id']];
         }
 
 
@@ -324,6 +367,9 @@ switch ($switchmode) {
         break;
     case "LoadCbo" :
         LoadCbo($x);
+        break;
+    case "LoadCboSub" :
+        LoadCboSub($x);
         break;
 
     default :
