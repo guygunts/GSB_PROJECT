@@ -1006,11 +1006,11 @@
 							|| node.tagsClass
 							|| this._options.tagsClass
 						)
-						.attr(
-							(typeof tag === 'object' ? tag.id : undefined)
-							|| id
-						)
+
 					);
+				if(id == 'id'){
+					node.$el.attr('id',tag.id);
+				}
 			}, this));
 		}
 
