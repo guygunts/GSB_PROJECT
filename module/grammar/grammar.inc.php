@@ -305,7 +305,7 @@ function LoadCbo(Request $request)
             $datalist[$i]['id'] =$item[$data['code']];
             $datalist[$i]['nodes'] = [];
             $datalist[$i]['checkable'] = false;
-            $datalist[$i]['lazyLoad'] = false;
+            $datalist[$i]['lazyLoad'] = true;
         }
 
 
