@@ -29,7 +29,7 @@ function View(Request $request)
 
 
     if ($response['code'] == 200) {
-        $columnslist = $response['result']['header'];
+        $columnslist = $response['result'];
         $datas = $response['result']['data'];
 
         $column[0]['className'] = 'text-center';
