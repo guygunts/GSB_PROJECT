@@ -30,10 +30,12 @@ me.LoadCbo = function(val,menu,code,name) {
 						onNodeSelected: function(event, data) {
 							console.log(event);
 							console.log(data);
+							$('#tree').treeview('getParent', nodes);
 							me.LoadCboSub('tree','getsubcategory',data.id,data.index,data.item);
 						}
 
 					});
+					$('#tree').treeview('getParents',data.item);
 					break;
 				default:
 					alertify.alert(data.msg);
