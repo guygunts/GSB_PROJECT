@@ -1551,9 +1551,9 @@ function curlpost($url, $params)
     $response = curl_exec($ch);
     curl_close($ch);
     if ($response) {
-        $response = array_filter(json_decode($response, true));
+//        $response = array_filter(json_decode($response, true));
     } else {
-        $response = array();
+//        $response = array();
     }
 
 
