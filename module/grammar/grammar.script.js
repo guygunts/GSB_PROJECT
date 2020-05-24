@@ -25,7 +25,7 @@ me.LoadCbo = function(val,menu,code,name) {
 
 			switch (data.success) {
 				case "COMPLETE":
-					$('#'+val).treeview({
+					var tree = $('#'+val).treeview({
 						preventUnselect:true,
 						allowReselect:true,
 						data: data.item,
@@ -37,7 +37,7 @@ me.LoadCbo = function(val,menu,code,name) {
 							// if(data.state.expanded){
 							// 	$('#'+val).treeview('toggleNodeExpanded', [ data , { silent: true } ]);
 							// }
-							$('#'+val).treeview(true).toggleNodeExpanded(data);
+							tree.treeview(true).toggleNodeExpanded(data);
 							// $('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
