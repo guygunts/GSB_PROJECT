@@ -264,7 +264,7 @@ function LoadCbo(Request $request)
     );
 
     $url = URL_API . '/geniespeech/adminmenu';
-    $response = curlpost($url, $params);
+    $response = curlpostmain($url, $params);
     PrintR($response);
     exit;
     if ($response['data']) {
