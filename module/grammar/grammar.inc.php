@@ -275,7 +275,7 @@ function LoadCbo(Request $request)
 
     $response = curlposttoken($url, $params, $token);
     PrintR($response);
-
+    exit;
     if ($response['data']) {
 
         /** @noinspection PhpUnusedLocalVariableInspection */
