@@ -19,6 +19,7 @@ function View(Request $request)
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
+        'category_id' => $data['category_id'],
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size']
     );
@@ -35,6 +36,9 @@ function View(Request $request)
         $column[0]['title'] = 'No';
         $column[0]['data'] = 'no';
 
+        $columnslist[0]['column_field'] = 'user_question';
+        $columnslist[1]['column_field'] = 'intent_tag';
+        $columnslist[2]['column_field'] = 'active';
 
         $m = 1;
         foreach ((array)$columnslist as $i => $item) {
