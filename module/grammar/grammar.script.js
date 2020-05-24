@@ -37,7 +37,7 @@ me.LoadCbo = function(val,menu,code,name) {
 							// if(data.state.expanded){
 							// 	$('#'+val).treeview('toggleNodeExpanded', [ data , { silent: true } ]);
 							// }
-							tree.treeview(true).toggleNodeExpanded(data);
+							tree.treeview(true).revealNode(data,{ silent: true });
 							// $('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
