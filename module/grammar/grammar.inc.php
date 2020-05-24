@@ -322,6 +322,11 @@ function LoadCboSub(Request $request)
         foreach ((array)$datas as $i => $item) {
             $datalist[$i]['text'] =$item['category_name'];
             $datalist[$i]['id'] =$item['category_id'];
+            $datalist[$i]['icon'] ='glyphicon glyphicon-stop';
+            $datalist[$i]['selectedIcon'] ='glyphicon glyphicon-stop';
+            $datalist[$i]['selectable'] = true;
+            $datalist[$i]['state'] = ['selected',true];
+            $datalist[$i]['nodes'] = [];
         }
 
 
