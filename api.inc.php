@@ -9,6 +9,8 @@ function Login(Request $request)
 
 
     parse_str($request->getPost()->toString(), $data);
+    PrintR($data);
+
     $data['lang'] = 'th';
     unset($_SESSION[OFFICE]);
 
@@ -74,7 +76,6 @@ function LoadData(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-    PrintR($data);
     $params = array(
 
         'menu_action' => $data['menu_action'],
