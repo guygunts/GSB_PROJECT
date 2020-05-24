@@ -30,5 +30,6 @@ $x = new MyRequest();
 header("Content-Type: application/json; charset=UTF-8");
 
 
-
+echo $switchmode;
+exit;
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';

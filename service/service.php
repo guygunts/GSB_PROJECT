@@ -12,7 +12,7 @@ header("Content-Security-Policy: report-uri https://boatjunior.report-uri.com/r/
 //header("Content-Security-Policy-Report-Only: default-src https: 'unsafe-inline' 'unsafe-eval'");
 header("X-Content-Type-Options: nosniff");
 header("Referrer-Policy: same-origin");
-//header("Feature-Policy: vibrate 'self'; sync-xhr 'self'");
+header("Feature-Policy: vibrate 'self'; sync-xhr 'self'");
 header("Strict-Transport-Security: max-age=631138519; includeSubDomains");
 header("Content-Type: text/html; charset=UTF-8");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
