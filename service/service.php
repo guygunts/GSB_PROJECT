@@ -4,7 +4,7 @@ session_start();
 require_once "define.php";
 require_once "func.php";
 //header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Origin: " . URL);
+//header("Access-Control-Allow-Origin: " . URL);
 header("X-Frame-Options: DENY");
 //header("Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly");
 header("X-XSS-Protection: 1; mode=block");
