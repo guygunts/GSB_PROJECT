@@ -1,5 +1,5 @@
 <?php
-ini_set('session.cookie_httponly', 1);
+//ini_set('session.cookie_httponly', 1);
 session_start();
 require_once "define.php";
 require_once "func.php";
@@ -12,8 +12,8 @@ header("Content-Security-Policy: report-uri https://boatjunior.report-uri.com/r/
 //header("Content-Security-Policy-Report-Only: default-src https: 'unsafe-inline' 'unsafe-eval'");
 //header("X-Content-Type-Options: nosniff");
 //header("Referrer-Policy: same-origin");
-header("Feature-Policy: vibrate 'self'; sync-xhr 'self'");
-header("Strict-Transport-Security: max-age=631138519; includeSubDomains");
+//header("Feature-Policy: vibrate 'self'; sync-xhr 'self'");
+//header("Strict-Transport-Security: max-age=631138519; includeSubDomains");
 //header("Content-Type: text/html; charset=UTF-8");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: origin, x-requested-with, content-type, authorization, access-control-allow-headers");
