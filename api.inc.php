@@ -29,8 +29,6 @@ function Login(Request $request)
 
 
     $url = URL_API . '/geniespeech/login';
-    echo $url;
-
     $response = curlpost($url, $params);
 
 
