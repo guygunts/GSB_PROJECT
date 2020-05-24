@@ -19,7 +19,6 @@ function Login(Request $request)
     $_SESSION[OFFICE]['LANG'] = 'th';
     $_SESSION[OFFICE]['PROJECT_ID'] = NULL;
     $params = array(
-
         'user_name' => $data['username'],
         'password' => $data['password'],
         'lang' => $data['lang'],
@@ -75,7 +74,7 @@ function LoadData(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-
+    PrintR($data);
     $params = array(
 
         'menu_action' => $data['menu_action'],
