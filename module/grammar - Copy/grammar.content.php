@@ -4,14 +4,12 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-tools pull-right">
-                        <?php if (isset($permiss)) {
-                            if ($permiss[1]) { ?>
-                                <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.New();"
-                                        title="<?php echo $permiss[1]['name']; ?>">
-                                    <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?>
-                                </button>
-                            <?php }
-                        } ?>
+                        <?php if ($permiss[1]) { ?>
+                            <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.New();"
+                                    title="<?php echo $permiss[1]['name']; ?>">
+                                <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?>
+                            </button>
+                        <?php } ?>
                     </div>
                 </div>
                 <!-- /.box-header -->

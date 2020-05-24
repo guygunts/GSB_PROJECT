@@ -19,6 +19,7 @@ function View(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'start_date' => $data['start_date'],
         'end_date' => $data['end_date'],
         'page_id' => $data['page_id'],
@@ -122,6 +123,7 @@ function ViewCHNN(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'chnn' => $data['menu_action'],
         'start_date' => $data['start_date'],
         'end_date' => $data['end_date'],
@@ -207,6 +209,7 @@ function ViewVOICE(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'chnn' => $data['menu_action'],
         'start_date' => $data['start_date'],
         'end_date' => $data['end_date'],

@@ -16,6 +16,7 @@ function View(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size']

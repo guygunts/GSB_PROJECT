@@ -6,6 +6,9 @@ use Laminas\Http\PhpEnvironment\Request as MainRequest;
 $moderequest = new MainRequest();
 $switchmode = $moderequest->getQuery('mode');
 
+/**
+ * @method getPost()
+ */
 interface Request
 {
     public function foo();
