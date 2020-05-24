@@ -324,8 +324,6 @@ function LoadCboSub(Request $request)
         foreach ((array)$datas as $i => $item) {
             $datalist[$i]['text'] =$item['category_name'];
             $datalist[$i]['id'] =$item['category_id'];
-            $datalist[$i]['selectable'] = true;
-            $datalist[$i]['checkable'] = false;
 
 
         }
