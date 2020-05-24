@@ -282,7 +282,7 @@ function LoadCbo(Request $request)
             $datalist[$i]['icon'] ='glyphicon glyphicon-stop';
             $datalist[$i]['selectedIcon'] ='glyphicon glyphicon-stop';
             $datalist[$i]['selectable'] = true;
-            $datalist[$i]['state'] = ['selected',true];
+            $datalist[$i]['state'] = [array('selected'=>true)];
             $datalist[$i]['nodes'] = [];
         }
 
