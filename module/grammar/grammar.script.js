@@ -26,6 +26,7 @@ me.LoadCbo = function(val,menu,code,name) {
 			switch (data.success) {
 				case "COMPLETE":
 					$('#'+val).treeview({
+						level: 1,
 						data: data.item,
 						onNodeSelected: function(event, data) {
 							console.log(event);
