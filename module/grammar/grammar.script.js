@@ -32,7 +32,10 @@ me.LoadCbo = function(val,menu,code,name) {
 							console.log(event)
 							console.log(data)
 							if(data.level == 1){
-								me.LoadCboSub('tree','getsubcategory',data.id,data.index);
+								if(!$('#'+val).treeview('getParent', $('#'+val).treeview('getSelected'))){
+									me.LoadCboSub('tree','getsubcategory',data.id,data.index);
+								}
+
 							}
 
 						}
@@ -60,7 +63,7 @@ me.LoadCboSub = function(val,menu,code,index) {
 			switch (data.success) {
 				case "COMPLETE":
 					// $('#'+val).treeview(true).addNode(data.item, $('#'+val).treeview('getSelected'))
-					$('#'+val).treeview('removeNode', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
+					// $('#'+val).treeview('removeNode', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 					$('#'+val).treeview('addNode', [ data.item, $('#'+val).treeview('getSelected'), index, { silent: true, ignoreChildren: true } ]);
 		break;
 		default:
