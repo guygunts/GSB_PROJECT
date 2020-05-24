@@ -1,9 +1,9 @@
 <section class="content" id="content-viewlist">
     <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-2">
             <div id="tree"></div>
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-10">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-tools pull-right">
