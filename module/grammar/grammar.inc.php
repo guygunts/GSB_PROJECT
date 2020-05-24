@@ -320,8 +320,8 @@ function LoadCboSub(Request $request)
 
         $datalist = [];
         foreach ((array)$datas as $i => $item) {
-            $datalist[$i]['text'] =$item[$data['name']];
-            $datalist[$i]['id'] =$item[$data['id']];
+            $datalist[$i]['text'] =$item['category_name'];
+            $datalist[$i]['id'] =$item['category_id'];
         }
 
 
