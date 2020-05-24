@@ -33,12 +33,12 @@ me.LoadCbo = function(val,menu,code,name) {
 							console.log(event)
 							console.log(data)
 							console.log(data.state.selected)
-							i
+
 							// $('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
 							if(data.level == 1){
-								if(!$('#'+val).treeview('getSelected')[0].nodes){
+								if(!data[0].nodes){
 									me.LoadCboSub('tree','getsubcategory',data.id,data.index);
 								}
 								me.LoadData(me.action.menu,data.id,1,30);
