@@ -63,6 +63,7 @@
 		checkboxFirst: false,
 		highlightChanges: false,
 		showTags: false,
+		showBtn: false,
 		multiSelect: false,
 		preventUnselect: false,
 		allowReselect: false,
@@ -995,6 +996,24 @@
 			}, this));
 		}
 
+		// Add tags as badges
+		if (this._options.showBtn && node.tags) {
+			$.each(node.tags, $.proxy(function addTag(id, tag) {
+				node.$el
+					.append(this._template.btn.clone()
+						.addClass(
+							(typeof tag === 'object' ? tag.class : undefined)
+							|| node.tagsClass
+							|| this._options.tagsClass
+						)
+						.append(
+							(typeof tag === 'object' ? tag.text : undefined)
+							|| tag
+						)
+					);
+			}, this));
+		}
+
 		// Set various node states
 		this._setSelected(node, node.state.selected);
 		this._setChecked(node, node.state.checked);
@@ -1180,7 +1199,7 @@
 		},
 		image: $('<span class="image"></span>'),
 		badge: $('<span></span>'),
-		btn: $('<button class="button"><i class="glyphicon glyphicon-plus"></i></button>')
+		btn: $('')
 	};
 
 	Tree.prototype._css = '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}'
