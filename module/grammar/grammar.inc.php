@@ -303,6 +303,7 @@ function LoadCboSub(Request $request)
     $params = array(
         'project_id' => 1,
         'menu_action' => $data['menu_action'],
+        'category_id' => $data['code'],
         'page_id' => 1,
         'page_size'=> 100
     );
