@@ -30,12 +30,12 @@ me.LoadCbo = function(val,menu,code,name) {
 						onNodeSelected: function(event, data) {
 							console.log(event);
 							console.log(data);
-							$('#tree').treeview('getParent', nodes);
-							me.LoadCboSub('tree','getsubcategory',data.id,data.index,data.item);
+
+							me.LoadCboSub('tree','getsubcategory',data.id,data.index,data.nodeId);
 						}
 
 					});
-					$('#tree').treeview('getParents',data.item);
+
 					break;
 				default:
 					alertify.alert(data.msg);
@@ -45,7 +45,7 @@ me.LoadCbo = function(val,menu,code,name) {
 	});
 };
 
-me.LoadCboSub = function(val,menu,code,nodeid,parentNode) {
+me.LoadCboSub = function(val,menu,code,index,nodeId) {
 	$.ajax({
 		url: me.url + '-LoadCboSub',
 		type: "POST",
@@ -56,7 +56,7 @@ me.LoadCboSub = function(val,menu,code,nodeid,parentNode) {
 
 			switch (data.success) {
 				case "COMPLETE":
-					$('#'+val).treeview('addNode', [ data.item, parentNode, nodeid, { silent: true } ]);
+					$('#'+val).treeview('addNode', [ data.item, nodeid, index, { silent: true } ]);
 		break;
 		default:
 			alertify.alert(data.msg);
