@@ -38,7 +38,7 @@ me.LoadCbo = function(val,menu,code,name) {
 							// $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
 							if(data.level == 1){
-								if(!data[0].nodes){
+								if(!data.nodes){
 									me.LoadCboSub('tree','getsubcategory',data.id,data.index);
 								}
 								me.LoadData(me.action.menu,data.id,1,30);
