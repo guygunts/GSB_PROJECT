@@ -28,6 +28,7 @@ me.LoadCbo = function(val,menu,code,name) {
 					var tree = $('#'+val).treeview({
 						preventUnselect:true,
 						allowReselect:true,
+						showTags :true,
 						data: data.item,
 						onNodeSelected: function(event, data) {
 							console.log(event)
