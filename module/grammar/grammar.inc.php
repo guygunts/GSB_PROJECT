@@ -252,6 +252,57 @@ function Del(Request $request)
     echo json_encode($result);
 }
 
+function LoadCbo(Request $request)
+
+{
+
+    global $token;
+
+    $result['data'] = array();
+
+    parse_str($request->getPost()->toString(), $data);
+
+
+    $params = array(
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
+        'menu_action' => $data['menu_action'],
+        'page_id' => 1,
+        'page_size' => 100
+
+    );
+
+    $url = URL_API . '/geniespeech/adminmenu';
+
+    $response = curlposttoken($url, $params, $token);
+
+
+    if ($response['data']) {
+
+        /** @noinspection PhpUnusedLocalVariableInspection */
+        $datas = $response['data'];
+
+        $datalist = [];
+        foreach ((array)$datas as $i => $item) {
+
+            $datalist[$i]['code'] = $item[$data['code']];
+            $datalist[$i]['name'] = $item[$data['name']];
+
+        }
+
+
+        /** @noinspection PhpUndefinedVariableInspection */
+        $result['item'] = $datalist;
+        $result['success'] = 'COMPLETE';
+
+    } else {
+        $result['success'] = 'FAIL';
+    }
+
+    $result['msg'] = $response['msg'];
+    echo json_encode($result);
+
+}
+
 function LoadPermission()
 {
     $permiss = array();
@@ -279,6 +330,9 @@ switch ($switchmode) {
         break;
     case "Del" :
         Del($x);
+        break;
+    case "LoadCbo" :
+        LoadCbo($x);
         break;
 
     default :

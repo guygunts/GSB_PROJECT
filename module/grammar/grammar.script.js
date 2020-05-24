@@ -16,7 +16,7 @@ me.action.del = 'deletefunction';
 \*================================================*/
 me.LoadCbo = function(val,menu,code,name) {
 	$.ajax({
-		url: 'api.inc.php?mode=32DB5371F29FB2E482986955597E001D',
+		url: me.url + '-LoadCbo',
 		type: "POST",
 		dataType: "json",
 		cache: false,
