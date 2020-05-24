@@ -31,6 +31,7 @@ me.LoadCbo = function(val,menu,code,name) {
 						onNodeSelected: function(event, data) {
 							console.log(event)
 							console.log(data)
+							console.log($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected')))
 							if(data.level == 1){
 								if($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected')) == 'undefined'){
 									me.LoadCboSub('tree','getsubcategory',data.id,data.index);
