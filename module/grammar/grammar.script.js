@@ -27,9 +27,7 @@ me.LoadCbo = function(val,menu,code,name) {
 				case "COMPLETE":
 					$('#'+val).treeview({
 						data: data.item,
-						level: 2,
 						onNodeSelected: function(event, data) {
-
 							me.LoadCboSub('tree','getsubcategory',data.id,data.nodeId);
 						}
 
