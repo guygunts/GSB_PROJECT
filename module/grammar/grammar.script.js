@@ -54,7 +54,7 @@ me.LoadCboSub = function(val,menu,code,nodeid) {
 
 			switch (data.success) {
 				case "COMPLETE":
-					$('#'+val).treeview('expandNode', [ nodeid , data.item ]);
+					$('#'+val).treeview('revealNode', [ nodeid , data.item ]);
 		break;
 		default:
 			alertify.alert(data.msg);
