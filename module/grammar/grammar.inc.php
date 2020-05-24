@@ -280,6 +280,7 @@ function LoadCbo(Request $request)
             $datalist[$i]['text'] =$item[$data['name']];
             $datalist[$i]['id'] =$item[$data['code']];
             $datalist[$i]['icon'] ='glyphicon glyphicon-stop';
+            $datalist[$i]['selectable'] = false;
             $datalist[$i]['nodes'] = [];
         }
 
