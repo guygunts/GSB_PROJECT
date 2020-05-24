@@ -29,9 +29,6 @@ me.LoadCbo = function(val,menu,code,name) {
 						levels: 1,
 						data: data.item,
 						onNodeSelected: function(event, data) {
-							console.log(event);
-							console.log(data);
-
 							me.LoadCboSub('tree','getsubcategory',data.id,data.index);
 						}
 
@@ -57,7 +54,8 @@ me.LoadCboSub = function(val,menu,code,index) {
 
 			switch (data.success) {
 				case "COMPLETE":
-					$('#'+val).treeview('addNode', [ data.item, $('#'+val).treeview('getSelected'), index, { silent: true } ]);
+					$('#'+val).treeview(true).addNode(data.item, $('#'+val).treeview('getSelected'))
+					// $('#'+val).treeview('addNode', [ data.item, $('#'+val).treeview('getSelected'), index, { silent: true } ]);
 		break;
 		default:
 			alertify.alert(data.msg);
