@@ -1199,7 +1199,7 @@
 		},
 		image: $('<span class="image"></span>'),
 		badge: $('<span></span>'),
-		btn: $('<button type="button"><i class="fa fa-plus"></i></button>')
+		btn: $('<button type="button" onclick="return false;"><i class="fa fa-plus"></i></button>')
 	};
 
 	Tree.prototype._css = '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}'
