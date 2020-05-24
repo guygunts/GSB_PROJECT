@@ -40,7 +40,7 @@ include_once 'service/service.php';
     <div class="login-box-body">
        
 
-        <form action="" method="post" onsubmit="return false;" id="frmlogin"  autocomplete="off">
+        <form action="" method="post" onsubmit="return false;" id="frmlogin">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Username" name="username" pattern="^[a-zA-Z0-9]{0,20}$">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
