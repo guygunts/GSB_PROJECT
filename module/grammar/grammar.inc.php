@@ -306,7 +306,7 @@ function LoadCbo(Request $request)
             $datalist[$i]['nodes'] = [];
             $datalist[$i]['checkable'] = false;
             $datalist[$i]['lazyLoad'] = true;
-            $datalist[$i]['tags'] = '<button class="btn main" type="button" id="main'.$item['category_id'].'"></button>';
+            $datalist[$i]['tags'] = ['<button class="btn main" type="button" id="main'.$item['category_id'].'"></button>'];
         }
 
 
@@ -350,7 +350,7 @@ function LoadCboSub(Request $request)
         foreach ((array)$datas as $i => $item) {
             $datalist[$i]['text'] =$item['category_name'];
             $datalist[$i]['id'] =$item['category_id'];
-            $datalist[$i]['tags'] = '<button class="btn sub" type="button" id="sub'.$item['category_id'].'"></button>';
+            $datalist[$i]['tags'] = ['<button class="btn sub" type="button" id="sub'.$item['category_id'].'"></button>'];
 
         }
 
