@@ -305,7 +305,7 @@ function LoadCbo(Request $request)
             $datalist[$i]['id'] =$item[$data['code']];
             $datalist[$i]['checkable'] = false;
             $datalist[$i]['lazyLoad'] = true;
-            $datalist[$i]['tags'] = [array('text'=>'+','class'=>'btn btn-sm main','id'=>'main'.$item['category_id'])];
+            $datalist[$i]['tags'] = [array('class'=>'btn btn-sm main','id'=>'main'.$item['category_id'])];
 //            $datalist[$i]['tags'] = ['<button class="btn main" type="button" id="main'.$item['category_id'].'" onclick="event.preventDefault();"><i class="glyphicon glyphicon-plus"></i></button>'];
         }
 
