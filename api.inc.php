@@ -32,8 +32,6 @@ function Login(Request $request)
     $url = URL_API . '/geniespeech/login';
     $response = curlpost($url, $params);
 
-    PrintR($response);
-
 
     if ($response['code'] == 200) {
 

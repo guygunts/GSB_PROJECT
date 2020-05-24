@@ -3,7 +3,7 @@ ini_set('session.cookie_httponly', 1);
 session_start();
 require_once "define.php";
 require_once "func.php";
-header("Access-Control-Allow-Credentials: true");
+//header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Origin: " . URL);
 header("X-Frame-Options: DENY");
 header("Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly");
@@ -14,7 +14,7 @@ header("X-Content-Type-Options: nosniff");
 header("Referrer-Policy: same-origin");
 header("Feature-Policy: vibrate 'self'; sync-xhr 'self'");
 header("Strict-Transport-Security: max-age=631138519; includeSubDomains");
-header("Content-Type: text/html; charset=UTF-8");
+//header("Content-Type: text/html; charset=UTF-8");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: origin, x-requested-with, content-type, authorization, access-control-allow-headers");
 
