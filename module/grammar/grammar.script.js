@@ -32,7 +32,7 @@ me.LoadCbo = function(val,menu,code,name) {
 						onNodeSelected: function(event, data) {
 							console.log(event)
 							console.log(data)
-							$('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
+							// $('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
 							if(data.level == 1){
 								if(!$('#'+val).treeview('getSelected')[0].nodes){
