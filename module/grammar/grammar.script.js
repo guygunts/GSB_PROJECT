@@ -29,6 +29,7 @@ me.LoadCbo = function(val,menu,code,name) {
 						data: data.item,
 						level: 1,
 						onNodeSelected: function(event, data) {
+							console.log(data);
 							me.LoadCboSub('tree','getsubcategory',data.id);
 						}
 
