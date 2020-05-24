@@ -22,19 +22,10 @@ me.LoadCbo = function(val,menu,code,name) {
 		cache: false,
 		data: {menu_action : menu , code : code , name : name},
 		success: function(data) {
-			$("#"+val+' option').remove();
+
 			switch (data.success) {
 				case "COMPLETE":
-					$("<option>")
-						.attr("value", '')
-						.text('==  List = =')
-						.appendTo("#" + val);
-					$.each(data.item, function(i, result) {
-						$("<option>")
-							.attr("value", result.code)
-							.text(result.name)
-							.appendTo("#" + val);
-					});
+					$('#tree').treeview({data: data.item});
 					break;
 				default:
 					alertify.alert(data.msg);
