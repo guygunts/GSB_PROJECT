@@ -260,7 +260,9 @@ function LoadCbo(Request $request)
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
-        'menu_action' => $data['menu_action']
+        'menu_action' => $data['menu_action'],
+        'page_id' => 1,
+        'page_size'=> 100
     );
 
     $url = URL_API . '/geniespeech/adminmenu';
