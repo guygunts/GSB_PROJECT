@@ -31,6 +31,7 @@ me.LoadCbo = function(val,menu,code,name) {
 						onNodeSelected: function(event, data) {
 							console.log(event)
 							console.log(data)
+							$('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 							// console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
 							if(data.level == 1){
 								if(!$('#'+val).treeview('getSelected')[0].nodes){
@@ -68,7 +69,7 @@ me.LoadCboSub = function(val,menu,code,index) {
 					// $('#'+val).treeview(true).addNode(data.item, $('#'+val).treeview('getSelected'))
 					// $('#'+val).treeview('removeNode', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 					$('#'+val).treeview('addNode', [ data.item, $('#'+val).treeview('getSelected'), index, { silent: true, ignoreChildren: false } ]);
-					$('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
+
 		break;
 		default:
 			alertify.alert(data.msg);
