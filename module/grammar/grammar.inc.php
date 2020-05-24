@@ -30,7 +30,7 @@ function View(Request $request)
 
     if ($response['code'] == 200) {
         $columnslist = $response['result'];
-        $datas = $response['result']['data'];
+        $datas = $response['data'];
 
         $column[0]['className'] = 'text-center';
         $column[0]['title'] = 'No';
