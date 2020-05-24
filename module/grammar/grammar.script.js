@@ -44,6 +44,9 @@ me.LoadCbo = function(val,menu,code,name) {
 							if(data.level == 1){
 								if(!data.nodes){
 									me.LoadCboSub('tree','getsubcategory',data.id,data.index);
+								}else{
+									$('#'+val).treeview('removeNode', [ data.nodes, { silent: true } ]);
+									me.LoadCboSub('tree','getsubcategory',data.id,data.index);
 								}
 								me.LoadData(me.action.menu,data.id,1,30);
 							}else if(data.level == 2){
