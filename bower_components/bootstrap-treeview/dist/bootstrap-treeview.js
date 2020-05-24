@@ -1006,7 +1006,7 @@
 							|| node.tagsClass
 							|| this._options.tagsClass
 						)
-						.append(
+						.attr(
 							(typeof tag === 'object' ? tag.id : undefined)
 							|| id
 						)
