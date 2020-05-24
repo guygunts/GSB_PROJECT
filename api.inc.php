@@ -25,7 +25,6 @@ function Login(Request $request)
         'password' => $data['password'],
         'lang' => $data['lang'],
         'authen_type' => 1
-
     );
 
 
