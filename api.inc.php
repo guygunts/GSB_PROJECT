@@ -9,7 +9,7 @@ function Login(Request $request)
 
 
     parse_str($request->getPost()->toString(), $data);
-    PrintR($data);
+
 
     $data['lang'] = 'th';
     unset($_SESSION[OFFICE]);
@@ -31,6 +31,8 @@ function Login(Request $request)
 
     $url = URL_API . '/geniespeech/login';
     $response = curlpost($url, $params);
+
+    PrintR($response);
 
 
     if ($response['code'] == 200) {
