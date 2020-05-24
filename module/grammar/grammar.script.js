@@ -26,7 +26,7 @@ me.LoadCbo = function(val,menu,code,name) {
 			switch (data.success) {
 				case "COMPLETE":
 					$('#'+val).treeview({
-
+						allowReselect:true,
 						data: data.item,
 						onNodeSelected: function(event, data) {
 							console.log(event)
@@ -217,6 +217,10 @@ me.LoadData = function(menu,id,page_id,page_size,readd=''){
 		}
 	});
 };
+
+me.format = function (rowData) {
+	return '<div class="col-md-10" style="margin: 0 auto;float: none;padding: 10px;"><table id="' + rowData.name.replace(' ', '-') + '" class="table table-yellow table-bordered table-striped table-condensed dataTable" style="width: 100%;"></table></div>';
+}
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/
