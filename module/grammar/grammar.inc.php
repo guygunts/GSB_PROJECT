@@ -258,10 +258,7 @@ function LoadCbo(Request $request)
 
     global $token;
 
-    $result['data'] = array();
-
     parse_str($request->getPost()->toString(), $data);
-
 
     $params = array(
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
