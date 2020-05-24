@@ -68,7 +68,7 @@ me.LoadCboSub = function(val,menu,code,index) {
 					// $('#'+val).treeview(true).addNode(data.item, $('#'+val).treeview('getSelected'))
 					// $('#'+val).treeview('removeNode', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 					$('#'+val).treeview('addNode', [ data.item, $('#'+val).treeview('getSelected'), index, { silent: true, ignoreChildren: false } ]);
-					$('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
+					$('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
 		break;
 		default:
 			alertify.alert(data.msg);
