@@ -1555,7 +1555,7 @@ function curlpostmain($url, $params)
     $response = curl_exec($ch);
     curl_close($ch);
     if ($response) {
-        $response = json_encode($response);
+        $response = json_decode($response,true);
     } else {
         $response = array();
     }

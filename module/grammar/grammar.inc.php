@@ -259,18 +259,17 @@ function LoadCbo(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
-        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
+        'project_id' => 1,
         'menu_action' => $data['menu_action'],
         'page_id' => 1,
         'page_size'=> 100
     );
 
-    PrintR($params);
+
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlpostmain($url, $params);
-    PrintR($response);
-    exit;
+
     if ($response['data']) {
 
         /** @noinspection PhpUnusedLocalVariableInspection */
