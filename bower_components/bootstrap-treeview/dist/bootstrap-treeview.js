@@ -1010,6 +1010,10 @@
 							(typeof tag === 'object' ? tag.text : undefined)
 							|| tag
 						)
+						.append(
+							(typeof tag === 'object' ? tag.id : undefined)
+							|| id
+						)
 					);
 			}, this));
 		}
