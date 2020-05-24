@@ -16,5 +16,5 @@ require_once "func.php";
 //header("Strict-Transport-Security: max-age=631138519; includeSubDomains");
 //header("Content-Type: text/html; charset=UTF-8");
 //header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: origin, x-requested-with, content-type, authorization, access-control-allow-headers");
+//header("Access-Control-Allow-Headers: origin, x-requested-with, content-type, authorization, access-control-allow-headers");
 
