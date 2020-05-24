@@ -32,9 +32,10 @@ function View(Request $request)
         $columnslist = $response['result'];
         $datas = $response['data'];
 
-        $column[0]['className'] = 'text-center';
-        $column[0]['title'] = 'No';
-        $column[0]['data'] = 'no';
+        $column[0]['className'] = 'details-control';
+        $column[0]['title'] = '';
+        $column[0]['data'] = null;
+        $column[0]['defaultContent'] = '';
 
         $columnslist[0]['column_field'] = 'user_question';
         $columnslist[1]['column_field'] = 'intent_tag';
@@ -54,11 +55,18 @@ function View(Request $request)
         $column[$m]['title'] = '';
         $column[$m]['data'] = 'btn';
 
+        $column[($m+1)]['className'] = 'text-center';
+        $column[($m+1)]['title'] = 'Sentence';
+        $column[($m+1)]['data'] = 'sentence';
+
         $permiss = LoadPermission();
 
         foreach ((array)$datas as $i => $item) {
             $btn = '';
+            $btnsuntence = '';
 
+            $item['DT_RowId'] = 'row_' . MD5($item[$columns[2]['data']]);
+            $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
             $datalist[$i]['no'] = ($i + 1);
 
             foreach ((array)$columns as $v => $value) {
@@ -66,6 +74,15 @@ function View(Request $request)
 
             }
 
+            $vartiation = array();
+            if (count($item['variation']) > 0) {
+                foreach ($item['variation'] as $z => $itemsub) {
+
+                    $vartiation[$z] = $itemsub;
+                    $vartiation[$z]['name'] = 'subrow_' . $z . '_' . $i;
+                }
+            }
+            $datalist[$i]['variation'] = json_encode($vartiation, JSON_HEX_APOS);
 
             $dataattr = array();
             $dataattr[$i] = $item;
@@ -73,12 +90,15 @@ function View(Request $request)
 
             if ($permiss[2]) {
                 $btn .= '<button data-code="' . $item['function_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                $btnsuntence .= '<button data-code="' . $item['category_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+
             }
             if ($permiss[3]) {
                 $btn .= '<button onclick="me.Del(' . $item['function_id'] . ')"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
             }
 
             $datalist[$i]['btn'] = $btn;
+            $datalist[$i]['sentence'] = $btnsuntence;
 
         }
 

@@ -106,7 +106,11 @@ me.LoadData = function(menu,id,page_id,page_size,readd=''){
 								buttons: [{
 									extend: 'colvis',
 									columnText: function ( dt, idx, title ) {
-										return (idx+1)+': '+(title?title:'Action');
+										if(idx == 0){
+											return (idx+1)+': Variation';
+										}else{
+											return (idx+1)+': '+(title?title:'Action');
+										}
 									}
 								}],
 								columnDefs: [
@@ -120,8 +124,19 @@ me.LoadData = function(menu,id,page_id,page_size,readd=''){
 										"targets": -1,
 										"searchable": false,
 										"orderable": false
+									},
+									{
+										"width": "5%",
+										"targets": -2,
+										"searchable": false,
+										"orderable": false
 									}
 								],
+								createdRow: function( row, data, dataIndex ) {
+									// Set the data-status attribute, and add a class
+									$( row ).find('td:eq(0)')
+										.attr('data-name', data.variation);
+								},
 								retrieve: true,
 								deferRender: true,
 								stateSave: true,
@@ -147,6 +162,51 @@ me.LoadData = function(menu,id,page_id,page_size,readd=''){
 
 						// Toggle the visibility
 						column.visible( ! column.visible() );
+					} );
+
+					$('#tbView tbody').on('click', 'td.details-control', function () {
+						var tr = $(this).closest('tr');
+						var row = me.table.row( tr );
+						var rowData = JSON.parse($(tr).find('td:eq(0)').attr('data-name'));
+
+						if ( row.child.isShown() ) {
+							// This row is already open - close it
+							row.child.hide();
+							tr.removeClass('shown');
+
+							// Destroy the Child Datatable
+							$('#' + rowData[0].name.replace(' ', '-')).DataTable().destroy();
+						}
+						else {
+							// Open this row
+							row.child(me.format(rowData[0])).show();
+							var id = rowData[0].name.replace(' ', '-');
+
+
+							me.tablesub = $('#' + id)
+								.addClass('nowrap')
+								.removeAttr('width').DataTable({
+									dom: "t",
+									data: rowData,
+									columns: [
+										{ data: "concept_result", title: 'Concept Result', className: 'text-center' },
+										{ data: "variation_text", title: 'Variation', className: 'text-center' },
+										{ data: "active", title: 'Active', className: 'text-center' },
+									],
+									iDisplayLength : page_size,
+									ordering: false,
+									retrieve: true,
+									deferRender: true,
+									stateSave: true,
+									scrollX: true,
+									pageLength: page_size,
+									lengthMenu: [[ page_size, (page_size * 2), -1 ],[ page_size, (page_size * 2), 'All' ]]
+
+								});
+
+							tr.addClass('shown');
+							me.tablesub.columns.adjust().draw('true');
+						}
 					} );
 
 					break;
