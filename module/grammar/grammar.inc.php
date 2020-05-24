@@ -303,10 +303,9 @@ function LoadCbo(Request $request)
         foreach ((array)$datas as $i => $item) {
             $datalist[$i]['text'] =$item[$data['name']];
             $datalist[$i]['id'] =$item[$data['code']];
-            $datalist[$i]['nodes'] = [];
             $datalist[$i]['checkable'] = false;
             $datalist[$i]['lazyLoad'] = true;
-            $datalist[$i]['tags'] = ['available'];
+            $datalist[$i]['tags'] = ['available',array('text'=>'not available','class'=>'disabled')];
 //            $datalist[$i]['tags'] = ['<button class="btn main" type="button" id="main'.$item['category_id'].'"></button>'];
         }
 
