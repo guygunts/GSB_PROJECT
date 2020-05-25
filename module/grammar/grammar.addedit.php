@@ -49,8 +49,8 @@
                                         style="color:red">*</small></label>
                             <select id="msubintent-type" name="subintent[zero][type]"
                                     class="form-control subintent-type empty" required>
-                                <option value="0">Robust</option>
                                 <option value="1" selected>Static</option>
+                                <option value="2">Robust</option>
                             </select>
                         </div>
                         <div class="form-group col-md-12">

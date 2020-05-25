@@ -64,11 +64,21 @@ me.LoadCbo = function (val, menu, code, name) {
                             console.log(node)
                             if (node.level == 1) {
                                 $('#frm_addcategory input[name="parentcategory_id"]').val('');
-                                $('#add-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
-                            }else if(node.level == 2){
+                                $('#add-modal-form').modal({
+                                    backdrop: 'static',
+                                    keyboard: true,
+                                    show: true,
+                                    handleUpdate: true
+                                });
+                            } else if (node.level == 2) {
                                 $('#frm_addcategory input[name="category_id"]').val(node.main);
                                 $('#frm_addcategory input[name="parentcategory_id"]').val(node.id);
-                                $('#add-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+                                $('#add-modal-form').modal({
+                                    backdrop: 'static',
+                                    keyboard: true,
+                                    show: true,
+                                    handleUpdate: true
+                                });
 
                             }
                         }
@@ -130,7 +140,19 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                     if (readd) {
                         // me.table.clear();
                         // var dataold = me.table.rows().data();
+                        $('td.details-control').each(function () {
+                            var tr = $(this).closest('tr');
+                            var row = me.table.row(tr);
+                            if (row.child.isShown()) {
+                                // This row is already open - close it
+                                row.child.hide();
+                                tr.removeClass('shown');
+                            }
+                        })
+
                         me.applyData(me.table, data.data, false);
+
+                        me.applyData(me.tablesub, data.data, false);
                         // me.table.clear().draw();
                         // me.table.rows.add(data.data).draw();
                     } else {
@@ -288,7 +310,7 @@ me.Add = function () {
                                     alertify.success(data.msg);
                                     // $('#btnsearchsubmit').click();
                                     // me.table.clear().draw();
-                                    me.LoadData(me.action.menu,me.code, 1, 30, 1);
+                                    me.LoadData(me.action.menu, me.code, 1, 30, 1);
                                     break;
                                 default:
                                     alertify.error(data.msg);
@@ -351,22 +373,22 @@ me.AddSub = function () {
 me.Enable = function (e) {
     var code = $(e).attr('data-code');
     var active = $(e).attr('data-type');
-    var typename = ['Inactive','Active'];
+    var typename = ['Inactive', 'Active'];
     $('.modal').modal('hide');
-    alertify.confirm("Do you want "+typename[active],
+    alertify.confirm("Do you want " + typename[active],
         function () {
             $.ajax({
                 url: me.url + '-Enable',
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                data: { intent_id : code , active : active , subintent_id : '' , menu_action : 'updateIntentActiveStatus'},
+                data: {intent_id: code, active: active, subintent_id: '', menu_action: 'updateIntentActiveStatus'},
                 success: function (data) {
                     switch (data.success) {
                         case 'COMPLETE':
                             $('.modal').modal('hide');
                             alertify.success(data.msg);
-                            me.LoadData(me.action.menu, me.code, 1, 30,1);
+                            me.LoadData(me.action.menu, me.code, 1, 30, 1);
                             break;
                         default:
                             alertify.error(data.msg);
@@ -380,26 +402,26 @@ me.Enable = function (e) {
         });
 };
 
-me.OpenPopup = function(){
+me.OpenPopup = function () {
     var cloneCount = $('div.subintentsub').length;
     var cloneCount2 = $('input[name="subintent-active"]').length;
     var maininput = me.variation;
     console.log(maininput);
     var mapObj = {
-        'dvsubintent':"dvsubintent",
-        'msubintent-subintent_tag':"msubintent-subintent_tag",
-        'msubintent-type':"msubintent-type",
-        'msubintent-active':"msubintent-active",
-        'zero':"",
+        'dvsubintent': "dvsubintent",
+        'msubintent-subintent_tag': "msubintent-subintent_tag",
+        'msubintent-type': "msubintent-type",
+        'msubintent-active': "msubintent-active",
+        'zero': "",
     };
-    maininput = maininput[0].outerHTML.replace(/dvsubintent|msubintent-subintent_tag|msubintent-type|msubintent-active|zero/g, function(matched){
-        return mapObj[matched]+cloneCount;
+    maininput = maininput[0].outerHTML.replace(/dvsubintent|msubintent-subintent_tag|msubintent-type|msubintent-active|zero/g, function (matched) {
+        return mapObj[matched] + cloneCount;
     });
 
-    if(cloneCount == 0){
+    if (cloneCount == 0) {
 
         $('div[id=subintent]').append(maininput);
-    }else{
+    } else {
         $('div[id^=dvsubintent]').last().after(maininput);
 
     }
@@ -409,19 +431,19 @@ me.OpenPopup = function(){
     //     trimValue: true
     // });
 
-    $('#dvsubintent'+cloneCount+' input[type="checkbox"]').iCheck({
+    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
         labelHover: true,
         increaseArea: '20%' // optional
     });
-    $('#dvsubintent'+cloneCount+' input[type="checkbox"]').val(1);
-    $('#dvsubintent'+cloneCount+' input[type="checkbox"]').iCheck('check');
+    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').val(1);
+    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').iCheck('check');
 
 };
 
 me.New = function () {
-    if(me.code == '')return false;
+    if (me.code == '') return false;
 
     me.ClearData();
     $('.btn_edit').hide();
@@ -449,9 +471,9 @@ me.ClearData = function () {
 
 };
 
-me.RemoveSub = function (e){
+me.RemoveSub = function (e) {
     var code = $(e).attr('data-code');
-    $('#'+code).remove();
+    $('#' + code).remove();
 }
 /*================================================*\
   :: DEFAULT ::
