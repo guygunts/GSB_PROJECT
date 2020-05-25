@@ -45,6 +45,7 @@
                 <div class="box-body">
 
                     <table id="tbView" class="table table-bordered table-striped dataTable" style="width: 100%"></table>
+                    <table id="tbViewSub" class="table table-bordered table-striped dataTable" style="width: 100%;display:none"></table>
 
                 </div>
                 <!-- /.box-body -->

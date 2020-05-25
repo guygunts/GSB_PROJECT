@@ -345,6 +345,133 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
     });
 };
 
+me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, page_size, readd=''){
+
+    $.ajax({
+        url: me.url + '-ViewSub',
+        type:'POST',
+        dataType:'json',
+        cache:false,
+        data:{ menu_action : menu , category_id : category_id , intent_id : intent_id , subintent_id : subintent_id , page_id : page_id , page_size : 10000},
+        success:function(data){
+            switch(data.success){
+                case 'COMPLETE' :
+                    $('#tbViewSub_wrapper').css('display','');
+                    $('#frmsearch').css('display','none');
+                    console.log(data.data.length);
+                    if(data.data.length == 0){
+                        alertify.alert('No data, Please select other date');
+                        return false;
+                    }
+
+                    if(Object.entries(me.tablesub).length > 0){
+                        readd = 1
+                    }
+
+                    if(readd){
+                        me.tablesub.clear().draw();
+                        me.tablesub.rows.add(data.data).draw();
+
+                    }else{
+
+                        me.tablesub = $('#tbViewSub')
+                            .addClass('nowrap')
+                            .removeAttr('width')
+                            .DataTable({
+                                dom: 'Bfrtip',
+                                buttons: [
+                                    // 'excelHtml5',
+                                    {
+                                        text: 'ย้อนกลับ',
+                                        className: 'float-left',
+                                        action: function ( e, dt, node, config ) {
+
+                                            me.loading = true;
+
+                                            var page_size = $('#page_size').val();
+                                            var compare = $('#compare').val();
+                                            var txtsearch = $('#text_search').val();
+                                            var start = $('#start_date').data().date;
+                                            var stop = $('#end_date').data().date;
+                                            var cnt = 0;
+
+                                            if(start !== undefined){
+                                                ++cnt;
+                                            }
+                                            if(stop !== undefined){
+                                                ++cnt;
+                                            }
+
+                                            if(cnt != 2)return false;
+                                            // me.tablesub.clear().destroy();
+                                            // me.table.clear().destroy();
+                                            // $('#tbViewSub').empty();
+                                            // $('#tbView').empty();
+
+                                            $('#tbViewSub_wrapper').css('display','none');
+                                            $('#tbView_wrapper').css('display','');
+
+                                            // me.table.clear();
+                                            me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
+                                            // $('#btnsearchsubmit').click();
+                                        }
+                                    }
+                                ],
+                                columnDefs: [
+                                    {
+                                        "width": "5%",
+                                        "targets": 0,
+                                        "searchable": false
+                                    }
+                                ],
+                                bFilter: false,
+                                searching: false,
+                                retrieve: true,
+                                deferRender: true,
+                                stateSave: true,
+                                iDisplayLength : page_size,
+                                responsive: false,
+                                scrollX: true,
+                                pageLength: page_size,
+                                paging: false,
+                                bInfo: false,
+                                lengthChange:false,
+                                data: data.data,
+                                columns: data.columns
+                            });
+
+                    }
+
+                    me.tablesub.columns.adjust().draw('true');
+                    me.tablesub.buttons(0, null).container().addClass('col');
+
+                    if(data.name){
+                        $('title').text(data.name);
+                    }
+                    $('#frmresult').css('display','');
+                    $('#chnn').val(data.chnn);
+
+
+                    $('a.toggle-vis').on( 'click', function (e) {
+                        e.preventDefault();
+
+                        // Get the column API object
+                        var column = me.tablesub.column( $(this).attr('data-column') );
+
+                        // Toggle the visibility
+                        column.visible( ! column.visible() );
+                    } );
+                    $('#tbView_wrapper').css('display','none');
+                    $('#tbViewSub').css('display','');
+                    break;
+                default :
+                    alertify.alert(data.msg);
+                    break;
+            }
+        }
+    });
+};
+
 me.format = function (rowData) {
     return '<div class="col-md-10" style="margin: 0 auto;float: none;padding: 10px;"><table id="' + rowData.name.replace(' ', '-') + '" class="table table-yellow table-bordered table-striped table-condensed dataTable" style="width: 100%;"></table></div>';
 }
@@ -754,6 +881,12 @@ me.Del = function (e) {
         function () {
             alertify.error('Cancel Delete');
         });
+};
+
+me.LoadSentence = function (e) {
+    var code = $(e).attr('data-code');
+    var attr = JSON.parse($(e).attr('data-item'));
+    me.LoadDataSub('getsentencebyintent',me.code,attr.intent_id,0,1,30);
 };
 /*================================================*\
   :: DEFAULT ::
