@@ -78,7 +78,7 @@
             <div class="modal-footer">
 
                 <?php if (isset($permiss)) {
-                    if ($permiss[1]) { ?>
+                    if ($permiss[2]) { ?>
                         <button type="button" id="btn_edit" class="btn_edit btn btn-danger btn-rounded btn-sm"
                                 onclick="me.EditSub();" title="Edit"><i class="fa fa-save"></i> Edit
                         </button>
