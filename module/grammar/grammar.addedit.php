@@ -24,16 +24,16 @@
                 </div>
                 <div class="form-group">
                     <button type="button" onclick="me.OpenPopup();" class="btn btn-info btn_add btn-xs"
-                            id="addvariation"><i
+                            id="addsubintent"><i
                                 class="fa fa-plus"></i> Add
                         Sub
                     </button>
                 </div>
             </div>
 
-            <div class="col-md-12 sub" id="variation">
+            <div class="col-md-12 sub" id="subintent">
                 <div style="margin-left: 20px;margin-right: 20px;padding:20px;border: 1px dashed;" id="dvsubintent"
-                     class="variationsub row">
+                     class="subintentsub row">
                     <div class="col-md-12">
                         <div class="form-group col-md-6">
                             <!--                            <input name="variation[zero][concept_variation_id]" id="mconcept_variation_id" type="hidden">-->

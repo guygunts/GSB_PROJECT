@@ -334,7 +334,7 @@ me.Enable = function (e) {
 };
 
 me.OpenPopup = function(){
-    var cloneCount = $('div.variationsub').length;
+    var cloneCount = $('div.subintentsub').length;
     var cloneCount2 = $('input[name="subintent-active"]').length;
     var maininput = me.variation;
     console.log(maininput);
@@ -351,7 +351,7 @@ me.OpenPopup = function(){
 
     if(cloneCount == 0){
 
-        $('div[id=variation]').append(maininput);
+        $('div[id=subintent]').append(maininput);
     }else{
         $('div[id^=dvsubintent]').last().after(maininput);
 
