@@ -78,6 +78,7 @@
 		onNodeRendered: undefined,
 		onRendered: undefined,
 		onDestroyed: undefined,
+		onAddButtonClicked: undefined,
 
 		onNodeChecked: undefined,
 		onNodeCollapsed: undefined,
@@ -1010,23 +1011,23 @@
 			}, this));
 		}
 
-		// Add tags as badges
-		if (this._options.showBtn && node.tags) {
-			$.each(node.tags, $.proxy(function addTag(id, tag) {
-				node.$el
-					.append(this._template.btn.clone()
-						.addClass(
-							(typeof tag === 'object' ? tag.class : undefined)
-							|| node.tagsClass
-							|| this._options.tagsClass
-						)
-
-					);
-				if(id == 'id'){
-					node.$el.attr('id',tag.id);
-				}
-			}, this));
-		}
+		// // Add tags as badges
+		// if (this._options.showBtn && node.tags) {
+		// 	$.each(node.tags, $.proxy(function addTag(id, tag) {
+		// 		node.$el
+		// 			.append(this._template.btn.clone()
+		// 				.addClass(
+		// 					(typeof tag === 'object' ? tag.class : undefined)
+		// 					|| node.tagsClass
+		// 					|| this._options.tagsClass
+		// 				)
+		//
+		// 			);
+		// 		if(id == 'id'){
+		// 			node.$el.attr('id',tag.id);
+		// 		}
+		// 	}, this));
+		// }
 		node.$el.append(this._template.button.add.clone());
 		// Set various node states
 		this._setSelected(node, node.state.selected);
@@ -1214,7 +1215,7 @@
 		image: $('<span class="image"></span>'),
 		badge: $('<span></span>'),
 		button: {
-			add: $('<button class="btn icon"><i class="fa fa-plus"></i></button>')
+			add: $('<button class="btn icon btn-sm btn-primary expand-icon"></button>')
 		}
 	};
 
