@@ -1214,7 +1214,7 @@
 		image: $('<span class="image"></span>'),
 		badge: $('<span></span>'),
 		button: {
-			add: $('<button class="btn icon-plus node-hidden"></button>')
+			add: $('<button class="btn node-hidden"><i class="fa fa-plus"></i></button>')
 		}
 	};
 
