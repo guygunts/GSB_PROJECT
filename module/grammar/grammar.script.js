@@ -8,7 +8,7 @@
 \*================================================*/
 me.action.main = 'category_id';
 me.action.menu = 'getintentbycateid';
-me.action.add = 'addfunction';
+me.action.add = 'addintent';
 me.action.edit = 'updatefunction';
 me.action.del = 'deletefunction';
 me.variation = $('div#dvsubintent').clone();
@@ -427,6 +427,7 @@ me.New = function () {
     $('.btn_edit').hide();
     $('.btn_add').show();
     $('#frm_addedit input[name="menu_action"]').val(me.action.add);
+    $('#frm_addedit input[name="category_id"]').val(me.code);
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 
