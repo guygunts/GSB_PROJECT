@@ -722,6 +722,39 @@ me.Load = function (e) {
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 
 };
+
+me.Del = function (e) {
+    var code = $(e).attr('data-code');
+
+    alertify.confirm("Do you want Delete.",
+        function () {
+            $.ajax({
+                url: me.url + '-Del',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: { 'code' : code , 'menu_action' : 'deleteintent' , 'main' : 'intent_id' , 'category_id' : me.code },
+                success: function (data) {
+                    switch (data.success) {
+                        case 'COMPLETE':
+                            $('.modal').modal('hide');
+                            alertify.success(data.msg);
+                            // $('#btnsearchsubmit').click();
+                            // me.table.row('#'+attr.DT_RowId).remove().draw();
+
+                            me.LoadData(me.action.menu, me.code, 1, 30, 1);
+                            break;
+                        default:
+                            alertify.error(data.msg);
+                            break;
+                    }
+                }
+            });
+        },
+        function () {
+            alertify.error('Cancel Delete');
+        });
+};
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/
