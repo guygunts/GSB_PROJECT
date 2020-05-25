@@ -6,7 +6,7 @@ function ShowActive($code, $status){
     if($status == 0){
         return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="'.$code.'" onclick="me.Enable(this)">Inactive</button>';
     }elseif($status == 1){
-        return '<button type="button" class="btn btn-success btn-xs" data-type="0" data-code="'.$code.'" onclick="me.Enable(this)">Active</button>';
+        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="'.$code.'" onclick="me.Enable(this)">Active</button>';
     }
 }
 
@@ -14,7 +14,7 @@ function ShowActiveSub($code, $status){
     if($status == 0){
         return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="'.$code.'" onclick="me.EnableSub(this)">Inactive</button>';
     }elseif($status == 1){
-        return '<button type="button" class="btn btn-success btn-xs" data-type="0" data-code="'.$code.'" onclick="me.EnableSub(this)">Active</button>';
+        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="'.$code.'" onclick="me.EnableSub(this)">Active</button>';
     }
 }
 
