@@ -37,7 +37,7 @@
                      class="subintentsub row">
                     <div class="col-md-12">
                         <div class="form-group col-md-6">
-                            <!--                            <input name="variation[zero][concept_variation_id]" id="mconcept_variation_id" type="hidden">-->
+                            <input name="subintent[zero][subintent_id]" id="msubintent_id" type="hidden">
                             <label for="subintent-subintent_tag" class="control-label">Sub Intent TAG <small
                                         style="color:red">*</small></label>
                             <input id="msubintent-subintent_tag" name="subintent[zero][subintent_tag]" type="text"

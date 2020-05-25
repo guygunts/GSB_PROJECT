@@ -326,7 +326,8 @@ function Edit(Request $request)
     $data['role_desc'] = $data['role_description'];
     $data['user_login'] = $user;
 
-    unset($data['role_description']);
+   PrintR($data);
+   exit;
 
 
     $url = URL_API . '/geniespeech/adminmenu';

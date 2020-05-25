@@ -396,6 +396,53 @@ me.Add = function () {
     }).click();
 };
 
+me.Edit = function () {
+    $('#btnsubmit').click(function (e) {
+        e.stopPropagation();
+        // if($('#variation-variation_text').attr('required') == 'required'){
+        //     if(!$('#variation-variation_text').val()){
+        //         $('#variation-variation_text').tagsinput('focus');
+        //         return false;
+        //     }
+        // }
+        $('form#frm_addedit').submit(function () {
+            var form = $(this);
+            $('.modal').modal('hide');
+            alertify.confirm("Do you want Edit.",
+                function () {
+                    $.ajax({
+                        url: me.url + '-Edit',
+                        type: 'POST',
+                        dataType: 'json',
+                        cache: false,
+                        data: form.serialize({
+                            checkboxesAsBools: true
+                        }),
+                        success: function (data) {
+                            switch (data.success) {
+                                case 'COMPLETE':
+                                    $('.modal').modal('hide');
+                                    alertify.success(data.msg);
+                                    // $('#btnsearchsubmit').click();
+                                    // me.table.clear().draw();
+                                    me.LoadData(me.action.menu, me.code, 1, 30, 1);
+                                    break;
+                                default:
+                                    alertify.error(data.msg);
+                                    break;
+                            }
+                        }
+                    });
+                },
+                function () {
+                    alertify.error('Cancel Add');
+                });
+
+        });
+
+    }).click();
+};
+
 me.AddSub = function () {
     $('#btnsubmitadd').click(function (e) {
         e.stopPropagation();
@@ -584,6 +631,7 @@ me.OpenPopupItem = function(data){
         data.type = 2
     }
 
+    $('#msubintent-id'+cloneCount).val(data.sub_intent_id);
     $('#msubintent-type'+cloneCount).val(data.type);
     $('#msubintent-subintent_tag'+cloneCount).val(data.sub_intent_tag);
     $('#msubintent-active'+cloneCount).val(data.active);
