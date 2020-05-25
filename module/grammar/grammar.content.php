@@ -3,7 +3,7 @@
         <div class="col-xs-4">
             <?php if (isset($permiss)) {
                 if ($permiss[1]) { ?>
-                    <div class="col-xs-12">
+                    <div class="well-sm">
                         <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
                                 title="<?php echo $permiss[1]['name']; ?>">
                             <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?> Category
