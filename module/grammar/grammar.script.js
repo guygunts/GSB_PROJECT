@@ -702,6 +702,7 @@ me.Load = function (e) {
     me.ClearData();
     var code = $(e).attr('data-code');
     var attr = JSON.parse($(e).attr('data-item'));
+    console.log(attr);
     var result = [];
 
     for(var i in attr)
@@ -709,6 +710,7 @@ me.Load = function (e) {
 
     ft.PutFormID('frm_addedit',result);
     $('#frm_addedit input[name="code"]').val(code);
+    $('#frm_addedit input[name="category_id"]').val(code);
     $('#frm_addedit input[name="menu_action"]').val(me.action.edit);
     $.each(attr.variation, function (i, result) {
         me.OpenPopupItem(result);
