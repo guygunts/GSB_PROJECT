@@ -55,8 +55,8 @@
                 <h5 class="modal-title" id="exampleModalCenterTitle">Add New Category</h5>
             </div>
             <div class="modal-body">
-                <form id="frm_addcategory" method="post" onsubmit="return false;">
-                    <button type="submit" style="display: none" id="btnsubmitadd"></button>
+                <form id="frm_editcategory" method="post" onsubmit="return false;">
+                    <button type="submit" style="display: none" id="btnsubmitedit"></button>
                     <input type="hidden" name="category_id">
                     <input type="hidden" name="menu_action" value="updatecategory">
                     <input type="hidden" name="parentcategory_id">
