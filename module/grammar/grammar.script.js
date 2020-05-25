@@ -96,9 +96,10 @@ me.LoadCbo = function (val, menu, code, name) {
                                     handleUpdate: true
                                 });
                             } else if (node.level == 2) {
-                                $('#frm_addcategory input[name="category_id"]').val(node.main);
-                                $('#frm_addcategory input[name="parentcategory_id"]').val(node.id);
-                                $('#add-modal-form').modal({
+                                $('#frm_editcategory input[name="category_name"]').val(node.text);
+                                $('#frm_editcategory input[name="category_id"]').val(node.id);
+                                $('#frm_editcategory input[name="active"]').val(node.active);
+                                $('#edit-modal-form').modal({
                                     backdrop: 'static',
                                     keyboard: true,
                                     show: true,
