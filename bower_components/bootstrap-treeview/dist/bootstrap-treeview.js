@@ -935,12 +935,12 @@
 
 		// Append .classes to the node
 		node.$el.addClass(node.class);
-		node.$el.append(this._template.button.add.clone());
-		node.$el.mouseenter(function(){
-			node.$el.children('button.btn').removeClass('node-hidden');
-		}).mouseleave(function(){
-			node.$el.children('button.btn').addClass('node-hidden');
-		});
+
+		// node.$el.mouseenter(function(){
+		// 	node.$el.children('button.btn').removeClass('node-hidden');
+		// }).mouseleave(function(){
+		// 	node.$el.children('button.btn').addClass('node-hidden');
+		// });
 		// Set the #id of the node if specified
 		if (node.id) {
 			node.$el.attr('id', node.id);
@@ -1027,7 +1027,7 @@
 				}
 			}, this));
 		}
-
+		node.$el.append(this._template.button.add.clone());
 		// Set various node states
 		this._setSelected(node, node.state.selected);
 		this._setChecked(node, node.state.checked);
