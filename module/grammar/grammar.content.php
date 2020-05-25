@@ -1,6 +1,6 @@
 <section class="content" id="content-viewlist">
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-xs-4">
             <div id="tree"></div>
         </div>
         <div class="col-xs-9">
