@@ -337,14 +337,13 @@ me.OpenPopup = function(){
     var maininput = me.variation;
     console.log(maininput);
     var mapObj = {
-        'dvvariation':"dvvariation",
-        'mvariation-variation_text':"mvariation-variation_text",
-        'mvariation-concept_result':"mvariation-concept_result",
-        'mvariation-active':"mvariation-active",
-        'mconcept_variation_id':"mconcept_variation_id",
+        'dvsubintent':"dvsubintent",
+        'msubintent-subintent_tag':"msubintent-subintent_tag",
+        'msubintent-type':"msubintent-type",
+        'msubintent-active':"msubintent-active",
         'zero':"",
     };
-    maininput = maininput[0].outerHTML.replace(/dvvariation|mvariation-variation_text|mvariation-concept_result|mvariation-active|zero|mconcept_variation_id/g, function(matched){
+    maininput = maininput[0].outerHTML.replace(/dvsubintent|msubintent-subintent_tag|msubintent-type|msubintent-active|zero|mconcept_variation_id/g, function(matched){
         return mapObj[matched]+cloneCount;
     });
 
@@ -352,26 +351,34 @@ me.OpenPopup = function(){
 
         $('div[id=variation]').append(maininput);
     }else{
-        $('div[id^=dvvariation]').last().after(maininput);
+        $('div[id^=dvsubintent]').last().after(maininput);
 
     }
     // console.log('after');
     // console.log(maininput);
-    $("#mvariation-variation_text"+cloneCount).tagsinput({
-        trimValue: true
-    });
+    // $("#mvariation-variation_text"+cloneCount).tagsinput({
+    //     trimValue: true
+    // });
 
-    $('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck({
+    $('#dvsubintent'+cloneCount+' input[type="checkbox"]').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
         labelHover: true,
         increaseArea: '20%' // optional
     });
-    $('#dvvariation'+cloneCount+' input[type="checkbox"]').val(1);
-    $('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck('check');
+    $('#dvsubintent'+cloneCount+' input[type="checkbox"]').val(1);
+    $('#dvsubintent'+cloneCount+' input[type="checkbox"]').iCheck('check');
 
+};
 
+me.New = function () {
+    if(me.code == '')return false;
 
+    me.ClearData();
+    $('.btn_edit').hide();
+    $('.btn_add').show();
+    $('#frm_addedit input[name="menu_action"]').val(me.action.add);
+    $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 /*================================================*\
   :: DEFAULT ::
