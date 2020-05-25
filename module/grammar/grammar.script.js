@@ -11,7 +11,7 @@ me.action.menu = 'getintentbycateid';
 me.action.add = 'addfunction';
 me.action.edit = 'updatefunction';
 me.action.del = 'deletefunction';
-me.variation = $('div#dvvariation').clone();
+me.variation = $('div#dvsubintent').clone();
 me.childEditors = {};  // Globally track created chid editors
 /*================================================*\
   :: FUNCTION ::
