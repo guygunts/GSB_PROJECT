@@ -1236,9 +1236,9 @@
 		image: $('<span class="image"></span>'),
 		badge: $('<span></span>'),
 		button: {
-			add: $('<button class="btn btn-add btn-sm btn-primary" style="float:right;line-height: 1 !important;"><span class="glyphicon glyphicon-plus"></span></button>'),
-			edit: $('<button class="btn btn-edit btn-sm btn-info" style="float:right;line-height: 1 !important;margin-right: 3px;"><span class="glyphicon glyphicon-edit"></span></button>'),
-			remove: $('<button class="btn btn-del btn-sm btn-danger" style="float:right;line-height: 1 !important;margin-right: 3px;"><span class="glyphicon glyphicon-remove"></span></button>'),
+			add: $('<button class="btn btn-add btn-sm btn-primary" style="float:right;margin-top: -5px"><span class="glyphicon glyphicon-plus"></span></button>'),
+			edit: $('<button class="btn btn-edit btn-sm btn-info" style="float:right;margin-right: 3px;margin-top: -5px"><span class="glyphicon glyphicon-edit"></span></button>'),
+			remove: $('<button class="btn btn-del btn-sm btn-danger" style="float:right;margin-right: 3px;margin-top: -5px"><span class="glyphicon glyphicon-remove"></span></button>'),
 		}
 	};
 
