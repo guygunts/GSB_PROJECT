@@ -580,11 +580,11 @@ me.OpenPopupItem = function(data){
 
 
 
-    $('#mubintent-type'+cloneCount).val(data.type);
-    $('#mdvsubintent-subintent_tag'+cloneCount).val(data.sub_intent_tag);
-    $('#mdvsubintent-active'+cloneCount).val(data.active);
+    $('#msubintent-type'+cloneCount).val(data.type);
+    $('#msubintent-subintent_tag'+cloneCount).val(data.sub_intent_tag);
+    $('#msubintent-active'+cloneCount).val(data.active);
     if(data.active == 1){
-        $('#mdvsubintent-active'+cloneCount).iCheck('check');
+        $('#msubintent-active'+cloneCount).iCheck('check');
     }
 
     // $("#mvariation-variation_text"+cloneCount).tagsinput({
