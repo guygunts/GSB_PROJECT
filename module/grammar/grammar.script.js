@@ -570,9 +570,9 @@ me.OpenPopupItem = function(data){
 
     if(cloneCount == 0){
 
-        $('div[id=variation]').append(maininput);
+        $('div[id=subintent]').append(maininput);
     }else{
-        $('div[id^=dvvariation]').last().after(maininput);
+        $('div[id^=dvsubintent]').last().after(maininput);
 
     }
     // console.log('after');
