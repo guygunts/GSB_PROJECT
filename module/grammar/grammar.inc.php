@@ -142,7 +142,7 @@ function View(Request $request)
 
                     }
                     if ($permiss[3]) {
-                        $btnsub .= '<button onclick="me.Del(' . $item['sub_intent_id'] . ')"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                        $btnsub .= '<button onclick="me.DelSub(' . $item['sub_intent_id'] . ')"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
                     }
 
 
