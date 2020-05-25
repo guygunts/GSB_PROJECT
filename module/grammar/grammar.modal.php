@@ -79,8 +79,8 @@
 
                 <?php if (isset($permiss)) {
                     if ($permiss[1]) { ?>
-                        <button type="button" id="btn_add" class="btn_add btn btn-danger btn-rounded btn-sm"
-                                onclick="me.AddSub();" title="Add"><i class="fa fa-plus"></i> Add
+                        <button type="button" id="btn_edit" class="btn_edit btn btn-danger btn-rounded btn-sm"
+                                onclick="me.EditSub();" title="Edit"><i class="fa fa-save"></i> Edit
                         </button>
                     <?php }
                 }

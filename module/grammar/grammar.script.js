@@ -88,6 +88,7 @@ me.LoadCbo = function (val, menu, code, name) {
                             if (node.level == 1) {
                                 $('#frm_editcategory input[name="category_name"]').val(node.text);
                                 $('#frm_editcategory input[name="category_id"]').val(node.id);
+                                $('#frm_editcategory input[name="active"]').val(node.active);
                                 $('#edit-modal-form').modal({
                                     backdrop: 'static',
                                     keyboard: true,
