@@ -3,12 +3,12 @@
         <div class="col-xs-4">
             <?php if (isset($permiss)) {
                 if ($permiss[1]) { ?>
-            <div class="col-xs-12">
-                    <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
-                            title="<?php echo $permiss[1]['name']; ?>">
-                        <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?> Category
-                    </button>
-            </div>
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
+                                title="<?php echo $permiss[1]['name']; ?>">
+                            <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?> Category
+                        </button>
+                    </div>
                 <?php }
             } ?>
             <div id="tree"></div>
@@ -30,7 +30,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
 
-                        <table id="tbView" class="table table-bordered table-striped dataTable" style="width: 100%"></table>
+                    <table id="tbView" class="table table-bordered table-striped dataTable" style="width: 100%"></table>
 
                 </div>
                 <!-- /.box-body -->
