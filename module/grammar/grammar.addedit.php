@@ -12,7 +12,7 @@
                            class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="intent_tag" class="control-label">Intent Tag</label>
+                    <label for="intent_tag" class="control-label">Intent TAG</label>
                     <input id="intent_tag" name="intent_tag" type="text" required="required" maxlength="255"
                            class="form-control">
                 </div>
@@ -37,7 +37,7 @@
                     <div class="col-md-12">
                         <div class="form-group col-md-6">
                             <!--                            <input name="variation[zero][concept_variation_id]" id="mconcept_variation_id" type="hidden">-->
-                            <label for="subintent-subintent_tag" class="control-label">Intent TAG <small
+                            <label for="subintent-subintent_tag" class="control-label">Sub Intent TAG <small
                                         style="color:red">*</small></label>
                             <input id="msubintent-subintent_tag" name="subintent[zero][subintent_tag]" type="text"
                                    maxlength="100"
