@@ -335,7 +335,7 @@ me.Enable = function (e) {
 
 me.OpenPopup = function(){
     var cloneCount = $('div.variationsub').length;
-    var cloneCount2 = $('input[name="variation-active"]').length;
+    var cloneCount2 = $('input[name="subintent-active"]').length;
     var maininput = me.variation;
     console.log(maininput);
     var mapObj = {
@@ -381,6 +381,24 @@ me.New = function () {
     $('.btn_add').show();
     $('#frm_addedit input[name="menu_action"]').val(me.action.add);
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+};
+
+me.ClearData = function () {
+    $('input[name="subintent-active"]').iCheck('destroy');
+    $('#frm_addedit input').val('');
+    $('#frm_addedit select option:eq(0)').prop("selected", true);
+    $('#frm_addedit textarea').val('');
+    $('#frm_addedit input[type="checkbox"]').iCheck('uncheck');
+    $('#frm_addedit input[type="checkbox"].active').val(1);
+    $('#frm_addedit input[type="checkbox"].active').iCheck('check');
+    $('div#variation').html('');
+
+    // $('#frm_addedit .sub').css('display','');
+    // me.DelStar('variation-concept_result');
+    // me.DelStar('variation-variation_text');
+    // $('#variation-concept_result').attr('required',false);
+    // $('#variation-variation_text').attr('required',false);
+
 };
 /*================================================*\
   :: DEFAULT ::
