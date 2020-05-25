@@ -323,7 +323,7 @@ function Edit(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-    $data['role_desc'] = $data['role_description'];
+//    $data['role_desc'] = $data['role_description'];
     $data['user_login'] = $user;
 
    PrintR($data);

@@ -606,12 +606,13 @@ me.OpenPopupItem = function(data){
     console.log(data);
     var mapObj = {
         'dvsubintent': "dvsubintent",
+        'msubintent-subintent_id': "msubintent-subintent_id",
         'msubintent-subintent_tag': "msubintent-subintent_tag",
         'msubintent-type': "msubintent-type",
         'msubintent-active': "msubintent-active",
         'zero': "",
     };
-    maininput = maininput[0].outerHTML.replace(/dvsubintent|msubintent-subintent_tag|msubintent-type|msubintent-active|zero/g, function (matched) {
+    maininput = maininput[0].outerHTML.replace(/dvsubintent|msubintent-subintent_id|msubintent-subintent_tag|msubintent-type|msubintent-active|zero/g, function (matched) {
         return mapObj[matched] + cloneCount;
     });
 
