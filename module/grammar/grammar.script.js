@@ -740,7 +740,7 @@ me.Del = function (e) {
                             $('.modal').modal('hide');
                             alertify.success(data.msg);
                             // $('#btnsearchsubmit').click();
-                            // me.table.row('#'+attr.DT_RowId).remove().draw();
+                            me.table.row('#'+attr.DT_RowId).remove().draw();
 
                             me.LoadData(me.action.menu, me.code, 1, 30, 1);
                             break;
