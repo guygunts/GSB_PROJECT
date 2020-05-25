@@ -59,6 +59,9 @@ me.LoadCbo = function (val, menu, code, name) {
                         onAddButtonClicked: function (event, node) {
                             console.log(event)
                             console.log(node)
+                            if (data.level == 1) {
+                                $('#add-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+                            }
                         }
 
                     });
