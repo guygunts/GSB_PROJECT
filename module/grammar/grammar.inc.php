@@ -423,6 +423,7 @@ function LoadCbo(Request $request)
         foreach ((array)$datas as $i => $item) {
             $datalist[$i]['text'] =$item[$data['name']];
             $datalist[$i]['id'] =$item[$data['code']];
+            $datalist[$i]['active'] =$item['active'];
             $datalist[$i]['checkable'] = false;
             $datalist[$i]['lazyLoad'] = true;
 //            $datalist[$i]['tags'] = ['test'];

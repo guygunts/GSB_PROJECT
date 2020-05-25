@@ -81,6 +81,30 @@ me.LoadCbo = function (val, menu, code, name) {
                                 });
 
                             }
+                        },
+                        onEditButtonClicked: function (event, node) {
+                            console.log(event)
+                            console.log(node)
+                            if (node.level == 1) {
+                                $('#frm_editcategory input[name="category_name"]').val(node.text);
+                                $('#frm_editcategory input[name="category_id"]').val(node.id);
+                                $('#edit-modal-form').modal({
+                                    backdrop: 'static',
+                                    keyboard: true,
+                                    show: true,
+                                    handleUpdate: true
+                                });
+                            } else if (node.level == 2) {
+                                $('#frm_addcategory input[name="category_id"]').val(node.main);
+                                $('#frm_addcategory input[name="parentcategory_id"]').val(node.id);
+                                $('#add-modal-form').modal({
+                                    backdrop: 'static',
+                                    keyboard: true,
+                                    show: true,
+                                    handleUpdate: true
+                                });
+
+                            }
                         }
 
                     });
@@ -440,6 +464,17 @@ me.OpenPopup = function () {
     $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').val(1);
     $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').iCheck('check');
 
+};
+
+me.NewCat = function () {
+    $('#frm_addcategory input[name="parentcategory_id"]').val('');
+    $('#frm_addcategory input[name="category_id"]').val('');
+    $('#add-modal-form').modal({
+        backdrop: 'static',
+        keyboard: true,
+        show: true,
+        handleUpdate: true
+    });
 };
 
 me.New = function () {
