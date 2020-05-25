@@ -416,12 +416,14 @@ function DelSub(Request $request)
 
     //    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['project_id'] = 1;
+    $data['user_login'] = $user;
+
     $data[$data['main']] = $data['code'];
     unset($data['code']);
     unset($data['main']);
 
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
