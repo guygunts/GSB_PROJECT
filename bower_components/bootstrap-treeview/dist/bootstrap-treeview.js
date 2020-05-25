@@ -277,6 +277,7 @@
 		this.$element.off('nodeUnselected');
 		this.$element.off('searchComplete');
 		this.$element.off('searchCleared');
+		this.$element.off('AddButtonClicked');
 	};
 
 	Tree.prototype._subscribeEvents = function () {
@@ -304,6 +305,10 @@
 
 		if (typeof (this._options.onDestroyed) === 'function') {
 			this.$element.on('destroyed', this._options.onDestroyed);
+		}
+
+		if (typeof (this._options.onAddButtonClicked) === 'function') {
+			this.$element.on('AddButtonClicked', this._options.onAddButtonClicked);
 		}
 
 		this.$element.on('click', $.proxy(this._clickHandler, this));
@@ -514,6 +519,9 @@
 			} else {
 				this._toggleExpanded(node, $.extend({}, _default.options));
 			}
+		}
+		if ((classList.indexOf('btn') !== -1)) {
+			this._triggerEvent('AddButtonClicked', node, _default.options);
 		}
 	};
 
