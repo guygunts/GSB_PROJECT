@@ -47,7 +47,7 @@ function View(Request $request)
 
         $m = 2;
         foreach ((array)$columnslist as $i => $item) {
-            $column[$m]['className'] = 'text-' . $item['column_align'];
+            $column[$m]['className'] = 'text-' . ($item['column_align']?$item['column_align']:'center');
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_data'];
 
