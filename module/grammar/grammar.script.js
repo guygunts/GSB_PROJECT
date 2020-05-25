@@ -26,15 +26,15 @@ me.LoadCbo = function(val,menu,code,name) {
 			switch (data.success) {
 				case "COMPLETE":
 					var tree = $('#'+val).treeview({
-						showTags:true,
+
 						preventUnselect:true,
 						allowReselect:true,
 						data: data.item,
 						onNodeSelected: function(event, data) {
-							console.log(event)
-							console.log(data)
-							console.log(data.state.selected)
-							console.log(data.state.expanded)
+							// console.log(event)
+							// console.log(data)
+							// console.log(data.state.selected)
+							// console.log(data.state.expanded)
 							// if(data.state.expanded){
 							// 	$('#'+val).treeview('toggleNodeExpanded', [ data , { silent: true } ]);
 							// }
@@ -56,7 +56,8 @@ me.LoadCbo = function(val,menu,code,name) {
 
 						},
 						onAddButtonClicked:function(event, node){
-							alert('click');
+							console.log(event)
+							console.log(node)
 						}
 
 					});
