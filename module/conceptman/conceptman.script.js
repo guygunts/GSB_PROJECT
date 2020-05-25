@@ -217,6 +217,51 @@ me.Add = function () {
 		});
 
 	}).click();
+};me.Add = function () {
+	$('#btnsubmit').click(function (e) {
+		e.stopPropagation();
+		if($('#variation-variation_text').attr('required') == 'required'){
+			if(!$('#variation-variation_text').val()){
+				$('#variation-variation_text').tagsinput('focus');
+				return false;
+			}
+		}
+		$('form#frm_addedit').submit(function () {
+			var form = $(this);
+			$('.modal').modal('hide');
+			alertify.confirm("Do you want Add.",
+				function () {
+					$.ajax({
+						url: me.url + '-Add',
+						type: 'POST',
+						dataType: 'json',
+						cache: false,
+						data: form.serialize({
+							checkboxesAsBools: true
+						}),
+						success: function (data) {
+							switch (data.success) {
+								case 'COMPLETE':
+									$('.modal').modal('hide');
+									alertify.success(data.msg);
+									// $('#btnsearchsubmit').click();
+									// me.table.clear().draw();
+									me.LoadData(me.action.menu, 1, 30, 1);
+									break;
+								default:
+									alertify.error(data.msg);
+									break;
+							}
+						}
+					});
+				},
+				function () {
+					alertify.error('Cancel Add');
+				});
+
+		});
+
+	}).click();
 };
 
 me.LoadData = function(menu,page_id,page_size,readd=''){
