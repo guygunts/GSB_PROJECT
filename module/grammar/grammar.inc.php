@@ -421,7 +421,7 @@ function Del(Request $request)
     $data['project_id'] = 1;
     $data['user_login'] = $user;
 
-    $data['intent_del'][0][$data[$data['main']]] = $data['code'];
+    $data['intent_del'][0][$data['main']] = $data['code'];
     unset($data['code']);
     unset($data['main']);
 
