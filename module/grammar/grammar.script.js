@@ -46,6 +46,7 @@ me.LoadCbo = function (val, menu, code, name) {
                             // $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
                             // console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
                             if (data.level == 1) {
+                                me.code = data.id;
                                 if (!data.nodes) {
                                     me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
                                 } else {
@@ -295,6 +296,36 @@ me.AddSub = function () {
         });
 
     }).click();
+};
+
+me.Enable = function (e) {
+    var code = $(e).attr('data-code');
+    $('.modal').modal('hide');
+    alertify.confirm("Do you want Active.",
+        function () {
+            $.ajax({
+                url: me.url + '-Enable',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: { intent_id : code , active : 1 , subintent_id : '' , menu_action : 'updateIntentActiveStatus'},
+                success: function (data) {
+                    switch (data.success) {
+                        case 'COMPLETE':
+                            $('.modal').modal('hide');
+                            alertify.success(data.msg);
+                            me.LoadData(me.action.menu, me.code, 1, 30,1);
+                            break;
+                        default:
+                            alertify.error(data.msg);
+                            break;
+                    }
+                }
+            });
+        },
+        function () {
+            alertify.error('Cancel Active');
+        });
 };
 /*================================================*\
   :: DEFAULT ::
