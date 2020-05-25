@@ -396,6 +396,48 @@ me.AddSub = function () {
     }).click();
 };
 
+me.EditSub = function () {
+    $('#btnsubmitedit').click(function (e) {
+        e.stopPropagation();
+        $('form#frm_editcategory').submit(function () {
+            var form = $(this);
+            $('.modal').modal('hide');
+            alertify.confirm("Do you want Edit.",
+                function () {
+                    $.ajax({
+                        url: me.url + '-EditSub',
+                        type: 'POST',
+                        dataType: 'json',
+                        cache: false,
+                        data: form.serialize({
+                            checkboxesAsBools: true
+                        }),
+                        success: function (data) {
+                            switch (data.success) {
+                                case 'COMPLETE':
+                                    $('.modal').modal('hide');
+                                    alertify.success(data.msg);
+                                    me.LoadCbo('tree', 'getcategory', 'category_id', 'category_name');
+                                    // $('#btnsearchsubmit').click();
+                                    // me.table.clear().draw();
+
+                                    break;
+                                default:
+                                    alertify.error(data.msg);
+                                    break;
+                            }
+                        }
+                    });
+                },
+                function () {
+                    alertify.error('Cancel Add');
+                });
+
+        });
+
+    }).click();
+};
+
 me.Enable = function (e) {
     var code = $(e).attr('data-code');
     var active = $(e).attr('data-type');
