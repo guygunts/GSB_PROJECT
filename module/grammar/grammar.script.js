@@ -578,7 +578,11 @@ me.OpenPopupItem = function(data){
     // console.log('after');
     // console.log(maininput);
 
-
+    if(data.intent_type_name == 'Static'){
+        data.type = 1
+    }else if(data.intent_type_name == 'Robust'){
+        data.type = 2
+    }
 
     $('#msubintent-type'+cloneCount).val(data.type);
     $('#msubintent-subintent_tag'+cloneCount).val(data.sub_intent_tag);
