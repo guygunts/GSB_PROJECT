@@ -581,7 +581,7 @@ me.OpenPopupItem = function(data){
 
 
     $('#mubintent-type'+cloneCount).val(data.type);
-    $('#mdvsubintent-subintent_tag'+cloneCount).val(data.subintent_tag);
+    $('#mdvsubintent-subintent_tag'+cloneCount).val(data.sub_intent_tag);
     $('#mdvsubintent-active'+cloneCount).val(data.active);
     if(data.active == 1){
         $('#mdvsubintent-active'+cloneCount).iCheck('check');
