@@ -245,6 +245,47 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
 me.format = function (rowData) {
     return '<div class="col-md-10" style="margin: 0 auto;float: none;padding: 10px;"><table id="' + rowData.name.replace(' ', '-') + '" class="table table-yellow table-bordered table-striped table-condensed dataTable" style="width: 100%;"></table></div>';
 }
+
+me.AddSub = function () {
+    $('#btnsubmitadd').click(function (e) {
+        e.stopPropagation();
+        $('form#frm_addcategory').submit(function () {
+            var form = $(this);
+            $('.modal').modal('hide');
+            alertify.confirm("Do you want Add.",
+                function () {
+                    $.ajax({
+                        url: me.url + '-Add',
+                        type: 'POST',
+                        dataType: 'json',
+                        cache: false,
+                        data: form.serialize({
+                            checkboxesAsBools: true
+                        }),
+                        success: function (data) {
+                            switch (data.success) {
+                                case 'COMPLETE':
+                                    $('.modal').modal('hide');
+                                    alertify.success(data.msg);
+                                    // $('#btnsearchsubmit').click();
+                                    // me.table.clear().draw();
+                                    me.LoadData(me.action.menu, 1, 30, 1);
+                                    break;
+                                default:
+                                    alertify.error(data.msg);
+                                    break;
+                            }
+                        }
+                    });
+                },
+                function () {
+                    alertify.error('Cancel Add');
+                });
+
+        });
+
+    }).click();
+};
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/

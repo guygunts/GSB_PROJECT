@@ -136,7 +136,8 @@ function Add(Request $request)
     unset($data['role_description']);
     unset($data['code']);
     unset($data['role_id']);
-
+    PrintR($data);
+    exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
