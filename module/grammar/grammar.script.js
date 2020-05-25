@@ -300,15 +300,17 @@ me.AddSub = function () {
 
 me.Enable = function (e) {
     var code = $(e).attr('data-code');
+    var active = $(e).attr('data-type');
+    var typename = ['Inactive','Active'];
     $('.modal').modal('hide');
-    alertify.confirm("Do you want Active.",
+    alertify.confirm("Do you want "+typename[active],
         function () {
             $.ajax({
                 url: me.url + '-Enable',
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                data: { intent_id : code , active : 1 , subintent_id : '' , menu_action : 'updateIntentActiveStatus'},
+                data: { intent_id : code , active : active , subintent_id : '' , menu_action : 'updateIntentActiveStatus'},
                 success: function (data) {
                     switch (data.success) {
                         case 'COMPLETE':
