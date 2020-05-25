@@ -11,10 +11,10 @@
             <div class="modal-body">
                 <form id="frm_addcategory" method="post" onsubmit="return false;">
                     <button type="submit" style="display: none" id="btnsubmitadd"></button>
-                    <input type="hidden" name="category_id" id="category_id">
-                    <input type="hidden" name="menu_action" id="menu_action" value="addcategory">
-                    <input type="hidden" name="parentcategory_id" id="parentcategory_id">
-                    <input type="hidden" name="active" id="active" value="1">
+                    <input type="hidden" name="category_id">
+                    <input type="hidden" name="menu_action" value="addcategory">
+                    <input type="hidden" name="parentcategory_id">
+                    <input type="hidden" name="active" value="1">
                     <div class="box box-danger">
                         <div class="box-body">
                             <div class="col-md-12">

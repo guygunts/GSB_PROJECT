@@ -66,6 +66,7 @@ me.LoadCbo = function (val, menu, code, name) {
                                 $('#frm_addcategory input[name="parentcategory_id"]').val('');
                                 $('#add-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
                             }else if(node.level == 2){
+                                $('#frm_addcategory input[name="category_id"]').val(node.main);
                                 $('#frm_addcategory input[name="parentcategory_id"]').val(node.id);
                                 $('#add-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 
