@@ -7,3 +7,32 @@
 *  Last Updated : 24/01/2015 09:09
 \*================================================*/
 @charset "utf-8";
+
+td.details-control {
+    background: url('https://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('https://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+}
+
+
+td.details-control1 {
+    background: url('https://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control1 {
+    background: url('https://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+}
+
+table.dataTable.table-condensed > thead > tr > th {
+    padding-right: 0px !important;
+}
+
+table.dataTable.table-red > thead > tr > th {
+    background-color: red !important;
+}
+
+table.dataTable.table-yellow > thead > tr > th {
+    background-color: yellowgreen !important;
+}
