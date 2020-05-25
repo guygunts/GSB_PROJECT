@@ -1,6 +1,6 @@
 <form id="frm_addedit" method="post" onsubmit="return false;">
     <button type="submit" style="display: none" id="btnsubmit"></button>
-    <input type="hidden" name="code" id="code">
+<!--    <input type="hidden" name="code" id="code">-->
     <input type="hidden" name="category_id">
     <input type="hidden" name="intent_id">
     <input type="hidden" name="menu_action">
