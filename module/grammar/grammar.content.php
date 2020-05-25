@@ -3,7 +3,7 @@
         <div class="col-xs-4">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <div class="box-tools">
+                    <div class="box-tools pull-left">
                         <?php if (isset($permiss)) {
                             if ($permiss[1]) { ?>
 
