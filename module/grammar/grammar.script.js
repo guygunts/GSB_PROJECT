@@ -125,9 +125,7 @@ me.LoadCbo = function (val, menu, code, name) {
                                                     case 'COMPLETE':
                                                         $('.modal').modal('hide');
                                                         alertify.success(data.msg);
-                                                        // $('#btnsearchsubmit').click();
-                                                        me.table.row('#'+attr.DT_RowId).remove().draw();
-                                                        me.LoadData(me.action.menu, 1, 30, 1);
+                                                        me.LoadCbo('tree', 'getcategory', 'category_id', 'category_name');
                                                         break;
                                                     default:
                                                         alertify.error(data.msg);
