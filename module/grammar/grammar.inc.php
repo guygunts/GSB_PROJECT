@@ -10,6 +10,14 @@ function ShowActive($code, $status){
     }
 }
 
+function ShowActiveSub($code, $status){
+    if($status == 0){
+        return '<button type="button" class="btn btn-default btn-xs" data-code="'.$code.'" onclick="me.EnableSub(this)">Inactive</button>';
+    }elseif($status == 1){
+        return '<button type="button" class="btn btn-success btn-xs" data-code="'.$code.'" onclick="me.DisableSub(this)">Active</button>';
+    }
+}
+
 function View(Request $request)
 {
 
@@ -115,7 +123,12 @@ function View(Request $request)
                     $btnsubsentence = '';
 
                     foreach ((array)$columnssub as $n => $valuesub) {
-                        $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
+                        if($valuesub['data'] == 'active'){
+                            $datalistsub[$z][$valuesub['data']] = ShowActiveSub($itemsub['sub_intent_id'],$itemsub[$valuesub['data']]);
+                        }else{
+                            $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
+                        }
+
                         $datalistsub[$z]['name'] = 'subrow_' . $z . '_' . $i;
 
                     }
