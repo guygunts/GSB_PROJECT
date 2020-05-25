@@ -556,7 +556,7 @@ me.OpenPopupItem = function(data){
     var cloneCount = $('div.subintentsub').length;
     var cloneCount2 = $('input[name="variation-active"]').length;
     var maininput = me.variation;
-    console.log(maininput);
+    console.log(data);
     var mapObj = {
         'dvsubintent': "dvsubintent",
         'msubintent-subintent_tag': "msubintent-subintent_tag",
