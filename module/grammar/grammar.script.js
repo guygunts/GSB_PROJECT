@@ -103,6 +103,8 @@ me.LoadCboSub = function (val, menu, code, index) {
                     }]);
 
                     break;
+                case "FAIL":
+                    break;
                 default:
                     alertify.alert(data.msg);
                     break;
