@@ -3,7 +3,7 @@
         <div class="col-xs-4">
             <div id="tree"></div>
         </div>
-        <div class="col-xs-9">
+        <div class="col-xs-8">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="box-tools pull-right">
