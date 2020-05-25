@@ -79,6 +79,8 @@
 		onRendered: undefined,
 		onDestroyed: undefined,
 		onAddButtonClicked: undefined,
+		onEditButtonClicked: undefined,
+		onDelButtonClicked: undefined,
 
 		onNodeChecked: undefined,
 		onNodeCollapsed: undefined,
@@ -279,6 +281,8 @@
 		this.$element.off('searchComplete');
 		this.$element.off('searchCleared');
 		this.$element.off('AddButtonClicked');
+		this.$element.off('EditButtonClicked');
+		this.$element.off('DelButtonClicked');
 	};
 
 	Tree.prototype._subscribeEvents = function () {
@@ -308,11 +312,20 @@
 			this.$element.on('destroyed', this._options.onDestroyed);
 		}
 
+
+		this.$element.on('click', $.proxy(this._clickHandler, this));
+
 		if (typeof (this._options.onAddButtonClicked) === 'function') {
 			this.$element.on('AddButtonClicked', this._options.onAddButtonClicked);
 		}
 
-		this.$element.on('click', $.proxy(this._clickHandler, this));
+		if (typeof (this._options.onEditButtonClicked) === 'function') {
+			this.$element.on('EditButtonClicked', this._options.onEditButtonClicked);
+		}
+
+		if (typeof (this._options.onDelButtonClicked) === 'function') {
+			this.$element.on('DelButtonClicked', this._options.onDelButtonClicked);
+		}
 
 		if (typeof (this._options.onNodeChecked) === 'function') {
 			this.$element.on('nodeChecked', this._options.onNodeChecked);
@@ -506,8 +519,14 @@
 		if (!node || node.state.disabled) return;
 
 		var classList = target.attr('class') ? target.attr('class').split(' ') : [];
-		if ((classList.indexOf('btn') !== -1)) {
+		if ((classList.indexOf('btn-add') !== -1)) {
 			this._triggerEvent('AddButtonClicked', node, _default.options);
+		}
+		else if ((classList.indexOf('btn-edit') !== -1)) {
+			this._triggerEvent('EditButtonClicked', node, _default.options);
+		}
+		else if ((classList.indexOf('btn-del') !== -1)) {
+			this._triggerEvent('DelButtonClicked', node, _default.options);
 		}
 		else if ((classList.indexOf('expand-icon') !== -1)) {
 			this._toggleExpanded(node, $.extend({}, _default.options));
@@ -1029,6 +1048,8 @@
 		// 	}, this));
 		// }
 		node.$el.append(this._template.button.add.clone());
+		node.$el.append(this._template.button.edit.clone());
+		node.$el.append(this._template.button.remove.clone());
 		// Set various node states
 		this._setSelected(node, node.state.selected);
 		this._setChecked(node, node.state.checked);
@@ -1215,7 +1236,9 @@
 		image: $('<span class="image"></span>'),
 		badge: $('<span></span>'),
 		button: {
-			add: $('<button class="btn btn-sm btn-primary" style="float:right;line-height: 1 !important;"><span class="glyphicon glyphicon-plus"></span></button>')
+			add: $('<button class="btn btn-add btn-sm btn-primary" style="float:right;line-height: 1 !important;"><span class="glyphicon glyphicon-plus"></span></button>'),
+			edit: $('<button class="btn btn-edit btn-sm btn-info" style="float:right;line-height: 1 !important;"><span class="glyphicon glyphicon-edit"></span></button>'),
+			remove: $('<button class="btn btn-del btn-sm btn-danger" style="float:right;line-height: 1 !important;"><span class="glyphicon glyphicon-remove"></span></button>'),
 		}
 	};
 
