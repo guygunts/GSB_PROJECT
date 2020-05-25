@@ -330,6 +330,49 @@ me.Enable = function (e) {
             alertify.error('Cancel Active');
         });
 };
+
+me.OpenPopup = function(){
+    var cloneCount = $('div.variationsub').length;
+    var cloneCount2 = $('input[name="variation-active"]').length;
+    var maininput = me.variation;
+    console.log(maininput);
+    var mapObj = {
+        'dvvariation':"dvvariation",
+        'mvariation-variation_text':"mvariation-variation_text",
+        'mvariation-concept_result':"mvariation-concept_result",
+        'mvariation-active':"mvariation-active",
+        'mconcept_variation_id':"mconcept_variation_id",
+        'zero':"",
+    };
+    maininput = maininput[0].outerHTML.replace(/dvvariation|mvariation-variation_text|mvariation-concept_result|mvariation-active|zero|mconcept_variation_id/g, function(matched){
+        return mapObj[matched]+cloneCount;
+    });
+
+    if(cloneCount == 0){
+
+        $('div[id=variation]').append(maininput);
+    }else{
+        $('div[id^=dvvariation]').last().after(maininput);
+
+    }
+    // console.log('after');
+    // console.log(maininput);
+    $("#mvariation-variation_text"+cloneCount).tagsinput({
+        trimValue: true
+    });
+
+    $('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        labelHover: true,
+        increaseArea: '20%' // optional
+    });
+    $('#dvvariation'+cloneCount+' input[type="checkbox"]').val(1);
+    $('#dvvariation'+cloneCount+' input[type="checkbox"]').iCheck('check');
+
+
+
+};
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/
