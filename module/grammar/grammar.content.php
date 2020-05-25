@@ -1,6 +1,14 @@
 <section class="content" id="content-viewlist">
     <div class="row">
         <div class="col-xs-4">
+            <?php if (isset($permiss)) {
+                if ($permiss[1]) { ?>
+                    <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
+                            title="<?php echo $permiss[1]['name']; ?>">
+                        <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?> Category
+                    </button>
+                <?php }
+            } ?>
             <div id="tree"></div>
         </div>
         <div class="col-xs-8">
