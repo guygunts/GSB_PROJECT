@@ -345,7 +345,7 @@ me.OpenPopup = function(){
         'msubintent-active':"msubintent-active",
         'zero':"",
     };
-    maininput = maininput[0].outerHTML.replace(/dvsubintent|msubintent-subintent_tag|msubintent-type|msubintent-active|zero|mconcept_variation_id/g, function(matched){
+    maininput = maininput[0].outerHTML.replace(/dvsubintent|msubintent-subintent_tag|msubintent-type|msubintent-active|zero/g, function(matched){
         return mapObj[matched]+cloneCount;
     });
 
