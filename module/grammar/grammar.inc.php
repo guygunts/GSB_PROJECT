@@ -149,6 +149,7 @@ function View(Request $request)
                     $datalistsub[$z]['btn'] = $btnsub;
                     $datalistsub[$z]['sentence'] = $btnsubsentence;
                 }
+                $item['variation'] = $datasub;
             }
 
 
@@ -158,7 +159,7 @@ function View(Request $request)
 
             $dataattr = array();
             $dataattr[$i] = $item;
-            $dataattr[$i]['variation'] = json_encode($datasubattr,JSON_FORCE_OBJECT);
+//            $dataattr[$i]['variation'] = json_encode($datasubattr,JSON_FORCE_OBJECT);
 
             if ($permiss[2]) {
                 $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
