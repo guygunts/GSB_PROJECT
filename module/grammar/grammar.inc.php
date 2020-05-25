@@ -49,9 +49,9 @@ function View(Request $request)
         foreach ((array)$columnslist as $i => $item) {
             $column[$m]['className'] = 'text-' . $item['column_align'];
             $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] = $item['column_field'];
+            $column[$m]['data'] = $item['column_data'];
 
-            $columns[$m]['data'] = $item['column_field'];
+            $columns[$m]['data'] = $item['column_data'];
             $columns[$m]['type'] = $item['column_type'];
             ++$m;
         }
@@ -92,7 +92,7 @@ function View(Request $request)
                 $datasub = $responsesub['data'];
                 $t = 0;
                 foreach ((array)$columnsublist as $m => $items) {
-                    $columnssub[$t]['data'] = $items['column_field'];
+                    $columnssub[$t]['data'] = $items['column_data'];
                     $columnssub[$t]['type'] = $items['column_type'];
                     ++$t;
                 }

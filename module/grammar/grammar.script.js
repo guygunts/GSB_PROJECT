@@ -218,8 +218,8 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                                     dom: "t",
                                     data: rowData,
                                     columns: [
-                                        {data: "concept_result", title: 'Concept Result', className: 'text-center'},
-                                        {data: "variation_text", title: 'Variation', className: 'text-center'},
+                                        {data: "sub_intent_tag", title: 'Intent TAG', className: 'text-center'},
+                                        {data: "intent_type_name", title: 'Type', className: 'text-center'},
                                         {data: "active", title: 'Active', className: 'text-center'},
                                     ],
                                     iDisplayLength: page_size,
