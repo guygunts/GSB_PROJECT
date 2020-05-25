@@ -167,7 +167,7 @@ function View(Request $request)
 
             }
             if ($permiss[3]) {
-                $btn .= '<button data-code="' . $item['intent_id'] . '" onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
             }
 
             $datalist[$i]['btn'] = $btn;

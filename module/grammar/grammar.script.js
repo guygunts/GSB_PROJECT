@@ -725,7 +725,7 @@ me.Load = function (e) {
 
 me.Del = function (e) {
     var code = $(e).attr('data-code');
-
+    var attr = JSON.parse($(e).attr('data-item'));
     alertify.confirm("Do you want Delete.",
         function () {
             $.ajax({
