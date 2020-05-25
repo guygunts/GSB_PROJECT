@@ -926,7 +926,12 @@
 
 		// Append .classes to the node
 		node.$el.addClass(node.class);
-
+		node.$el.append(this._template.button.add.clone());
+		node.$el.mouseenter(function(){
+			node.$el.children('button.btn').removeClass('node-hidden');
+		}).mouseleave(function(){
+			node.$el.children('button.btn').addClass('node-hidden');
+		});
 		// Set the #id of the node if specified
 		if (node.id) {
 			node.$el.attr('id', node.id);
@@ -1199,7 +1204,9 @@
 		},
 		image: $('<span class="image"></span>'),
 		badge: $('<span></span>'),
-		btn: $('<button type="button" onclick="this.preventDefault()"><i class="fa fa-plus"></i></button>')
+		button: {
+			add: $('<button class="btn icon-plus node-hidden"></button>')
+		}
 	};
 
 	Tree.prototype._css = '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}'

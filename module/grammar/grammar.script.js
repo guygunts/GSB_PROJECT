@@ -54,6 +54,9 @@ me.LoadCbo = function(val,menu,code,name) {
 
 							}
 
+						},
+						onAddButtonClicked:function(event, node){
+							alert('click');
 						}
 
 					});
