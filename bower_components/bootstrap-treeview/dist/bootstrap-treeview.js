@@ -505,7 +505,10 @@
 		if (!node || node.state.disabled) return;
 
 		var classList = target.attr('class') ? target.attr('class').split(' ') : [];
-		if ((classList.indexOf('expand-icon') !== -1)) {
+		if ((classList.indexOf('btn') !== -1)) {
+			this._triggerEvent('AddButtonClicked', node, _default.options);
+		}
+		else if ((classList.indexOf('expand-icon') !== -1)) {
 			this._toggleExpanded(node, $.extend({}, _default.options));
 		}
 		else if ((classList.indexOf('check-icon') !== -1)) {
@@ -520,9 +523,7 @@
 				this._toggleExpanded(node, $.extend({}, _default.options));
 			}
 		}
-		if ((classList.indexOf('btn') !== -1)) {
-			this._triggerEvent('AddButtonClicked', node, _default.options);
-		}
+
 	};
 
 	// Looks up the DOM for the closest parent list item to retrieve the
