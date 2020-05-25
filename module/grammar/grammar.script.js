@@ -267,9 +267,10 @@ me.AddSub = function () {
                                 case 'COMPLETE':
                                     $('.modal').modal('hide');
                                     alertify.success(data.msg);
+                                    me.LoadCbo('tree', 'getcategory', 'category_id', 'category_name');
                                     // $('#btnsearchsubmit').click();
                                     // me.table.clear().draw();
-                                    me.LoadData(me.action.menu, 1, 30, 1);
+
                                     break;
                                 default:
                                     alertify.error(data.msg);

@@ -130,14 +130,10 @@ function Add(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-    $data['role_desc'] = $data['role_description'];
+//    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
-    unset($data['role_description']);
-    unset($data['code']);
-    unset($data['role_id']);
-    PrintR($data);
-    exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
