@@ -710,7 +710,8 @@ me.Load = function (e) {
 
     ft.PutFormID('frm_addedit',result);
     $('#frm_addedit input[name="code"]').val(code);
-    $('#frm_addedit input[name="category_id"]').val(code);
+    $('#frm_addedit input[name="category_id"]').val(me.code);
+    $('#frm_addedit input[name="intent_id"]').val(attr.intent_id);
     $('#frm_addedit input[name="menu_action"]').val(me.action.edit);
     $.each(attr.variation, function (i, result) {
         me.OpenPopupItem(result);
