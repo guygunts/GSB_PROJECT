@@ -119,7 +119,7 @@ me.LoadCbo = function (val, menu, code, name) {
                                             type: 'POST',
                                             dataType: 'json',
                                             cache: false,
-                                            data: { 'code' : code , 'menu_action' : me.action.del , 'main' : me.action.main },
+                                            data: { 'code' : node.id , 'menu_action' : me.action.del , 'main' : me.action.main },
                                             success: function (data) {
                                                 switch (data.success) {
                                                     case 'COMPLETE':
