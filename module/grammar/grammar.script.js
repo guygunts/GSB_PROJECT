@@ -400,6 +400,11 @@ me.ClearData = function () {
     // $('#variation-variation_text').attr('required',false);
 
 };
+
+me.RemoveSub = function (e){
+    var code = $(e).attr('data-code');
+    $('#'+code).remove();
+}
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/
