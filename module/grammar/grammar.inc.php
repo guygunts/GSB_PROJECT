@@ -142,7 +142,7 @@ function View(Request $request)
 
                     }
                     if ($permiss[3]) {
-                        $btnsub .= '<button onclick="me.DelSub(' . $item['sub_intent_id'] . ')"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                        $btnsub .= '<button data-code="' . $item['sub_intent_id'] . '" onclick="me.DelSub(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
                     }
 
 
@@ -160,12 +160,12 @@ function View(Request $request)
 
 
             if ($permiss[2]) {
-                $btn .= '<button data-code="' . $item['function_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
-                $btnsuntence .= '<button data-code="' . $item['category_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                $btnsuntence .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
 
             }
             if ($permiss[3]) {
-                $btn .= '<button onclick="me.Del(' . $item['function_id'] . ')"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                $btn .= '<button data-code="' . $item['intent_id'] . '" onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
             }
 
             $datalist[$i]['btn'] = $btn;
