@@ -161,7 +161,7 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
             switch (data.success) {
                 case 'COMPLETE' :
                     if (data.data.length == 0) {
-                        alertify.alert('No data, Please select other date');
+                        // alertify.alert('No data, Please select other date');
                     }
                     if (readd) {
                         // me.table.clear();
