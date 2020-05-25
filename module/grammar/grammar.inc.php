@@ -419,7 +419,6 @@ function Del(Request $request)
 
     //    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['project_id'] = 1;
-    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
     $data['intent_del'][0][$data[$data['main']]] = $data['code'];
