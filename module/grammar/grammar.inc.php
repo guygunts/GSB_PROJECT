@@ -154,7 +154,7 @@ function View(Request $request)
 
 
             $datalist[$i]['variation'] = json_encode($datalistsub, JSON_HEX_APOS);
-            $dataattr[$i][$i]['variation'] = $datalistsub;
+            $dataattr[$i]['variation'] = $datalistsub;
 
             $dataattr = array();
             $dataattr[$i] = $item;
