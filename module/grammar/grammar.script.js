@@ -9,7 +9,7 @@
 me.action.main = 'category_id';
 me.action.menu = 'getintentbycateid';
 me.action.add = 'addintent';
-me.action.edit = 'updatefunction';
+me.action.edit = 'updateintent';
 me.action.del = 'deletecategory';
 me.variation = $('div#dvsubintent').clone();
 me.childEditors = {};  // Globally track created chid editors
