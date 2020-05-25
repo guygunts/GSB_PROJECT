@@ -100,6 +100,7 @@ function View(Request $request)
                 foreach ((array)$datasub as $z => $itemsub) {
                     foreach ((array)$columnssub as $n => $valuesub) {
                         $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
+                        $datalistsub[$z]['name'] = 'subrow_' . $z . '_' . $i;
 
                     }
                 }
