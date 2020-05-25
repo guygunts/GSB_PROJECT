@@ -60,7 +60,7 @@
                     <input type="hidden" name="category_id">
                     <input type="hidden" name="menu_action" value="updatecategory">
                     <input type="hidden" name="parentcategory_id">
-                    <input type="hidden" name="active" value="1">
+                    <input type="hidden" name="active">
                     <div class="box box-danger">
                         <div class="box-body">
                             <div class="col-md-12">
