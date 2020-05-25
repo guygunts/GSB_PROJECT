@@ -631,7 +631,7 @@ me.OpenPopupItem = function(data){
         data.type = 2
     }
 
-    $('#msubintent-id'+cloneCount).val(data.sub_intent_id);
+    $('#msubintent-subintent_id'+cloneCount).val(data.sub_intent_id);
     $('#msubintent-type'+cloneCount).val(data.type);
     $('#msubintent-subintent_tag'+cloneCount).val(data.sub_intent_tag);
     $('#msubintent-active'+cloneCount).val(data.active);
