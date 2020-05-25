@@ -37,11 +37,15 @@ function View(Request $request)
         $column[0]['data'] = null;
         $column[0]['defaultContent'] = '';
 
+        $column[1]['className'] = 'text-center';
+        $column[1]['title'] = 'No';
+        $column[1]['data'] = 'no';
+
         $columnslist[0]['column_field'] = 'user_question';
         $columnslist[1]['column_field'] = 'intent_tag';
         $columnslist[2]['column_field'] = 'active';
 
-        $m = 1;
+        $m = 2;
         foreach ((array)$columnslist as $i => $item) {
             $column[$m]['className'] = 'text-' . $item['column_align'];
             $column[$m]['title'] = $item['column_name'];
