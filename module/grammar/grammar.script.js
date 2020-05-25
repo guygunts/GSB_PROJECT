@@ -10,7 +10,7 @@ me.action.main = 'category_id';
 me.action.menu = 'getintentbycateid';
 me.action.add = 'addintent';
 me.action.edit = 'updatefunction';
-me.action.del = 'deletefunction';
+me.action.del = 'deletecategory';
 me.variation = $('div#dvsubintent').clone();
 me.childEditors = {};  // Globally track created chid editors
 /*================================================*\
@@ -95,6 +95,50 @@ me.LoadCbo = function (val, menu, code, name) {
                                     show: true,
                                     handleUpdate: true
                                 });
+                            } else if (node.level == 2) {
+                                $('#frm_editcategory input[name="category_name"]').val(node.text);
+                                $('#frm_editcategory input[name="category_id"]').val(node.id);
+                                $('#frm_editcategory input[name="active"]').val(node.active);
+                                $('#edit-modal-form').modal({
+                                    backdrop: 'static',
+                                    keyboard: true,
+                                    show: true,
+                                    handleUpdate: true
+                                });
+
+                            }
+                        },
+                        onDelButtonClicked: function (event, node) {
+                            console.log(event)
+                            console.log(node)
+                            if (node.level == 1) {
+                                alertify.confirm("Do you want Delete.",
+                                    function () {
+                                        $.ajax({
+                                            url: me.url + '-DelSub',
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            cache: false,
+                                            data: { 'code' : code , 'menu_action' : me.action.del , 'main' : me.action.main },
+                                            success: function (data) {
+                                                switch (data.success) {
+                                                    case 'COMPLETE':
+                                                        $('.modal').modal('hide');
+                                                        alertify.success(data.msg);
+                                                        // $('#btnsearchsubmit').click();
+                                                        me.table.row('#'+attr.DT_RowId).remove().draw();
+                                                        me.LoadData(me.action.menu, 1, 30, 1);
+                                                        break;
+                                                    default:
+                                                        alertify.error(data.msg);
+                                                        break;
+                                                }
+                                            }
+                                        });
+                                    },
+                                    function () {
+                                        alertify.error('Cancel Delete');
+                                    });
                             } else if (node.level == 2) {
                                 $('#frm_editcategory input[name="category_name"]').val(node.text);
                                 $('#frm_editcategory input[name="category_id"]').val(node.id);

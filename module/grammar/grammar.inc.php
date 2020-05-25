@@ -290,8 +290,8 @@ function EditSub(Request $request)
     $data['project_id'] = 1;
     $data['user_login'] = $user;
 
-PrintR($data);
-exit;
+//PrintR($data);
+//exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
@@ -400,7 +400,7 @@ function EditSub_(Request $request)
     echo json_encode($result);
 }
 
-function Del(Request $request)
+function DelSub(Request $request)
 {
 
     global $token;
@@ -414,9 +414,14 @@ function Del(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
+    //    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+    $data['project_id'] = 1;
     $data[$data['main']] = $data['code'];
     unset($data['code']);
     unset($data['main']);
+
+    PrintR($data);
+    exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
@@ -585,8 +590,8 @@ switch ($switchmode) {
     case "EditSub" :
         EditSub($x);
         break;
-    case "Del" :
-        Del($x);
+    case "DelSub" :
+        DelSub($x);
         break;
     case "Enable" :
         Enable($x);
