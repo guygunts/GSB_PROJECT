@@ -98,11 +98,30 @@ function View(Request $request)
                 }
 
                 foreach ((array)$datasub as $z => $itemsub) {
+                    $btnsub = '';
+                    $btnsubsentence = '';
+
                     foreach ((array)$columnssub as $n => $valuesub) {
                         $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
                         $datalistsub[$z]['name'] = 'subrow_' . $z . '_' . $i;
 
                     }
+
+                    $datasubattr = array();
+                    $datasubattr[$z] = $itemsub;
+
+                    if ($permiss[2]) {
+                        $btnsub .= '<button data-code="' . $item['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                        $btnsubsentence .= '<button data-code="' . $item['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+
+                    }
+                    if ($permiss[3]) {
+                        $btnsub .= '<button onclick="me.Del(' . $item['sub_intent_id'] . ')"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                    }
+
+
+                    $datalistsub[$z]['btn'] = $btnsub;
+                    $datalistsub[$z]['sentence'] = $btnsubsentence;
                 }
             }
 

@@ -223,6 +223,8 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                                         {data: "sub_intent_tag", title: 'Intent TAG', className: 'text-center'},
                                         {data: "intent_type_name", title: 'Type', className: 'text-center'},
                                         {data: "active", title: 'Active', className: 'text-center'},
+                                        {data: "btn", title: '', className: 'text-center'},
+                                        {data: "sentence", title: 'Sentence', className: 'text-center'},
                                     ],
                                     iDisplayLength: page_size,
                                     ordering: false,
