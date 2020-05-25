@@ -1,16 +1,30 @@
 <section class="content" id="content-viewlist">
     <div class="row">
         <div class="col-xs-4">
-            <?php if (isset($permiss)) {
-                if ($permiss[1]) { ?>
-                    <div class="well well-sm">
-                        <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
-                                title="<?php echo $permiss[1]['name']; ?>">
-                            <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?> Category
-                        </button>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="box-tools">
+                        <?php if (isset($permiss)) {
+                            if ($permiss[1]) { ?>
+                                <div class="well well-sm">
+                                    <button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
+                                            title="<?php echo $permiss[1]['name']; ?>">
+                                        <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?> Category
+                                    </button>
+                                </div>
+                            <?php }
+                        } ?>
                     </div>
-                <?php }
-            } ?>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    <div id="tree"></div>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+
             <div id="tree"></div>
         </div>
         <div class="col-xs-8">
