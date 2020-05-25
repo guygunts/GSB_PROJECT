@@ -78,15 +78,36 @@ function View(Request $request)
 
             }
 
-            $vartiation = array();
-            if (count($item['variation']) > 0) {
-                foreach ($item['variation'] as $z => $itemsub) {
+            $paramssub = array(
+                'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
+                'menu_action' => 'getsubintentbyintent',
+                'intent_id' => $item['intent_id'],
+                'page_id' => $data['page_id'],
+                'page_size' => $data['page_size']
+            );
 
-                    $vartiation[$z] = $itemsub;
-                    $vartiation[$z]['name'] = 'subrow_' . $z . '_' . $i;
+            $responsesub = curlposttoken($url, $paramssub, $token);
+            if ($responsesub['code'] == 200) {
+                $columnsublist = $responsesub['result'];
+                $datasub = $responsesub['data'];
+                $t = 0;
+                foreach ((array)$columnsublist as $m => $items) {
+                    $columnssub[$t]['data'] = $items['column_field'];
+                    $columnssub[$t]['type'] = $items['column_type'];
+                    ++$t;
+                }
+
+                foreach ((array)$datasub as $z => $itemsub) {
+                    foreach ((array)$columnssub as $n => $valuesub) {
+                        $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
+
+                    }
                 }
             }
-            $datalist[$i]['variation'] = json_encode($vartiation, JSON_HEX_APOS);
+
+
+
+            $datalist[$i]['variation'] = json_encode($datalistsub, JSON_HEX_APOS);
 
             $dataattr = array();
             $dataattr[$i] = $item;
