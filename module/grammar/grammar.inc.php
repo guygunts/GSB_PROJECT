@@ -201,6 +201,54 @@ function Add(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
+    $a = 0;
+    $ch = array();
+    foreach ((array)$data['subintent'] as $i => $item) {
+
+        $data['subintent'][$a] = $item;
+        ++$a;
+
+    }
+
+    $data['user_login'] = $user;
+
+
+    unset($data['code']);
+//    unset($data['concept_id']);
+    unset($data['sub']);
+
+    PrintR($data);
+    exit;
+
+
+    $url = URL_API . '/geniespeech/adminmenu';
+    $response = curlposttoken($url, $data, $token);
+
+    if ($response['code'] == 200) {
+        $result['success'] = 'COMPLETE';
+    } else {
+        $result['success'] = 'FAIL';
+    }
+    $result['msg'] = $response['msg'];
+
+
+    echo json_encode($result);
+}
+
+function AddSub(Request $request)
+{
+
+    global $token;
+    $user = $_SESSION[OFFICE]['DATA']['user_name'];
+    $datalist = array();
+    $columns = array();
+    $column = array();
+    $result['data'] = array();
+    $result['columns'] = array();
+
+
+    parse_str($request->getPost()->toString(), $data);
+
 //    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['project_id'] = 1;
     $data['user_login'] = $user;
@@ -489,6 +537,9 @@ switch ($switchmode) {
         break;
     case "Add" :
         Add($x);
+        break;
+    case "AddSub" :
+        AddSub($x);
         break;
     case "Edit" :
         Edit($x);

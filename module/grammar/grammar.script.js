@@ -315,7 +315,7 @@ me.AddSub = function () {
             alertify.confirm("Do you want Add.",
                 function () {
                     $.ajax({
-                        url: me.url + '-Add',
+                        url: me.url + '-AddSub',
                         type: 'POST',
                         dataType: 'json',
                         cache: false,
