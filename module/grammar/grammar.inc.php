@@ -272,6 +272,41 @@ function AddSub(Request $request)
     echo json_encode($result);
 }
 
+function EditSub(Request $request)
+{
+
+    global $token;
+    $user = $_SESSION[OFFICE]['DATA']['user_name'];
+    $datalist = array();
+    $columns = array();
+    $column = array();
+    $result['data'] = array();
+    $result['columns'] = array();
+
+
+    parse_str($request->getPost()->toString(), $data);
+
+//    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+    $data['project_id'] = 1;
+    $data['user_login'] = $user;
+
+//PrintR($data);
+//exit;
+
+    $url = URL_API . '/geniespeech/adminmenu';
+    $response = curlposttoken($url, $data, $token);
+
+    if ($response['code'] == 200) {
+        $result['success'] = 'COMPLETE';
+    } else {
+        $result['success'] = 'FAIL';
+    }
+    $result['msg'] = $response['msg'];
+
+
+    echo json_encode($result);
+}
+
 function Edit(Request $request)
 {
 
@@ -306,7 +341,7 @@ function Edit(Request $request)
     echo json_encode($result);
 }
 
-function EditSub(Request $request)
+function EditSub_(Request $request)
 {
 
     global $token;
