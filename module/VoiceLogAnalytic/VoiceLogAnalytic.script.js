@@ -139,7 +139,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                             if(row < 10){
                             console.log(data);
                             }
-                            return data;
+                            return '';
 
                         }
                     }
