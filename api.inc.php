@@ -31,8 +31,7 @@ function Login(Request $request)
     $url = URL_API . '/geniespeech/login';
     $response = curlpost($url, $params);
 
-    PrintR($response);
-    exit;
+
 
     if ($response['code'] == 200) {
 
@@ -58,7 +57,8 @@ function Login(Request $request)
     }
 
     $result['msg'] = $response['msg'];
-//    PrintR($result);
+    PrintR($_SESSION);
+    exit;
     echo json_encode($result);
 
 }
