@@ -12,6 +12,20 @@ me.action.add = 'adddatadeploy';
 me.action.edit = 'deployactive';
 me.action.del = 'submitdatadeploy';
 
+var buttonCommon = {
+    exportOptions: {
+        format: {
+            body: function (data, row, column, node) {
+
+                if (column === 8) {
+                    data = '';
+                }
+                return data;
+
+            }
+        }
+    }
+};
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -73,21 +87,6 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
             text_search: search
         },
         success: function (data) {
-            var buttonCommon = {
-                exportOptions: {
-                    format: {
-                        body: function (data, row, column, node) {
-
-                            if (column === 8) {
-                                data = '';
-                            }
-                            return data;
-
-                        }
-                    }
-                }
-            };
-
             switch (data.success) {
                 case 'COMPLETE' :
                     if(data.data.length == 0){
@@ -135,7 +134,13 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
                                         extend: 'pdfHtml5',
                                         orientation: 'landscape',
                                         pageSize: 'LEGAL',
-                                        className: 'float-right'
+                                        className: 'float-right',
+                                        customize: function ( doc ) {
+                                            doc.defaultStyle = {
+                                                font:'THSarabunNew',
+                                                fontSize:16
+                                            };
+                                        }
                                     })
                                 ],
                                 columnDefs: [
