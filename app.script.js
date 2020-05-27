@@ -79,12 +79,12 @@ me.Init = function () {
 
 me.Expire = function () {
 	$( document ).ajaxError(function( event, jqxhr, settings, thrownError ) {
-		if (jqxhr.status != 200) {
-			alertify.error(jqxhr.responseJSON.msg);
-			setTimeout(function () {
-				window.location.replace('app.logout.php');
-			}, 3000);
-		}
+		// if (jqxhr.status != 200) {
+		// 	alertify.error(jqxhr.responseJSON.msg);
+		// 	setTimeout(function () {
+		// 		window.location.replace('app.logout.php');
+		// 	}, 3000);
+		// }
 	});
 };
 
