@@ -117,7 +117,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                             if(column === 4) {
                                 data = $(data).attr('href');
                             }else if (column === 6) {
-                                console.log('column 6 '+data);
+                                console.log('column 6 '+ column + ' node '+ node + ' row : '+row);
                                 data = $(data).find('source').attr('src');
                             }else if (column === 12) {
                                 if($('option:selected',data).val() != ''){
