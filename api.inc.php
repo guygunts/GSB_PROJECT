@@ -57,8 +57,6 @@ function Login(Request $request)
     }
 
     $result['msg'] = $response['msg'];
-    PrintR($_SESSION);
-    exit;
     echo json_encode($result);
 
 }
