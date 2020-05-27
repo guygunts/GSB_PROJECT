@@ -22,7 +22,7 @@ function View(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
-        'project_id' => 0,
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'start_date' => $data['start_date'],
         'end_date' => $data['end_date'],
         'page_id' => $data['page_id'],
