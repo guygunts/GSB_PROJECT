@@ -112,6 +112,10 @@ function View(Request $request)
 //                    $datalist[$i][$value['data']] = '<i class="glyphicon glyphicon-volume-up"></i>';
                     $datalist[$i][$value['data']] = '<audio preload="auto" autobuffer controls><source src="' . $item[$value['data']] . '" type="audio/wav"></audio>';
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('.'"'.$item[$value['data']].'"'.')"><i class="glyphicon glyphicon-volume-up"></i></a>';
+                } elseif ($value['data'] == 'intent'){
+                    $chkintent = explode('#',$item['intent']);
+                    $datalist[$i][$value['data']] = $chkintent[0];
+
                 } elseif ($value['data'] == 'chnn') {
                     $datalist[$i][$value['data']] = '<a href="' . $item['log_file'] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
@@ -147,10 +151,6 @@ function View(Request $request)
                         if ($value['data'] == 'Expected') {
 //                            $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" value="' . $item[$v] . '" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ',' . "'" . $item[$v] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '">' . $item[$v] . '</a>';
                             $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="select2 expected' . $item['rec_id'] . ' row' . $item['rec_id'] . ' ">' . $option . '</select>';
-
-                        }elseif ($value['data'] == 'intent'){
-                        $chkintent = explode('#',$item['intent']);
-                            $datalist[$i][$value['data']] = $chkintent[0];
 
                         } else {
                             $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" value="' . $item[$v] . '" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ',' . "'" . $item[$v] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '">' . $item[$v] . '</a>';
