@@ -192,13 +192,13 @@ function Add(Request $request)
     $ch = curl_init($url);
     $result = curl_custom_postfields($ch, $data, $data2);
 
-    if ($result['code'] == 200) {
-        $result['msg'] = 'Upload Success';
-        $result['success'] = 'COMPLETE';
-    } else {
-        $result['success'] = 'FAIL';
-        $result['msg'] = 'Upload Fail';
-    }
+//    if ($result['code'] == 200) {
+//        $result['msg'] = 'Upload Success';
+//        $result['success'] = 'COMPLETE';
+//    } else {
+//        $result['success'] = 'FAIL';
+//        $result['msg'] = 'Upload Fail';
+//    }
 //    $result['msg'] = $response['msg'];
 
     echo json_encode($result);
