@@ -42,7 +42,7 @@ var buttonCommon = {
                 if(row < 10){
                     console.log(data);
                 }
-                return '';
+                return data;
 
             }
         }
