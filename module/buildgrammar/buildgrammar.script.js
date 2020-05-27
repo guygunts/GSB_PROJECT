@@ -395,7 +395,7 @@ me.AutoReload = function () {
 						// me.table.rows().invalidate().draw();
 						break;
 					default :
-						alertify.alert(data.msg);
+						// alertify.alert(data.msg);
 						break;
 				}
 			}
