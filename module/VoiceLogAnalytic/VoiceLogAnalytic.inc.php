@@ -128,6 +128,10 @@ function View(Request $request)
                         case 'Expected':
                             $v = 'expec_intent';
                             break;
+                        case 'intent':
+                            $chk = explode('#', $value['data']);
+                            $v = $chk[0];
+                            break;
                         default:
                             $v = $value['data'];
                             break;
@@ -152,7 +156,7 @@ function View(Request $request)
 
                         }
 
-                    } else {
+                    } elseif(!$item[$v]) {
                         if ($value['data'] == 'Expected') {
                             $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="select2 expected' . $item['rec_id'] . ' row' . $item['rec_id'] . ' ">' . $option . '</select>';
 
