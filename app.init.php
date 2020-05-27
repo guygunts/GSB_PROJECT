@@ -36,7 +36,7 @@ $params = array(
 //PrintR($params);
 //exit;
 
-$url = 'https://wso2ei.snapz.mobi/geniespeech/login';
+$url = URL_API.'/geniespeech/login';
 $response = curlpost($url, $params);
 //PrintR($response);
 //exit;
@@ -53,7 +53,7 @@ if ($response['code'] == 200) {
 
 
 
-//PrintR($member);
+PrintR($_SESSION);
 
 //$url = 'https://wso2ei.snapz.mobi/geniespeech/adminmenu';
 //$response = curlposttoken($url, $params, $token);
