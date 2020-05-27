@@ -6,13 +6,13 @@
 
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
-<!--<script>-->
-<!--    pdfMake.fonts = {-->
-<!--        THSarabunNew: {-->
-<!--            normal: 'THSarabunNew.ttf',-->
-<!--            bold: 'THSarabunNew-Bold.ttf',-->
-<!--            italics: 'THSarabunNew-Italic.ttf',-->
-<!--            bolditalics: 'THSarabunNew-BoldItalic.ttf'-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+<script>
+    pdfMake.fonts = {
+        THSarabunNew: {
+            normal: 'THSarabunNew.ttf',
+            bold: 'THSarabunNew-Bold.ttf',
+            italics: 'THSarabunNew-Italic.ttf',
+            bolditalics: 'THSarabunNew-BoldItalic.ttf'
+        }
+    }
+</script>
