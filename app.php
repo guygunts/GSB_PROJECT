@@ -42,10 +42,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!--    <link rel="stylesheet" href="bower_components/loading-bar-master/dist/loading-bar.css">-->
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/v/bs/b-1.6.1/b-colvis-1.6.1/r-2.2.3/sc-2.0.1/sl-1.3.1/datatables.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap.min.css"/>
+
+<!--    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css">-->
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/v/bs/b-1.6.1/b-colvis-1.6.1/r-2.2.3/sc-2.0.1/sl-1.3.1/datatables.min.css">-->
 
 
 
@@ -200,12 +205,18 @@ if (is_file("module/$mod/$mod.modal.php")) {
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/v/bs/b-1.6.1/b-colvis-1.6.1/r-2.2.3/sc-2.0.1/sl-1.3.1/datatables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap.min.js"></script>
+
+<!--<script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>-->
+<!--<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>-->
+<!--<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/v/bs/b-1.6.1/b-colvis-1.6.1/r-2.2.3/sc-2.0.1/sl-1.3.1/datatables.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>-->
 
 <!-- SlimScroll -->
 <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
