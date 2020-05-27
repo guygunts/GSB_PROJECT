@@ -8,8 +8,7 @@
  *  Involve People : -
  *  Last Updated : 11/09/2554 01:30
   ================================================== */
-PrintR($_SESSION);
-exit;
+
 if($_SESSION[OFFICE]["LOGIN"] != "ON"){
     echo PleaseLogin(URL.'/app.logout.php');
     exit;
