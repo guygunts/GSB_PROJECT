@@ -140,8 +140,8 @@ function View(Request $request)
                             $option .= '<option value="' . $item2['intent_tag'] . '" ' . ($item[$v] == $item2['intent_tag'] ? 'selected' : '') . '>' . $item2['intent_tag'] . '</option>';
                         }
                     }elseif($value['data'] == 'intent'){
-                        $intent = explode('#',$item[$v]);
-                        $item[$v] = $intent[0];
+                        $chkintent = explode('#',$item['intent']);
+                        $item['intent'] = $chkintent[0];
                     }
 
 
