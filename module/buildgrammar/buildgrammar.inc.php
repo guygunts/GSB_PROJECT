@@ -182,6 +182,7 @@ function Add(Request $request)
 //    $file = $_FILES['file'];
 
 //    $data = $_POST;
+    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
 //    $data = json_encode($data);
 //    $data['file_name'] =  new CURLFile(realpath($_FILES['file']['tmp_name']));

@@ -10,12 +10,12 @@
 
 
 
-                <div class="form-group">
-                    <label for="user_type" class="control-label">Project Name</label>
-                    <select id="project_id" name="project_id" class="select form-control" required="required">
-
-                    </select>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label for="user_type" class="control-label">Project Name</label>-->
+<!--                    <select id="project_id" name="project_id" class="select form-control" required="required">-->
+<!---->
+<!--                    </select>-->
+<!--                </div>-->
 
                 <div class="form-group">
                     <label for="file_desc" class="control-label">Description</label>
