@@ -177,7 +177,9 @@ function Add(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-//    $file = $request->files->get('name')['tmp_name'];
+    $file = $request->getFiles('name');
+    PrintR($file);
+    exit;
 //    $file = $_FILES['file'];
 
 //    $data = $_POST;
@@ -185,7 +187,7 @@ function Add(Request $request)
 //    $data = json_encode($data);
 //    $data['file_name'] =  new CURLFile(realpath($_FILES['file']['tmp_name']));
 //    $data['file_name'] = '@' . realpath($_FILES['file']['tmp_name']) . ';filename='.$_FILES['file']['name']. ';type='.$_FILES['file']['type'];
-    $data2[$request->files->get('name')['name']] = $request->files->get('name')['tmp_name'];
+    $data2[$request->getFiles('name')] = $request->files->get('name')['tmp_name'];
 
     $url = URL_API . '/geniespeech/grammarupload';
     $ch = curl_init($url);
