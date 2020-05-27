@@ -139,9 +139,6 @@ function View(Request $request)
 
                             $option .= '<option value="' . $item2['intent_tag'] . '" ' . ($item[$v] == $item2['intent_tag'] ? 'selected' : '') . '>' . $item2['intent_tag'] . '</option>';
                         }
-                    }elseif($value['data'] == 'intent'){
-                        $chkintent = explode('#',$item['intent']);
-                        $item['intent'] = $chkintent[0];
                     }
 
 
@@ -150,6 +147,10 @@ function View(Request $request)
                         if ($value['data'] == 'Expected') {
 //                            $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" value="' . $item[$v] . '" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ',' . "'" . $item[$v] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '">' . $item[$v] . '</a>';
                             $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="select2 expected' . $item['rec_id'] . ' row' . $item['rec_id'] . ' ">' . $option . '</select>';
+
+                        }elseif ($value['data'] == 'intent'){
+                        $chkintent = explode('#',$item['intent']);
+                            $datalist[$i][$value['data']] = $chkintent[0];
 
                         } else {
                             $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" value="' . $item[$v] . '" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ',' . "'" . $item[$v] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '">' . $item[$v] . '</a>';
