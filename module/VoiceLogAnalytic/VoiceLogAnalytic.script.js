@@ -36,7 +36,7 @@ var buttonCommon = {
                     }
                 }else if (column === 13 || column === 14) {
                     data = data.toString().replace(/<.*?>/ig, "");
-                }else if (column === 15) {
+                }else if (column === 15 || column === 16) {
                     data = '';
                 }
 
