@@ -18,30 +18,28 @@ var buttonCommon = {
             body: function ( data, row, column, node ) {
 
                 if(column === 4) {
-                    data = $(data).attr('href');
-                }else if (column === 6) {
-console.log('column 6 : '+data);
+                    // data = $(data).attr('href');
+                }else if (column === 5) {
+
                     data = $(data).find('source').attr('src');
+                }else if (column === 11) {
+                    if($('option:selected',data).val() != ''){
+                        data = $('option:selected',data).text();
+                    }else{
+                        data = '';
+                    }
                 }else if (column === 12) {
                     if($('option:selected',data).val() != ''){
                         data = $('option:selected',data).text();
                     }else{
                         data = '';
                     }
-                }else if (column === 13) {
-                    if($('option:selected',data).val() != ''){
-                        data = $('option:selected',data).text();
-                    }else{
-                        data = '';
-                    }
-                }else if (column === 14 || column === 15) {
+                }else if (column === 13 || column === 14) {
                     data = data.toString().replace(/<.*?>/ig, "");
-                }else if (column === 16) {
+                }else if (column === 15) {
                     data = '';
                 }
-                if(row < 10){
-                    console.log(data);
-                }
+
                 return data;
 
             }
