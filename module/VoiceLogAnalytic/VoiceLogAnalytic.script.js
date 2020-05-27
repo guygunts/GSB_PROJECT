@@ -20,7 +20,7 @@ var buttonCommon = {
                 if(column === 4) {
                     data = $(data).attr('href');
                 }else if (column === 6) {
-
+console.log('column 6 : '+data);
                     data = $(data).find('source').attr('src');
                 }else if (column === 12) {
                     if($('option:selected',data).val() != ''){
