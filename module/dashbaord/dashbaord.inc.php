@@ -276,7 +276,8 @@ function View(Request $request)
 
     $result['msg'] = $response['result'][0]['msg'];
 
-
+PrintR($result);
+exit;
     echo json_encode($result);
 
 }
