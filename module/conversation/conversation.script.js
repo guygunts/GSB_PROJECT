@@ -121,13 +121,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 										extend: 'pdfHtml5',
 										orientation: 'landscape',
 										pageSize: 'LEGAL',
-										className: 'float-right',
-										customize: function ( doc ) {
-											doc.defaultStyle = {
-												font:'THSarabunNew',
-												fontSize:16
-											};
-										}
+										className: 'float-right'
 									},
 								],
 								columnDefs: [
