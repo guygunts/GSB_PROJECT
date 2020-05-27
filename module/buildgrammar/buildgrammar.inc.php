@@ -175,30 +175,31 @@ function Add(Request $request)
     $columns = array();
     $column = array();
 
+    parse_str($request->getPost()->toString(), $data);
 
-    $file = $_FILES['file'];
+//    $file = $request->files->get('name')['tmp_name'];
+//    $file = $_FILES['file'];
 
-    $data = $_POST;
+//    $data = $_POST;
     $data['user_login'] = $user;
 //    $data = json_encode($data);
 //    $data['file_name'] =  new CURLFile(realpath($_FILES['file']['tmp_name']));
 //    $data['file_name'] = '@' . realpath($_FILES['file']['tmp_name']) . ';filename='.$_FILES['file']['name']. ';type='.$_FILES['file']['type'];
-    $data2[$_FILES['file']['name']] = $_FILES['file']['tmp_name'];
+    $data2[$request->files->get('name')] = $request->files->get('name')['tmp_name'];
 
     $url = URL_API . '/geniespeech/grammarupload';
     $ch = curl_init($url);
     $result = curl_custom_postfields($ch, $data, $data2);
 
-//    if ($result['code'] == 200) {
-//        $result['msg'] = 'Upload Success';
-//        $result['success'] = 'COMPLETE';
-//    } else {
-//        $result['success'] = 'FAIL';
-//        $result['msg'] = 'Upload Fail';
-//    }
+    if ($result['code'] == 200) {
+        $result['msg'] = 'Upload Success';
+        $result['success'] = 'COMPLETE';
+    } else {
+        $result['success'] = 'FAIL';
+        $result['msg'] = 'Upload Fail';
+    }
 //    $result['msg'] = $response['msg'];
-    exit;
-    $result = array();
+
     echo json_encode($result);
 }
 
