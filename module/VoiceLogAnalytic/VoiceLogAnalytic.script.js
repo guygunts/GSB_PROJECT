@@ -12,6 +12,43 @@ me.action.add = 'adduser';
 me.action.edit = 'updateuser';
 me.action.del = 'deleteuser';
 
+var buttonCommon = {
+    exportOptions: {
+        format: {
+            body: function ( data, row, column, node ) {
+
+                if(column === 4) {
+                    data = $(data).attr('href');
+                }else if (column === 6) {
+
+                    data = $(data).find('source').attr('src');
+                }else if (column === 12) {
+                    if($('option:selected',data).val() != ''){
+                        data = $('option:selected',data).text();
+                    }else{
+                        data = '';
+                    }
+                }else if (column === 13) {
+                    if($('option:selected',data).val() != ''){
+                        data = $('option:selected',data).text();
+                    }else{
+                        data = '';
+                    }
+                }else if (column === 14 || column === 15) {
+                    data = data.toString().replace(/<.*?>/ig, "");
+                }else if (column === 16) {
+                    data = '';
+                }
+                if(row < 10){
+                    console.log(data);
+                }
+                return '';
+
+            }
+        }
+    }
+};
+
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -109,42 +146,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
             txt_search: txt_search
         },
         success: function (data) {
-            var buttonCommon = {
-                exportOptions: {
-                    format: {
-                        body: function ( data, row, column, node ) {
 
-                            if(column === 4) {
-                                data = $(data).attr('href');
-                            }else if (column === 6) {
-                                console.log('column 6 '+ column + ' node '+ node + ' row : '+row);
-                                data = $(data).find('source').attr('src');
-                            }else if (column === 12) {
-                                if($('option:selected',data).val() != ''){
-                                    data = $('option:selected',data).text();
-                                }else{
-                                    data = '';
-                                }
-                            }else if (column === 13) {
-                                if($('option:selected',data).val() != ''){
-                                    data = $('option:selected',data).text();
-                                }else{
-                                    data = '';
-                                }
-                            }else if (column === 14 || column === 15) {
-                                data = data.toString().replace(/<.*?>/ig, "");
-                            }else if (column === 16) {
-                                data = '';
-                            }
-                            if(row < 10){
-                            console.log(data);
-                            }
-                            return '';
-
-                        }
-                    }
-                }
-            };
 
             switch (data.success) {
                 case 'COMPLETE' :
@@ -211,7 +213,13 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                         extend: 'pdfHtml5',
                                         orientation: 'landscape',
                                         pageSize: 'LEGAL',
-                                        className: 'float-right'
+                                        className: 'float-right',
+                                        customize: function ( doc ) {
+                                            doc.defaultStyle = {
+                                                font:'THSarabunNew',
+                                                fontSize:16
+                                            };
+                                        }
                                     } )
                                 ],
                                 columnDefs: [
