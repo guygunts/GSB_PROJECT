@@ -8,6 +8,8 @@
  *  Involve People : -
  *  Last Updated : 11/09/2554 01:30
   ================================================== */
+PrintR($_SESSION);
+exit;
 if($_SESSION[OFFICE]["LOGIN"] != "ON"){
     echo PleaseLogin(URL.'/app.logout.php');
     exit;
@@ -53,7 +55,7 @@ if ($response['code'] == 200) {
 
 
 
-PrintR($_SESSION);
+//PrintR($_SESSION);
 
 //$url = 'https://wso2ei.snapz.mobi/geniespeech/adminmenu';
 //$response = curlposttoken($url, $params, $token);
