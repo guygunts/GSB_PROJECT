@@ -1,16 +1,16 @@
 <?php
 require_once "define.php";
 ini_set('session.cookie_httponly', 1);
-session_start();
+@session_start();
 
 require_once "func.php";
 
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Origin: " . URL);
-header("X-Frame-Options: DENY");
-header("Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly");
+//header("X-Frame-Options: DENY");
+//header("Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly");
 //header("X-XSS-Protection: 1; mode=block");
-header("Content-Security-Policy: report-uri https://boatjunior.report-uri.com/r/d/csp/enforce");
+//header("Content-Security-Policy: report-uri https://boatjunior.report-uri.com/r/d/csp/enforce");
 //header("Content-Security-Policy-Report-Only: default-src https: 'unsafe-inline' 'unsafe-eval'");
 //header("X-Content-Type-Options: nosniff");
 //header("Referrer-Policy: same-origin");
