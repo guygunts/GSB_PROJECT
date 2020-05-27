@@ -136,6 +136,9 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                             }else if (column === 16) {
                                 data = '';
                             }
+                            if(row < 10){
+                            console.log(data);
+                            }
                             return data;
 
                         }
@@ -182,9 +185,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                         extend: 'print',
                                         orientation: 'landscape',
                                         pageSize: 'LEGAL',
-                                        className: 'float-right',
-                                        charset: 'utf-8',
-                                        bom: true
+                                        className: 'float-right'
                                     } ),
                                     $.extend( true, {}, buttonCommon, {
                                         // text: 'Excel',
@@ -199,16 +200,12 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                         // }
                                         extend: 'excelHtml5',
                                         text: 'Excel',
-                                        className: 'float-right',
-                                        charset: 'utf-8',
-                                        bom: true
+                                        className: 'float-right'
                                     } ),
                                     $.extend( true, {}, buttonCommon, {
                                         extend: 'csvHtml5',
                                         text: 'CSV',
-                                        className: 'float-right',
-                                        charset: 'utf-8',
-                                        bom: true
+                                        className: 'float-right'
                                     } ),
                                     $.extend( true, {}, buttonCommon, {
                                         extend: 'pdfHtml5',
