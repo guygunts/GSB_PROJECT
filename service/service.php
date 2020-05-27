@@ -3,6 +3,7 @@ ini_set('session.cookie_httponly', 1);
 session_start();
 require_once "define.php";
 require_once "func.php";
+
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Origin: " . URL);
 header("X-Frame-Options: DENY");
