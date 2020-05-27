@@ -177,7 +177,7 @@ function Add(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-    $file = $request->getFiles()->get('file');
+    $file = $request->getFiles()->get('file')->get('name');
     PrintR($file);
     exit;
 //    $file = $_FILES['file'];
