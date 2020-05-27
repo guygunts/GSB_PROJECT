@@ -113,7 +113,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                 exportOptions: {
                     format: {
                         body: function ( data, row, column, node ) {
-
+                            console.log(data);
                             if(column === 4) {
                                 data = $(data).attr('href');
                             }else if (column === 6) {
