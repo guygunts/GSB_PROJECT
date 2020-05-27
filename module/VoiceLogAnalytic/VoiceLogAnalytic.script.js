@@ -200,12 +200,16 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                         // }
                                         extend: 'excelHtml5',
                                         text: 'Excel',
-                                        className: 'float-right'
+                                        className: 'float-right',
+                                        charset: 'utf-8',
+                                        bom: true
                                     } ),
                                     $.extend( true, {}, buttonCommon, {
                                         extend: 'csvHtml5',
                                         text: 'CSV',
-                                        className: 'float-right'
+                                        className: 'float-right',
+                                        charset: 'utf-8',
+                                        bom: true
                                     } ),
                                     $.extend( true, {}, buttonCommon, {
                                         extend: 'pdfHtml5',
