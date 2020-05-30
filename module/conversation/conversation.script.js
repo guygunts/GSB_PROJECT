@@ -152,7 +152,10 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								data: data.data,
 								columns: data.columns,
 								"infoCallback": function( settings, start, end, max, total, pre ) {
-									total = data.info.recordsTotal;
+									console.log(settings);
+									console.log(total);
+									console.log(max);
+
 								}
 							});
 
