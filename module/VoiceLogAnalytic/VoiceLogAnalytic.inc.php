@@ -200,6 +200,7 @@ function View(Request $request)
         $result['grammar'] = $grammarlist;
         $result['confiden'] = $confidenlist;
         $result['intent'] = $intentlist;
+        $result['recnums'] = $recnums;
         $result['success'] = 'COMPLETE';
 
     } else {
@@ -355,7 +356,7 @@ function ViewQC(Request $request)
         $result['grammar'] = $grammarlist;
         $result['confiden'] = $confidenlist;
         $result['intent'] = $intentlist;
-        $result['recnums'] = $recnums;
+
         $result['success'] = 'COMPLETE';
 
     } else {
