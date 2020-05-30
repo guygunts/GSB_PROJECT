@@ -133,7 +133,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
         cache: false,
         data: {
             page_id: page_id,
-            page_size: 100000,
+            page_size: page_size,
             start_date: start,
             end_date: stop,
             random_num: random_num,
