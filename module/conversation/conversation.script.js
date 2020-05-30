@@ -134,7 +134,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 							scrollX: true,
 							pageLength: page_size,
 							paging: true,
-							lengthChange:false,
+							lengthChange:true,
 							columns: data.columns,
 							serverSide: true,
 							ajax: {
