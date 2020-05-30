@@ -23,7 +23,7 @@ function View(Request $request)
 
     $params = array(
 //        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
-        'project_id' => 1,
+        'project_id' => 0,
         'start_date' => $data['start_date'],
         'end_date' => $data['end_date'],
         'page_id' => $data['page_id'],
