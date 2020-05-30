@@ -32,6 +32,7 @@ function View(Request $request)
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
+        $start = $data['start'];
         $columnslist = $response['columns_name'];
         $recnums['pages'] = floor($response['result'][0]['recnum'] / $data['page_size']);
         $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
@@ -81,7 +82,7 @@ function View(Request $request)
         foreach ((array)$datas as $i => $item) {
             if ($item['DATE_TIME'] == 0) break;
             $datalist[$i]['DT_RowId'] = 'row_' . MD5($item[$columns[1]['data']]);
-            $datalist[$i]['no'] = ($i + 1);
+            $datalist[$i]['no'] = ($start + 1);
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'LOG_FILE') {
                     $datalist[$i][$value['data']] = '<a href="' . $item[$value['data']] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
