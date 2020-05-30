@@ -62,13 +62,13 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 		cache:false,
 		data:{ menu_action : menu , page_id : page_id , page_size : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
-			var myJson = {
+			const myJson = {
 				myData: data.data,
 				totalPages: data.info.recordsTotal,
 				currentPage: me.page
 			}
 
-			var tmpJson = {
+			const tmpJson = {
 				recordsTotal: myJson.totalPages*page_size, // expected by DataTables to create pagination
 				recordsFiltered: myJson.totalPages*page_size, // expected by DataTables to create pagination
 				data: myJson.myData, // expected by DataTables to populate the table
