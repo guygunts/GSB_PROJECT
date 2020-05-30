@@ -163,6 +163,10 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						$('title').text(data.name);
 					}
 
+					$('#tbView').on( 'page.dt', function () {
+						var info = me.table.page.info();
+						console.log(info);
+					} );
 
 					$('a.toggle-vis').on( 'click', function (e) {
 						e.preventDefault();
