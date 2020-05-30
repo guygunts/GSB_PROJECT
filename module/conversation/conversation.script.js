@@ -166,7 +166,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								displayStart: tmpJson.currentPage*page_size,
 								ajax: function (data, callback, settings) {
 									callback(
-										tmpJson
+										JSON.parse(tmpJson)
 									)
 								}
 							});
