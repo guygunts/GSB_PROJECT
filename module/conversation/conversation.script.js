@@ -11,6 +11,7 @@ me.action.menu = 'SR';
 me.action.add = 'adduser';
 me.action.edit = 'updateuser';
 me.action.del = 'deleteuser';
+me.page = 1;
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -47,107 +48,19 @@ me.Search = function(){
 		// me.table.clear().destroy();
 		// $('#tbView').empty();
 		// me.table.clear();
-		me.LoadDataReport(me.action.menu,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,0);
+		me.LoadDataReport(me.action.menu,me.page,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
 	});
 
 };
 
-me.LoadDataReport_ = function(menu, page_size, start, stop, compare ='',search = '', readd=''){
-	me.table = $('#tbView')
-		.addClass('nowrap')
-		.removeAttr('width')
-		.DataTable({
-			serverSide: true,
-			ajax: {
-				"url": me.url + "-View",
-				"type": "POST",
-				"data": function (d) {
-
-					d.page = (d.start / d.length) + 1;
-					d.menu = menu;
-					d.start_date = start;
-					d.end_date = stop;
-					d.text_search = search;
-				}
-			},
-			bFilter: false,
-			dom: 'Bfrtip',
-			buttons: [
-				// 'excelHtml5',
-				{
-					text: 'ย้อนกลับ',
-					className: 'float-left hidden',
-					attr:  {
-						title: 'Copy',
-						id: 'btnback',
-						disabled: 'disabled'
-					}
-				},
-				{
-					extend: 'print',
-					orientation: 'landscape',
-					pageSize: 'LEGAL',
-					className: 'float-right',
-					charset: 'utf-8',
-					bom: true
-				},
-				{
-					extend: 'excelHtml5',
-					text: 'Excel',
-					className: 'float-right',
-					charset: 'utf-8',
-					bom: true
-				},
-				{
-					extend: 'csvHtml5',
-					text: 'CSV',
-					className: 'float-right',
-					charset: 'utf-8',
-					bom: true
-				},
-				{
-					extend: 'pdfHtml5',
-					orientation: 'landscape',
-					pageSize: 'LEGAL',
-					className: 'float-right',
-					customize: function ( doc ) {
-						doc.defaultStyle = {
-							font:'THSarabunNew',
-							fontSize:16
-						};
-					}
-				},
-			],
-			columnDefs: [
-				{
-					"width": "5%",
-					"targets": 0,
-					"searchable": false
-				}
-			],
-
-			searching: false,
-			retrieve: true,
-			deferRender: true,
-			stateSave: true,
-			iDisplayLength : page_size,
-			responsive: false,
-			scrollX: true,
-			pageLength: page_size,
-			paging: true,
-			lengthChange:false
-		});
-
-};
-
-me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = '', readd=''){
+me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',search = '', readd=''){
 
 	$.ajax({
 		url: me.url + '-View',
 		type:'POST',
 		dataType:'json',
 		cache:false,
-		data:{ menu_action : menu , page_id : 1 , length : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
+		data:{ menu_action : menu , page_id : page_id , page_size : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
@@ -236,25 +149,13 @@ me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = 
 								pageLength: page_size,
 								paging: true,
 								lengthChange:false,
-								columns: data.columns,
-								serverSide: true,
-								ajax: {
-									"url": me.url + "-View",
-									"type": "POST",
-									"data": function (d) {
-										d.page = (d.start / d.length) + 1;
-										d.menu = menu;
-										d.start_date = start;
-										d.end_date = stop;
-										d.text_search = search;
-
-									}
-								}
+								data: data.data,
+								columns: data.columns
 							});
 
 					}
-					// me.table.page.len( page_size ).draw();
-					// me.table.columns.adjust().draw('true');
+					me.table.page.len( page_size ).draw();
+					me.table.columns.adjust().draw('true');
 
 					me.table.buttons(0, null).container().addClass('col');
 
@@ -675,7 +576,7 @@ $(document).ready(function(){
 	me.SetUrl();
 	me.SetDateTime();
 	me.Search();
-	me.LoadDataReport(me.action.menu,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
+	me.LoadDataReport(me.action.menu,me.page,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
 	// me.LoadCbo('project','getprojects','project_id','project_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
 });
