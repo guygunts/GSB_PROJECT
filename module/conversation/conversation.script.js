@@ -143,8 +143,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								"data": function (d) {
 									d.page_id = (d.start / d.length) + 1;
 									d.page_size = $('#page_size').val();
-									d.start_date = $('#start_date').data().date;
-									d.end_date = $('#end_date').data().date;
+									d.start_date = $('#start_date').data().date+' 00:00:00';
+									d.end_date = $('#end_date').data().date+' 23:59:59';
 									d.text_search = $('#text_search').val();
 								}
 							}
