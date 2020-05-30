@@ -548,8 +548,8 @@ me.TextSerch = function () {
 						// $('#tbViewSub').empty();
 						// me.tablesub.clear().destroy();
 						$('#tbView').css('display','');
-						me.table.clear().draw();
-						me.table.rows.add(data.data).draw();
+						// me.table.clear().draw();
+						// me.table.rows.add(data.data).draw();
 
 						break;
 					default :
