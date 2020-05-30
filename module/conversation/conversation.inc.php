@@ -231,6 +231,11 @@ function ViewVOICE(Request $request)
     $response = curlposttoken($url, $params, $token);
     PrintR($response);
     if ($response['result'][0]['code'] == 200) {
+        $start = $data['start'];
+        $recnums['pages'] = floor($response['result'][0]['recnum'] / $data['page_size']);
+        $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
+        $recnums['recordsTotal'] = $response['result'][0]['recnum'];
+
         $columnslist = $response['columns_name'];
         $datas = $response['recs'];
         $name = $response['report_name'];
@@ -267,7 +272,8 @@ function ViewVOICE(Request $request)
         foreach ((array)$datas as $i => $item) {
 
             $datalist[$i]['pass'] = '<input type="checkbox" name="pass" ref="' . $item['vname'] . '">';
-            $datalist[$i]['no'] = ($i + 1);
+            ++$start;
+            $datalist[$i]['no'] = $start;
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'CHNN') {
                     $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . str_replace('CHAN=', '', $item[$value['data']]) . "'" . ')">' . $item[$value['data']] . '</a>';
@@ -286,6 +292,8 @@ function ViewVOICE(Request $request)
         $result['chnn'] = $data['menu_action'];
         $result['columns'] = $column;
         $result['data'] = $datalist;
+        $result['recordsTotal'] = $recnums['recordsTotal'];
+        $result['recordsFiltered'] = $recnums['recordsTotal'];
         $result['success'] = 'COMPLETE';
 
     } else {
