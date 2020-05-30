@@ -396,7 +396,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 								"data": function (d) {
 
 									d.page_id = (d.start / d.length) + 1;
-									d.menu_action = $('#chnn').val();
+									d.menu_action = me.chnn;
 									d.page_size = $('#page_size').val();
 									d.start_date = $('#start_date').data().date+' 00:00:00';
 									d.end_date = $('#end_date').data().date+' 23:59:59';
@@ -614,7 +614,7 @@ me.OpenVOICE = function(code,page_id,page_size,start,stop){
 	$('#tbViewSub_wrapper').css('display','');
 	$('#tbView_wrapper').css('display','none');
 	$('#frmsearch').css('display','none');
-	$('#chnn').val(code);
+	me.chnn = code;
 	me.tablesub.page.len(page_size).draw();
 
 };
