@@ -27,12 +27,14 @@ function View(Request $request)
         'text_search' => $data['text_search']
     );
 
-    PrintR($params);
+//    PrintR($params);
     $url = URL_API . '/geniespeech/conver';
     $response = curlposttoken($url, $params, $token);
 
     if ($response['result'][0]['code'] == 200) {
         $columnslist = $response['columns_name'];
+        $recnums = $response['result'][0]['recnum'];
+        $pagenum = $response['result'][0]['pagenum'];
         $datas = (array)$response['recs'];
         $name = $response['report_name'];
 
@@ -95,6 +97,8 @@ function View(Request $request)
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
+        $result['pagenum'] = $pagenum;
+        $result['recnums'] = $recnums;
         $result['success'] = 'COMPLETE';
 
     } else {

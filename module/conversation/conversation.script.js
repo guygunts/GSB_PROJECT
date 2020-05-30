@@ -148,8 +148,10 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								pageLength: page_size,
 								paging: true,
 								lengthChange:false,
+								start : page_id,
+								recordsTotal : data.recnums,
+								recordsFiltered : data.recnums,
 								data: data.data,
-
 								columns: data.columns
 							});
 
