@@ -172,9 +172,9 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 							});
 
 					}
-					me.table.page.len(page_size).draw();
+					// me.table.page.len(page_size).draw();
 					// me.table.page.info(data.info);
-					me.table.columns.adjust().draw('true');
+					// me.table.columns.adjust().draw('true');
 
 					me.table.buttons(0, null).container().addClass('col');
 
