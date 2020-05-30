@@ -64,7 +64,9 @@ me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = 
 				"data": function (d) {
 
 					d.page = (d.start / d.length) + 1;
-					d.search = search;
+					d.start_date = start;
+					d.end_date = stop;
+					d.text_search = search;
 				}
 			},
 			bFilter: false,
