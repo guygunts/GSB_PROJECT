@@ -75,6 +75,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 				currentPage: (myJson.currentPage-1) // added by me to easily manage correct page displaying
 			}
 
+			console.log(tmpJson);
+
 			switch(data.success){
 				case 'COMPLETE' :
 					$('#frmsearch').css('display','');
