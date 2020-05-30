@@ -331,7 +331,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 										me.loading = true;
 										$('#tbViewSub_wrapper').css('display','none');
 										$('#tbView_wrapper').css('display','');
-										$('#frmresult').css('display','');
+										$('#frmsearch').css('display','');
 									}
 								},
 								{
