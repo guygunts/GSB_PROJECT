@@ -528,38 +528,7 @@ me.TextSerch = function () {
 	$('#text_search').on('keyup',function (e) {
 
 		me.loading = false;
-		var myData = [];
-		myData = ft.LoadForm('searchdata');
-		myData.start_date = $('#start_date').data().date+' 00:00:00';
-		myData.end_date = $('#end_date').data().date+' 23:59:59';
-		myData.page_id = me.page;
-		myData.page_size = $('#page_size').val();
-		myData.menu_action = me.action.menu;
-
-		$.ajax({
-			url: me.url + '-View',
-			type:'POST',
-			dataType:'json',
-			cache:false,
-			data: myData,
-			success:function(data){
-				switch(data.success){
-					case 'COMPLETE' :
-						$('#tbViewSub').css('display','none');
-
-						// $('#tbViewSub').empty();
-						// me.tablesub.clear().destroy();
-						$('#tbView').css('display','');
-						// me.table.clear().draw();
-						// me.table.rows.add(data.data).draw();
-
-						break;
-					default :
-						alertify.alert(data.msg);
-						break;
-				}
-			}
-		});
+		me.table.draw();
 	});
 };
 
