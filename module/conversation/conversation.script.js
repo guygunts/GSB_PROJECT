@@ -170,8 +170,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						column.visible( ! column.visible() );
 					} );
 					//me.TextSerch();
-					$('#tbViewSub_wrapper').css('display','none');
-					$('#tbView_wrapper').css('display','');
+					// $('#tbViewSub_wrapper').css('display','none');
+					// $('#tbView_wrapper').css('display','');
 					break;
 				default :
 					alertify.alert(data.msg);
