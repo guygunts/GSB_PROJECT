@@ -64,7 +64,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
         data: {
             menu_action: menu,
             page_id: page_id,
-            page_size: 10000,
+            page_size: page_size,
             start_date: start,
             end_date: stop,
             compare: compare,
@@ -166,6 +166,9 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
                                 pageLength: page_size,
                                 paging: true,
                                 lengthChange: false,
+                                start : page_id,
+                                recordsTotal : data.recnums,
+                                recordsFiltered : data.recnums,
                                 data: data.data,
                                 columns: data.columns
                             });

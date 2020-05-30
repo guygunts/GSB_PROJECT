@@ -33,6 +33,7 @@ function View(Request $request)
 
     if ($response['code'] == 200) {
         $columnslist = $response['result']['header'];
+        $recnums = $response['recnums'];
         $datas = $response['data'];
         $name = 'Upload Grammar';
 
@@ -155,6 +156,7 @@ function View(Request $request)
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
+        $result['recnums'] = $recnums;
         $result['success'] = 'COMPLETE';
 
     } else {
