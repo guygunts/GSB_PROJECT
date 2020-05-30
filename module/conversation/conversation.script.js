@@ -69,8 +69,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 			}
 
 			const tmpJson = {
-				recordsTotal: myJson.totalPages*page_size, // expected by DataTables to create pagination
-				recordsFiltered: myJson.totalPages*page_size, // expected by DataTables to create pagination
+				recordsTotal: myJson.totalPages, // expected by DataTables to create pagination
+				recordsFiltered: myJson.totalPages, // expected by DataTables to create pagination
 				data: myJson.myData, // expected by DataTables to populate the table
 				currentPage: (myJson.currentPage-1) // added by me to easily manage correct page displaying
 			}
