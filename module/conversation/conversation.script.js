@@ -152,10 +152,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								data: data.data,
 								columns: data.columns,
 								"infoCallback": function( settings, start, end, max, total, pre ) {
-									var api = this.api();
-									var pageInfo = api.page.info();
-
-									return 'Page '+ (pageInfo.page+1) +' of '+ pageInfo.pages;
+									total = data.info.recordsTotal;
 								}
 							});
 
