@@ -190,13 +190,6 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						$('title').text(data.name);
 					}
 
-					$('#tbView').on( 'page.dt', function () {
-						var info = me.table.page.info();
-						me.page = (info.page+1);
-						console.log(info.page);
-						console.log(me.page);
-						$('#btnsearchsubmit').click();
-					} );
 
 					$('a.toggle-vis').on( 'click', function (e) {
 						e.preventDefault();
@@ -603,6 +596,14 @@ me.TextSerch = function () {
 	});
 };
 
+me.ChangePage = function(){
+	$('#tbView').on( 'page.dt', function () {
+		var info = me.table.page.info();
+		me.page = (info.page+1);
+		$('#btnsearchsubmit').click();
+	} );
+};
+
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/
@@ -610,6 +611,7 @@ $(document).ready(function(){
 	me.SetUrl();
 	me.SetDateTime();
 	me.Search();
+	me.ChangePage();
 	me.LoadDataReport(me.action.menu,me.page,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
 	// me.LoadCbo('project','getprojects','project_id','project_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
