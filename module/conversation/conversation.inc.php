@@ -82,7 +82,8 @@ function View(Request $request)
         foreach ((array)$datas as $i => $item) {
             if ($item['DATE_TIME'] == 0) break;
             $datalist[$i]['DT_RowId'] = 'row_' . MD5($item[$columns[1]['data']]);
-            $datalist[$i]['no'] = ($start + 1);
+            ++$start;
+            $datalist[$i]['no'] = $start;
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'LOG_FILE') {
                     $datalist[$i][$value['data']] = '<a href="' . $item[$value['data']] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
