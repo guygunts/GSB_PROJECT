@@ -12,6 +12,8 @@ me.action.add = 'adduser';
 me.action.edit = 'updateuser';
 me.action.del = 'deleteuser';
 me.page = 1;
+me.pagesub = 1;
+me.chnn = '';
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -313,9 +315,6 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
-					$('#tbViewSub_wrapper').css('display','');
-					$('#frmsearch').css('display','none');
-
 					me.tablesub = $('#tbViewSub')
 						.addClass('nowrap')
 						.removeAttr('width')
@@ -332,6 +331,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 										me.loading = true;
 										$('#tbViewSub_wrapper').css('display','none');
 										$('#tbView_wrapper').css('display','');
+										$('#frmresult').css('display','');
 									}
 								},
 								{
@@ -395,7 +395,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 								"type": "POST",
 								"data": function (d) {
 									d.page_id = (d.start / d.length) + 1;
-									d.menu_action = menu;
+									d.menu_action = $('#chnn').val();
 									d.page_size = $('#page_size').val();
 									d.start_date = $('#start_date').data().date+' 00:00:00';
 									d.end_date = $('#end_date').data().date+' 23:59:59';
@@ -409,8 +409,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 					if(data.name){
 						$('title').text(data.name);
 					}
-					$('#frmresult').css('display','');
-					$('#chnn').val(data.chnn);
+					// $('#chnn').val(data.chnn);
 
 
 					$('a.toggle-vis').on( 'click', function (e) {
@@ -422,8 +421,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 						// Toggle the visibility
 						column.visible( ! column.visible() );
 					} );
-					$('#tbView_wrapper').css('display','none');
-					$('#tbViewSub').css('display','');
+
 					break;
 				default :
 					alertify.alert(data.msg);
@@ -598,6 +596,7 @@ me.LoadDataVOICE_ = function(menu, page_id, page_size, start, stop, readd=''){
 };
 
 me.OpenCHNN = function(code,page_id,page_size,start,stop){
+
 	// me.table.clear().destroy();
 	// $('#tbView').empty();
 	me.LoadDataCHNN(code,page_id,page_size,start,stop);
@@ -605,12 +604,18 @@ me.OpenCHNN = function(code,page_id,page_size,start,stop){
 };
 
 me.OpenVOICE = function(code,page_id,page_size,start,stop){
+	var page_size = $('#page_size').val();
 	// $('#tbView_wrapper').css('display','none');
 	// $('#tbViewSub_wrapper').css('display','');
 	// $('#tbViewSub').css('display','');
 	// me.table.clear().destroy();
 	// $('#tbView').empty();
-	me.LoadDataVOICE(code,page_id,page_size,start,stop);
+	$('#tbViewSub_wrapper').css('display','');
+	$('#tbView_wrapper').css('display','none');
+	$('#frmsearch').css('display','none');
+	$('#chnn').val(code);
+	me.tablesub.page.len(page_size).draw();
+
 };
 
 me.UpdateVoice = function(){
@@ -679,7 +684,8 @@ $(document).ready(function(){
 	me.SetDateTime();
 	me.Search();
 	// me.ChangePage();
-	me.LoadDataReport(me.action.menu,me.page,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
+	me.LoadDataReport(me.action.menu,1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
+	me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
 	// me.LoadCbo('project','getprojects','project_id','project_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
 });
