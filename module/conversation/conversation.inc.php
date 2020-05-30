@@ -33,7 +33,9 @@ function View(Request $request)
 
     if ($response['result'][0]['code'] == 200) {
         $columnslist = $response['columns_name'];
-        $recnums = $response['result'][0]['recnum'];
+        $recnums['pages'] = floor($response['result'][0]['recnum'] / $data['page_size']);
+        $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
+        $recnums['recordsTotal'] = $response['result'][0]['recnum'];
         $pagenum = $response['result'][0]['pagenum'];
         $datas = (array)$response['recs'];
         $name = $response['report_name'];
