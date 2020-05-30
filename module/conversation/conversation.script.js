@@ -48,7 +48,7 @@ me.Search = function(){
 		// me.table.clear().destroy();
 		// $('#tbView').empty();
 		// me.table.clear();
-		me.LoadDataReport(me.action.menu,me.page,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
+		me.LoadDataReport(me.action.menu,me.page,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch);
 	});
 
 };
@@ -171,7 +171,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 							});
 
 					}
-					me.table.page.len( -1 ).draw();
+					me.table.page.len(page_size).draw();
 					// me.table.page.info(data.info);
 					me.table.columns.adjust().draw('true');
 
