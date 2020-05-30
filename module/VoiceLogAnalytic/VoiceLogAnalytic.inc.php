@@ -46,6 +46,7 @@ function View(Request $request)
         $grammar = $response['result']['box1'];
         $confiden = $response['result']['box2'];
         $intent = $response['result']['box3'];
+        $recnums = $response['recnums'];
 
 
         foreach ((array)$grammar as $i => $item) {
@@ -348,11 +349,13 @@ function ViewQC(Request $request)
 
 
         $result['name'] = SITE . ' : ' . $name;
+        $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
         $result['grammar'] = $grammarlist;
         $result['confiden'] = $confidenlist;
         $result['intent'] = $intentlist;
+        $result['recnums'] = $recnums;
         $result['success'] = 'COMPLETE';
 
     } else {
