@@ -27,7 +27,7 @@ function View(Request $request)
         'text_search' => $data['text_search']
     );
 
-//    PrintR($params);
+    PrintR($params);
     $url = URL_API . '/geniespeech/conver';
     $response = curlposttoken($url, $params, $token);
 
