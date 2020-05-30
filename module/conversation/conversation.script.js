@@ -59,7 +59,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 		type:'POST',
 		dataType:'json',
 		cache:false,
-		data:{ menu_action : menu , page_id : page_id , page_size : 10000 , start_date : start , end_date : stop , compare : compare , text_search : search},
+		data:{ menu_action : menu , page_id : page_id , page_size : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
