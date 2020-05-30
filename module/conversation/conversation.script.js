@@ -64,114 +64,90 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
-					$('#frmsearch').css('display','');
-					// $('#frmsearch').css('display','');
 
-					// console.log(data.data.length);
-					if(data.data.length == 0){
-						alertify.alert('No data, Please select other date');
-					}
-
-					if(readd){
-						me.table.destroy();
-						$('#tbView').empty();
-					}
-
-					if(false){
-						// me.table.clear();
-						// me.applyData(me.table,data.data,false);
-						me.table.clear().draw();
-						me.table.rows.add(data.data).draw();
-
-					}else{
-						me.table = $('#tbView')
-							.addClass('nowrap')
-							.removeAttr('width')
-							.DataTable({
-								destroy: true,
-								bFilter: false,
-								dom: 'Bfrtip',
-								buttons: [
-									// 'excelHtml5',
-									{
-										text: 'ย้อนกลับ',
-										className: 'float-left hidden',
-										attr:  {
-											title: 'Copy',
-											id: 'btnback',
-											disabled: 'disabled'
-										}
-									},
-									{
-										extend: 'print',
-										orientation: 'landscape',
-										pageSize: 'LEGAL',
-										className: 'float-right',
-										charset: 'utf-8',
-										bom: true
-									},
-									{
-										extend: 'excelHtml5',
-										text: 'Excel',
-										className: 'float-right',
-										charset: 'utf-8',
-										bom: true
-									},
-									{
-										extend: 'csvHtml5',
-										text: 'CSV',
-										className: 'float-right',
-										charset: 'utf-8',
-										bom: true
-									},
-									{
-										extend: 'pdfHtml5',
-										orientation: 'landscape',
-										pageSize: 'LEGAL',
-										className: 'float-right',
-										customize: function ( doc ) {
-											doc.defaultStyle = {
-												font:'THSarabunNew',
-												fontSize:16
-											};
-										}
-									},
-								],
-								columnDefs: [
-									{
-										"width": "5%",
-										"targets": 0,
-										"searchable": false
+					me.table = $('#tbView')
+						.addClass('nowrap')
+						.removeAttr('width')
+						.DataTable({
+							destroy: true,
+							bFilter: false,
+							dom: 'Bfrtip',
+							buttons: [
+								// 'excelHtml5',
+								{
+									text: 'ย้อนกลับ',
+									className: 'float-left hidden',
+									attr:  {
+										title: 'Copy',
+										id: 'btnback',
+										disabled: 'disabled'
 									}
-								],
-								searching: false,
-								retrieve: true,
-								deferRender: true,
-								stateSave: false,
-								responsive: false,
-								scrollX: true,
-								pageLength: page_size,
-								paging: true,
-								lengthChange:false,
-								columns: data.columns,
-								serverSide: true,
-								ajax: {
-									"url": me.url + "-View",
-									"type": "POST",
-									"data": function (d) {
-										d.page_id = (d.start / d.length) + 1;
-										d.page_size = page_size;
-										d.start_date = start;
-										d.end_date = stop;
-										d.text_search = text_search;
+								},
+								{
+									extend: 'print',
+									orientation: 'landscape',
+									pageSize: 'LEGAL',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'excelHtml5',
+									text: 'Excel',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'csvHtml5',
+									text: 'CSV',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'pdfHtml5',
+									orientation: 'landscape',
+									pageSize: 'LEGAL',
+									className: 'float-right',
+									customize: function ( doc ) {
+										doc.defaultStyle = {
+											font:'THSarabunNew',
+											fontSize:16
+										};
 									}
+								},
+							],
+							columnDefs: [
+								{
+									"width": "5%",
+									"targets": 0,
+									"searchable": false
 								}
-							});
-
-					}
-					// me.table.page.len(page_size).draw();
-					// me.table.page.info(data.info);
-					// me.table.columns.adjust().draw('true');
+							],
+							searching: false,
+							retrieve: true,
+							deferRender: true,
+							stateSave: false,
+							responsive: false,
+							scrollX: true,
+							pageLength: page_size,
+							paging: true,
+							lengthChange:false,
+							columns: data.columns,
+							serverSide: true,
+							ajax: {
+								"url": me.url + "-View",
+								"type": "POST",
+								"data": function (d) {
+									d.page_id = (d.start / d.length) + 1;
+									d.page_size = page_size;
+									d.start_date = start;
+									d.end_date = stop;
+									d.text_search = text_search;
+								}
+							}
+						});
 
 					me.table.buttons(0, null).container().addClass('col');
 
