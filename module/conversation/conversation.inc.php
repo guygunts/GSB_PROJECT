@@ -99,8 +99,7 @@ function View(Request $request)
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
-        $result['recordsTotal'] = $recnums;
-        $result['recordsFiltered'] = $recnums;
+        $result['info'] = $recnums;
         $result['success'] = 'COMPLETE';
 
     } else {

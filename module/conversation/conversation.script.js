@@ -155,7 +155,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 
 					}
 					me.table.page.len( -1 ).draw();
-					me.table.page.info( -1 ).draw();
+					me.table.page.info(data.info).draw();
 					me.table.columns.adjust().draw('true');
 
 					me.table.buttons(0, null).container().addClass('col');
