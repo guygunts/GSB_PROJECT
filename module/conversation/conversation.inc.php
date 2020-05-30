@@ -22,8 +22,8 @@ function View(Request $request)
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'start_date' => $data['start_date'],
         'end_date' => $data['end_date'],
-        'page_id' => ($data['page_id']?$data['page_id']:1),
-        'page_size' => $data['page_size'],
+        'page_id' => ($data['page']?$data['page']:1),
+        'page_size' => $data['length'],
         'text_search' => $data['text_search']
     );
 
