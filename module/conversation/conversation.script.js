@@ -186,7 +186,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 
 					$('#tbView').on( 'page.dt', function () {
 						var info = me.table.page.info();
-						console.log(info);
+						me.page = info.page;
+						$('#btnsearchsubmit').click();
 					} );
 
 					$('a.toggle-vis').on( 'click', function (e) {
@@ -601,7 +602,7 @@ $(document).ready(function(){
 	me.SetUrl();
 	me.SetDateTime();
 	me.Search();
-	me.LoadDataReport(me.action.menu,me.page,25,'2020-01-01 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
+	me.LoadDataReport(me.action.menu,me.page,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
 	// me.LoadCbo('project','getprojects','project_id','project_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
 });
