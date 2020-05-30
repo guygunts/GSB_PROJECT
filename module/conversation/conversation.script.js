@@ -565,8 +565,8 @@ me.TextSerch = function () {
 		myData = ft.LoadForm('searchdata');
 		myData.start_date = $('#start_date').data().date+' 00:00:00';
 		myData.end_date = $('#end_date').data().date+' 23:59:59';
-		myData.page_id = 1;
-		myData.page_size = 10000;
+		myData.page_id = me.page;
+		myData.page_size = $('#page_size').val();
 		myData.menu_action = me.action.menu;
 
 		$.ajax({
