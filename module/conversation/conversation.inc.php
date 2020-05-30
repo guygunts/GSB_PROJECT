@@ -100,6 +100,8 @@ function View(Request $request)
         $result['columns'] = $column;
         $result['data'] = $datalist;
         $result['info'] = $recnums;
+        $result['recordsTotal'] = $recnums['recordsTotal'];
+        $result['recordsFiltered'] = $recnums['recordsTotal'];
         $result['success'] = 'COMPLETE';
 
     } else {
