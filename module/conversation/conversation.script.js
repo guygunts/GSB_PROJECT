@@ -193,6 +193,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					$('#tbView').on( 'page.dt', function () {
 						var info = me.table.page.info();
 						me.page = info.page;
+						console.log(info.page);
+						console.log(me.page);
 						$('#btnsearchsubmit').click();
 					} );
 
