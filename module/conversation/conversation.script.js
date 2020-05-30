@@ -150,12 +150,18 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								paging: true,
 								lengthChange:false,
 								data: data.data,
-								columns: data.columns
+								columns: data.columns,
+								"infoCallback": function( settings, start, end, max, total, pre ) {
+									var api = this.api();
+									var pageInfo = api.page.info();
+
+									return 'Page '+ (pageInfo.page+1) +' of '+ pageInfo.pages;
+								}
 							});
 
 					}
 					me.table.page.len( -1 ).draw();
-					me.table.page.info(data.info);
+					// me.table.page.info(data.info);
 					me.table.columns.adjust().draw('true');
 
 					me.table.buttons(0, null).container().addClass('col');
