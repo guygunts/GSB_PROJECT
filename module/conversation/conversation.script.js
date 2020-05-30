@@ -144,7 +144,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 									d.page_size = page_size;
 									d.start_date = start;
 									d.end_date = stop;
-									d.text_search = text_search;
+									d.text_search = search;
 								}
 							}
 						});
