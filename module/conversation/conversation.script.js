@@ -62,6 +62,19 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 		cache:false,
 		data:{ menu_action : menu , page_id : page_id , page_size : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
+			const myJson = {
+				myData: data.data,
+				totalPages: data.info.recordsTotal,
+				currentPage: me.page
+			}
+
+			const tmpJson = {
+				recordsTotal: myJson.totalPages*page_size, // expected by DataTables to create pagination
+				recordsFiltered: myJson.totalPages*page_size, // expected by DataTables to create pagination
+				data: myJson.myData, // expected by DataTables to populate the table
+				currentPage: myJson.currentPage // added by me to easily manage correct page displaying
+			}
+
 			switch(data.success){
 				case 'COMPLETE' :
 					$('#frmsearch').css('display','');
@@ -138,7 +151,6 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 										"searchable": false
 									}
 								],
-
 								searching: false,
 								retrieve: true,
 								deferRender: true,
@@ -149,13 +161,12 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								pageLength: page_size,
 								paging: true,
 								lengthChange:false,
-								data: data.data,
 								columns: data.columns,
-								"infoCallback": function( settings, start, end, max, total, pre ) {
-									console.log(settings);
-									console.log(total);
-									console.log(max);
-
+								serverSide: true,
+								ajax: function (data, callback, settings) {
+									callback(
+										tmpJson
+									)
 								}
 							});
 
