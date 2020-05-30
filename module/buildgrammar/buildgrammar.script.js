@@ -479,8 +479,8 @@ $(document).ready(function () {
     me.LoadDataReport(me.action.menu, 1, 25, date1, date2, '', '');
     me.LoadCbo('project_id', 'getprojects', 'project_id', 'project_name');
     // me.LoadCbo('role_id','getroles','role_id','role_name');
-    setInterval(function () {
-        me.AutoReload();
-    }, 10000);
+    // setInterval(function () {
+    //     me.AutoReload();
+    // }, 10000);
 
 });
