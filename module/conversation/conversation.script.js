@@ -52,7 +52,7 @@ me.Search = function(){
 
 };
 
-me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = '', readd=''){
+me.LoadDataReport_ = function(menu, page_size, start, stop, compare ='',search = '', readd=''){
 	me.table = $('#tbView')
 		.addClass('nowrap')
 		.removeAttr('width')
@@ -140,14 +140,14 @@ me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = 
 
 };
 
-me.LoadDataReport_ = function(menu, page_id, page_size, start, stop, compare ='',search = '', readd=''){
+me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = '', readd=''){
 
 	$.ajax({
 		url: me.url + '-View',
 		type:'POST',
 		dataType:'json',
 		cache:false,
-		data:{ menu_action : menu , page_id : page_id , page_size : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
+		data:{ menu_action : menu , page_id : 1 , length : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
