@@ -87,6 +87,8 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						alertify.alert('No data, Please select other date');
 					}
 
+
+
 					if(readd){
 						// me.table.clear();
 						// me.applyData(me.table,data.data,false);
@@ -98,6 +100,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 							.addClass('nowrap')
 							.removeAttr('width')
 							.DataTable({
+								destroy: true,
 								bFilter: false,
 								dom: 'Bfrtip',
 								buttons: [
