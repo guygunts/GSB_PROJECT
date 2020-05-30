@@ -47,7 +47,7 @@ me.Search = function(){
 		// me.table.clear().destroy();
 		// $('#tbView').empty();
 		// me.table.clear();
-		me.LoadDataReport(me.action.menu,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
+		me.LoadDataReport(me.action.menu,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,0);
 	});
 
 };
