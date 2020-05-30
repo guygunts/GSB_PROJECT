@@ -394,6 +394,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 								"url": me.url + "-ViewVOICE",
 								"type": "POST",
 								"data": function (d) {
+
 									d.page_id = (d.start / d.length) + 1;
 									d.menu_action = $('#chnn').val();
 									d.page_size = $('#page_size').val();
@@ -406,21 +407,21 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 
 					me.tablesub.buttons(0, null).container().addClass('col');
 
-					if(data.name){
-						$('title').text(data.name);
-					}
+					// if(data.name){
+					// 	$('title').text(data.name);
+					// }
 					// $('#chnn').val(data.chnn);
 
 
-					$('a.toggle-vis').on( 'click', function (e) {
-						e.preventDefault();
-
-						// Get the column API object
-						var column = me.tablesub.column( $(this).attr('data-column') );
-
-						// Toggle the visibility
-						column.visible( ! column.visible() );
-					} );
+					// $('a.toggle-vis').on( 'click', function (e) {
+					// 	e.preventDefault();
+					//
+					// 	// Get the column API object
+					// 	var column = me.tablesub.column( $(this).attr('data-column') );
+					//
+					// 	// Toggle the visibility
+					// 	column.visible( ! column.visible() );
+					// } );
 
 					break;
 				default :
