@@ -395,7 +395,6 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 								"type": "POST",
 								"data": function (d) {
 									d.page_id = (d.start / d.length) + 1;
-									d.page_id = (d.start / d.length) + 1;
 									d.menu_action = menu;
 									d.page_size = $('#page_size').val();
 									d.start_date = $('#start_date').data().date+' 00:00:00';
