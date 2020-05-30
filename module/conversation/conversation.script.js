@@ -48,7 +48,7 @@ me.Search = function(){
 		// me.table.clear().destroy();
 		// $('#tbView').empty();
 		// me.table.clear();
-		me.LoadDataReport(me.action.menu,me.page,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch);
+		me.LoadDataReport(me.action.menu,me.page,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
 	});
 
 };
@@ -87,9 +87,12 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						alertify.alert('No data, Please select other date');
 					}
 
-
-
 					if(readd){
+						me.table.destroy();
+						$('#tbView').empty();
+					}
+
+					if(x){
 						// me.table.clear();
 						// me.applyData(me.table,data.data,false);
 						me.table.clear().draw();
