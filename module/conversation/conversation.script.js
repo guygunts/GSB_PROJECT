@@ -65,7 +65,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 			const myJson = {
 				myData: data.data,
 				totalPages: data.info.recordsTotal,
-				currentPage: me.page
+				currentPage: page_id
 			}
 
 			const tmpJson = {
