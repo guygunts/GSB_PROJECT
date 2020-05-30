@@ -253,7 +253,7 @@ me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = 
 							});
 
 					}
-					me.table.page.len( page_size ).draw();
+					// me.table.page.len( page_size ).draw();
 					me.table.columns.adjust().draw('true');
 
 					me.table.buttons(0, null).container().addClass('col');
