@@ -45,7 +45,7 @@ me.Search = function(){
 		}
 
 		if(cnt != 2)return false;
-		me.table.page.len(page_size).draw(false);
+		me.table.page.len(page_size).draw();
 		// me.table.ajax.reload();
 		// me.table.clear().destroy();
 		// $('#tbView').empty();
