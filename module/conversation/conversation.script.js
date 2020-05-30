@@ -154,7 +154,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						});
 
 					me.table.buttons(0, null).container().addClass('col');
-
+					$('#tbViewSub_wrapper').css('display','none');
 					if(data.name){
 						$('title').text(data.name);
 					}
