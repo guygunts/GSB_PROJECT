@@ -236,11 +236,7 @@ me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = 
 								pageLength: page_size,
 								paging: true,
 								lengthChange:false,
-								start : page_id,
-								end : data.pagenum,
-								recordsTotal : data.recnums,
-								recordsFiltered : data.recnums,
-								data: data.data,
+
 								columns: data.columns
 							});
 
