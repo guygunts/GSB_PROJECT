@@ -229,7 +229,7 @@ function ViewVOICE(Request $request)
 //    PrintR($params);
     $url = URL_API . '/geniespeech/logvoice';
     $response = curlposttoken($url, $params, $token);
-    PrintR($response);
+//    PrintR($response);
     if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
         $recnums['pages'] = floor($response['result'][0]['recnum'] / $data['page_size']);
