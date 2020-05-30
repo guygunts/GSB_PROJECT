@@ -45,6 +45,7 @@ me.Search = function(){
 		}
 
 		if(cnt != 2)return false;
+		me.table.page.len(page_size).draw(false);
 		me.table.ajax.reload();
 		// me.table.clear().destroy();
 		// $('#tbView').empty();
@@ -134,7 +135,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 							scrollX: true,
 							pageLength: page_size,
 							paging: true,
-							lengthChange:true,
+							lengthChange:false,
 							columns: data.columns,
 							serverSide: true,
 							ajax: {
