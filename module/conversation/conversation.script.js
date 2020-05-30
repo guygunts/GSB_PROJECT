@@ -45,10 +45,11 @@ me.Search = function(){
 		}
 
 		if(cnt != 2)return false;
+		me.table.ajax.reload();
 		// me.table.clear().destroy();
 		// $('#tbView').empty();
 		// me.table.clear();
-		me.LoadDataReport(me.action.menu,me.page,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
+		// me.LoadDataReport(me.action.menu,me.page,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
 	});
 
 };
@@ -141,10 +142,10 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 								"type": "POST",
 								"data": function (d) {
 									d.page_id = (d.start / d.length) + 1;
-									d.page_size = page_size;
-									d.start_date = start;
-									d.end_date = stop;
-									d.text_search = search;
+									d.page_size = $('#page_size').val();
+									d.start_date = $('#start_date').data().date;
+									d.end_date = $('#end_date').data().date;
+									d.text_search = $('#text_search').val();
 								}
 							}
 						});
