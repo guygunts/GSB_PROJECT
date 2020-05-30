@@ -92,7 +92,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						$('#tbView').empty();
 					}
 
-					if(x){
+					if(false){
 						// me.table.clear();
 						// me.applyData(me.table,data.data,false);
 						me.table.clear().draw();
