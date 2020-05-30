@@ -309,6 +309,138 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 		type:'POST',
 		dataType:'json',
 		cache:false,
+		data:{ menu_action : menu , page_id : page_id , page_size : 25 , start_date : start , end_date : stop},
+		success:function(data){
+			switch(data.success){
+				case 'COMPLETE' :
+					$('#tbViewSub_wrapper').css('display','');
+					$('#frmsearch').css('display','none');
+
+					me.tablesub = $('#tbViewSub')
+						.addClass('nowrap')
+						.removeAttr('width')
+						.DataTable({
+							destroy: true,
+							bFilter: false,
+							dom: 'Bfrtip',
+							buttons: [
+								// 'excelHtml5',
+								{
+									text: 'ย้อนกลับ',
+									className: 'float-left',
+									action: function ( e, dt, node, config ) {
+										me.loading = true;
+										$('#tbViewSub_wrapper').css('display','none');
+										$('#tbView_wrapper').css('display','');
+									}
+								},
+								{
+									extend: 'print',
+									orientation: 'landscape',
+									pageSize: 'LEGAL',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'excelHtml5',
+									text: 'Excel',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'csvHtml5',
+									text: 'CSV',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'pdfHtml5',
+									orientation: 'landscape',
+									pageSize: 'LEGAL',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true,
+									customize: function ( doc ) {
+										doc.defaultStyle = {
+											font:'THSarabunNew',
+											fontSize:12
+										};
+									}
+								},
+
+							],
+							columnDefs: [
+								{
+									"width": "5%",
+									"targets": 0,
+									"searchable": false
+								}
+							],
+							searching: false,
+							retrieve: true,
+							deferRender: true,
+							stateSave: false,
+							responsive: false,
+							scrollX: true,
+							pageLength: page_size,
+							paging: true,
+							lengthChange:false,
+							columns: data.columns,
+							serverSide: true,
+							ajax: {
+								"url": me.url + "-ViewVOICE",
+								"type": "POST",
+								"data": function (d) {
+									d.page_id = (d.start / d.length) + 1;
+									d.page_id = (d.start / d.length) + 1;
+									d.menu_action = menu;
+									d.page_size = $('#page_size').val();
+									d.start_date = $('#start_date').data().date+' 00:00:00';
+									d.end_date = $('#end_date').data().date+' 23:59:59';
+									d.text_search = $('#text_search').val();
+								}
+							}
+						});
+
+					me.tablesub.buttons(0, null).container().addClass('col');
+
+					if(data.name){
+						$('title').text(data.name);
+					}
+					$('#frmresult').css('display','');
+					$('#chnn').val(data.chnn);
+
+
+					$('a.toggle-vis').on( 'click', function (e) {
+						e.preventDefault();
+
+						// Get the column API object
+						var column = me.tablesub.column( $(this).attr('data-column') );
+
+						// Toggle the visibility
+						column.visible( ! column.visible() );
+					} );
+					$('#tbView_wrapper').css('display','none');
+					$('#tbViewSub').css('display','');
+					break;
+				default :
+					alertify.alert(data.msg);
+					break;
+			}
+		}
+	});
+};
+
+me.LoadDataVOICE_ = function(menu, page_id, page_size, start, stop, readd=''){
+
+	$.ajax({
+		url: me.url + '-ViewVOICE',
+		type:'POST',
+		dataType:'json',
+		cache:false,
 		data:{ menu_action : menu , page_id : page_id , page_size : 10000 , start_date : start , end_date : stop},
 		success:function(data){
 			switch(data.success){
