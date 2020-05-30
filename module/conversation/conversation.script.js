@@ -236,8 +236,20 @@ me.LoadDataReport = function(menu, page_size, start, stop, compare ='',search = 
 								pageLength: page_size,
 								paging: true,
 								lengthChange:false,
+								columns: data.columns,
+								serverSide: true,
+								ajax: {
+									"url": me.url + "-View",
+									"type": "POST",
+									"data": function (d) {
+										d.page = (d.start / d.length) + 1;
+										d.menu = menu;
+										d.start_date = start;
+										d.end_date = stop;
+										d.text_search = search;
 
-								columns: data.columns
+									}
+								}
 							});
 
 					}
