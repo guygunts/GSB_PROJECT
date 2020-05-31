@@ -971,12 +971,8 @@ me.EnableSub = function (e) {
                         case 'COMPLETE':
                             $('.modal').modal('hide');
                             alertify.success(data.msg);
+                            me.table.draw(true);
 
-                            var rowData = JSON.parse($(me.dataold).find('td:eq(0)').attr('data-name'));
-                            me.tablesub.draw(true);
-                            me.tablesub.clear().draw();
-                            me.tablesub.rows.add(rowData).draw();
-                            // me.LoadData(me.action.menu, me.code, 1, 30, 1);
                             break;
                         default:
                             alertify.error(data.msg);
