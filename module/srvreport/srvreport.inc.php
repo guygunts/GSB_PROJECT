@@ -81,6 +81,7 @@ function View(Request $request)
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
+        $result['draw'] = $data['draw'];
         $result['recordsTotal'] = $recnums['recordsTotal'];
         $result['recordsFiltered'] = $recnums['recordsTotal'];
         $result['success'] = 'COMPLETE';
