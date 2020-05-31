@@ -11,8 +11,6 @@ me.action.menu = 'SR';
 me.action.add = 'adduser';
 me.action.edit = 'updateuser';
 me.action.del = 'deleteuser';
-me.page = 1;
-me.pagesub = 1;
 me.chnn = '';
 /*================================================*\
   :: FUNCTION ::
@@ -604,13 +602,9 @@ me.OpenCHNN = function(code,page_id,page_size,start,stop){
 
 };
 
-me.OpenVOICE = function(code,page_id,page_size,start,stop){
+me.OpenVOICE = function(code){
 	var page_size = $('#page_size').val();
-	// $('#tbView_wrapper').css('display','none');
-	// $('#tbViewSub_wrapper').css('display','');
-	// $('#tbViewSub').css('display','');
-	// me.table.clear().destroy();
-	// $('#tbView').empty();
+
 	$('#tbViewSub_wrapper').css('display','');
 	$('#tbView_wrapper').css('display','none');
 	$('#frmsearch').css('display','none');
@@ -661,21 +655,12 @@ me.UpdateVoice = function(){
 };
 
 me.TextSerch = function () {
-
 	$('#text_search').on('keyup',function (e) {
-
 		me.loading = false;
 		me.table.draw();
 	});
 };
 
-me.ChangePage = function(){
-	$('#tbView').on( 'page.dt', function () {
-		var info = me.table.page.info();
-		me.page = (info.page+1);
-		$('#btnsearchsubmit').click();
-	} );
-};
 
 /*================================================*\
   :: DEFAULT ::

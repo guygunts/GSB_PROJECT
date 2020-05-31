@@ -90,7 +90,7 @@ function View(Request $request)
                 if ($value['data'] == 'LOG_FILE') {
                     $datalist[$i][$value['data']] = '<a href="' . $item[$value['data']] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
                 } elseif ($value['data'] == 'CHNN') {
-                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE(' . "'" . $item['CHNN'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
+                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE(' . "'" . $item['CHNN'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
 //                    $datalist[$i][$value['data']] = '<audio controls><source src="'.$item[$value['data']].'" type="audio/wav"></audio>';
                 } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
