@@ -25,29 +25,6 @@ me.SetDateTime = function(){
 	});
 };
 
-me.Search = function(){
-	$('form#frmsearch').submit(function () {
-		me.loading = true;
-		var page_size = $('#page_size').val();
-		var compare = $('#compare').val();
-		var txtsearch = $('#text_search').val();
-		var start = $('#start_date').data().date;
-		var stop = $('#end_date').data().date;
-		var cnt = 0;
-
-		if(start !== undefined){
-			++cnt;
-		}
-		if(stop !== undefined){
-			++cnt;
-		}
-
-		if(cnt != 2)return false;
-		me.table.clear();
-		me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
-	});
-
-};
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/

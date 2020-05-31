@@ -142,10 +142,10 @@ me.SetUrl = function () {
 };
 
 me.Search=function(){
-	$('#frmSearch').submit(function(){
-		me.table.draw('true');
-//		me.View();
-		return false;
+	$('form#frmsearch').submit(function () {
+		me.loading = true;
+		var page_size = $('#page_size').val();
+		me.table.page.len(page_size).draw();
 	});
 };
 
@@ -324,77 +324,98 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 };
 
 me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',search = '', readd=''){
-
 	$.ajax({
 		url: me.url + '-View',
 		type:'POST',
 		dataType:'json',
 		cache:false,
-		data:{ menu_action : menu , page_id : page_id , page_size : 10000 , start_date : start , end_date : stop , compare : compare , text_search : search},
+		data:{ menu_action : menu , page_id : page_id , page_size : page_size , start_date : start , end_date : stop , compare : compare , text_search : search},
 		success:function(data){
 			switch(data.success){
 				case 'COMPLETE' :
+
+					me.table = $('#tbView')
+						.addClass('nowrap')
+						.removeAttr('width')
+						.DataTable({
+							destroy: true,
+							bFilter: false,
+							dom: 'Bfrtip',
+							buttons: [
+								{
+									extend: 'print',
+									orientation: 'landscape',
+									pageSize: 'LEGAL',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'excelHtml5',
+									text: 'Excel',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'csvHtml5',
+									text: 'CSV',
+									className: 'float-right',
+									charset: 'utf-8',
+									bom: true
+								},
+								{
+									extend: 'pdfHtml5',
+									orientation: 'landscape',
+									pageSize: 'LEGAL',
+									className: 'float-right',
+									customize: function ( doc ) {
+										doc.defaultStyle = {
+											font:'THSarabunNew',
+											fontSize:12
+										};
+									}
+								},
+							],
+							columnDefs: [
+								{
+									"width": "5%",
+									"targets": 0,
+									"searchable": false
+								}
+							],
+							searching: false,
+							retrieve: true,
+							deferRender: true,
+							stateSave: false,
+							responsive: false,
+							scrollX: true,
+							pageLength: page_size,
+							paging: true,
+							lengthChange:false,
+							columns: data.columns,
+							serverSide: true,
+							ajax: {
+								"url": me.url + "-View",
+								"type": "POST",
+								"data": function (d) {
+									d.page_id = (d.start / d.length) + 1;
+									d.page_size = $('#page_size').val();
+									d.compare = $('#page_size').val();
+									d.start_date = $('#start_date').data().date+' 00:00:00';
+									d.end_date = $('#end_date').data().date+' 23:59:59';
+									d.text_search = $('#text_search').val();
+									d.menu_action = me.action.menu;
+								}
+							}
+						});
+
+
+					me.table.buttons(0, null).container().addClass('col');
+
 					if(data.data.length == 0){
 						alertify.alert('No data, Please select other date');
 					}
-
-					if(readd){
-						// var dataold = me.table.rows().data();
-						me.applyData(me.table,data.data,true);
-						// me.table.clear().draw();
-						// me.table.rows.add(data.data).draw();
-
-					}else{
-						me.table = $('#tbView')
-							.addClass('nowrap')
-							.removeAttr('width')
-							.DataTable({
-								dom: 'Bfrtip',
-								buttons: [
-									'excelHtml5',
-									{
-										extend: 'csvHtml5',
-										text: 'CSV',
-										className: 'float-right'
-									},
-
-									{
-										extend: 'pdfHtml5',
-										orientation: 'landscape',
-										pageSize: 'LEGAL',
-										customize: function ( doc ) {
-											doc.defaultStyle = {
-												font:'THSarabunNew',
-												fontSize:16
-											};
-										}
-									},
-									'print'
-								],
-								columnDefs: [
-									{
-										"width": "5%",
-										"targets": 0,
-										"searchable": false
-									}
-								],
-								searching: false,
-								retrieve: true,
-								deferRender: true,
-								stateSave: true,
-								iDisplayLength : page_size,
-								responsive: false,
-								scrollX: true,
-								pageLength: page_size,
-								paging: true,
-								lengthChange:false,
-								data: data.data,
-								columns: data.columns
-							});
-
-					}
-					me.table.page.len( page_size ).draw();
-					me.table.columns.adjust().draw('true');
 
 					if(data.name){
 						$('title').text(data.name);
@@ -410,7 +431,6 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 						// Toggle the visibility
 						column.visible( ! column.visible() );
 					} );
-
 					break;
 				default :
 					alertify.alert(data.msg);
