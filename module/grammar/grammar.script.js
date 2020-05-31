@@ -785,6 +785,54 @@ me.EditSub = function () {
     }).click();
 };
 
+me.AddSentense = function () {
+    $('#btnsubmitaddsentense').click(function (e) {
+        e.stopPropagation();
+        // if($('#variation-variation_text').attr('required') == 'required'){
+        //     if(!$('#variation-variation_text').val()){
+        //         $('#variation-variation_text').tagsinput('focus');
+        //         return false;
+        //     }
+        // }
+        $('form#frm_addsentenseedit').submit(function () {
+            var form = $(this);
+            $('.modal').modal('hide');
+            alertify.confirm("Do you want Add New Sentense.",
+                function () {
+                    $.ajax({
+                        url: me.url + '-AddSentense',
+                        type: 'POST',
+                        dataType: 'json',
+                        cache: false,
+                        data: form.serialize({
+                            checkboxesAsBools: true
+                        }),
+                        success: function (data) {
+                            switch (data.success) {
+                                case 'COMPLETE':
+                                    $('.modal').modal('hide');
+                                    alertify.success(data.msg);
+                                    me.tablesentence.draw(true);
+                                    // $('#btnsearchsubmit').click();
+                                    // me.table.clear().draw();
+                                    // me.LoadData(me.action.menu, me.category_id, 1, 30, 1);
+                                    break;
+                                default:
+                                    alertify.error(data.msg);
+                                    break;
+                            }
+                        }
+                    });
+                },
+                function () {
+                    alertify.error('Cancel Add Sentense');
+                });
+
+        });
+
+    }).click();
+};
+
 me.Enable = function (e) {
     var code = $(e).attr('data-code');
     var active = $(e).attr('data-type');
@@ -945,8 +993,8 @@ me.NewSentense = function () {
     $('#frm_addsentenseedit input[name="category_id"]').val(me.category_id);
     $('#frm_addsentenseedit input[name="intent_id"]').val(me.intent_id);
     $('#frm_addsentenseedit input[name="subintent_id"]').val(me.subintent_id);
-    $('#frm_addsentenseedit input[name="checkbox"]').val(1);
-    $('#frm_addsentenseedit input[name="checkbox"]').iCheck('check');
+    $('#frm_addsentenseedit input[type="checkbox"]').val(1);
+    $('#frm_addsentenseedit input[type="checkbox"]').iCheck('check');
     $('#addsentense-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 
