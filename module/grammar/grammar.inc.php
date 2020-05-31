@@ -42,9 +42,14 @@ function View(Request $request)
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
-
+    PrintR($response);
 
     if ($response['code'] == 200) {
+        $start = $data['start'];
+        $recnums['pages'] = $response['result'][0]['pagenum'];
+        $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
+        $recnums['recordsTotal'] = $response['result'][0]['recnum'];
+
         $columnslist = $response['result'];
         $datas = $response['data'];
 
