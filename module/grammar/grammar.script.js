@@ -554,7 +554,7 @@ me.LoadDataSub = function (menu, category_id, intent_id, subintent_id, page_id, 
                                     d.page_size = 30;
                                     d.category_id = me.category_id;
                                     d.intent_id = me.intent_id;
-                                    d.subintent_id = me.subintent_id;
+                                    d.subintent_id = (me.subintent_id?me.subintent_id:0);
                                     d.menu_action = me.action.menu;
                                 }
                             }
