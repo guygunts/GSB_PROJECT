@@ -229,12 +229,12 @@ function ViewSub(Request $request)
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
 
-PrintR($response);
+//PrintR($response);
     if ($response['code'] == 200) {
         $start = $data['start'];
         $recnums['pages'] = $response['page_num'];
-        $recnums['recordsFiltered'] = $response['rec_num'];
-        $recnums['recordsTotal'] = $response['rec_num'];
+        $recnums['recordsFiltered'] = $response['rec_num']?$response['rec_num']:0;
+        $recnums['recordsTotal'] = $response['rec_num']?$response['rec_num']:0;
 
         $columnslist = $response['result'];
         $datas = $response['data'];
