@@ -794,6 +794,38 @@ function Enable(Request $request)
     echo json_encode($result);
 }
 
+function EnableSub(Request $request)
+{
+
+    global $token;
+    $user = $_SESSION[OFFICE]['DATA']['user_name'];
+    $datalist = array();
+    $columns = array();
+    $column = array();
+    $result['data'] = array();
+    $result['columns'] = array();
+
+
+    parse_str($request->getPost()->toString(), $data);
+
+    $data['user_login'] = $user;
+
+
+
+    $url = URL_API . '/geniespeech/adminmenu';
+    $response = curlposttoken($url, $data, $token);
+
+    if ($response['code'] == 200) {
+        $result['success'] = 'COMPLETE';
+    } else {
+        $result['success'] = 'FAIL';
+    }
+    $result['msg'] = $response['msg'];
+
+
+    echo json_encode($result);
+}
+
 function LoadPermission()
 {
     $permiss = array();
@@ -836,6 +868,9 @@ switch ($switchmode) {
         break;
     case "Enable" :
         Enable($x);
+        break;
+    case "EnableSub" :
+        EnableSub($x);
         break;
     case "LoadCbo" :
         LoadCbo($x);

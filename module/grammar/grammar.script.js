@@ -959,7 +959,7 @@ me.EnableSub = function (e) {
     alertify.confirm("Do you want " + typename[active],
         function () {
             $.ajax({
-                url: me.url + '-EnableSub',
+                url: me.url + '-Enable',
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
