@@ -119,7 +119,14 @@ me.LoadCbo = function (val, menu, code, name) {
                                             type: 'POST',
                                             dataType: 'json',
                                             cache: false,
-                                            data: { 'code' : node.id , 'menu_action' : me.action.del , 'main' : me.action.main , 'category_name' : node.text , 'parentcategory_id' : '' , 'active' : node.active },
+                                            data: {
+                                                'code': node.id,
+                                                'menu_action': me.action.del,
+                                                'main': me.action.main,
+                                                'category_name': node.text,
+                                                'parentcategory_id': '',
+                                                'active': node.active
+                                            },
                                             success: function (data) {
                                                 switch (data.success) {
                                                     case 'COMPLETE':
@@ -250,7 +257,7 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                             scrollX: true,
                             pageLength: page_size,
                             paging: true,
-                            lengthChange:false,
+                            lengthChange: false,
                             columns: data.columns,
                             serverSide: true,
                             ajax: {
@@ -265,6 +272,61 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                             }
                         });
 
+                    $('a.toggle-vis').on('click', function (e) {
+                        e.preventDefault();
+
+                        // Get the column API object
+                        var column = me.table.column($(this).attr('data-column'));
+
+                        // Toggle the visibility
+                        column.visible(!column.visible());
+                    });
+
+                    $('#tbView tbody').on('click', 'td.details-control', function () {
+                        var tr = $(this).closest('tr');
+                        var row = me.table.row(tr);
+                        var rowData = JSON.parse($(tr).find('td:eq(0)').attr('data-name'));
+
+                        if (row.child.isShown()) {
+                            // This row is already open - close it
+                            row.child.hide();
+                            tr.removeClass('shown');
+
+                            // Destroy the Child Datatable
+                            $('#' + rowData[0].name.replace(' ', '-')).DataTable().destroy();
+                        } else {
+                            // Open this row
+                            row.child(me.format(rowData[0])).show();
+                            var id = rowData[0].name.replace(' ', '-');
+
+
+                            me.tablesub = $('#' + id)
+                                .addClass('nowrap')
+                                .removeAttr('width').DataTable({
+                                    dom: "t",
+                                    data: rowData,
+                                    columns: [
+                                        {data: "sub_intent_tag", title: 'Intent TAG', className: 'text-center'},
+                                        {data: "intent_type_name", title: 'Type', className: 'text-center'},
+                                        {data: "active", title: 'Active', className: 'text-center'},
+                                        {data: "btn", title: '', className: 'text-center'},
+                                        {data: "sentence", title: 'Sentence', className: 'text-center'},
+                                    ],
+                                    iDisplayLength: page_size,
+                                    ordering: false,
+                                    retrieve: true,
+                                    deferRender: true,
+                                    stateSave: true,
+                                    scrollX: true,
+                                    pageLength: page_size,
+                                    lengthMenu: [[page_size, (page_size * 2), -1], [page_size, (page_size * 2), 'All']]
+
+                                });
+
+                            tr.addClass('shown');
+                            me.tablesub.columns.adjust().draw('true');
+                        }
+                    });
                     break;
                 default :
                     alertify.alert(data.msg);
@@ -428,16 +490,23 @@ me.LoadData_ = function (menu, id, page_id, page_size, readd = '') {
     });
 };
 
-me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, page_size, readd=''){
+me.LoadDataSub = function (menu, category_id, intent_id, subintent_id, page_id, page_size, readd = '') {
 
     $.ajax({
         url: me.url + '-ViewSub',
-        type:'POST',
-        dataType:'json',
-        cache:false,
-        data:{ menu_action : menu , category_id : category_id , intent_id : intent_id , subintent_id : subintent_id , page_id : page_id , page_size : 25},
-        success:function(datas){
-            switch(datas.success){
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            menu_action: menu,
+            category_id: category_id,
+            intent_id: intent_id,
+            subintent_id: subintent_id,
+            page_id: page_id,
+            page_size: 25
+        },
+        success: function (datas) {
+            switch (datas.success) {
                 case 'COMPLETE' :
                     // $('#tbViewSub_wrapper').css('display','');
                     // $('#tbView_wrapper').css('display','none');
@@ -448,16 +517,16 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                     //     return false;
                     // }
 
-                    if(Object.entries(me.tablesentence).length > 0){
+                    if (Object.entries(me.tablesentence).length > 0) {
                         readd = true;
                         console.log('here');
                     }
 
-                    if(readd){
+                    if (readd) {
                         console.log('here readd');
                         me.tablesentence.clear().draw();
                         me.tablesentence.rows.add(datas.data).draw();
-                    }else{
+                    } else {
                         me.tablesentence = $('#tbViewSub')
                             .addClass('nowrap')
                             .removeAttr('width')
@@ -468,10 +537,10 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                                     {
                                         text: 'ย้อนกลับ',
                                         className: 'float-left',
-                                        action: function ( e, dt, node, config ) {
+                                        action: function (e, dt, node, config) {
                                             me.loading = true;
-                                            $('#tbViewSub_wrapper').css('display','none');
-                                            $('#tbView_wrapper').css('display','');
+                                            $('#tbViewSub_wrapper').css('display', 'none');
+                                            $('#tbView_wrapper').css('display', '');
                                         }
                                     }
                                 ],
@@ -487,13 +556,13 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                                 retrieve: true,
                                 deferRender: true,
                                 stateSave: false,
-                                iDisplayLength : page_size,
+                                iDisplayLength: page_size,
                                 responsive: false,
                                 scrollX: true,
                                 pageLength: page_size,
                                 paging: false,
                                 bInfo: false,
-                                lengthChange:false,
+                                lengthChange: false,
                                 data: datas.data,
                                 columns: datas.columns
                             });
@@ -503,24 +572,24 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                     me.tablesentence.columns.adjust().draw('true');
                     me.tablesentence.buttons(0, null).container().addClass('col');
 
-                    if(datas.name){
+                    if (datas.name) {
                         $('title').text(datas.name);
                     }
                     // $('#frmresult').css('display','');
                     // $('#chnn').val(data.chnn);
 
 
-                    $('a.toggle-vis').on( 'click', function (e) {
+                    $('a.toggle-vis').on('click', function (e) {
                         e.preventDefault();
 
                         // Get the column API object
-                        var column = me.tablesentence.column( $(this).attr('data-column') );
+                        var column = me.tablesentence.column($(this).attr('data-column'));
 
                         // Toggle the visibility
-                        column.visible( ! column.visible() );
-                    } );
-                    $('#tbViewSub_wrapper').css('display','');
-                    $('#tbView_wrapper').css('display','none');
+                        column.visible(!column.visible());
+                    });
+                    $('#tbViewSub_wrapper').css('display', '');
+                    $('#tbView_wrapper').css('display', 'none');
                     break;
                 default :
                     alertify.alert(datas.msg);
@@ -784,7 +853,7 @@ me.OpenPopup = function () {
 
 };
 
-me.OpenPopupItem = function(data){
+me.OpenPopupItem = function (data) {
     var cloneCount = $('div.subintentsub').length;
     var cloneCount2 = $('input[name="variation-active"]').length;
     var maininput = me.variation;
@@ -801,35 +870,35 @@ me.OpenPopupItem = function(data){
         return mapObj[matched] + cloneCount;
     });
 
-    if(cloneCount == 0){
+    if (cloneCount == 0) {
 
         $('div[id=subintent]').append(maininput);
-    }else{
+    } else {
         $('div[id^=dvsubintent]').last().after(maininput);
 
     }
     // console.log('after');
     // console.log(maininput);
 
-    if(data.intent_type_name == 'Static'){
+    if (data.intent_type_name == 'Static') {
         data.type = 1
-    }else if(data.intent_type_name == 'Robust'){
+    } else if (data.intent_type_name == 'Robust') {
         data.type = 2
     }
 
-    $('#msubintent-subintent_id'+cloneCount).val(data.sub_intent_id);
-    $('#msubintent-type'+cloneCount).val(data.type);
-    $('#msubintent-subintent_tag'+cloneCount).val(data.sub_intent_tag);
-    $('#msubintent-active'+cloneCount).val(data.active);
-    if(data.active == 1){
-        $('#msubintent-active'+cloneCount).iCheck('check');
+    $('#msubintent-subintent_id' + cloneCount).val(data.sub_intent_id);
+    $('#msubintent-type' + cloneCount).val(data.type);
+    $('#msubintent-subintent_tag' + cloneCount).val(data.sub_intent_tag);
+    $('#msubintent-active' + cloneCount).val(data.active);
+    if (data.active == 1) {
+        $('#msubintent-active' + cloneCount).iCheck('check');
     }
 
     // $("#mvariation-variation_text"+cloneCount).tagsinput({
     //     trimValue: true
     // });
 
-    $('#dvsubintent'+cloneCount+' input[type="checkbox"]').iCheck({
+    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',
         labelHover: true,
@@ -891,10 +960,10 @@ me.Load = function (e) {
     console.log(attr);
     var result = [];
 
-    for(var i in attr)
-        result.push({name : i,value : attr [i]});
+    for (var i in attr)
+        result.push({name: i, value: attr [i]});
 
-    ft.PutFormID('frm_addedit',result);
+    ft.PutFormID('frm_addedit', result);
     $('#frm_addedit input[name="code"]').val(code);
     $('#frm_addedit input[name="category_id"]').val(me.code);
     $('#frm_addedit input[name="intent_id"]').val(attr.intent_id);
@@ -918,14 +987,14 @@ me.Del = function (e) {
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                data: { 'code' : code , 'menu_action' : 'deleteintent' , 'main' : 'intent_id' , 'category_id' : me.code },
+                data: {'code': code, 'menu_action': 'deleteintent', 'main': 'intent_id', 'category_id': me.code},
                 success: function (data) {
                     switch (data.success) {
                         case 'COMPLETE':
                             $('.modal').modal('hide');
                             alertify.success(data.msg);
                             // $('#btnsearchsubmit').click();
-                            me.table.row('#'+attr.DT_RowId).remove().draw();
+                            me.table.row('#' + attr.DT_RowId).remove().draw();
 
                             me.LoadData(me.action.menu, me.code, 1, 30, 1);
                             break;
@@ -944,7 +1013,7 @@ me.Del = function (e) {
 me.LoadSentence = function (e) {
     var code = $(e).attr('data-code');
     var attr = JSON.parse($(e).attr('data-item'));
-    me.LoadDataSub('getsentencebyintent',code,attr.intent_id,0,1,30);
+    me.LoadDataSub('getsentencebyintent', code, attr.intent_id, 0, 1, 30);
 };
 /*================================================*\
   :: DEFAULT ::
