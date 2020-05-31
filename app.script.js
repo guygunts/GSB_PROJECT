@@ -38,6 +38,7 @@ var me = {
 	loading:false,
 	dataold: {},
 	category_id : '',
+	intent_id : '',
 	subintent_id : ''
 };
 

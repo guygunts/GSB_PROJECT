@@ -508,6 +508,89 @@ me.LoadDataSub = function (menu, category_id, intent_id, subintent_id, page_id, 
         success: function (datas) {
             switch (datas.success) {
                 case 'COMPLETE' :
+                    me.tablesentence = $('#tbViewSub')
+                        .addClass('nowrap')
+                        .removeAttr('width')
+                        .DataTable({
+                            destroy: true,
+                            bFilter: false,
+                            dom: 'Bfrtip',
+                            buttons: [
+                                // 'excelHtml5',
+                                {
+                                    text: 'ย้อนกลับ',
+                                    className: 'float-left',
+                                    action: function (e, dt, node, config) {
+                                        me.loading = true;
+                                        $('#tbViewSub_wrapper').css('display', 'none');
+                                        $('#tbView_wrapper').css('display', '');
+                                        $('#btnadd').css('display','');
+                                        $('#btnaddsentense').css('display','none');
+                                    }
+                                }
+                            ],
+                            columnDefs: [
+                                {
+                                    "width": "5%",
+                                    "targets": 0,
+                                    "searchable": false
+                                }
+                            ],
+                            retrieve: true,
+                            deferRender: true,
+                            stateSave: false,
+                            responsive: false,
+                            scrollX: true,
+                            pageLength: page_size,
+                            paging: true,
+                            lengthChange: false,
+                            columns: datas.columns,
+                            serverSide: true,
+                            ajax: {
+                                "url": me.url + "-ViewSub",
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.page_id = (d.start / d.length) + 1;
+                                    d.page_size = 30;
+                                    d.category_id = me.category_id;
+                                    d.intent_id = me.intent_id;
+                                    d.subintent_id = me.subintent_id;
+                                    d.menu_action = me.action.menu;
+                                }
+                            }
+                        });
+
+                    me.tablesentence.buttons(0, null).container().addClass('col');
+
+                    $('#tbViewSub_wrapper').css('display', '');
+                    $('#tbView_wrapper').css('display', 'none');
+                    break;
+                default :
+                    alertify.alert(datas.msg);
+                    break;
+            }
+        }
+    });
+};
+
+me.LoadDataSub_ = function (menu, category_id, intent_id, subintent_id, page_id, page_size, readd = '') {
+
+    $.ajax({
+        url: me.url + '-ViewSub',
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            menu_action: menu,
+            category_id: category_id,
+            intent_id: intent_id,
+            subintent_id: subintent_id,
+            page_id: page_id,
+            page_size: 25
+        },
+        success: function (datas) {
+            switch (datas.success) {
+                case 'COMPLETE' :
                     // $('#tbViewSub_wrapper').css('display','');
                     // $('#tbView_wrapper').css('display','none');
                     // $('#frmsearch').css('display','none');
@@ -600,6 +683,7 @@ me.LoadDataSub = function (menu, category_id, intent_id, subintent_id, page_id, 
         }
     });
 };
+
 
 me.format = function (rowData) {
     return '<div class="col-md-10" style="margin: 0 auto;float: none;padding: 10px;"><table id="' + rowData.name.replace(' ', '-') + '" class="table table-yellow table-bordered table-striped table-condensed dataTable" style="width: 100%;"></table></div>';
