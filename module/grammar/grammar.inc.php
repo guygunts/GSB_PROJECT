@@ -189,6 +189,179 @@ function View(Request $request)
     echo json_encode($result);
 }
 
+function ViewSub(Request $request)
+{
+
+    global $token;
+    $datalist = array();
+    $columns = array();
+    $column = array();
+
+    $result['data'] = array();
+    $result['columns'] = array();
+
+
+    parse_str($request->getPost()->toString(), $data);
+
+    $params = array(
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
+        'menu_action' => $data['menu_action'],
+        'category_id' => $data['category_id'],
+        'page_id' => $data['page_id'],
+        'page_size' => $data['page_size'],
+        'intent_id' => $data['intent_id'],
+        'subintent_id' => $data['subintent_id']
+    );
+
+    $url = URL_API . '/geniespeech/adminmenu';
+    $response = curlposttoken($url, $params, $token);
+
+
+    if ($response['code'] == 200) {
+        $columnslist = $response['result'];
+        $datas = $response['data'];
+
+        $column[0]['className'] = 'details-control';
+        $column[0]['title'] = '';
+        $column[0]['data'] = null;
+        $column[0]['defaultContent'] = '';
+
+        $column[1]['className'] = 'text-center';
+        $column[1]['title'] = 'No';
+        $column[1]['data'] = 'no';
+
+        $columnslist[0]['column_field'] = 'user_question';
+        $columnslist[1]['column_field'] = 'intent_tag';
+        $columnslist[2]['column_field'] = 'active';
+
+        $m = 2;
+        foreach ((array)$columnslist as $i => $item) {
+            $column[$m]['className'] = 'text-' . ($item['column_align']?$item['column_align']:'center');
+            $column[$m]['title'] = $item['column_name'];
+            $column[$m]['data'] = $item['column_data'];
+
+            $columns[$m]['data'] = $item['column_data'];
+            $columns[$m]['type'] = $item['column_type'];
+            ++$m;
+        }
+        $column[$m]['className'] = 'text-center';
+        $column[$m]['title'] = '';
+        $column[$m]['data'] = 'btn';
+
+        $column[($m+1)]['className'] = 'text-center';
+        $column[($m+1)]['title'] = 'Sentence';
+        $column[($m+1)]['data'] = 'sentence';
+
+        $permiss = LoadPermission();
+
+        foreach ((array)$datas as $i => $item) {
+            $btn = '';
+            $btnsuntence = '';
+
+            $item['DT_RowId'] = 'row_' . MD5($item[$columns[2]['data']]);
+            $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
+            $datalist[$i]['no'] = ($i + 1);
+
+            foreach ((array)$columns as $v => $value) {
+                if($value['data'] == 'active'){
+                    $datalist[$i][$value['data']] = ShowActive($item['intent_id'],$item[$value['data']]);
+                }else{
+                    $datalist[$i][$value['data']] = $item[$value['data']];
+                }
+
+
+            }
+
+            $paramssub = array(
+                'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
+                'menu_action' => 'getsubintentbyintent',
+                'intent_id' => $item['intent_id'],
+                'page_id' => $data['page_id'],
+                'page_size' => $data['page_size']
+            );
+
+            $responsesub = curlposttoken($url, $paramssub, $token);
+            if ($responsesub['code'] == 200) {
+                $columnsublist = $responsesub['result'];
+                $datasub = $responsesub['data'];
+                $t = 0;
+                foreach ((array)$columnsublist as $m => $items) {
+                    $columnssub[$t]['data'] = $items['column_data'];
+                    $columnssub[$t]['type'] = $items['column_type'];
+                    ++$t;
+                }
+
+                foreach ((array)$datasub as $z => $itemsub) {
+                    $btnsub = '';
+                    $btnsubsentence = '';
+
+                    foreach ((array)$columnssub as $n => $valuesub) {
+                        if($valuesub['data'] == 'active'){
+                            $datalistsub[$z][$valuesub['data']] = ShowActiveSub($itemsub['sub_intent_id'],$itemsub[$valuesub['data']]);
+                        }else{
+                            $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
+                        }
+
+                        $datalistsub[$z]['name'] = 'subrow_' . $z . '_' . $i;
+
+                    }
+
+                    $datasubattr = array();
+                    $datasubattr[$z] = $itemsub;
+
+                    if ($permiss[2]) {
+                        $btnsub .= '<button data-code="' . $item['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                        $btnsubsentence .= '<button data-code="' . $item['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+
+                    }
+                    if ($permiss[3]) {
+                        $btnsub .= '<button data-code="' . $item['sub_intent_id'] . '" onclick="me.DelSub(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                    }
+
+
+                    $datalistsub[$z]['btn'] = $btnsub;
+                    $datalistsub[$z]['sentence'] = $btnsubsentence;
+                }
+                $item['variation'] = $datasub;
+            }
+
+
+
+            $datalist[$i]['variation'] = json_encode($datalistsub, JSON_HEX_APOS);
+
+
+            $dataattr = array();
+            $dataattr[$i] = $item;
+//            $dataattr[$i]['variation'] = json_encode($datasubattr,JSON_FORCE_OBJECT);
+
+            if ($permiss[2]) {
+                $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                $btnsuntence .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSentence(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+
+            }
+            if ($permiss[3]) {
+                $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+            }
+
+            $datalist[$i]['btn'] = $btn;
+            $datalist[$i]['sentence'] = $btnsuntence;
+
+        }
+
+
+        $result['columns'] = $column;
+        $result['data'] = $datalist;
+        $result['success'] = 'COMPLETE';
+
+    } else {
+        $result['success'] = 'FAIL';
+    }
+    $result['msg'] = $response['msg'];
+
+
+    echo json_encode($result);
+}
+
 function Add(Request $request)
 {
 
@@ -621,6 +794,9 @@ function LoadPermission()
 switch ($switchmode) {
     case "View" :
         View($x);
+        break;
+    case "ViewSub" :
+        ViewSub($x);
         break;
     case "Add" :
         Add($x);

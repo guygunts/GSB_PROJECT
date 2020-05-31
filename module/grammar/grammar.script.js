@@ -352,7 +352,7 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
         type:'POST',
         dataType:'json',
         cache:false,
-        data:{ menu_action : menu , category_id : category_id , intent_id : intent_id , subintent_id : subintent_id , page_id : page_id , page_size : 10000},
+        data:{ menu_action : menu , category_id : category_id , intent_id : intent_id , subintent_id : subintent_id , page_id : page_id , page_size : 25},
         success:function(data){
             switch(data.success){
                 case 'COMPLETE' :
@@ -886,7 +886,7 @@ me.Del = function (e) {
 me.LoadSentence = function (e) {
     var code = $(e).attr('data-code');
     var attr = JSON.parse($(e).attr('data-item'));
-    me.LoadDataSub('getsentencebyintent',me.code,attr.intent_id,0,1,30);
+    me.LoadDataSub('getsentencebyintent',code,attr.intent_id,0,1,30);
 };
 /*================================================*\
   :: DEFAULT ::
