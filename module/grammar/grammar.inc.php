@@ -231,6 +231,11 @@ function ViewSub(Request $request)
 
 //PrintR($response);
     if ($response['code'] == 200) {
+        $start = $data['start'];
+        $recnums['pages'] = $response['page_num'];
+        $recnums['recordsFiltered'] = $response['rec_num'];
+        $recnums['recordsTotal'] = $response['rec_num'];
+
         $columnslist = $response['result'];
         $datas = $response['data'];
 
@@ -270,7 +275,8 @@ function ViewSub(Request $request)
 
             $item['DT_RowId'] = 'row_' . MD5($item[$columns[2]['data']]);
             $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
-            $datalist[$i]['no'] = ($i + 1);
+            ++$start;
+            $datalist[$i]['no'] = $start;
 
             foreach ((array)$columns as $v => $value) {
                 if($value['data'] == 'active'){
@@ -305,6 +311,11 @@ function ViewSub(Request $request)
 
         $result['columns'] = $column;
         $result['data'] = $datalist;
+
+        $result['draw'] = ($data['draw']*1);
+        $result['recordsTotal'] = $recnums['recordsTotal'];
+        $result['recordsFiltered'] = $recnums['recordsTotal'];
+
         $result['success'] = 'COMPLETE';
 
     } else {
