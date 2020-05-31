@@ -405,7 +405,7 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                                 searching: false,
                                 retrieve: true,
                                 deferRender: true,
-                                stateSave: true,
+                                stateSave: false,
                                 iDisplayLength : page_size,
                                 responsive: false,
                                 scrollX: true,
