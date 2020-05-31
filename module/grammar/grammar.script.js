@@ -46,7 +46,7 @@ me.LoadCbo = function (val, menu, code, name) {
                             // $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
                             // console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
                             if (data.level == 1) {
-                                me.code = data.id;
+                                me.category_id = data.id;
                                 if (!data.nodes) {
                                     me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
                                 } else {
@@ -192,6 +192,89 @@ me.LoadCboSub = function (val, menu, code, index) {
 };
 
 me.LoadData = function (menu, id, page_id, page_size, readd = '') {
+
+    $.ajax({
+        url: me.url + '-View',
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {menu_action: menu, category_id: id, page_id: page_id, page_size: page_size},
+        success: function (data) {
+            switch (data.success) {
+                case 'COMPLETE' :
+                    me.table = $('#tbView')
+                        .addClass('nowrap')
+                        .removeAttr('width')
+                        .DataTable({
+                            destroy: true,
+                            bFilter: false,
+                            dom: 'Bfrtip',
+                            buttons: [{
+                                extend: 'colvis',
+                                columnText: function (dt, idx, title) {
+                                    if (idx == 0) {
+                                        return (idx + 1) + ': Variation';
+                                    } else {
+                                        return (idx + 1) + ': ' + (title ? title : 'Action');
+                                    }
+                                }
+                            }],
+                            columnDefs: [
+                                {
+                                    "width": "5%",
+                                    "targets": 0,
+                                    "searchable": false
+                                },
+                                {
+                                    "width": "5%",
+                                    "targets": -1,
+                                    "searchable": false,
+                                    "orderable": false
+                                },
+                                {
+                                    "width": "5%",
+                                    "targets": -2,
+                                    "searchable": false,
+                                    "orderable": false
+                                }
+                            ],
+                            createdRow: function (row, data, dataIndex) {
+                                // Set the data-status attribute, and add a class
+                                $(row).find('td:eq(0)')
+                                    .attr('data-name', data.variation);
+                            },
+                            retrieve: true,
+                            deferRender: true,
+                            stateSave: false,
+                            responsive: false,
+                            scrollX: true,
+                            pageLength: page_size,
+                            paging: true,
+                            lengthChange:false,
+                            columns: data.columns,
+                            serverSide: true,
+                            ajax: {
+                                "url": me.url + "-View",
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.page_id = (d.start / d.length) + 1;
+                                    d.page_size = 30;
+                                    d.category_id = me.category_id;
+                                    d.menu_action = me.action.menu;
+                                }
+                            }
+                        });
+
+                    break;
+                default :
+                    alertify.alert(data.msg);
+                    break;
+            }
+        }
+    });
+};
+
+me.LoadData_ = function (menu, id, page_id, page_size, readd = '') {
 
     $.ajax({
         url: me.url + '-View',

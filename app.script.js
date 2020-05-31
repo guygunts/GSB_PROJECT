@@ -36,7 +36,8 @@ var me = {
 	define: {},
 	alert: {},
 	loading:false,
-	dataold: {}
+	dataold: {},
+	category_id : ''
 };
 
 
