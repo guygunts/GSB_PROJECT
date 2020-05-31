@@ -989,7 +989,6 @@ me.NewSentense = function () {
     me.ClearData();
     $('.btn_edit').hide();
     $('.btn_add').show();
-    $('#frm_addsentenseedit input[name="menu_action"]').val(me.action.add);
     $('#frm_addsentenseedit input[name="category_id"]').val(me.category_id);
     $('#frm_addsentenseedit input[name="intent_id"]').val(me.intent_id);
     $('#frm_addsentenseedit input[name="subintent_id"]').val(me.subintent_id);
