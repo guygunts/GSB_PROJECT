@@ -630,9 +630,10 @@ me.Add = function () {
                                 case 'COMPLETE':
                                     $('.modal').modal('hide');
                                     alertify.success(data.msg);
+                                    me.table.draw(true);
                                     // $('#btnsearchsubmit').click();
                                     // me.table.clear().draw();
-                                    me.LoadData(me.action.menu, me.category_id, 1, 30, 1);
+                                    // me.LoadData(me.action.menu, me.category_id, 1, 30, 1);
                                     break;
                                 default:
                                     alertify.error(data.msg);
