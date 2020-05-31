@@ -232,9 +232,9 @@ function ViewSub(Request $request)
         $column[1]['title'] = 'No';
         $column[1]['data'] = 'no';
 
-        $columnslist[0]['column_field'] = 'user_question';
-        $columnslist[1]['column_field'] = 'intent_tag';
-        $columnslist[2]['column_field'] = 'active';
+//        $columnslist[0]['column_field'] = 'user_question';
+//        $columnslist[1]['column_field'] = 'intent_tag';
+//        $columnslist[2]['column_field'] = 'active';
 
         $m = 2;
         foreach ((array)$columnslist as $i => $item) {
@@ -250,9 +250,6 @@ function ViewSub(Request $request)
         $column[$m]['title'] = '';
         $column[$m]['data'] = 'btn';
 
-        $column[($m+1)]['className'] = 'text-center';
-        $column[($m+1)]['title'] = 'Sentence';
-        $column[($m+1)]['data'] = 'sentence';
 
         $permiss = LoadPermission();
 
@@ -274,62 +271,6 @@ function ViewSub(Request $request)
 
             }
 
-            $paramssub = array(
-                'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
-                'menu_action' => 'getsubintentbyintent',
-                'intent_id' => $item['intent_id'],
-                'page_id' => $data['page_id'],
-                'page_size' => $data['page_size']
-            );
-
-            $responsesub = curlposttoken($url, $paramssub, $token);
-            if ($responsesub['code'] == 200) {
-                $columnsublist = $responsesub['result'];
-                $datasub = $responsesub['data'];
-                $t = 0;
-                foreach ((array)$columnsublist as $m => $items) {
-                    $columnssub[$t]['data'] = $items['column_data'];
-                    $columnssub[$t]['type'] = $items['column_type'];
-                    ++$t;
-                }
-
-                foreach ((array)$datasub as $z => $itemsub) {
-                    $btnsub = '';
-                    $btnsubsentence = '';
-
-                    foreach ((array)$columnssub as $n => $valuesub) {
-                        if($valuesub['data'] == 'active'){
-                            $datalistsub[$z][$valuesub['data']] = ShowActiveSub($itemsub['sub_intent_id'],$itemsub[$valuesub['data']]);
-                        }else{
-                            $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
-                        }
-
-                        $datalistsub[$z]['name'] = 'subrow_' . $z . '_' . $i;
-
-                    }
-
-                    $datasubattr = array();
-                    $datasubattr[$z] = $itemsub;
-
-                    if ($permiss[2]) {
-                        $btnsub .= '<button data-code="' . $item['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
-                        $btnsubsentence .= '<button data-code="' . $item['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
-
-                    }
-                    if ($permiss[3]) {
-                        $btnsub .= '<button data-code="' . $item['sub_intent_id'] . '" onclick="me.DelSub(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
-                    }
-
-
-                    $datalistsub[$z]['btn'] = $btnsub;
-                    $datalistsub[$z]['sentence'] = $btnsubsentence;
-                }
-                $item['variation'] = $datasub;
-            }
-
-
-
-            $datalist[$i]['variation'] = json_encode($datalistsub, JSON_HEX_APOS);
 
 
             $dataattr = array();
@@ -346,7 +287,7 @@ function ViewSub(Request $request)
             }
 
             $datalist[$i]['btn'] = $btn;
-            $datalist[$i]['sentence'] = $btnsuntence;
+
 
         }
 
