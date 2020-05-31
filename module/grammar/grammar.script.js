@@ -367,6 +367,7 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
 
                     if(Object.entries(me.tablesentence).length > 0){
                         readd = 1
+                        console.log('here');
                     }
 
                     if(readd){
