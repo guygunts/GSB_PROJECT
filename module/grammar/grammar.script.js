@@ -943,8 +943,10 @@ me.NewSentense = function () {
     $('.btn_add').show();
     $('#frm_addsentenseedit input[name="menu_action"]').val(me.action.add);
     $('#frm_addsentenseedit input[name="category_id"]').val(me.category_id);
-    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').val(1);
-    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').iCheck('check');
+    $('#frm_addsentenseedit input[name="intent_id"]').val(me.intent_id);
+    $('#frm_addsentenseedit input[name="subintent_id"]').val(me.subintent_id);
+    $('#frm_addsentenseedit input[name="checkbox"]').val(1);
+    $('#frm_addsentenseedit input[name="checkbox"]').iCheck('check');
     $('#addsentense-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 
