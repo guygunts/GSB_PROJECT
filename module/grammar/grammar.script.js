@@ -357,12 +357,13 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
             switch(data.success){
                 case 'COMPLETE' :
                     $('#tbViewSub_wrapper').css('display','');
+                    $('#tbView_wrapper').css('display','none');
                     $('#frmsearch').css('display','none');
                     console.log(data.data.length);
-                    if(data.data.length == 0){
-                        alertify.alert('No data, Please select other date');
-                        return false;
-                    }
+                    // if(data.data.length == 0){
+                    //     alertify.alert('No data, Please select other date');
+                    //     return false;
+                    // }
 
                     if(Object.entries(me.tablesub).length > 0){
                         readd = 1

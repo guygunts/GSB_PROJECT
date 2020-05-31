@@ -210,11 +210,11 @@ function ViewSub(Request $request)
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
         'intent_id' => $data['intent_id'],
-        'subintent_id' => $data['subintent_id']
+        'subintent_id' => $data['subintent_id'],
+        'text_search' => $data['text_search']
     );
 
-    PrintR($params);
-    exit;
+
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
 
