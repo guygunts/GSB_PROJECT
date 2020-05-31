@@ -37,7 +37,8 @@ var me = {
 	alert: {},
 	loading:false,
 	dataold: {},
-	category_id : ''
+	category_id : '',
+	subintent_id : ''
 };
 
 

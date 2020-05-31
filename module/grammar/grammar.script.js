@@ -943,6 +943,8 @@ me.NewSentense = function () {
     $('.btn_add').show();
     $('#frm_addsentenseedit input[name="menu_action"]').val(me.action.add);
     $('#frm_addsentenseedit input[name="category_id"]').val(me.category_id);
+    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').val(1);
+    $('#dvsubintent' + cloneCount + ' input[type="checkbox"]').iCheck('check');
     $('#addsentense-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 
@@ -1027,9 +1029,12 @@ me.Del = function (e) {
 };
 
 me.LoadSentence = function (e) {
-    var code = $(e).attr('data-code');
-    var attr = JSON.parse($(e).attr('data-item'));
-    me.LoadDataSub('getsentencebyintent', code, attr.intent_id, 0, 1, 30);
+    var intent_id = $(e).attr('data-intent_id');
+    var subintent_id = $(e).attr('data-subintent_id');
+    // var attr = JSON.parse($(e).attr('data-item'));
+    me.intent_id = intent_id;
+    me.subintent_id = subintent_id;
+    me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, me.subintent_id, 1, 30);
     $('#btnadd').css('display','none');
     $('#btnaddsentense').css('display','');
 };
