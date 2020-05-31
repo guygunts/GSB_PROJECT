@@ -372,11 +372,9 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
 
                     if(readd){
                         console.log('here readd');
-                        me.tablesentence.clear();
-                        me.tablesentence.rows.add(datas.data);
-                        me.tablesentence.columns.adjust().draw('true');
+                        me.tablesentence.clear().draw();
+                        me.tablesentence.rows.add(datas.data).draw();
                     }else{
-
                         me.tablesentence = $('#tbViewSub')
                             .addClass('nowrap')
                             .removeAttr('width')
