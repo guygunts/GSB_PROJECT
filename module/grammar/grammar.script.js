@@ -282,7 +282,52 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                         column.visible(!column.visible());
                     });
 
-                    me.LoadSubtable();
+                    $('#tbView tbody').on('click ', 'td.details-control', function () {
+                        var tr = $(this).closest('tr');
+                        me.dataold = tr;
+                        var row = me.table.row(tr);
+                        var rowData = JSON.parse($(tr).find('td:eq(0)').attr('data-name'));
+
+                        if (row.child.isShown()) {
+                            // This row is already open - close it
+                            row.child.hide();
+                            tr.removeClass('shown');
+
+                            // Destroy the Child Datatable
+                            $('#' + rowData[0].name.replace(' ', '-')).DataTable().destroy();
+                        } else {
+                            // Open this row
+                            row.child(me.format(rowData[0])).show();
+                            var id = rowData[0].name.replace(' ', '-');
+
+
+                            me.tablesub = $('#' + id)
+                                .addClass('nowrap')
+                                .removeAttr('width').DataTable({
+                                    dom: "t",
+                                    data: rowData,
+                                    columns: [
+                                        {data: "sub_intent_tag", title: 'Intent TAG', className: 'text-center'},
+                                        {data: "intent_type_name", title: 'Type', className: 'text-center'},
+                                        {data: "active", title: 'Active', className: 'text-center'},
+                                        {data: "btn", title: '', className: 'text-center'},
+                                        {data: "sentence", title: 'Sentence', className: 'text-center'},
+                                    ],
+                                    iDisplayLength: page_size,
+                                    ordering: false,
+                                    retrieve: true,
+                                    deferRender: true,
+                                    stateSave: true,
+                                    scrollX: true,
+                                    pageLength: page_size,
+                                    lengthMenu: [[page_size, (page_size * 2), -1], [page_size, (page_size * 2), 'All']]
+
+                                });
+
+                            tr.addClass('shown');
+                            me.tablesub.columns.adjust().draw('true');
+                        }
+                    });
                     break;
                 default :
                     alertify.alert(data.msg);
@@ -292,54 +337,6 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
     });
 };
 
-me.LoadSubtable = function (){
-    $('#tbView tbody').on('click ', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        me.dataold = tr;
-        var row = me.table.row(tr);
-        var rowData = JSON.parse($(tr).find('td:eq(0)').attr('data-name'));
-
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-
-            // Destroy the Child Datatable
-            $('#' + rowData[0].name.replace(' ', '-')).DataTable().destroy();
-        } else {
-            // Open this row
-            row.child(me.format(rowData[0])).show();
-            var id = rowData[0].name.replace(' ', '-');
-
-
-            me.tablesub = $('#' + id)
-                .addClass('nowrap')
-                .removeAttr('width').DataTable({
-                    dom: "t",
-                    data: rowData,
-                    columns: [
-                        {data: "sub_intent_tag", title: 'Intent TAG', className: 'text-center'},
-                        {data: "intent_type_name", title: 'Type', className: 'text-center'},
-                        {data: "active", title: 'Active', className: 'text-center'},
-                        {data: "btn", title: '', className: 'text-center'},
-                        {data: "sentence", title: 'Sentence', className: 'text-center'},
-                    ],
-                    iDisplayLength: page_size,
-                    ordering: false,
-                    retrieve: true,
-                    deferRender: true,
-                    stateSave: true,
-                    scrollX: true,
-                    pageLength: page_size,
-                    lengthMenu: [[page_size, (page_size * 2), -1], [page_size, (page_size * 2), 'All']]
-
-                });
-
-            tr.addClass('shown');
-            me.tablesub.columns.adjust().draw('true');
-        }
-    });
-};
 
 me.LoadData_ = function (menu, id, page_id, page_size, readd = '') {
 
