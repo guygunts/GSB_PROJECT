@@ -920,13 +920,13 @@ me.NewCat = function () {
 };
 
 me.New = function () {
-    if (me.code == '') return false;
+    if (me.category_id == '') return false;
 
     me.ClearData();
     $('.btn_edit').hide();
     $('.btn_add').show();
     $('#frm_addedit input[name="menu_action"]').val(me.action.add);
-    $('#frm_addedit input[name="category_id"]').val(me.code);
+    $('#frm_addedit input[name="category_id"]').val(me.category_id);
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 
