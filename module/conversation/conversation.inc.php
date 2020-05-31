@@ -34,10 +34,12 @@ function View(Request $request)
     if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
         $columnslist = $response['columns_name'];
-        $recnums['pages'] = floor($response['result'][0]['recnum'] / $data['page_size']);
+
+        $recnums['pages'] = $response['result'][0]['pagenum'];
         $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
         $recnums['recordsTotal'] = $response['result'][0]['recnum'];
-        $pagenum = $response['result'][0]['pagenum'];
+
+
         $datas = (array)$response['recs'];
         $name = $response['report_name'];
 
@@ -232,7 +234,7 @@ function ViewVOICE(Request $request)
 //    PrintR($response);
     if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
-        $recnums['pages'] = floor($response['result'][0]['recnum'] / $data['page_size']);
+        $recnums['pages'] = $response['result'][0]['pagenum'];
         $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
         $recnums['recordsTotal'] = $response['result'][0]['recnum'];
 
