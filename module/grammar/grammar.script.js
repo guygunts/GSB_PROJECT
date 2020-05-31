@@ -969,7 +969,7 @@ me.EnableSub = function (e) {
                         case 'COMPLETE':
                             $('.modal').modal('hide');
                             alertify.success(data.msg);
-                            me.table.draw(true);
+                            me.tablesub.draw(true);
                             // me.LoadData(me.action.menu, me.code, 1, 30, 1);
                             break;
                         default:
