@@ -32,6 +32,7 @@ var me = {
 	viewcolumnsub:[],
 	table: {},
 	tablesub: {},
+	tablesentence: {},
 	define: {},
 	alert: {},
 	loading:false,

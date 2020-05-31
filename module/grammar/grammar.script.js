@@ -356,8 +356,8 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
         success:function(datas){
             switch(datas.success){
                 case 'COMPLETE' :
-                    $('#tbViewSub_wrapper').css('display','');
-                    $('#tbView_wrapper').css('display','none');
+                    // $('#tbViewSub_wrapper').css('display','');
+                    // $('#tbView_wrapper').css('display','none');
                     // $('#frmsearch').css('display','none');
                     // console.log(datas.data.length);
                     // if(data.data.length == 0){
@@ -365,17 +365,17 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                     //     return false;
                     // }
 
-                    if(Object.entries(me.tablesub).length > 0){
+                    if(Object.entries(me.tablesentence).length > 0){
                         readd = 1
                     }
 
                     if(readd){
-                        me.tablesub.clear().draw();
-                        me.tablesub.rows.add(datas.data).draw();
+                        me.tablesentence.clear().draw();
+                        me.tablesentence.rows.add(datas.data).draw();
 
                     }else{
 
-                        me.tablesub = $('#tbViewSub')
+                        me.tablesentence = $('#tbViewSub')
                             .addClass('nowrap')
                             .removeAttr('width')
                             .DataTable({
@@ -443,8 +443,8 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
 
                     }
 
-                    me.tablesub.columns.adjust().draw('true');
-                    me.tablesub.buttons(0, null).container().addClass('col');
+                    me.tablesentence.columns.adjust().draw('true');
+                    me.tablesentence.buttons(0, null).container().addClass('col');
 
                     if(datas.name){
                         $('title').text(datas.name);
@@ -457,7 +457,7 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                         e.preventDefault();
 
                         // Get the column API object
-                        var column = me.tablesub.column( $(this).attr('data-column') );
+                        var column = me.tablesentence.column( $(this).attr('data-column') );
 
                         // Toggle the visibility
                         column.visible( ! column.visible() );
