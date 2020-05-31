@@ -541,6 +541,8 @@ me.LoadDataSub = function (menu, category_id, intent_id, subintent_id, page_id, 
                                             me.loading = true;
                                             $('#tbViewSub_wrapper').css('display', 'none');
                                             $('#tbView_wrapper').css('display', '');
+                                            $('#btnadd').css('display','');
+                                            $('#btnaddsentense').css('display','none');
                                         }
                                     }
                                 ],
@@ -933,6 +935,17 @@ me.New = function () {
     $('#modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 
+me.NewSentense = function () {
+    if (me.category_id == '') return false;
+
+    me.ClearData();
+    $('.btn_edit').hide();
+    $('.btn_add').show();
+    $('#frm_addsentenseedit input[name="menu_action"]').val(me.action.add);
+    $('#frm_addsentenseedit input[name="category_id"]').val(me.category_id);
+    $('#addsentense-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+};
+
 me.ClearData = function () {
     $('input[name="subintent-active"]').iCheck('destroy');
     $('#frm_addedit input').val('');
@@ -1017,6 +1030,8 @@ me.LoadSentence = function (e) {
     var code = $(e).attr('data-code');
     var attr = JSON.parse($(e).attr('data-item'));
     me.LoadDataSub('getsentencebyintent', code, attr.intent_id, 0, 1, 30);
+    $('#btnadd').css('display','none');
+    $('#btnaddsentense').css('display','');
 };
 /*================================================*\
   :: DEFAULT ::
@@ -1027,5 +1042,8 @@ $(document).ready(function () {
     // me.SetDateTime();
     // me.LoadData(me.action.menu,1,30);
     me.LoadCbo('tree', 'getcategory', 'category_id', 'category_name');
+    $("#sentence_process").tagsinput({
+        trimValue: true
+    });
     // me.LoadCbo('role_id','getroles','role_id','role_name');
 });
