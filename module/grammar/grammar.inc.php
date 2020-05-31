@@ -213,6 +213,8 @@ function ViewSub(Request $request)
         'subintent_id' => $data['subintent_id']
     );
 
+    PrintR($params);
+    exit;
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
 
