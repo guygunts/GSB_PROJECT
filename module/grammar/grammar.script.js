@@ -1035,7 +1035,7 @@ me.LoadSentence = function (e) {
     var subintent_id = $(e).attr('data-subintent_id');
     // var attr = JSON.parse($(e).attr('data-item'));
     me.intent_id = intent_id;
-    me.subintent_id = subintent_id;
+    me.subintent_id = (subintent_id?subintent_id:0);
     me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, me.subintent_id, 1, 30);
     $('#btnadd').css('display','none');
     $('#btnaddsentense').css('display','');
