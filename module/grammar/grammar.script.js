@@ -436,8 +436,8 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                         // Toggle the visibility
                         column.visible( ! column.visible() );
                     } );
-                    // $('#tbViewSub_wrapper').css('display','');
-                    // $('#tbView_wrapper').css('display','none');
+                    $('#tbViewSub_wrapper').css('display','');
+                    $('#tbView_wrapper').css('display','none');
                     break;
                 default :
                     alertify.alert(datas.msg);
