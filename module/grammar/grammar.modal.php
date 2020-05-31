@@ -130,6 +130,11 @@
                                         <option value="2">Voice</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" class="active" name="active" id="active" value="1"> &nbsp&nbsp&nbsp Active
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,7 +145,7 @@
                 <?php if (isset($permiss)) {
                     if ($permiss[1]) { ?>
                         <button type="button" id="btn_add" class="btn_add btn btn-danger btn-rounded btn-sm"
-                                onclick="me.AddSub();" title="Add"><i class="fa fa-plus"></i> Add
+                                onclick="me.AddSentense();" title="Add"><i class="fa fa-plus"></i> Add
                         </button>
                     <?php }
                 }
