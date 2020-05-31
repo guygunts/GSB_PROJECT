@@ -359,7 +359,7 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                     $('#tbViewSub_wrapper').css('display','');
                     $('#tbView_wrapper').css('display','none');
                     $('#frmsearch').css('display','none');
-                    console.log(data.data.length);
+                    console.log(datas.data.length);
                     // if(data.data.length == 0){
                     //     alertify.alert('No data, Please select other date');
                     //     return false;
