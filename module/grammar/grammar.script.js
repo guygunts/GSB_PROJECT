@@ -353,8 +353,8 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
         dataType:'json',
         cache:false,
         data:{ menu_action : menu , category_id : category_id , intent_id : intent_id , subintent_id : subintent_id , page_id : page_id , page_size : 25},
-        success:function(data){
-            switch(data.success){
+        success:function(datas){
+            switch(datas.success){
                 case 'COMPLETE' :
                     $('#tbViewSub_wrapper').css('display','');
                     $('#tbView_wrapper').css('display','none');
@@ -371,7 +371,7 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
 
                     if(readd){
                         me.tablesub.clear().draw();
-                        me.tablesub.rows.add(data.data).draw();
+                        me.tablesub.rows.add(datas.data).draw();
 
                     }else{
 
@@ -437,8 +437,8 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                                 paging: false,
                                 bInfo: false,
                                 lengthChange:false,
-                                data: data.data,
-                                columns: data.columns
+                                data: datas.data,
+                                columns: datas.columns
                             });
 
                     }
