@@ -366,11 +366,12 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                     // }
 
                     if(Object.entries(me.tablesentence).length > 0){
-                        readd = 1
+                        readd = true;
                         console.log('here');
                     }
 
                     if(readd){
+                        console.log('here readd');
                         me.tablesentence.clear().draw();
                         me.tablesentence.rows.add(datas.data).draw();
                         me.tablesentence.columns.adjust().draw('true');
