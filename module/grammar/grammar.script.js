@@ -446,11 +446,11 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                     me.tablesub.columns.adjust().draw('true');
                     me.tablesub.buttons(0, null).container().addClass('col');
 
-                    if(data.name){
-                        $('title').text(data.name);
+                    if(datas.name){
+                        $('title').text(datas.name);
                     }
-                    $('#frmresult').css('display','');
-                    $('#chnn').val(data.chnn);
+                    // $('#frmresult').css('display','');
+                    // $('#chnn').val(data.chnn);
 
 
                     $('a.toggle-vis').on( 'click', function (e) {
