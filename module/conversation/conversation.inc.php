@@ -103,7 +103,8 @@ function View(Request $request)
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
-        $result['info'] = $recnums;
+
+        $result['draw'] = ($data['draw']*1);
         $result['recordsTotal'] = $recnums['recordsTotal'];
         $result['recordsFiltered'] = $recnums['recordsTotal'];
         $result['success'] = 'COMPLETE';
@@ -294,6 +295,8 @@ function ViewVOICE(Request $request)
         $result['chnn'] = $data['menu_action'];
         $result['columns'] = $column;
         $result['data'] = $datalist;
+
+        $result['draw'] = ($data['draw']*1);
         $result['recordsTotal'] = $recnums['recordsTotal'];
         $result['recordsFiltered'] = $recnums['recordsTotal'];
         $result['success'] = 'COMPLETE';
