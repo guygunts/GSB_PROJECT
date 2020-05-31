@@ -44,7 +44,7 @@
 
                                 <button type="button" class="btn btn-primary btn-flat btn-sm" id="btnaddsentense" style="display: none" onclick="me.NewSentense();"
                                         title="<?php echo $permiss[1]['name']; ?>">
-                                    <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?>
+                                    <i class="fa fa-plus"></i> <?php echo $permiss[1]['name']; ?> Sentense
                                 </button>
                             <?php }
                         } ?>
