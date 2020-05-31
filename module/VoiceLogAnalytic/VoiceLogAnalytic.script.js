@@ -15,28 +15,28 @@ me.action.del = 'deleteuser';
 var buttonCommon = {
     exportOptions: {
         format: {
-            body: function ( data, row, column, node ) {
+            body: function (data, row, column, node) {
 
-                if(column === 4) {
+                if (column === 4) {
                     // data = $(data).attr('href');
-                }else if (column === 5) {
+                } else if (column === 5) {
 
                     data = $(data).find('source').attr('src');
-                }else if (column === 11) {
-                    if($('option:selected',data).val() != ''){
-                        data = $('option:selected',data).text();
-                    }else{
+                } else if (column === 11) {
+                    if ($('option:selected', data).val() != '') {
+                        data = $('option:selected', data).text();
+                    } else {
                         data = '';
                     }
-                }else if (column === 12) {
-                    if($('option:selected',data).val() != ''){
-                        data = $('option:selected',data).text();
-                    }else{
+                } else if (column === 12) {
+                    if ($('option:selected', data).val() != '') {
+                        data = $('option:selected', data).text();
+                    } else {
                         data = '';
                     }
-                }else if (column === 13 || column === 14) {
+                } else if (column === 13 || column === 14) {
                     data = data.toString().replace(/<.*?>/ig, "");
-                }else if (column === 15 || column === 16) {
+                } else if (column === 15 || column === 16) {
                     data = '';
                 }
 
@@ -117,8 +117,13 @@ me.SearchRandom = function () {
         if (cnt != 2) return false;
         // me.table.clear().destroy();
         // $('#tbView').empty();
-
-        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', random_num, qc_status, grammar, intent, confiden, text_search, 1);
+        me.table.page.len(page_size).draw();
+        // me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', random_num, qc_status, grammar, intent, confiden, text_search, 1);
+        // if (!readd) {
+        //     me.LoadCbo('grammar', data.grammar);
+        //     me.LoadCbo('confiden', data.confiden);
+        //     me.LoadCbo('intent', data.intent);
+        // }
     });
 
 };
@@ -144,150 +149,149 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
             txt_search: txt_search
         },
         success: function (data) {
-
-
-            switch (data.success) {
+            switch(data.success){
                 case 'COMPLETE' :
+
+                    me.table = $('#tbView')
+                        .addClass('nowrap')
+                        .removeAttr('width')
+                        .DataTable({
+                            destroy: true,
+                            bFilter: false,
+                            dom: 'Bfrtip',
+                            buttons: [
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'colvis',
+                                    columnText: function (dt, idx, title) {
+                                        return (idx + 1) + ': ' + (title ? title : 'Action');
+                                    }
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    text: 'ย้อนกลับ',
+                                    className: 'float-left hidden',
+                                    attr: {
+                                        title: 'Copy',
+                                        id: 'btnback',
+                                        disabled: 'disabled'
+                                    }
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'print',
+                                    orientation: 'landscape',
+                                    pageSize: 'LEGAL',
+                                    className: 'float-right'
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    // text: 'Excel',
+                                    // className: 'float-right',
+                                    // action: function ( e, dt, node, config ) {
+                                    //     var start = $('#start_date').data().date;
+                                    //     var stop = $('#end_date').data().date;
+                                    //     // window.open('module/' + me.mod + '/excel.php?mod='+ me.mod +'&start_date='+ start +'&end_date=' + stop, '_blank');
+                                    //     window.location.href = 'module/' + me.mod + '/excel.php?mod='+ me.mod +'&start_date='+ start +'&end_date=' + stop;
+                                    //     //window.location.href = 'module/' + me.mod + '/' + me.mod + '.report.php?mod='+ me.mod +'&start_date='+ start +'&end_date=' + stop;
+                                    //     // window.location.href = 'module/' + me.mod + '/' + me.mod + '-print/' + start + '/' + stop;
+                                    // }
+                                    extend: 'excelHtml5',
+                                    text: 'Excel',
+                                    className: 'float-right',
+                                    charset: 'utf-8',
+                                    bom: true
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'csvHtml5',
+                                    text: 'CSV',
+                                    className: 'float-right',
+                                    charset: 'utf-8',
+                                    bom: true
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'pdfHtml5',
+                                    orientation: 'landscape',
+                                    pageSize: 'LEGAL',
+                                    className: 'float-right',
+                                    customize: function (doc) {
+                                        doc.defaultStyle = {
+                                            font: 'THSarabunNew',
+                                            fontSize: 12
+                                        };
+                                    }
+                                })
+                            ],
+                            columnDefs: [
+                                {
+                                    "width": "5%",
+                                    "targets": 0,
+                                    "searchable": false
+                                },
+                                {
+                                    "targets": '_all',
+                                    'createdCell': function (td, cellData, rowData, row, col) {
+                                        $(td).attr('id', row + col);
+                                    }
+                                }
+                            ],
+                            searching: false,
+                            retrieve: true,
+                            deferRender: true,
+                            stateSave: false,
+                            responsive: false,
+                            scrollX: true,
+                            pageLength: page_size,
+                            paging: true,
+                            lengthChange:false,
+                            columns: data.columns,
+                            serverSide: true,
+                            ajax: {
+                                "url": me.url + "-View",
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.page_id = (d.start / d.length) + 1;
+                                    d.page_size = $('#page_size').val();
+                                    d.start_date = $('#start_date').data().date+' 00:00:00';
+                                    d.end_date = $('#end_date').data().date+' 23:59:59';
+                                    d.text_search = $('#text_search').val();
+                                    d.random_num = $('#random_num').val();
+                                    d.qc_status = $('#qc_status').val();
+                                    d.grammar = $('#grammar').val();
+                                    d.intent = $('#intent').val();
+                                    d.confiden = $('#confiden').val();
+                                }
+                            }
+                        });
+
+                    me.table.column(1).visible(false);
+                    me.table.buttons(0, null).container().addClass('col');
+
                     if(data.data.length == 0){
                         alertify.alert('No data, Please select other date');
                     }
-                    if (readd) {
-                        me.table.clear().draw();
-                        me.table.rows.add(data.data).draw();
 
-                    } else {
-
-
-                        me.table = $('#tbView')
-                            .addClass('nowrap')
-                            .removeAttr('width')
-                            .DataTable({
-                                dom: 'Bfrtip',
-                                buttons: [
-
-
-                                    $.extend( true, {}, buttonCommon, {
-                                        extend: 'colvis',
-                                        columnText: function (dt, idx, title) {
-                                            return (idx + 1) + ': ' + (title ? title : 'Action');
-                                        }
-                                    } ),
-                                    $.extend( true, {}, buttonCommon, {
-                                        text: 'ย้อนกลับ',
-                                        className: 'float-left hidden',
-                                        attr: {
-                                            title: 'Copy',
-                                            id: 'btnback',
-                                            disabled: 'disabled'
-                                        }
-                                    } ),
-                                    $.extend( true, {}, buttonCommon, {
-                                        extend: 'print',
-                                        orientation: 'landscape',
-                                        pageSize: 'LEGAL',
-                                        className: 'float-right'
-                                    } ),
-                                    $.extend( true, {}, buttonCommon, {
-                                        // text: 'Excel',
-                                        // className: 'float-right',
-                                        // action: function ( e, dt, node, config ) {
-                                        //     var start = $('#start_date').data().date;
-                                        //     var stop = $('#end_date').data().date;
-                                        //     // window.open('module/' + me.mod + '/excel.php?mod='+ me.mod +'&start_date='+ start +'&end_date=' + stop, '_blank');
-                                        //     window.location.href = 'module/' + me.mod + '/excel.php?mod='+ me.mod +'&start_date='+ start +'&end_date=' + stop;
-                                        //     //window.location.href = 'module/' + me.mod + '/' + me.mod + '.report.php?mod='+ me.mod +'&start_date='+ start +'&end_date=' + stop;
-                                        //     // window.location.href = 'module/' + me.mod + '/' + me.mod + '-print/' + start + '/' + stop;
-                                        // }
-                                        extend: 'excelHtml5',
-                                        text: 'Excel',
-                                        className: 'float-right',
-                                        charset: 'utf-8',
-                                        bom: true
-                                    } ),
-                                    $.extend( true, {}, buttonCommon, {
-                                        extend: 'csvHtml5',
-                                        text: 'CSV',
-                                        className: 'float-right',
-                                        charset: 'utf-8',
-                                        bom: true
-                                    } ),
-                                    $.extend( true, {}, buttonCommon, {
-                                        extend: 'pdfHtml5',
-                                        orientation: 'landscape',
-                                        pageSize: 'LEGAL',
-                                        className: 'float-right',
-                                        customize: function ( doc ) {
-                                            doc.defaultStyle = {
-                                                font:'THSarabunNew',
-                                                fontSize:12
-                                            };
-                                        }
-                                    } )
-                                ],
-                                columnDefs: [
-                                    {
-                                        "width": "5%",
-                                        "targets": 0,
-                                        "searchable": false
-                                    },
-                                    {
-                                        "targets":'_all',
-                                        'createdCell':  function (td, cellData, rowData, row, col) {
-                                            $(td).attr('id', row+col);
-                                        }
-                                    }
-                                ],
-                                searching: false,
-                                retrieve: true,
-                                deferRender: true,
-                                stateSave: true,
-
-                                iDisplayLength: page_size,
-                                responsive: false,
-                                scrollX: true,
-                                pageLength: page_size,
-                                paging: true,
-                                lengthChange: false,
-                                start : page_id,
-                                recordsTotal : data.recnums,
-                                recordsFiltered : data.recnums,
-                                data: data.data,
-                                columns: data.columns
-                            });
-
-                    }
-                    me.table.column(1).visible(false);
-                    // me.table.column(3).visible(false);
-                    // me.table.column(4).visible(false);
-
-                    me.table.columns.adjust().draw('true');
-
-                    me.table.buttons(0, null).container().addClass('col');
-
-                    if (data.name) {
+                    if(data.name){
                         $('title').text(data.name);
                     }
-                    if (!readd) {
-                        me.LoadCbo('grammar', data.grammar);
-                        me.LoadCbo('confiden', data.confiden);
-                        me.LoadCbo('intent', data.intent);
-                    }
 
-                    $('a.toggle-vis').on('click', function (e) {
+                    me.LoadCbo('grammar', data.grammar);
+                    me.LoadCbo('confiden', data.confiden);
+                    me.LoadCbo('intent', data.intent);
+
+
+                    $('a.toggle-vis').on( 'click', function (e) {
                         e.preventDefault();
 
                         // Get the column API object
-                        var column = me.table.column($(this).attr('data-column'));
+                        var column = me.table.column( $(this).attr('data-column') );
 
                         // Toggle the visibility
-                        column.visible(!column.visible());
-                    });
+                        column.visible( ! column.visible() );
+                    } );
                     $('.select2').select2();
                     break;
                 default :
                     alertify.alert(data.msg);
                     break;
             }
+
         }
     });
 };
@@ -353,10 +357,10 @@ me.LoadDataCHNN = function (menu, page_id, page_size, start, stop, readd = '') {
                                         orientation: 'landscape',
                                         pageSize: 'LEGAL',
                                         className: 'float-right',
-                                        customize: function ( doc ) {
+                                        customize: function (doc) {
                                             doc.defaultStyle = {
-                                                font:'THSarabunNew',
-                                                fontSize:16
+                                                font: 'THSarabunNew',
+                                                fontSize: 16
                                             };
                                         }
                                     },
@@ -444,7 +448,7 @@ me.OpenCHNN = function (code, page_id, page_size, start, stop) {
 
 };
 
-me.OpenPopup = function (code, method,myvalue='') {
+me.OpenPopup = function (code, method, myvalue = '') {
 
     alertify.prompt('Add ' + method, '', myvalue, function (evt, value) {
             if (!value) {
