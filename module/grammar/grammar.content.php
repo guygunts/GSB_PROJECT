@@ -14,6 +14,10 @@
 
                             <?php }
                         } ?>
+                        <button type="button" class="btn btn-primary btn-flat btn-sm pull-right" onclick="me.NewCat();"
+                                title="Move">
+                            <i class="fa fa-plus"></i> Move
+                        </button>
                     </div>
                 </div>
                 <!-- /.box-header -->
