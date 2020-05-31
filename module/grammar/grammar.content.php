@@ -14,7 +14,7 @@
 
                             <?php }
                         } ?>
-                        <button type="button" class="btn btn-primary btn-flat btn-sm float-right" onclick="me.NewCat();"
+                        &nbsp;&nbsp;<button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
                                 title="Move">
                             <i class="fa fa-plus"></i> Move
                         </button>
