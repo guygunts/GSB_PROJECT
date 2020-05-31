@@ -950,6 +950,40 @@ me.Enable = function (e) {
         });
 };
 
+me.EnableSub = function (e) {
+    var code = $(e).attr('data-code');
+    var subcode = $(e).attr('data-subcode');
+    var active = $(e).attr('data-type');
+    var typename = ['Inactive', 'Active'];
+    $('.modal').modal('hide');
+    alertify.confirm("Do you want " + typename[active],
+        function () {
+            $.ajax({
+                url: me.url + '-EnableSub',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: {intent_id: code, active: active, subintent_id: subcode , menu_action: 'updateIntentActiveStatus'},
+                success: function (data) {
+                    switch (data.success) {
+                        case 'COMPLETE':
+                            $('.modal').modal('hide');
+                            alertify.success(data.msg);
+                            me.table.draw(true);
+                            // me.LoadData(me.action.menu, me.code, 1, 30, 1);
+                            break;
+                        default:
+                            alertify.error(data.msg);
+                            break;
+                    }
+                }
+            });
+        },
+        function () {
+            alertify.error('Cancel Active');
+        });
+};
+
 me.OpenPopup = function () {
     var cloneCount = $('div.subintentsub').length;
     var cloneCount2 = $('input[name="subintent-active"]').length;

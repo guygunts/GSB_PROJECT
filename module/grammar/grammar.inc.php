@@ -10,11 +10,11 @@ function ShowActive($code, $status){
     }
 }
 
-function ShowActiveSub($code, $status){
+function ShowActiveSub($code, $subcode, $status){
     if($status == 0){
-        return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="'.$code.'" onclick="me.EnableSub(this)">Inactive</button>';
+        return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="'.$code.'" data-subcode="'.$subcode.'" onclick="me.EnableSub(this)">Inactive</button>';
     }elseif($status == 1){
-        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="'.$code.'" onclick="me.EnableSub(this)">Active</button>';
+        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="'.$code.'" data-subcode="'.$subcode.'" onclick="me.EnableSub(this)">Active</button>';
     }
 }
 
@@ -130,7 +130,7 @@ function View(Request $request)
 
                     foreach ((array)$columnssub as $n => $valuesub) {
                         if($valuesub['data'] == 'active'){
-                            $datalistsub[$z][$valuesub['data']] = ShowActiveSub($itemsub['sub_intent_id'],$itemsub[$valuesub['data']]);
+                            $datalistsub[$z][$valuesub['data']] = ShowActiveSub($item['intent_id'],$itemsub['sub_intent_id'],$itemsub[$valuesub['data']]);
                         }else{
                             $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
                         }
