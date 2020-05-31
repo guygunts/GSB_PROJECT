@@ -39,9 +39,12 @@ function View(Request $request)
 
     $url = URL_API . '/geniespeech/voicelog';
     $response = curlposttoken($url, $params, $token);
-
+PrintR($response);
     if (1) {
-
+        $start = $data['start'];
+        $recnums['pages'] = $response['result'][0]['pagenum'];
+        $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
+        $recnums['recordsTotal'] = $response['result'][0]['recnum'];
 
         $grammar = $response['result']['box1'];
         $confiden = $response['result']['box2'];
@@ -106,7 +109,8 @@ function View(Request $request)
         foreach ((array)$datas as $i => $item) {
             $btn = '';
 
-            $datalist[$i]['no'] = ($i + 1);
+            ++$start;
+            $datalist[$i]['no'] = $start;
 
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'voice_name') {
@@ -200,7 +204,11 @@ function View(Request $request)
         $result['grammar'] = $grammarlist;
         $result['confiden'] = $confidenlist;
         $result['intent'] = $intentlist;
-        $result['recnums'] = $recnums;
+
+        $result['draw'] = ($data['draw']*1);
+        $result['recordsTotal'] = $recnums['recordsTotal'];
+        $result['recordsFiltered'] = $recnums['recordsTotal'];
+
         $result['success'] = 'COMPLETE';
 
     } else {
