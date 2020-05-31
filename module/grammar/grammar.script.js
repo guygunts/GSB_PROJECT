@@ -373,7 +373,7 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                     if(readd){
                         me.tablesentence.clear().draw();
                         me.tablesentence.rows.add(datas.data).draw();
-
+                        me.tablesentence.columns.adjust().draw('true');
                     }else{
 
                         me.tablesentence = $('#tbViewSub')
