@@ -226,7 +226,7 @@ function ViewVOICE(Request $request)
         'page_size' => $data['page_size']
     );
 
-//    PrintR($params);
+    PrintR($params);
     $url = URL_API . '/geniespeech/logvoice';
     $response = curlposttoken($url, $params, $token);
 //    PrintR($response);
