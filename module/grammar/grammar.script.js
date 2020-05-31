@@ -632,7 +632,7 @@ me.Add = function () {
                                     alertify.success(data.msg);
                                     // $('#btnsearchsubmit').click();
                                     // me.table.clear().draw();
-                                    me.LoadData(me.action.menu, me.code, 1, 30, 1);
+                                    me.LoadData(me.action.menu, me.category_id, 1, 30, 1);
                                     break;
                                 default:
                                     alertify.error(data.msg);
@@ -677,9 +677,10 @@ me.Edit = function () {
                                 case 'COMPLETE':
                                     $('.modal').modal('hide');
                                     alertify.success(data.msg);
+                                    me.table.draw(true);
                                     // $('#btnsearchsubmit').click();
                                     // me.table.clear().draw();
-                                    me.LoadData(me.action.menu, me.code, 1, 30, 1);
+                                    // me.LoadData(me.action.menu, me.code, 1, 30, 1);
                                     break;
                                 default:
                                     alertify.error(data.msg);
@@ -799,7 +800,8 @@ me.Enable = function (e) {
                         case 'COMPLETE':
                             $('.modal').modal('hide');
                             alertify.success(data.msg);
-                            me.LoadData(me.action.menu, me.code, 1, 30, 1);
+                            me.table.draw(true);
+                            // me.LoadData(me.action.menu, me.code, 1, 30, 1);
                             break;
                         default:
                             alertify.error(data.msg);
@@ -965,7 +967,7 @@ me.Load = function (e) {
 
     ft.PutFormID('frm_addedit', result);
     $('#frm_addedit input[name="code"]').val(code);
-    $('#frm_addedit input[name="category_id"]').val(me.code);
+    $('#frm_addedit input[name="category_id"]').val(me.category_id);
     $('#frm_addedit input[name="intent_id"]').val(attr.intent_id);
     $('#frm_addedit input[name="menu_action"]').val(me.action.edit);
     $.each(attr.variation, function (i, result) {
@@ -987,7 +989,7 @@ me.Del = function (e) {
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                data: {'code': code, 'menu_action': 'deleteintent', 'main': 'intent_id', 'category_id': me.code},
+                data: {'code': code, 'menu_action': 'deleteintent', 'main': 'intent_id', 'category_id': me.category_id},
                 success: function (data) {
                     switch (data.success) {
                         case 'COMPLETE':
@@ -996,7 +998,7 @@ me.Del = function (e) {
                             // $('#btnsearchsubmit').click();
                             me.table.row('#' + attr.DT_RowId).remove().draw();
 
-                            me.LoadData(me.action.menu, me.code, 1, 30, 1);
+                            // me.LoadData(me.action.menu, me.category_id, 1, 30, 1);
                             break;
                         default:
                             alertify.error(data.msg);
