@@ -103,7 +103,7 @@
             <div class="modal-body">
                 <form id="frm_addsentenseedit" method="post" onsubmit="return false;">
                     <button type="submit" style="display: none" id="btnsubmitaddsentense"></button>
-                    <input type="hidden" name="category_id">
+<!--                    <input type="hidden" name="category_id">-->
                     <input type="hidden" name="menu_action" value="addsentence">
                     <input type="hidden" name="intent_id">
                     <input type="hidden" name="subintent_id">
