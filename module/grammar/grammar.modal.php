@@ -112,23 +112,29 @@
                         <div class="box-body">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="sentence_origin" class="control-label">Sentense Text</label>
+                                    <label for="sentence_origin" class="control-label">Sentence Text</label>
                                     <input id="sentence_origin" name="sentence_origin" type="text" required="required"
                                            maxlength="100"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="sentence_process" class="control-label">Sentense Process</label>
+                                    <label for="sentence_process" class="control-label">Sentence Process</label>
                                     <input id="sentence_process" name="sentence_process" type="text" required="required"
                                            maxlength="100"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="type" class="control-label">Sentense Type</label>
+                                    <label for="type" class="control-label">Sentence Type</label>
                                     <select id="type" name="type" class="select form-control lang" required="required">
                                         <option value="1" selected>Text</option>
                                         <option value="2">Voice</option>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="count" class="control-label">Sentence Count</label>
+                                    <input id="count" name="count" type="number" required="required"
+                                           min="0" value="0"
+                                           class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>
