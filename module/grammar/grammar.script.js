@@ -386,35 +386,9 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                                         text: 'ย้อนกลับ',
                                         className: 'float-left',
                                         action: function ( e, dt, node, config ) {
-
                                             me.loading = true;
-
-                                            var page_size = $('#page_size').val();
-                                            var compare = $('#compare').val();
-                                            var txtsearch = $('#text_search').val();
-                                            var start = $('#start_date').data().date;
-                                            var stop = $('#end_date').data().date;
-                                            var cnt = 0;
-
-                                            if(start !== undefined){
-                                                ++cnt;
-                                            }
-                                            if(stop !== undefined){
-                                                ++cnt;
-                                            }
-
-                                            if(cnt != 2)return false;
-                                            // me.tablesub.clear().destroy();
-                                            // me.table.clear().destroy();
-                                            // $('#tbViewSub').empty();
-                                            // $('#tbView').empty();
-
                                             $('#tbViewSub_wrapper').css('display','none');
                                             $('#tbView_wrapper').css('display','');
-
-                                            // me.table.clear();
-                                            me.LoadDataReport(me.action.menu,1,page_size,start+' 00:00:00',stop+' 23:59:59',compare,txtsearch,1);
-                                            // $('#btnsearchsubmit').click();
                                         }
                                     }
                                 ],
@@ -462,8 +436,8 @@ me.LoadDataSub = function(menu,category_id, intent_id, subintent_id, page_id, pa
                         // Toggle the visibility
                         column.visible( ! column.visible() );
                     } );
-                    $('#tbViewSub_wrapper').css('display','');
-                    $('#tbView_wrapper').css('display','none');
+                    // $('#tbViewSub_wrapper').css('display','');
+                    // $('#tbView_wrapper').css('display','none');
                     break;
                 default :
                     alertify.alert(datas.msg);
