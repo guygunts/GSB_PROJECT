@@ -444,7 +444,7 @@ function AddSentense(Request $request)
 //    unset($data['concept_id']);
     unset($data['sub']);
 
-//    PrintR($data);
+    PrintR($data);
 //    exit;
 
 
