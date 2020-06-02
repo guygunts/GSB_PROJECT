@@ -36,8 +36,8 @@ me.LoadDashBoard = function () {
         data: myData,
         success: function (data) {
             if(!data.box5s){
-                alertify.alert('No data, Please select other date');
-                return false;
+                // alertify.alert('No data, Please select other date');
+                // return false;
             }
 
             if (data.box1) {

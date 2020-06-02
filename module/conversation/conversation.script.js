@@ -155,7 +155,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					me.table.buttons(0, null).container().addClass('col');
 
 					if(data.data.length == 0){
-						alertify.alert('No data, Please select other date');
+						// alertify.alert('No data, Please select other date');
 					}
 
 					if(data.name){

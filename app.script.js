@@ -258,7 +258,7 @@ me.LoadData = function(menu,page_id,page_size,readd=''){
 			switch(data.success){
 				case 'COMPLETE' :
 					if(data.data.length == 0){
-						alertify.alert('No data, Please select other date');
+						// alertify.alert('No data, Please select other date');
 					}
 					if(readd){
 						// me.table.clear();
@@ -418,7 +418,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					me.table.buttons(0, null).container().addClass('col');
 
 					if(data.data.length == 0){
-						alertify.alert('No data, Please select other date');
+						// alertify.alert('No data, Please select other date');
 					}
 
 					if(data.name){
