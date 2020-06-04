@@ -250,8 +250,8 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                 "data": function (d) {
                                     d.page_id = (d.start / d.length) + 1;
                                     d.page_size = $('#page_size').val();
-                                    d.start_date = $('#start_date').data().date+' 00:00:00';
-                                    d.end_date = $('#end_date').data().date+' 23:59:59';
+                                    d.start_date = $('#start_date').data().date;
+                                    d.end_date = $('#end_date').data().date;
                                     d.text_search = $('#text_search').val();
                                     d.random_num = $('#random_num').val();
                                     d.status = $('#status').val();
