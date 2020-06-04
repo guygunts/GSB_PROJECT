@@ -530,6 +530,7 @@ me.UpdateVoice = function (e) {
     }
 
     myData.data.rec_id = code;
+    myData.data.flag_edit = 1;
 
     console.log(myData);
 
@@ -549,6 +550,7 @@ me.UpdateVoice = function (e) {
                             alertify.success(data.msg);
                             $('input[name="pass"]').prop('checked', false);
                             $('#result').val('');
+                            me.table.ajax.reload();
                             break;
                         default:
                             alertify.error(data.msg);

@@ -92,7 +92,7 @@ function View(Request $request)
             if ($item['column_data'] == 'voice_name' || $item['column_data'] == 'qc_status') {
                 $column[$m]['className'] = 'text-center';
             } else {
-                $column[$m]['className'] = 'text-' . $item['column_align'];
+                $column[$m]['className'] = 'text-' . $item['column_align']?$item['column_align']:'center';
             }
 
             $column[$m]['title'] = $item['column_name'];
