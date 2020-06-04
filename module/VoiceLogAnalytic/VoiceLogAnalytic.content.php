@@ -54,7 +54,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control searchdata" name="flag_edit" id="flag_edit>
+                                <select class="form-control searchdata" name="flag_edit" id="flag_edit">
                                  <option value="" selected>== QC ==</option>
                                     <option value="1">Approve</option>
                                     <option value="0">Approved</option>
