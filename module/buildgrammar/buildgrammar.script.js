@@ -616,7 +616,7 @@ $(document).ready(function () {
     // me.AutoReload();
     date1 = $('#start_date').data().date + ' 00:00:00';
     date2 = $('#end_date').data().date + ' 23:59:59';
-    me.LoadDataReport(me.action.menu, 1, 5, date1, date2, '', '');
+    me.LoadDataReport(me.action.menu, 1, 25, date1, date2, '', '');
     me.LoadCbo('project_id', 'getprojects', 'project_id', 'project_name');
     // me.LoadCbo('role_id','getroles','role_id','role_name');
     // setInterval(function () {
