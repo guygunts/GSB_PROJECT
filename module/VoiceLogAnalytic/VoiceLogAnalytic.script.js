@@ -165,7 +165,12 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                 $.extend(true, {}, buttonCommon, {
                                     extend: 'colvis',
                                     columnText: function (dt, idx, title) {
-                                        return (idx + 1) + ': ' + (title ? title : 'Action');
+                                        // return (idx + 1) + ': ' + (title ? title : 'Action');
+                                        if(idx == 0){
+                                            return (idx+1)+': Variation';
+                                        }else{
+                                            return (idx+1)+': '+(title?title:'Action');
+                                        }
                                     }
                                 }),
                                 $.extend(true, {}, buttonCommon, {
@@ -224,6 +229,11 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                 {
                                     "width": "5%",
                                     "targets": 0,
+                                    "searchable": false
+                                },
+                                {
+                                    "width": "5%",
+                                    "targets": 1,
                                     "searchable": false
                                 },
                                 {
