@@ -46,11 +46,17 @@
                             </div>
                             <div class="form-group">
                                 <select class="form-control searchdata" name="qc_status" id="qc_status">
-                                   <option value="" selected>== QC ==</option>
+                                   <option value="" selected>== STATUS ==</option>
                                     <option value="P">Pass</option>
                                     <option value="F">Fail</option>
                                     <option value="G">Garbage</option>
                                     <option value="O">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control searchdata select2" name="qc" id="qc">
+                                    <option value="1" selected>Approve</option>
+                                    <option value="0" selected>Approved</option>
                                 </select>
                             </div>
                             <div class="form-group">
