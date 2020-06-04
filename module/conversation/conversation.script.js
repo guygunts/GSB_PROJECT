@@ -129,7 +129,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 							],
 							searching: false,
 							retrieve: true,
-							deferRender: false,
+							deferRender: true,
 							stateSave: false,
 							responsive: false,
 							scrollX: true,
@@ -324,7 +324,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 						.addClass('nowrap')
 						.removeAttr('width')
 						.DataTable({
-							destroy: true,
+
 							bFilter: false,
 							dom: 'Bfrtip',
 							buttons: [
@@ -386,7 +386,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 							],
 							searching: false,
 							retrieve: true,
-							deferRender: false,
+							deferRender: true,
 							stateSave: false,
 							responsive: false,
 							scrollX: true,
