@@ -400,8 +400,8 @@ function Add(Request $request)
     $params = array(
         'rec_id' => $data['rec_id'],
         'qc_status' => $data['qc_status'],
-        'expec_intent' => $data['Expected'],
-        'new_sentence' => $data['input_qc'],
+        'expec_intent' => $data['expec_intent'],
+        'new_sentence' => $data['new_sentence'],
         'remark' => $data['remark'],
         'action' => $data['action']
     );
