@@ -37,7 +37,7 @@ function View(Request $request)
         'flag_edit' => ''
     );
 
-//    PrintR($params);
+    PrintR($params);
 
     $url = URL_API . '/geniespeech/voicelog';
     $response = curlposttoken($url, $params, $token);
