@@ -315,8 +315,8 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 		dataType:'json',
 		cache:false,
 		data:{ menu_action : menu , page_id : page_id , page_size : 25 , start_date : start , end_date : stop},
-		success:function(datas){
-			switch(datas.success){
+		success:function(data){
+			switch(data.success){
 				case 'COMPLETE' :
 					me.tablesub = $('#tbViewSub')
 						.addClass('nowrap')
@@ -391,7 +391,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 							pageLength: page_size,
 							paging: true,
 							lengthChange:false,
-							columns: datas.columns,
+							columns: data.columns,
 							serverSide: true,
 							ajax: {
 								"url": me.url + "-ViewVOICE",
@@ -409,7 +409,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 						});
 
 					me.tablesub.buttons(0, null).container().addClass('col');
-					$('#tbViewSub_wrapper').css('display','none');
+					// $('#tbViewSub_wrapper').css('display','none');
 					// if(data.name){
 					// 	$('title').text(data.name);
 					// }
