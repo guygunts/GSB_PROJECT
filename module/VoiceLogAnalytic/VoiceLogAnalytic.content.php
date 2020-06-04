@@ -45,7 +45,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control searchdata" name="status" id="status">
+                                <select class="form-control searchdata" name="qc_status" id="qc_status">
                                    <option value="" selected>== STATUS ==</option>
                                     <option value="P">Pass</option>
                                     <option value="F">Fail</option>
@@ -54,9 +54,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control searchdata" name="qc" id="qc">
-                                    <option value="1" selected>Approve</option>
-                                    <option value="0" selected>Approved</option>
+                                <select class="form-control searchdata" name="flag_edit" id="flag_edit>
+                                 <option value="" selected>== QC ==</option>
+                                    <option value="1">Approve</option>
+                                    <option value="0">Approved</option>
                                 </select>
                             </div>
                             <div class="form-group">

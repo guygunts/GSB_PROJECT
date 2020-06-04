@@ -129,7 +129,7 @@ me.SearchRandom = function () {
 
 };
 
-me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num = 0, status = 0, qc = 1, grammar = '', intent = '', confiden = '', txt_search = '', readd = '') {
+me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num = 0, qc_status = 0, flag_edit = '', grammar = '', intent = '', confiden = '', txt_search = '', readd = '') {
 
 
     $.ajax({
@@ -143,8 +143,8 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
             start_date: start,
             end_date: stop,
             random_num: random_num,
-            status: status,
-            qc: qc,
+            qc_status: qc_status,
+            flag_edit: flag_edit,
             grammar: grammar,
             intent: intent,
             confiden: confiden,
@@ -269,8 +269,8 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                     d.end_date = $('#end_date').data().date;
                                     d.text_search = $('#text_search').val();
                                     d.random_num = $('#random_num').val();
-                                    d.status = $('#status').val();
-                                    d.qc = $('#qc').val();
+                                    d.qc_status = $('#qc_status').val();
+                                    d.flag_edit = $('#flag_edit').val();
                                     d.grammar = $('#grammar').val();
                                     d.intent = $('#intent').val();
                                     d.confiden = $('#confiden').val();
@@ -580,6 +580,6 @@ $(document).ready(function () {
     // me.LoadCbo('grammar','grammar','grammar_id','grammar_name');
     // me.LoadCbo('confiden','confiden','conf_id','conf_name');
     // me.LoadCbo('intent','intent','intent_id','intent_tag');
-    me.LoadDataReport(me.action.menu, 1, 25, moment().format("YYYY-MM-DD") + ' 00:00:00', moment().format("YYYY-MM-DD") + ' 23:59:59', 0, '', 1, '', '', '');
+    me.LoadDataReport(me.action.menu, 1, 25, moment().format("YYYY-MM-DD") + ' 00:00:00', moment().format("YYYY-MM-DD") + ' 23:59:59', 0, '', '', '', '', '');
 
 });

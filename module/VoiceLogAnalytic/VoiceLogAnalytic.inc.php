@@ -28,13 +28,12 @@ function View(Request $request)
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
         'random_num' => ($data['random_num']?$data['random_num']:0),
-        'status' => $data['status'],
-        'qc' => $data['qc'],
+        'qc_status' => $data['qc_status'],
         'grammar' => $data['grammar'],
         'intent' => $data['intent'],
         'confiden' => $data['confiden'],
         'text_search' => $data['text_search'],
-        'flag_edit' => ''
+        'flag_edit' => $data['flag_edit']
     );
 
 //    PrintR($params);
