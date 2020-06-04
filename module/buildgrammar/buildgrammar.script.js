@@ -13,6 +13,20 @@ me.action.edit = 'updateuser';
 me.action.del = 'deletegrammar';
 var date1 = '';
 var date2 = '';
+var buttonCommon = {
+    exportOptions: {
+        format: {
+            body: function (data, row, column, node) {
+
+                if (column === 13) {
+                    data = '';
+                }
+                return data;
+
+            }
+        }
+    }
+};
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -46,15 +60,154 @@ me.Search = function () {
         }
 
         if (cnt != 2) return false;
-        // me.table.clear();
-        // $('#tbView').empty();
-        me.table.clear();
-        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', compare, txtsearch, 1);
+
+        me.table.page.len(page_size).draw();
     });
 
 };
 
 me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '', search = '', readd = '') {
+
+
+    $.ajax({
+        url: me.url + '-View',
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            page_id: page_id,
+            page_size: page_size,
+            start_date: start,
+            end_date: stop,
+            text_search: search
+        },
+        success: function (data) {
+            switch (data.success) {
+                case 'COMPLETE' :
+
+                    me.table = $('#tbView')
+                        .addClass('nowrap')
+                        .removeAttr('width')
+                        .DataTable({
+                            destroy: true,
+                            bFilter: false,
+                            dom: 'Bfrtip',
+                            buttons: [
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'colvis',
+                                    columnText: function (dt, idx, title) {
+                                        // return (idx + 1) + ': ' + (title ? title : 'Action');
+                                        if (idx == 0) {
+                                            return (idx + 1) + ': Variation';
+                                        } else {
+                                            return (idx + 1) + ': ' + (title ? title : 'Action');
+                                        }
+                                    }
+                                }),
+
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'print',
+                                    orientation: 'landscape',
+                                    pageSize: 'LEGAL',
+                                    className: 'float-right'
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'excelHtml5',
+                                    text: 'Excel',
+                                    className: 'float-right',
+                                    charset: 'utf-8',
+                                    bom: true
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'csvHtml5',
+                                    text: 'CSV',
+                                    className: 'float-right',
+                                    charset: 'utf-8',
+                                    bom: true
+                                }),
+                                $.extend(true, {}, buttonCommon, {
+                                    extend: 'pdfHtml5',
+                                    orientation: 'landscape',
+                                    pageSize: 'LEGAL',
+                                    className: 'float-right',
+                                    customize: function (doc) {
+                                        doc.defaultStyle = {
+                                            font: 'THSarabunNew',
+                                            fontSize: 12
+                                        };
+                                    }
+                                })
+                            ],
+                            columnDefs: [
+                                {
+                                    "width": "5%",
+                                    "targets": 0,
+                                    "searchable": false
+                                },
+                                {
+                                    "width": "5%",
+                                    "targets": 1,
+                                    "searchable": false
+                                },
+                                {
+                                    "targets": '_all',
+                                    'createdCell': function (td, cellData, rowData, row, col) {
+                                        $(td).attr('id', row + col);
+                                    }
+                                }
+                            ],
+                            createdRow: function (row, data, dataIndex) {
+                                // Set the data-status attribute, and add a class
+                                $(row).find('td:eq(0)')
+                                    .attr('data-name', data.variation);
+                            },
+                            searching: false,
+                            retrieve: true,
+                            deferRender: true,
+                            stateSave: false,
+                            responsive: false,
+                            scrollX: true,
+                            pageLength: page_size,
+                            paging: true,
+                            lengthChange: false,
+                            columns: data.columns,
+                            serverSide: true,
+                            ajax: {
+                                "url": me.url + "-View",
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.page_id = (d.start / d.length) + 1;
+                                    d.page_size = $('#page_size').val();
+                                    d.start_date = $('#start_date').data().date;
+                                    d.end_date = $('#end_date').data().date;
+                                    d.text_search = $('#text_search').val();
+                                }
+                            }
+                        });
+
+                    me.table.column(1).visible(false);
+                    me.table.buttons(0, null).container().addClass('col');
+
+                    if (data.data.length == 0) {
+                        // alertify.alert('No data, Please select other date');
+                    }
+
+                    if (data.name) {
+                        $('title').text(data.name);
+                    }
+
+                    break;
+                default :
+                    alertify.alert(data.msg);
+                    break;
+            }
+
+        }
+    });
+};
+
+
+me.LoadDataReport_ = function (menu, page_id, page_size, start, stop, compare = '', search = '', readd = '') {
 
     $.ajax({
         url: me.url + '-View',
@@ -71,20 +224,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
             text_search: search
         },
         success: function (data) {
-            var buttonCommon = {
-                exportOptions: {
-                    format: {
-                        body: function (data, row, column, node) {
 
-                            if (column === 13) {
-                                data = '';
-                            }
-                            return data;
-
-                        }
-                    }
-                }
-            };
 
             switch (data.success) {
                 case 'COMPLETE' :
@@ -166,9 +306,9 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
                                 pageLength: page_size,
                                 paging: true,
                                 lengthChange: false,
-                                start : page_id,
-                                recordsTotal : data.recnums,
-                                recordsFiltered : data.recnums,
+                                start: page_id,
+                                recordsTotal: data.recnums,
+                                recordsFiltered: data.recnums,
                                 data: data.data,
                                 columns: data.columns
                             });
