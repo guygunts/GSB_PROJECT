@@ -74,13 +74,17 @@ function View(Request $request)
 //        PrintR($datas);
 //        exit;
 
+        $column[0]['className'] = 'details-control';
+        $column[0]['title'] = '';
+        $column[0]['data'] = null;
+        $column[0]['defaultContent'] = '';
 
-        $column[0]['className'] = 'text-center';
-        $column[0]['title'] = 'No';
-        $column[0]['data'] = 'no';
+        $column[1]['className'] = 'text-center';
+        $column[1]['title'] = 'No';
+        $column[1]['data'] = 'no';
 
 
-        $m = 1;
+        $m = 2;
 
 
         foreach ((array)$columnslist as $i => $item) {
@@ -111,8 +115,10 @@ function View(Request $request)
         foreach ((array)$datas as $i => $item) {
             $btn = '';
 
-            ++$start;
-            $datalist[$i]['no'] = $start;
+            $item['DT_RowId'] = 'row_' . MD5($item[$columns[2]['data']]);
+            $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
+            $datalist[$i]['no'] = ($i + 1);
+
 
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'voice_name') {
