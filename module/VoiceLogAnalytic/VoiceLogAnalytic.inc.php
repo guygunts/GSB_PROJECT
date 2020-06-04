@@ -33,19 +33,20 @@ function View(Request $request)
         'grammar' => $data['grammar'],
         'intent' => $data['intent'],
         'confiden' => $data['confiden'],
-        'text_search' => $data['text_search']
+        'text_search' => $data['text_search'],
+        'flag_edit' => ''
     );
 
-    PrintR($params);
+//    PrintR($params);
 
     $url = URL_API . '/geniespeech/voicelog';
     $response = curlposttoken($url, $params, $token);
-PrintR($response);
+//PrintR($response);
     if (1) {
         $start = $data['start'];
         $recnums['pages'] = $response['result'][0]['pagenum'];
-        $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
-        $recnums['recordsTotal'] = $response['result'][0]['recnum'];
+        $recnums['recordsFiltered'] = ($response['result'][0]['recnum'] * $data['page_size']);
+        $recnums['recordsTotal'] = ($response['result'][0]['recnum'] * $data['page_size']);
 
         $grammar = $response['result']['box1'];
         $confiden = $response['result']['box2'];

@@ -52,11 +52,11 @@ var buttonCommon = {
 \*================================================*/
 me.SetDateTime = function () {
     $('#start_date').datetimepicker({
-        format: 'YYYY-MM-DD',
+        format: 'YYYY-MM-DD HH:mm:ss',
         defaultDate: moment()
     });
     $('#end_date').datetimepicker({
-        format: 'YYYY-MM-DD',
+        format: 'YYYY-MM-DD HH:mm:ss',
         defaultDate: moment()
     });
 };
