@@ -45,7 +45,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control searchdata" name="qc_status" id="qc_status">
+                                <select class="form-control searchdata" name="status" id="status">
                                    <option value="" selected>== STATUS ==</option>
                                     <option value="P">Pass</option>
                                     <option value="F">Fail</option>
