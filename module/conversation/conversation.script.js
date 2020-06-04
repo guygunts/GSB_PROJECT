@@ -176,7 +176,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					// $('#tbViewSub_wrapper').css('display','none');
 					// $('#tbView_wrapper').css('display','');
 					me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
-					$('#tbViewSub_wrapper').css('display','none');
+					// $('#tbViewSub_wrapper').css('display','none');
 					break;
 				default :
 					alertify.alert(data.msg);
@@ -612,9 +612,9 @@ me.OpenCHNN = function(code,page_id,page_size,start,stop){
 me.OpenVOICE = function(code){
 	var page_size = $('#page_size').val();
 
-	$('#tbViewSub_wrapper').css('display','');
-	$('#tbView_wrapper').css('display','none');
-	$('#frmsearch').css('display','none');
+	// $('#tbViewSub_wrapper').css('display','');
+	// $('#tbView_wrapper').css('display','none');
+	// $('#frmsearch').css('display','none');
 	me.chnn = code;
 	me.tablesub.page.len(page_size).draw();
 
