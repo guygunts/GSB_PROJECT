@@ -73,17 +73,17 @@ function View(Request $request)
 //        PrintR($datas);
 //        exit;
 
-        $column[0]['className'] = 'details-control';
-        $column[0]['title'] = '';
-        $column[0]['data'] = null;
-        $column[0]['defaultContent'] = '';
+//        $column[0]['className'] = 'details-control';
+//        $column[0]['title'] = '';
+//        $column[0]['data'] = null;
+//        $column[0]['defaultContent'] = '';
 
-        $column[1]['className'] = 'text-center';
-        $column[1]['title'] = 'No';
-        $column[1]['data'] = 'no';
+        $column[0]['className'] = 'text-center';
+        $column[0]['title'] = 'No';
+        $column[0]['data'] = 'no';
 
 
-        $m = 2;
+        $m = 1;
 
 
         foreach ((array)$columnslist as $i => $item) {
