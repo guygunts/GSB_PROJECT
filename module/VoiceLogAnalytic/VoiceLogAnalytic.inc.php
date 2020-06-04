@@ -302,7 +302,7 @@ function ViewQC(Request $request)
 
 
         foreach ((array)$columnslist as $i => $item) {
-
+            if($item['flag_edit'])continue;
             if ($item['column_field'] == 'voice_name' || $item['column_field'] == 'qc_status') {
                 $column[$m]['className'] = 'text-center';
             } else {
