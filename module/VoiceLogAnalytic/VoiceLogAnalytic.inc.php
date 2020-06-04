@@ -37,7 +37,7 @@ function View(Request $request)
         'flag_edit' => ''
     );
 
-//    PrintR($params);
+    PrintR($params);
 
     $url = URL_API . '/geniespeech/voicelog';
     $response = curlposttoken($url, $params, $token);
@@ -71,7 +71,7 @@ function View(Request $request)
         $columnslist = $response['result']['header'];
         $datas = $response['result']['box4'];
         $name = 'Voice Log Analytic';
-        PrintR($datas);
+//        PrintR($datas);
 //        exit;
 
 
