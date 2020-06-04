@@ -217,7 +217,9 @@ me.Add = function () {
 		});
 
 	}).click();
-};me.Add = function () {
+};
+
+me.Add = function () {
 	$('#btnsubmit').click(function (e) {
 		e.stopPropagation();
 		if($('#variation-variation_text').attr('required') == 'required'){

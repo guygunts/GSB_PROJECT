@@ -12,6 +12,41 @@ me.action.add = 'adduser';
 me.action.edit = 'updateuser';
 me.action.del = 'deleteuser';
 me.chnn = '';
+var buttonCommon = {
+	exportOptions: {
+		format: {
+			body: function (data, row, column, node) {
+
+				if (column === 2) {
+					data = $(data).attr('href');
+				} else if (column === 3) {
+					data = $(data).attr('chnn');
+
+				} else if (column === 11) {
+					if ($('option:selected', data).val() != '') {
+						data = $('option:selected', data).text();
+					} else {
+						data = '';
+					}
+				} else if (column === 12) {
+					if ($('option:selected', data).val() != '') {
+						data = $('option:selected', data).text();
+					} else {
+						data = '';
+					}
+				} else if (column === 13 || column === 14) {
+					data = data.toString().replace(/<.*?>/ig, "");
+				} else if (column === 15 || column === 16) {
+					data = '';
+				}
+
+				return data;
+
+			}
+		}
+	}
+};
+
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -75,50 +110,47 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 							bFilter: false,
 							dom: 'Bfrtip',
 							buttons: [
-								// 'excelHtml5',
-								{
+								$.extend(true, {}, buttonCommon, {
 									text: 'ย้อนกลับ',
 									className: 'float-left hidden',
-									attr:  {
+									attr: {
 										title: 'Copy',
 										id: 'btnback',
 										disabled: 'disabled'
 									}
-								},
-								{
+								}),
+								$.extend(true, {}, buttonCommon, {
 									extend: 'print',
 									orientation: 'landscape',
 									pageSize: 'LEGAL',
-									className: 'float-right',
-									charset: 'utf-8',
-									bom: true
-								},
-								{
+									className: 'float-right'
+								}),
+								$.extend(true, {}, buttonCommon, {
 									extend: 'excelHtml5',
 									text: 'Excel',
 									className: 'float-right',
 									charset: 'utf-8',
 									bom: true
-								},
-								{
+								}),
+								$.extend(true, {}, buttonCommon, {
 									extend: 'csvHtml5',
 									text: 'CSV',
 									className: 'float-right',
 									charset: 'utf-8',
 									bom: true
-								},
-								{
+								}),
+								$.extend(true, {}, buttonCommon, {
 									extend: 'pdfHtml5',
 									orientation: 'landscape',
 									pageSize: 'LEGAL',
 									className: 'float-right',
-									customize: function ( doc ) {
+									customize: function (doc) {
 										doc.defaultStyle = {
-											font:'THSarabunNew',
-											fontSize:12
+											font: 'THSarabunNew',
+											fontSize: 12
 										};
 									}
-								},
+								})
 							],
 							columnDefs: [
 								{
