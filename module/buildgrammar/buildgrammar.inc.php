@@ -31,7 +31,7 @@ function View(Request $request)
 
     $url = URL_API . '/geniespeech/grammar';
     $response = curlposttoken($url, $params, $token);
-    PrintR($response);
+//    PrintR($response);
     if ($response['code'] == 200) {
         $columnslist = $response['result']['header'];
         $recnums = $response['pagenum'];
