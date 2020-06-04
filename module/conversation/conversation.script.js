@@ -612,9 +612,9 @@ me.OpenCHNN = function(code,page_id,page_size,start,stop){
 me.OpenVOICE = function(code){
 	var page_size = $('#page_size').val();
 
-	// $('#tbViewSub_wrapper').css('display','');
-	// $('#tbView_wrapper').css('display','none');
-	// $('#frmsearch').css('display','none');
+	$('#tbViewSub_wrapper').css('display','');
+	$('#tbView_wrapper').css('display','none');
+	$('#frmsearch').css('display','none');
 	me.chnn = code;
 	me.tablesub.page.len(page_size).draw();
 
