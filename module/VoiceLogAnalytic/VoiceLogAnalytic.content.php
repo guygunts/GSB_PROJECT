@@ -54,7 +54,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control searchdata select2" name="qc" id="qc">
+                                <select class="form-control searchdata" name="qc" id="qc">
                                     <option value="1" selected>Approve</option>
                                     <option value="0" selected>Approved</option>
                                 </select>

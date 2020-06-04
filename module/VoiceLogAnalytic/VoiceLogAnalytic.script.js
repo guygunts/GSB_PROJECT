@@ -86,8 +86,8 @@ me.Search = function () {
         if (cnt != 2) return false;
         // me.table.clear().destroy();
         // $('#tbView').empty();
-
-        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', random_num, qc_status, grammar, intent, confiden, text_search, 1);
+        me.table.page.len(page_size).draw();
+        // me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', random_num, qc_status, grammar, intent, confiden, text_search, 1);
     });
 
 };
@@ -99,7 +99,8 @@ me.SearchRandom = function () {
         var page_size = $('#page_size').val();
         var confiden = $('#confiden').val();
         var grammar = $('#grammar').val();
-        var qc_status = $('#qc_status').val();
+        var status = $('#status').val();
+        var qc = $('#qc').val();
         var random_num = $('#random_num').val();
         var text_search = $('#text_search').val();
         var intent = $('#intent').val();
@@ -128,7 +129,7 @@ me.SearchRandom = function () {
 
 };
 
-me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num = 0, qc_status = 0, grammar = '', intent = '', confiden = '', txt_search = '', readd = '') {
+me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num = 0, status = 0,qc = 1, grammar = '', intent = '', confiden = '', txt_search = '', readd = '') {
 
 
     $.ajax({
@@ -142,7 +143,8 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
             start_date: start,
             end_date: stop,
             random_num: random_num,
-            qc_status: qc_status,
+            status: status,
+            qc: qc,
             grammar: grammar,
             intent: intent,
             confiden: confiden,
@@ -252,7 +254,8 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                     d.end_date = $('#end_date').data().date+' 23:59:59';
                                     d.text_search = $('#text_search').val();
                                     d.random_num = $('#random_num').val();
-                                    d.qc_status = $('#qc_status').val();
+                                    d.status = $('#status').val();
+                                    d.qc = $('#qc').val();
                                     d.grammar = $('#grammar').val();
                                     d.intent = $('#intent').val();
                                     d.confiden = $('#confiden').val();
@@ -560,6 +563,6 @@ $(document).ready(function () {
     // me.LoadCbo('grammar','grammar','grammar_id','grammar_name');
     // me.LoadCbo('confiden','confiden','conf_id','conf_name');
     // me.LoadCbo('intent','intent','intent_id','intent_tag');
-    me.LoadDataReport(me.action.menu, 1, 25, moment().format("YYYY-MM-DD") + ' 00:00:00', moment().format("YYYY-MM-DD") + ' 23:59:59', 0, '', '', '', '');
+    me.LoadDataReport(me.action.menu, 1, 25, moment().format("YYYY-MM-DD") + ' 00:00:00', moment().format("YYYY-MM-DD") + ' 23:59:59', 0, '', 1, '', '', '');
 
 });
