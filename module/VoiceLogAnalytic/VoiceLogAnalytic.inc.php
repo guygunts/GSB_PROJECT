@@ -128,8 +128,8 @@ function View(Request $request)
                     $chkintent = explode('#',$item['intent']);
                     $datalist[$i][$value['data']] = $chkintent[0];
 
-                } elseif ($value['data'] == 'chnn') {
-                    $datalist[$i][$value['data']] = '<a href="' . $item['chnn'] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
+                } elseif ($value['data'] == 'log_file') {
+                    $datalist[$i][$value['data']] = '<a href="' . $item['log_file'] . '" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a>';
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
                 } elseif ($value['data'] == 'qc_status') {
                     $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="form-control qc_status' . $item['rec_id'] . ' row' . $item['rec_id'] . ' "><option value="" ' . ($item[$value['data']] == 0 ? 'selected' : '') . '>= Status =</option><option value="P" ' . ($item[$value['data']] == 'P' ? 'selected' : '') . '>Pass</option><option value="F" ' . ($item[$value['data']] == 'F' ? 'selected' : '') . '>Fail</option><option value="G" ' . ($item[$value['data']] == 'G' ? 'selected' : '') . '>Garbage</option><option value="O" ' . ($item[$value['data']] == 'O' ? 'selected' : '') . '>Other</option></select>';
