@@ -129,7 +129,7 @@ me.SearchRandom = function () {
 
 };
 
-me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num = 0, status = 0,qc = 1, grammar = '', intent = '', confiden = '', txt_search = '', readd = '') {
+me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num = 0, status = 0, qc = 1, grammar = '', intent = '', confiden = '', txt_search = '', readd = '') {
 
 
     $.ajax({
@@ -151,7 +151,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
             txt_search: txt_search
         },
         success: function (data) {
-            switch(data.success){
+            switch (data.success) {
                 case 'COMPLETE' :
 
                     me.table = $('#tbView')
@@ -166,10 +166,10 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                     extend: 'colvis',
                                     columnText: function (dt, idx, title) {
                                         // return (idx + 1) + ': ' + (title ? title : 'Action');
-                                        if(idx == 0){
-                                            return (idx+1)+': Variation';
-                                        }else{
-                                            return (idx+1)+': '+(title?title:'Action');
+                                        if (idx == 0) {
+                                            return (idx + 1) + ': Variation';
+                                        } else {
+                                            return (idx + 1) + ': ' + (title ? title : 'Action');
                                         }
                                     }
                                 }),
@@ -243,6 +243,11 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                     }
                                 }
                             ],
+                            createdRow: function (row, data, dataIndex) {
+                                // Set the data-status attribute, and add a class
+                                $(row).find('td:eq(0)')
+                                    .attr('data-name', data.variation);
+                            },
                             searching: false,
                             retrieve: true,
                             deferRender: true,
@@ -251,7 +256,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                             scrollX: true,
                             pageLength: page_size,
                             paging: true,
-                            lengthChange:false,
+                            lengthChange: false,
                             columns: data.columns,
                             serverSide: true,
                             ajax: {
@@ -273,14 +278,14 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                             }
                         });
 
-                    me.table.column(1).visible(false);
+                    me.table.column(2).visible(false);
                     me.table.buttons(0, null).container().addClass('col');
 
-                    if(data.data.length == 0){
+                    if (data.data.length == 0) {
                         // alertify.alert('No data, Please select other date');
                     }
 
-                    if(data.name){
+                    if (data.name) {
                         $('title').text(data.name);
                     }
 
@@ -289,15 +294,15 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                     me.LoadCbo('intent', data.intent);
 
 
-                    $('a.toggle-vis').on( 'click', function (e) {
+                    $('a.toggle-vis').on('click', function (e) {
                         e.preventDefault();
 
                         // Get the column API object
-                        var column = me.table.column( $(this).attr('data-column') );
+                        var column = me.table.column($(this).attr('data-column'));
 
                         // Toggle the visibility
-                        column.visible( ! column.visible() );
-                    } );
+                        column.visible(!column.visible());
+                    });
                     $('.select2').select2();
                     break;
                 default :
