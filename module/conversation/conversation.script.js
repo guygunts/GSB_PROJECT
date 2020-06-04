@@ -175,7 +175,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					//me.TextSerch();
 					// $('#tbViewSub_wrapper').css('display','none');
 					// $('#tbView_wrapper').css('display','');
-					me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
+					// me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
 					// $('#tbViewSub_wrapper').css('display','none');
 					break;
 				default :
