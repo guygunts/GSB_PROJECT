@@ -89,16 +89,16 @@ function View(Request $request)
 
         foreach ((array)$columnslist as $i => $item) {
 
-            if ($item['column_field'] == 'voice_name' || $item['column_field'] == 'qc_status') {
+            if ($item['column_data'] == 'voice_name' || $item['column_data'] == 'qc_status') {
                 $column[$m]['className'] = 'text-center';
             } else {
                 $column[$m]['className'] = 'text-' . $item['column_align'];
             }
 
             $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] = $item['column_field'];
+            $column[$m]['data'] = $item['column_data'];
 
-            $columns[$m]['data'] = $item['column_field'];
+            $columns[$m]['data'] = $item['column_data'];
             $columns[$m]['title'] = $item['column_name'];
             $columns[$m]['type'] = $item['column_type'];
 
