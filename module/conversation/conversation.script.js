@@ -175,7 +175,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					//me.TextSerch();
 					// $('#tbViewSub_wrapper').css('display','none');
 					// $('#tbView_wrapper').css('display','');
-					// me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
+					me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
 					// $('#tbViewSub_wrapper').css('display','none');
 					break;
 				default :
@@ -317,8 +317,8 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 		dataType:'json',
 		cache:false,
 		data:{ menu_action : menu , page_id : page_id , page_size : 25 , start_date : start , end_date : stop},
-		success:function(data){
-			switch(data.success){
+		success:function(datas){
+			switch(datas.success){
 				case 'COMPLETE' :
 					me.tablesub = $('#tbViewSub')
 						.addClass('nowrap')
@@ -430,7 +430,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 
 					break;
 				default :
-					alertify.alert(data.msg);
+					alertify.alert(datas.msg);
 					break;
 			}
 		}
