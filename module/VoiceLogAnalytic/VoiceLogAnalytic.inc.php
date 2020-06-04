@@ -71,7 +71,7 @@ function View(Request $request)
         $columnslist = $response['result']['header'];
         $datas = $response['result']['box4'];
         $name = 'Voice Log Analytic';
-//        PrintR($datas);
+        PrintR($datas);
 //        exit;
 
 
