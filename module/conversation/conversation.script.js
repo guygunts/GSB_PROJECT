@@ -393,7 +393,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 							pageLength: page_size,
 							paging: true,
 							lengthChange:false,
-							columns: data.columns,
+							columns: datas.columns,
 							serverSide: true,
 							ajax: {
 								"url": me.url + "-ViewVOICE",
