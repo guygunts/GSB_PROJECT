@@ -87,7 +87,7 @@ function View(Request $request)
 
 
         foreach ((array)$columnslist as $i => $item) {
-
+            if($item['flag_edit'])continue;
             if ($item['column_data'] == 'voice_name' || $item['column_data'] == 'qc_status') {
                 $column[$m]['className'] = 'text-center';
             } else {
@@ -136,7 +136,7 @@ function View(Request $request)
                 } elseif ($value['data'] == 'action') {
                     $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="form-control action' . $item['rec_id'] . ' row' . $item['rec_id'] . ' empty' . $item['rec_id'] . ' "><option value="0" ' . ($item[$value['data']] == '0' ? 'selected' : '') . '>None</option><option value="1" ' . ($item[$value['data']] == '1' ? 'selected' : '') . '>Train</option><option value="2" ' . ($item[$value['data']] == '2' ? 'selected' : '') . '>Test</option><option value="3" ' . ($item[$value['data']] == '3' ? 'selected' : '') . '>Test&Train</option></select>';
 
-                } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
+                } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected' || $value['data'] == 'new_sentence' || $value['data'] == 'expec_intent') {
                     switch ($value['data']) {
                         case 'input_qc':
                             $v = 'new_sentence';
@@ -149,7 +149,7 @@ function View(Request $request)
                             $v = $value['data'];
                             break;
                     }
-                    if ($value['data'] == 'Expected') {
+                    if ($value['data'] == 'expec_intent') {
                         $option = '<option value="" ' . ($item[$v] == '' ? 'selected' : '') . '>== INTENT ==</option>';
                         foreach ((array)$intent as $m => $item2) {
 
@@ -160,7 +160,7 @@ function View(Request $request)
 
                     if ($item[$v]) {
                         $datalist[$i][$value['data']] = $item[$v];
-                        if ($value['data'] == 'Expected') {
+                        if ($value['data'] == 'expec_intent') {
 //                            $datalist[$i][$value['data']] = '<input name="' . $value['data'] . '" type="hidden" value="' . $item[$v] . '" class="' . $value['data'] . $item['rec_id'] . ' row' . $item['rec_id'] . ' popupdata"><a href="javascript:void(0)" onclick="me.OpenPopup(' . "'" . $value['data'] . $item['rec_id'] . "'" . ',' . "'" . $value['title'] . "'" . ',' . "'" . $item[$v] . "'" . ')" id="' . $value['data'] . $item['rec_id'] . '">' . $item[$v] . '</a>';
                             $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="select2 expected' . $item['rec_id'] . ' row' . $item['rec_id'] . ' ">' . $option . '</select>';
 
@@ -170,7 +170,7 @@ function View(Request $request)
                         }
 
                     } elseif(!$item[$v]) {
-                        if ($value['data'] == 'Expected') {
+                        if ($value['data'] == 'expec_intent') {
                             $datalist[$i][$value['data']] = '<select name="' . $value['data'] . '" class="select2 expected' . $item['rec_id'] . ' row' . $item['rec_id'] . ' ">' . $option . '</select>';
 
                         } else {
