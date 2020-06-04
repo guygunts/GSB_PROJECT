@@ -182,7 +182,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, compare = '
                                     d.start_date = $('#start_date').data().date;
                                     d.end_date = $('#end_date').data().date;
                                     d.text_search = $('#text_search').val();
-                                    d.menu_action = $('#menu_action').val();
+                                    d.menu_action = me.action.menu;
                                 }
                             }
                         });
