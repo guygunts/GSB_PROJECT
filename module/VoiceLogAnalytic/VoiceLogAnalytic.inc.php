@@ -27,7 +27,7 @@ function View(Request $request)
         'end_date' => $data['end_date'],
         'page_id' => $data['page_id'],
         'page_size' => $data['page_size'],
-        'random_num' => $data['random_num'],
+        'random_num' => ($data['random_num']?$data['random_num']:0),
         'status' => $data['status'],
         'qc' => $data['qc'],
         'grammar' => $data['grammar'],
@@ -37,11 +37,11 @@ function View(Request $request)
         'flag_edit' => ''
     );
 
-    PrintR($params);
+//    PrintR($params);
 
     $url = URL_API . '/geniespeech/voicelog';
     $response = curlposttoken($url, $params, $token);
-//PrintR($response);
+PrintR($response);
     if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
         $recnums['pages'] = $response['result'][0]['pagenum'];
