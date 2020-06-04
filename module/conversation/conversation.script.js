@@ -46,6 +46,21 @@ var buttonCommon = {
 		}
 	}
 };
+var buttonCommonSub = {
+	exportOptions: {
+		format: {
+			body: function (data, row, column, node) {
+
+				if (column === 2) {
+					data = $(data).find('source').attr('src');
+				}
+
+				return data;
+
+			}
+		}
+	}
+};
 
 /*================================================*\
   :: FUNCTION ::
@@ -360,8 +375,7 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 							bFilter: false,
 							dom: 'Bfrtip',
 							buttons: [
-								// 'excelHtml5',
-								{
+								$.extend(true, {}, buttonCommonSub, {
 									text: 'ย้อนกลับ',
 									className: 'float-left',
 									action: function ( e, dt, node, config ) {
@@ -370,44 +384,39 @@ me.LoadDataVOICE = function(menu, page_id, page_size, start, stop, readd=''){
 										$('#tbView_wrapper').css('display','');
 										$('#frmsearch').css('display','');
 									}
-								},
-								{
+								}),
+								$.extend(true, {}, buttonCommonSub, {
 									extend: 'print',
 									orientation: 'landscape',
 									pageSize: 'LEGAL',
-									className: 'float-right',
-									charset: 'utf-8',
-									bom: true
-								},
-								{
+									className: 'float-right'
+								}),
+								$.extend(true, {}, buttonCommonSub, {
 									extend: 'excelHtml5',
 									text: 'Excel',
 									className: 'float-right',
 									charset: 'utf-8',
 									bom: true
-								},
-								{
+								}),
+								$.extend(true, {}, buttonCommonSub, {
 									extend: 'csvHtml5',
 									text: 'CSV',
 									className: 'float-right',
 									charset: 'utf-8',
 									bom: true
-								},
-								{
+								}),
+								$.extend(true, {}, buttonCommonSub, {
 									extend: 'pdfHtml5',
 									orientation: 'landscape',
 									pageSize: 'LEGAL',
 									className: 'float-right',
-									charset: 'utf-8',
-									bom: true,
-									customize: function ( doc ) {
+									customize: function (doc) {
 										doc.defaultStyle = {
-											font:'THSarabunNew',
-											fontSize:12
+											font: 'THSarabunNew',
+											fontSize: 12
 										};
 									}
-								},
-
+								})
 							],
 							columnDefs: [
 								{
