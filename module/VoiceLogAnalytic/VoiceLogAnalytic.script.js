@@ -519,6 +519,7 @@ me.ChangeTop = function () {
 
 me.UpdateVoice = function (e) {
     var code = $(e).attr('data-code');
+
     if (!me.CheckFormClass('empty' + code)) {
 
         setTimeout('me.ClearError();', 5000);

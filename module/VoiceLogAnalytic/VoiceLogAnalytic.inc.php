@@ -190,11 +190,10 @@ function View(Request $request)
 
 
             if ($permiss[2]) {
-                if ($item[$v]) {
-                    $btn .= '<button data-code="' . $item['rec_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.UpdateVoice(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> Submit</button>&nbsp;&nbsp;';
-
-                } else {
-                    $btn .= '<button data-code="' . $item['rec_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.UpdateVoice(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> Submit</button>&nbsp;&nbsp;';
+                if($item['flag_edit'] == 0){
+                    $btn .= '<button data-flag"1"  data-code="' . $item['rec_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.UpdateVoice(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> Submit</button>&nbsp;&nbsp;';
+                }else{
+                    $btn .= '<button data-flag="1" data-code="' . $item['rec_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.UpdateVoice(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> Edit</button>&nbsp;&nbsp;';
 
                 }
             }
