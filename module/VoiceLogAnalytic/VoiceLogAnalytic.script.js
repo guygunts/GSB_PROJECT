@@ -278,7 +278,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                             }
                         });
 
-                    me.table.column(2).visible(false);
+                    me.table.column(1).visible(false);
                     me.table.buttons(0, null).container().addClass('col');
 
                     if (data.data.length == 0) {
