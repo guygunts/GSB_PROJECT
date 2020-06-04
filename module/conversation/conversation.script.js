@@ -175,6 +175,7 @@ me.LoadDataReport = function(menu, page_id, page_size, start, stop, compare ='',
 					//me.TextSerch();
 					// $('#tbViewSub_wrapper').css('display','none');
 					// $('#tbView_wrapper').css('display','');
+					me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
 					break;
 				default :
 					alertify.alert(data.msg);
@@ -676,7 +677,7 @@ $(document).ready(function(){
 	me.Search();
 	// me.ChangePage();
 	me.LoadDataReport(me.action.menu,1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59','','');
-	// me.LoadDataVOICE('',1,25,moment().format('YYYY-MM-DD')+' 00:00:00',moment().format('YYYY-MM-DD')+' 23:59:59');
+
 	// me.LoadCbo('project','getprojects','project_id','project_name');
 	// me.LoadCbo('role_id','getroles','role_id','role_name');
 });
