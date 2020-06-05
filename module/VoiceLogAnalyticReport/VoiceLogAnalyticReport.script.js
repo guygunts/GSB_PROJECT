@@ -52,7 +52,7 @@ me.Search = function () {
         // pieChart.destroy();
         // barChart.destroy();
         me.table.clear();
-        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59',1);
+        me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59', 1);
     });
 
 };
@@ -70,7 +70,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
             switch (data.success) {
 
                 case 'COMPLETE' :
-                    if(data.data.length == 0){
+                    if (data.data.length == 0) {
                         // alertify.alert('No data, Please select other date');
                     }
                     var datafooter = data.datafooter;
@@ -80,10 +80,10 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
 
                     if (readd) {
 
-                        me.applyData(me.table,data.data,false);
-                        me.table.on('draw', function ( e, settings, json, xhr ) {
+                        me.applyData(me.table, data.data, false);
+                        me.table.on('draw', function (e, settings, json, xhr) {
                             initCompleteFunction(settings, json);
-                        } );
+                        });
 
 
                         // me.table.clear().draw();
@@ -120,17 +120,17 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
 
                     }
 
-                    function initCompleteFunction(settings, json){
-                        var api = new $.fn.dataTable.Api( settings );
-                        var lastRow = api.rows().count();
-                        if(lastRow>0) {
-                            var footer_data = datafooter ;
-                            console.log(datafooter);
-                            api.columns().every( function (i) {
-                                this.footer().innerHTML = footer_data[i];
-                            });
-                        }
-                    };
+                function initCompleteFunction(settings, json) {
+                    var api = new $.fn.dataTable.Api(settings);
+                    var lastRow = api.rows().count();
+                    if (lastRow > 0) {
+                        var footer_data = datafooter;
+                        console.log(datafooter);
+                        api.columns().every(function (i) {
+                            this.footer().innerHTML = footer_data[i];
+                        });
+                    }
+                };
 
 
                     me.table.columns.adjust().draw('true');
@@ -161,7 +161,10 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             dataPoints: pipechart.data
                         }]
                     };
-                    var piechart = $("#pieChart").CanvasJSChart(options);
+                    // var piechart = $("#pieChart").CanvasJSChart(options);
+                    var piechart = new CanvasJS("pieChart", options);
+                    piechart.render();
+
 
                     var options1 = {
                         animationEnabled: true,
@@ -170,15 +173,16 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                         },
                         data: [{
                             type: "column",
-                            yValueFormatString: "#,##0.0#"%"",
+                            yValueFormatString: "#,##0.0#" % "",
                             indexLabel: "{y}",
                             indexLabelPlacement: "outside",
                             indexLabelOrientation: "horizontal",
                             dataPoints: barchart.data
                         }]
                     };
-                   var barchart =  $("#barChart").CanvasJSChart(options1);
-
+                    // var barchart =  $("#barChart").CanvasJSChart(options1);
+                    var barchart = new CanvasJS("barChart", options1);
+                    barchart.render();
 
 
                     // var config = {
@@ -267,7 +271,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
 };
 
 
-me.Export = function(){
+me.Export = function () {
 
     function submitFORM(path, params, method) {
         method = method || "post";
@@ -280,8 +284,8 @@ me.Export = function(){
         //so that it doesn't get overwritten.
         form._submit_function_ = form.submit;
 
-        for(var key in params) {
-            if(params.hasOwnProperty(key)) {
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
                 var hiddenField = document.createElement("input");
                 hiddenField.setAttribute("type", "hidden");
                 hiddenField.setAttribute("name", key);
@@ -301,14 +305,16 @@ me.Export = function(){
         var dataUrl = canvas.toDataURL();
         var newDataURL = dataUrl.replace(/^data:image\/png/, "data:application/octet-stream"); //do this to clean the url.
 
-        submitFORM('module/' + me.mod + '/excel.php', {img : newDataURL , start_date : start+' 00:00:00' , end_date : stop+' 23:59:59'},'POST');
+        submitFORM('module/' + me.mod + '/excel.php', {
+            img: newDataURL,
+            start_date: start + ' 00:00:00',
+            end_date: stop + ' 23:59:59'
+        }, 'POST');
 
 
-
-            // console.log(canvas);
-            // saveAs(canvas.toDataURL(), 'VoiceLogAnalyticReport.png');
+        // console.log(canvas);
+        // saveAs(canvas.toDataURL(), 'VoiceLogAnalyticReport.png');
     });
-
 
 
 };
@@ -337,6 +343,7 @@ function saveAs(uri, filename) {
 
     }
 }
+
 /*================================================*\
   :: DEFAULT ::
 \*================================================*/
