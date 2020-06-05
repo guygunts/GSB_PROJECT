@@ -30,6 +30,7 @@ var buttonCommon = {
                 // var blob = b64toBlob(b64Data, contentType);
                 // const objectURL = URL.createObjectURL(blob);
                 // return objectURL;
+                return data;
             }
         }
     }
@@ -321,22 +322,36 @@ me.Export = function () {
         form._submit_function_();
     }
 
-    html2canvas(document.querySelector('#allbox')).then(canvas => {
-        var start = $('#start_date').data().date;
-        var stop = $('#end_date').data().date;
-        var dataUrl = canvas.toDataURL();
-        var newDataURL = dataUrl.replace(/^data:image\/png/, "data:application/octet-stream"); //do this to clean the url.
+    var start = $('#start_date').data().date;
+    var stop = $('#end_date').data().date;
+    var canvas = $("#pieChart .canvasjs-chart-canvas").get(0);
+    var dataURL = canvas.toDataURL('image/png');
+    var canvasbar = $("#barChart .canvasjs-chart-canvas").get(0);
+    var dataURLbar = canvasbar.toDataURL('image/png');
+    submitFORM('module/' + me.mod + '/excel.php', {
+        pie: dataURL,
+        bar: dataURLbar,
+        start_date: start + ' 00:00:00',
+        end_date: stop + ' 23:59:59'
+    }, 'POST');
 
-        submitFORM('module/' + me.mod + '/excel.php', {
-            img: newDataURL,
-            start_date: start + ' 00:00:00',
-            end_date: stop + ' 23:59:59'
-        }, 'POST');
 
-
-        // console.log(canvas);
-        // saveAs(canvas.toDataURL(), 'VoiceLogAnalyticReport.png');
-    });
+    // html2canvas(document.querySelector('#allbox')).then(canvas => {
+    //     var start = $('#start_date').data().date;
+    //     var stop = $('#end_date').data().date;
+    //     var dataUrl = canvas.toDataURL();
+    //     var newDataURL = dataUrl.replace(/^data:image\/png/, "data:application/octet-stream"); //do this to clean the url.
+    //
+    //     submitFORM('module/' + me.mod + '/excel.php', {
+    //         img: newDataURL,
+    //         start_date: start + ' 00:00:00',
+    //         end_date: stop + ' 23:59:59'
+    //     }, 'POST');
+    //
+    //
+    //     // console.log(canvas);
+    //     // saveAs(canvas.toDataURL(), 'VoiceLogAnalyticReport.png');
+    // });
 
 
 };

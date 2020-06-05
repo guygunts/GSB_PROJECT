@@ -60,12 +60,12 @@ if (1) {
 //                    $datalist[$i][$value['data']] = '<i class="glyphicon glyphicon-volume-up"></i>';
                 $datalist[$i][$z] = $item[$value['data']];
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('.'"'.$item[$value['data']].'"'.')"><i class="glyphicon glyphicon-volume-up"></i></a>';
-            } else if ($value['data'] == 'chnn') {
+            } elseif ($value['data'] == 'chnn') {
                 $datalist[$i][$z] = $item['log_file'];
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
-            } else if ($value['data'] == 'qc_status') {
+            } elseif ($value['data'] == 'qc_status') {
                 $datalist[$i][$z] = $status[$item[$value['data']]];
-            } else if ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
+            } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
                 switch ($value['data']) {
                     case 'input_qc':
                         $v = 'new_sentence';
@@ -96,11 +96,17 @@ if (1) {
 }
 
 
-$img = $_POST['img']; //get the image string from ajax post
-$img = substr(explode(";", $img)[1], 7); //this extract the exact image
+$pieimg = $_POST['pie']; //get the image string from ajax post
+$pieimg = substr(explode(";", $pieimg)[1], 7); //this extract the exact image
 $target = time() . '_img.png';
-$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($img));
-$path = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
+$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($pieimg));
+$pathpie = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
+
+$barimg = $_POST['bar']; //get the image string from ajax post
+$barimg = substr(explode(";", $barimg)[1], 7); //this extract the exact image
+$target = time() . '_img.png';
+$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($barimg));
+$pathbar = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -110,9 +116,15 @@ $spreadsheet->getActiveSheet()->setTitle("Summary Qc Report");
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setName('Paid');
 $drawing->setDescription('Paid');
-$drawing->setPath($path); // put your path and image here
+
+$drawing->setPath($pathpie); // put your path and image here
 $drawing->setCoordinates('A1');
 $drawing->setOffsetX(110);
+
+$drawing->setPath($pathbar); // put your path and image here
+$drawing->setCoordinates('G1');
+$drawing->setOffsetX(110);
+
 $drawing->getShadow()->setVisible(true);
 $drawing->getShadow()->setDirection(45);
 $drawing->setWorksheet($spreadsheet->getActiveSheet());
@@ -127,6 +139,7 @@ $sheet->fromArray($column, NULL, 'A1');
 $sheet->fromArray($datalist, NULL, 'A2');
 
 
-$writer = new Xlsx($spreadsheet);
+//$writer = new Xlsx($spreadsheet);
+$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->setPreCalculateFormulas(false);
 $writer->save('php://output');
