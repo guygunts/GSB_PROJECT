@@ -13,8 +13,8 @@ me.action.edit = 'updateuser';
 me.action.del = 'deleteuser';
 // var ctx  = document.getElementById('pieChart').getContext('2d');
 // var pieChart = '';
-var ctxs = document.getElementById('barChart').getContext('2d');
-var barChart = '';
+// var ctxs = document.getElementById('barChart').getContext('2d');
+// var barChart = '';
 var footerhtml = $('#tbView').clone();
 // console.log(footerhtml);
 /*================================================*\
