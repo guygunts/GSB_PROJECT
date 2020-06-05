@@ -29,7 +29,7 @@ var buttonCommon = {
                 // var b64Data = imgdata.replace(/^data:image\/\w+;base64,/, "");
                 // var blob = b64toBlob(b64Data, contentType);
                 // const objectURL = URL.createObjectURL(blob);
-                return objectURL;
+                // return objectURL;
             }
         }
     }
