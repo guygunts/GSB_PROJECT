@@ -16,9 +16,9 @@ $user = $_SESSION[OFFICE]['DATA']['user_name'];
 $token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
 $params = array(
     'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
-    'report_name' => $data['menu_action'],
-    'start_date' => $data['start_date'],
-    'end_date' => $data['end_date'],
+    'report_name' => 'QC',
+    'start_date' => $start,
+    'end_date' =>$end,
     'user_login' => $user
 );
 
