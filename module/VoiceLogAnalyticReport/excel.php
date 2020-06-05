@@ -182,9 +182,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
-$spreadsheet->getActiveSheet()->setTitle("Summary Qc Report");
-$spreadsheet->fromArray($column, NULL, 'A18');
-$spreadsheet->fromArray($datalist, NULL, 'A19');
+$main = $spreadsheet->getActiveSheet()->setTitle("Summary Qc Report");
+$main->fromArray($column, NULL, 'A18');
+$main->fromArray($datalist, NULL, 'A19');
 
 
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
