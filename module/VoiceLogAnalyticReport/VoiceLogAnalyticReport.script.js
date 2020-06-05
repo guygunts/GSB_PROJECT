@@ -172,21 +172,13 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             text: barchart.capture
                         },
                         data: [{
-                            type: "column", //change it to line, area, bar, pie, etc
-                            showInLegend: true,
+                            type: "column",
+                            yValueFormatString: "#,##0.0#"%"",
                             dataPoints: barchart.data
                         }]
                     };
-                    $("#resizable").resizable({
-                        create: function (event, ui) {
-                            //Create chart.
-                            $("#barChart").CanvasJSChart(options1);
-                        },
-                        resize: function (event, ui) {
-                            //Update chart size according to its container size.
-                            $("#barChart").CanvasJSChart().render();
-                        }
-                    });
+                    $("#barChart").CanvasJSChart(options1);
+
 
 
                     // var config = {
