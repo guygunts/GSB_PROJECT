@@ -121,9 +121,9 @@ $drawing->setPath($pathpie); // put your path and image here
 $drawing->setCoordinates('A1');
 $drawing->setOffsetX(110);
 
-$drawing->setPath($pathbar); // put your path and image here
-$drawing->setCoordinates('G1');
-$drawing->setOffsetX(110);
+//$drawing->setPath($pathbar); // put your path and image here
+//$drawing->setCoordinates('G1');
+//$drawing->setOffsetX(110);
 
 $drawing->getShadow()->setVisible(true);
 $drawing->getShadow()->setDirection(45);
