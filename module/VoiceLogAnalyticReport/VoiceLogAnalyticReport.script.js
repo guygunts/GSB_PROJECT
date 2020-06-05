@@ -204,7 +204,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                     // var barchart =  $("#barChart").CanvasJSChart(options1);
                     var barchart = new CanvasJS.Chart("barChart", options1);
                     barchart.render();
-                    barchart.exportChart({format: "jpg"});
+                    // barchart.exportChart({format: "jpg"});
 
                     // var config = {
                     //     type: 'bar',
