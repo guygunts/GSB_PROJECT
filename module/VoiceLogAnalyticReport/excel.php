@@ -11,6 +11,78 @@ $column = array();
 
 $start = $_POST['start_date'];
 $end = $_POST['end_date'];
+$user = $_SESSION[OFFICE]['DATA']['user_name'];
+
+$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
+$params = array(
+    'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
+    'report_name' => $data['menu_action'],
+    'start_date' => $data['start_date'],
+    'end_date' => $data['end_date'],
+    'user_login' => $user
+);
+
+//    PrintR($params);
+$url = URL_API . '/geniespeech/report';
+$response = curlposttoken($url, $params, $token);
+
+if ($response['result'][0]['code'] == 200) {
+    $response['column_name'][0]['column_data'] = 'Intent';
+    $response['column_name'][1]['column_data'] = 'Pass%';
+    $response['column_name'][2]['column_data'] = 'Pass';
+    $response['column_name'][3]['column_data'] = 'Fail';
+    $response['column_name'][4]['column_data'] = 'Garbage';
+    $response['column_name'][5]['column_data'] = 'Other';
+    $response['column_name'][6]['column_data'] = 'Valid';
+    $response['column_name'][7]['column_data'] = 'Totalcall';
+
+    $columnslist = $response['column_name'];
+    $datas = $response['recs'];
+    $data_footer = $response['grand_total'];
+    $name = $response['report_name:'];
+
+
+    $m = 0;
+    $z = 0;
+    $newfooter = array();
+    foreach ((array)$data_footer as $i => $item) {
+        foreach ((array)$item as $v => $item2) {
+            $newfooter[$z] = $item2;
+            ++$z;
+        }
+
+    }
+
+    foreach ((array)$columnslist as $i => $item) {
+        $column[$m]['className'] = 'text-center';
+        $column[$m]['title'] = $item['column_name'];
+        $column[$m]['data'] = $item['column_data'];
+
+        $columns[$m]['data'] = $item['column_data'];
+        $columns[$m]['type'] = '';
+        ++$m;
+    }
+
+
+    foreach ((array)$datas as $i => $item) {
+
+
+        foreach ((array)$columns as $v => $value) {
+            $datalist[$i][$value['data']] = $item[$value['data']];
+
+        }
+
+    }
+
+
+    $result['columns'] = $column;
+    $result['datafooter'] = $newfooter;
+    $result['data'] = $datalist;
+    $result['success'] = 'COMPLETE';
+
+}
+
+
 
 $params = array(
     'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
@@ -36,8 +108,6 @@ $status['O'] = 'Other';
 
 //PrintR($params);
 
-
-$token = isset($_SESSION[OFFICE]['TOKEN']) ? $_SESSION[OFFICE]['TOKEN'] : '';
 $url = URL_API . '/geniespeech/voicelog';
 $response = curlposttoken($url, $params, $token);
 if (1) {
@@ -108,11 +178,21 @@ $targetbar = time() . '_bar.png';
 $image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $targetbar, base64_decode($barimg));
 $pathbar = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $targetbar;
 
+$img = $_POST['img']; //get the image string from ajax post
+$img = substr(explode(";", $img)[1], 7); //this extract the exact image
+$target = time() . '_img.png';
+$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($img));
+$path = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 $spreadsheet->getActiveSheet()->setTitle("Summary Qc Report");
+$spreadsheet->fromArray($column, NULL, 'A18');
+$spreadsheet->fromArray($datalist, NULL, 'A19');
+
+
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setName('Paid');
 $drawing->setDescription('Paid');
@@ -132,6 +212,16 @@ $drawing1->setOffsetX(110);
 $drawing1->getShadow()->setVisible(true);
 $drawing1->getShadow()->setDirection(45);
 $drawing1->setWorksheet($spreadsheet->getActiveSheet());
+
+$drawing2 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+$drawing2->setName('Paid');
+$drawing2->setDescription('Paid');
+$drawing2->setPath($path); // put your path and image here
+$drawing2->setCoordinates('N1');
+$drawing2->setOffsetX(110);
+$drawing2->getShadow()->setVisible(true);
+$drawing2->getShadow()->setDirection(45);
+$drawing2->setWorksheet($spreadsheet->getActiveSheet());
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
