@@ -166,68 +166,90 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                     };
                     $("#pieChart").CanvasJSChart(options);
 
-
-                    var config = {
-                        type: 'bar',
-                        data: {
-                            datasets: [{
-                                data: barchart.data,
-                                backgroundColor: [
-                                    'red',
-                                    'orange',
-                                    'blue',
-                                    'green',
-
-                                ]
-                            }],
-                            labels: barchart.label
+                    var options1 = {
+                        animationEnabled: true,
+                        title: {
+                            text: barchart.capture
                         },
-                        options: {
-                            plugins: {
-                                datalabels: {
-                                    align: 'end',
-                                    anchor: 'end',
-                                    color: function(context) {
-                                        return context.dataset.backgroundColor;
-                                    },
-                                    font: function(context) {
-                                        var w = context.chart.width;
-                                        return {
-                                            size: w < 512 ? 12 : 14
-                                        };
-                                    },
-                                    formatter: function(value, context) {
-                                        // console.log(value);
-                                        return value.y;
-                                    }
-                                }
-                            },
-                            scales: {
-                                xAxes: [{
-                                    display: true,
-                                    offset: true
-                                }],
-                                yAxes: [{
-                                    stacked: true,
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            },
-                            title: {
-                                display: true,
-                                text: barchart.capture
-                            },
-                            legend: {
-                                display: false
-                            },
-                        }
+                        data: [{
+                            type: "column", //change it to line, area, bar, pie, etc
+                            showInLegend: true,
+                            dataPoints: barchart.data
+                        }]
                     };
+                    $("#resizable").resizable({
+                        create: function (event, ui) {
+                            //Create chart.
+                            $("#barChart").CanvasJSChart(options1);
+                        },
+                        resize: function (event, ui) {
+                            //Update chart size according to its container size.
+                            $("#barChart").CanvasJSChart().render();
+                        }
+                    });
 
 
-
-                    barChart = new Chart(ctxs,config);
-                    barChart.update();
+                    // var config = {
+                    //     type: 'bar',
+                    //     data: {
+                    //         datasets: [{
+                    //             data: barchart.data,
+                    //             backgroundColor: [
+                    //                 'red',
+                    //                 'orange',
+                    //                 'blue',
+                    //                 'green',
+                    //
+                    //             ]
+                    //         }],
+                    //         labels: barchart.label
+                    //     },
+                    //     options: {
+                    //         plugins: {
+                    //             datalabels: {
+                    //                 align: 'end',
+                    //                 anchor: 'end',
+                    //                 color: function(context) {
+                    //                     return context.dataset.backgroundColor;
+                    //                 },
+                    //                 font: function(context) {
+                    //                     var w = context.chart.width;
+                    //                     return {
+                    //                         size: w < 512 ? 12 : 14
+                    //                     };
+                    //                 },
+                    //                 formatter: function(value, context) {
+                    //                     // console.log(value);
+                    //                     return value.y;
+                    //                 }
+                    //             }
+                    //         },
+                    //         scales: {
+                    //             xAxes: [{
+                    //                 display: true,
+                    //                 offset: true
+                    //             }],
+                    //             yAxes: [{
+                    //                 stacked: true,
+                    //                 ticks: {
+                    //                     beginAtZero: true
+                    //                 }
+                    //             }]
+                    //         },
+                    //         title: {
+                    //             display: true,
+                    //             text: barchart.capture
+                    //         },
+                    //         legend: {
+                    //             display: false
+                    //         },
+                    //     }
+                    // };
+                    //
+                    //
+                    //
+                    // barChart = new Chart(ctxs,config);
+                    // barChart.update();
 
                     $('#mydata').html(mytext);
 
