@@ -20,23 +20,22 @@ var buttonCommon = {
                 if (column === 4) {
                     data = $(data).attr('href');
                 } else if (column === 6) {
-
                     data = $(data).find('source').attr('src');
-                } else if (column === 11) {
-                    if ($('option:selected', data).val() != '') {
-                        data = $('option:selected', data).text();
-                    } else {
-                        data = '';
-                    }
                 } else if (column === 12) {
                     if ($('option:selected', data).val() != '') {
                         data = $('option:selected', data).text();
                     } else {
                         data = '';
                     }
-                } else if (column === 13 || column === 14) {
+                } else if (column === 13) {
+                    if ($('option:selected', data).val() != '') {
+                        data = $('option:selected', data).text();
+                    } else {
+                        data = '';
+                    }
+                } else if (column === 14 || column === 15) {
                     data = data.toString().replace(/<.*?>/ig, "");
-                } else if (column === 15 || column === 16) {
+                } else if (column === 16 || column === 17) {
                     data = '';
                 }
 
