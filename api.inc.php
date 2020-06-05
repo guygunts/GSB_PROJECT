@@ -253,9 +253,9 @@ function LoadCboMain(Request $request)
 //    PrintR($response);
 
 
-    if ($response['code'] == 200) {
+    if ($response['result'][0]['code'] == 200) {
 
-        $datas = $response['result']['data'];
+        $datas = $response['recs'];
         $datalist = [];
 
         foreach ((array)$datas as $i => $item) {
