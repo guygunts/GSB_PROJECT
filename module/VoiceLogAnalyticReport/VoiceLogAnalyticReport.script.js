@@ -23,12 +23,12 @@ var buttonCommon = {
         format: {
             body: function ( data, row, column, node ) {
                 //var canvas  = node.childNodes["0"].$chartjs.toBase64Image();
-                var canvas  = node.childNodes["0"];
-                var imgdata =  canvas.toDataURL("image/png", 1.0);
-                var contentType = 'image/png';
-                var b64Data = imgdata.replace(/^data:image\/\w+;base64,/, "");
-                var blob = b64toBlob(b64Data, contentType);
-                const objectURL = URL.createObjectURL(blob);
+                // var canvas  = node.childNodes["0"];
+                // var imgdata =  canvas.toDataURL("image/png", 1.0);
+                // var contentType = 'image/png';
+                // var b64Data = imgdata.replace(/^data:image\/\w+;base64,/, "");
+                // var blob = b64toBlob(b64Data, contentType);
+                // const objectURL = URL.createObjectURL(blob);
                 return objectURL;
             }
         }
