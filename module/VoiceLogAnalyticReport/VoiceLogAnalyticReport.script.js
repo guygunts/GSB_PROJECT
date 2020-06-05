@@ -344,8 +344,8 @@ me.Export = function () {
 
         var start = $('#start_date').data().date;
         var stop = $('#end_date').data().date;
-        var canvas = $("#pieChart .canvasjs-chart-canvas").get(0);
-        var datapie = canvas.toDataURL('image/png');
+        var canvaspie = $("#pieChart .canvasjs-chart-canvas").get(0);
+        var datapie = canvaspie.toDataURL('image/png');
         var canvasbar = $("#barChart .canvasjs-chart-canvas").get(0);
         var databar = canvasbar.toDataURL('image/png');
         submitFORM('module/' + me.mod + '/excel.php', {
