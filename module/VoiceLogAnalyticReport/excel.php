@@ -56,22 +56,22 @@ if ($response['result'][0]['code'] == 200) {
     }
 
     foreach ((array)$columnslist as $i => $item) {
-        $column[$m]['className'] = 'text-center';
-        $column[$m]['title'] = $item['column_name'];
-        $column[$m]['data'] = $item['column_data'];
+        $column[$i] = $item['column_name'];
 
         $columns[$m]['data'] = $item['column_data'];
         $columns[$m]['type'] = '';
+
+
         ++$m;
     }
 
-
+    $z = 0;
     foreach ((array)$datas as $i => $item) {
 
 
         foreach ((array)$columns as $v => $value) {
-            $datalist[$i][$value['data']] = $item[$value['data']];
-
+            $datalist[$i][$z][$value['data']] = $item[$value['data']];
+            ++$z;
         }
 
     }
