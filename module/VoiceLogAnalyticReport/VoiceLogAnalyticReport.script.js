@@ -162,7 +162,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                         }]
                     };
                     // var piechart = $("#pieChart").CanvasJSChart(options);
-                    var piechart = new CanvasJS("pieChart", options);
+                    var piechart = new CanvasJS.Chart("pieChart", options);
                     piechart.render();
 
 
@@ -181,7 +181,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                         }]
                     };
                     // var barchart =  $("#barChart").CanvasJSChart(options1);
-                    var barchart = new CanvasJS("barChart", options1);
+                    var barchart = new CanvasJS.Chart("barChart", options1);
                     barchart.render();
 
 
