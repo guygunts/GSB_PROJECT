@@ -78,6 +78,8 @@ if ($response['result'][0]['code'] == 200) {
 
 }
 
+var_dump($column);
+
 
 
 $params = array(
