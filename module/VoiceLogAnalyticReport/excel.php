@@ -74,12 +74,6 @@ if ($response['result'][0]['code'] == 200) {
 
     }
 
-
-    $result['columns'] = $column;
-    $result['datafooter'] = $newfooter;
-    $result['data'] = $datalist;
-    $result['success'] = 'COMPLETE';
-
 }
 
 
@@ -119,7 +113,7 @@ if (1) {
         $columns[$i]['title'] = $item['column_name'];
         $columns[$i]['type'] = $item['column_type'];
 
-        $column[$i] = $item['column_name'];
+        $columnnew[$i] = $item['column_name'];
 
     }
 
@@ -128,13 +122,13 @@ if (1) {
         foreach ((array)$columns as $v => $value) {
             if ($value['data'] == 'voice_name') {
 //                    $datalist[$i][$value['data']] = '<i class="glyphicon glyphicon-volume-up"></i>';
-                $datalist[$i][$z] = $item[$value['data']];
+                $datalistnew[$i][$z] = $item[$value['data']];
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenVOICE('.'"'.$item[$value['data']].'"'.')"><i class="glyphicon glyphicon-volume-up"></i></a>';
             } elseif ($value['data'] == 'chnn') {
-                $datalist[$i][$z] = $item['log_file'];
+                $datalistnew[$i][$z] = $item['log_file'];
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
             } elseif ($value['data'] == 'qc_status') {
-                $datalist[$i][$z] = $status[$item[$value['data']]];
+                $datalistnew[$i][$z] = $status[$item[$value['data']]];
             } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
                 switch ($value['data']) {
                     case 'input_qc':
@@ -150,15 +144,15 @@ if (1) {
 
 
                 if ($item[$v]) {
-                    $datalist[$i][$z] = $item[$v];
+                    $datalistnew[$i][$z] = $item[$v];
 
 
                 } else {
-                    $datalist[$i][$z] = '';
+                    $datalistnew[$i][$z] = '';
                 }
 
             } else {
-                $datalist[$i][$z] = $item[$value['data']];
+                $datalistnew[$i][$z] = $item[$value['data']];
             }
             ++$z;
         }
@@ -229,8 +223,8 @@ $sheet = $spreadsheet->createSheet();
 $sheet->setTitle("Data QC Report");
 //$spreadsheet->setTitle("Data QC Report");
 
-$sheet->fromArray($column, NULL, 'A1');
-$sheet->fromArray($datalist, NULL, 'A2');
+$sheet->fromArray($columnnew, NULL, 'A1');
+$sheet->fromArray($datalistnew, NULL, 'A2');
 
 
 //$writer = new Xlsx($spreadsheet);
