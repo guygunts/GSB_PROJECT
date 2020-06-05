@@ -112,7 +112,7 @@ function View(Request $request)
                 foreach ((array)$item as $m => $items) {
                     $barcharts['label'][$n] = $m;
 
-                    $barcharts['data'][$n]['x'] = $m;
+                    $barcharts['data'][$n]['label'] = $m;
                     $barcharts['data'][$n]['y'] = $items;
                     ++$n;
                 }
