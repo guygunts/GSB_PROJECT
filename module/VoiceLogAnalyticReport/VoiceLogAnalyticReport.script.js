@@ -161,7 +161,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             dataPoints: pipechart.data
                         }]
                     };
-                    $("#pieChart").CanvasJSChart(options);
+                    var piechart = $("#pieChart").CanvasJSChart(options);
 
                     var options1 = {
                         animationEnabled: true,
@@ -177,7 +177,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             dataPoints: barchart.data
                         }]
                     };
-                    $("#barChart").CanvasJSChart(options1);
+                   var barchart =  $("#barChart").CanvasJSChart(options1);
 
 
 
