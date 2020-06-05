@@ -103,7 +103,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                                     deferRender: true,
                                     stateSave: true,
                                     iDisplayLength: page_size,
-                                    responsive: false,
+                                    responsive: true,
                                     scrollX: true,
                                     pageLength: page_size,
                                     paging: false,
