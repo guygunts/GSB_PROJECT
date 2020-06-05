@@ -116,18 +116,22 @@ $spreadsheet->getActiveSheet()->setTitle("Summary Qc Report");
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setName('Paid');
 $drawing->setDescription('Paid');
-
 $drawing->setPath($pathpie); // put your path and image here
 $drawing->setCoordinates('A1');
 $drawing->setOffsetX(110);
-
-$drawing->setPath($pathbar); // put your path and image here
-$drawing->setCoordinates('G1');
-$drawing->setOffsetX(110);
-
 $drawing->getShadow()->setVisible(true);
 $drawing->getShadow()->setDirection(45);
 $drawing->setWorksheet($spreadsheet->getActiveSheet());
+
+$drawing1 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+$drawing1->setName('Paid');
+$drawing1->setDescription('Paid');
+$drawing1->setPath($pathbar); // put your path and image here
+$drawing1->setCoordinates('G1');
+$drawing1->setOffsetX(110);
+$drawing1->getShadow()->setVisible(true);
+$drawing1->getShadow()->setDirection(45);
+$drawing1->setWorksheet($spreadsheet->getActiveSheet());
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
