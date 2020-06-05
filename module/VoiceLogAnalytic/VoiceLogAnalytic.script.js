@@ -18,8 +18,8 @@ var buttonCommon = {
             body: function (data, row, column, node) {
 
                 if (column === 4) {
-                    // data = $(data).attr('href');
-                } else if (column === 5) {
+                    data = $(data).attr('href');
+                } else if (column === 6) {
 
                     data = $(data).find('source').attr('src');
                 } else if (column === 11) {
