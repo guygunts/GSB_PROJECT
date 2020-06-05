@@ -146,7 +146,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             fontSize : 12,
                             fontWeight : 'normal'
                         },
-                        exportEnabled: false,
+                        exportEnabled: true,
                         animationEnabled: true,
 
                         data: [{
@@ -166,80 +166,6 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                     };
                     $("#pieChart").CanvasJSChart(options);
 
-                    // var configs = {
-                    //
-                    //     type: 'doughnut',
-                    //     data: {
-                    //         labels: pipechart.label,
-                    //         datasets: [{
-                    //             weight : 1,
-                    //             borderWidth : 2,
-                    //             data: pipechart.data,
-                    //             borderColor :  [
-                    //                 'red',
-                    //                 'orange',
-                    //                 'blue',
-                    //                 'green',
-                    //
-                    //             ],
-                    //             backgroundColor: [
-                    //                 'red',
-                    //                'orange',
-                    //                 'blue',
-                    //                'green',
-                    //
-                    //             ]
-                    //
-                    //         }]
-                    //
-                    //     },
-                    //
-                    //     options: {
-                    //         responsive: true,
-                    //
-                    //         legend: {
-                    //             position: 'bottom',
-                    //         },
-                    //         title: {
-                    //             display: true,
-                    //             text: pipechart.capture,
-                    //             padding : 30
-                    //         },
-                    //         animation: {
-                    //             animateScale: true,
-                    //             animateRotate: true
-                    //         },
-                    //
-                    //         plugins: {
-                    //             labels: {
-                    //                 render: 'label',
-                    //                 fontColor: '#000',
-                    //                 position: 'outside'
-                    //             },
-                    //             datalabels: {
-                    //                 align: 'end',
-                    //                 anchor: 'end',
-                    //
-                    //                 color: function (context) {
-                    //                     return context.dataset.backgroundColor;
-                    //                 },
-                    //                 font: function (context) {
-                    //                     var w = context.chart.width;
-                    //                     return {
-                    //                         size: w < 512 ? 12 : 14
-                    //                     };
-                    //                 },
-                    //                 formatter: function (value, context) {
-                    //                     console.log(context);
-                    //                     // return context.chart.data.labels[context.dataIndex]+' '+value;
-                    //                     return value;
-                    //                 }
-                    //             }
-                    //         }
-                    //     }
-                    // };
-                    // pieChart = new Chart(ctx,configs);
-                    // pieChart.update();
 
                     var config = {
                         type: 'bar',
@@ -316,6 +242,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                         column.visible(!column.visible());
                     });
 
+                    me.table.columns.adjust().draw('true');
                     break;
                 default :
                     alertify.alert(data.msg);
