@@ -6,8 +6,10 @@ header('Content-Disposition: attachment;filename="Voice Log Analytics Report-' .
 header('Cache-Control: max-age=0');
 
 $datalist = array();
+$datalistnew = array();
 $columns = array();
 $column = array();
+$columnnew = array();
 
 $start = $_POST['start_date'];
 $end = $_POST['end_date'];
