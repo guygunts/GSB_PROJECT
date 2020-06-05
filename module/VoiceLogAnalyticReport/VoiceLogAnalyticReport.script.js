@@ -17,6 +17,23 @@ me.action.del = 'deleteuser';
 // var barChart = '';
 var footerhtml = $('#tbView').clone();
 // console.log(footerhtml);
+
+var buttonCommon = {
+    exportOptions: {
+        format: {
+            body: function ( data, row, column, node ) {
+                //var canvas  = node.childNodes["0"].$chartjs.toBase64Image();
+                var canvas  = node.childNodes["0"];
+                var imgdata =  canvas.toDataURL("image/png", 1.0);
+                var contentType = 'image/png';
+                var b64Data = imgdata.replace(/^data:image\/\w+;base64,/, "");
+                var blob = b64toBlob(b64Data, contentType);
+                const objectURL = URL.createObjectURL(blob);
+                return objectURL;
+            }
+        }
+    }
+};
 /*================================================*\
   :: FUNCTION ::
 \*================================================*/
@@ -70,6 +87,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
             switch (data.success) {
 
                 case 'COMPLETE' :
+
                     if (data.data.length == 0) {
                         // alertify.alert('No data, Please select other date');
                     }
@@ -96,12 +114,15 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             .addClass('nowrap')
                             .removeAttr('width')
                             .DataTable({
-
-
+                                buttons: [
+                                        $.extend( true, {}, buttonCommon, {
+                                            extend: 'excelHtml5'
+                                        } )
+                                    ],
                                     searching: false,
                                     retrieve: true,
                                     deferRender: true,
-                                    stateSave: true,
+                                    stateSave: false,
                                     iDisplayLength: page_size,
                                     responsive: true,
                                     scrollX: true,
