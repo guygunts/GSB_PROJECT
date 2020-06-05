@@ -98,15 +98,15 @@ if (1) {
 
 $pieimg = $_POST['pie']; //get the image string from ajax post
 $pieimg = substr(explode(";", $pieimg)[1], 7); //this extract the exact image
-$target = time() . '_img.png';
-$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($pieimg));
-$pathpie = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
+$targetpie = time() . '_pie.png';
+$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $targetpie, base64_decode($pieimg));
+$pathpie = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $targetpie;
 
-//$barimg = $_POST['bar']; //get the image string from ajax post
-//$barimg = substr(explode(";", $barimg)[1], 7); //this extract the exact image
-//$target = time() . '_img.png';
-//$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($barimg));
-//$pathbar = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
+$barimg = $_POST['bar']; //get the image string from ajax post
+$barimg = substr(explode(";", $barimg)[1], 7); //this extract the exact image
+$targetbar = time() . '_bar.png';
+$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $targetbar, base64_decode($barimg));
+$pathbar = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $targetbar;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -121,9 +121,9 @@ $drawing->setPath($pathpie); // put your path and image here
 $drawing->setCoordinates('A1');
 $drawing->setOffsetX(110);
 
-//$drawing->setPath($pathbar); // put your path and image here
-//$drawing->setCoordinates('G1');
-//$drawing->setOffsetX(110);
+$drawing->setPath($pathbar); // put your path and image here
+$drawing->setCoordinates('G1');
+$drawing->setOffsetX(110);
 
 $drawing->getShadow()->setVisible(true);
 $drawing->getShadow()->setDirection(45);
