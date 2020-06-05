@@ -38,7 +38,7 @@
                     <div id="allbox" style="padding: 5px">
                     <div class="col-xs-12" style="margin-top: 10px" id="mygraph">
                         <div class="col-xs-4"><div id="pieChart" style="height: 300px; width: 100%;"></div></div>
-                        <div class="col-xs-4"><canvas id="barChart" height="300px"></canvas></div>
+                        <div class="col-xs-4"><div id="barChart" style="height: 300px; width: 100%;"></div></div>
                         <div class="col-xs-4" id="mydata"></div>
 
                     </div>
