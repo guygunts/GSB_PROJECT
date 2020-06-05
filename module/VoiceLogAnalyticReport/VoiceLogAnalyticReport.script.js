@@ -325,12 +325,12 @@ me.Export = function () {
     var start = $('#start_date').data().date;
     var stop = $('#end_date').data().date;
     var canvas = $("#pieChart .canvasjs-chart-canvas").get(0);
-    var dataURL = canvas.toDataURL('image/png');
+    var datapie = canvas.toDataURL('image/png');
     var canvasbar = $("#barChart .canvasjs-chart-canvas").get(0);
-    var dataURLbar = canvasbar.toDataURL('image/png');
+    var databar = canvasbar.toDataURL('image/png');
     submitFORM('module/' + me.mod + '/excel.php', {
-        pie: dataURL,
-        bar: dataURLbar,
+        pie: datapie,
+        bar: databar,
         start_date: start + ' 00:00:00',
         end_date: stop + ' 23:59:59'
     }, 'POST');

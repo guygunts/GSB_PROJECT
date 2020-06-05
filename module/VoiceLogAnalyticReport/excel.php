@@ -102,11 +102,11 @@ $target = time() . '_img.png';
 $image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($pieimg));
 $pathpie = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
 
-$barimg = $_POST['bar']; //get the image string from ajax post
-$barimg = substr(explode(";", $barimg)[1], 7); //this extract the exact image
-$target = time() . '_img.png';
-$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($barimg));
-$pathbar = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
+//$barimg = $_POST['bar']; //get the image string from ajax post
+//$barimg = substr(explode(";", $barimg)[1], 7); //this extract the exact image
+//$target = time() . '_img.png';
+//$image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($barimg));
+//$pathbar = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
