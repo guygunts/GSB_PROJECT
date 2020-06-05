@@ -142,11 +142,8 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
 
                     var options = {
                         title: {
-                            text: pipechart.capture,
-                            fontSize : 12,
-                            fontWeight : 'normal'
+                            text: pipechart.capture
                         },
-                        exportEnabled: true,
                         animationEnabled: true,
 
                         data: [{
