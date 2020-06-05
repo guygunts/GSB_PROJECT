@@ -174,6 +174,9 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                         data: [{
                             type: "column",
                             yValueFormatString: "#,##0.0#"%"",
+                            indexLabel: "{y}",
+                            indexLabelPlacement: "outside",
+                            indexLabelOrientation: "horizontal",
                             dataPoints: barchart.data
                         }]
                     };
