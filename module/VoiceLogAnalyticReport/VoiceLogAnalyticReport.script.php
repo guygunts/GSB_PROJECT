@@ -13,8 +13,6 @@
 </script>
 <!-- Morris.js charts -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script src="plugins/canvasjs/jquery.canvasjs.min.js"></script>
 
