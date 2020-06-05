@@ -50,7 +50,7 @@ me.Search = function () {
         // me.table.clear().destroy();
         // $('#tbView').empty();
         // pieChart.destroy();
-        barChart.destroy();
+        // barChart.destroy();
         me.table.clear();
         me.LoadDataReport(me.action.menu, 1, page_size, start + ' 00:00:00', stop + ' 23:59:59',1);
     });
