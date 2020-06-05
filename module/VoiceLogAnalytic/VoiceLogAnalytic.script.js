@@ -35,7 +35,13 @@ var buttonCommon = {
                     }
                 } else if (column === 14 || column === 15) {
                     data = data.toString().replace(/<.*?>/ig, "");
-                } else if (column === 16 || column === 17) {
+                } else if (column === 16) {
+                    if ($('option:selected', data).val() != '') {
+                        data = $('option:selected', data).text();
+                    } else {
+                        data = '';
+                    }
+                } else if (column === 17) {
                     data = '';
                 }
 
