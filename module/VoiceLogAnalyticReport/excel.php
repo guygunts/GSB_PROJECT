@@ -78,7 +78,6 @@ if ($response['result'][0]['code'] == 200) {
 
 }
 
-var_dump($column);
 
 
 
@@ -188,8 +187,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 $spreadsheet = new Spreadsheet();
 $main = $spreadsheet->getActiveSheet();
 $main->setTitle("Summary Qc Report");
-$main->fromArray($column, NULL, 'A23');
-$main->fromArray($datalist, NULL, 'A24');
+
 
 
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
@@ -221,6 +219,9 @@ $drawing2->setOffsetX(110);
 $drawing2->getShadow()->setVisible(true);
 $drawing2->getShadow()->setDirection(45);
 $drawing2->setWorksheet($spreadsheet->getActiveSheet());
+
+$main->fromArray($column, NULL, 'A23');
+$main->fromArray($datalist, NULL, 'A24');
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
