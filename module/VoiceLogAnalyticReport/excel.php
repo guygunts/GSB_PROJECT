@@ -186,6 +186,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 $main = $spreadsheet->getActiveSheet();
+//$main->getColumnDimension('A')->setWidth(12);
+
 $main->setTitle("Summary Qc Report");
 
 
@@ -221,7 +223,16 @@ $drawing2->getShadow()->setDirection(45);
 $drawing2->setWorksheet($spreadsheet->getActiveSheet());
 
 $main->fromArray($column, NULL, 'A23');
-//$main->fromArray($datalist, NULL, 'A24');
+$main->fromArray($datalist, NULL, 'A24');
+
+$main->getColumnDimension('A')->setAutoSize(true);
+$main->getColumnDimension('B')->setAutoSize(true);
+$main->getColumnDimension('C')->setAutoSize(true);
+$main->getColumnDimension('D')->setAutoSize(true);
+$main->getColumnDimension('E')->setAutoSize(true);
+$main->getColumnDimension('F')->setAutoSize(true);
+$main->getColumnDimension('G')->setAutoSize(true);
+$main->getColumnDimension('H')->setAutoSize(true);
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
