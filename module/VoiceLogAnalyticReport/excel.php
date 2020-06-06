@@ -65,10 +65,10 @@ if ($response['result'][0]['code'] == 200) {
         ++$m;
     }
 
-    $z = 0;
+
     foreach ((array)$datas as $i => $item) {
 
-
+        $z = 0;
         foreach ((array)$columns as $v => $value) {
             $datalist[$i][$z][$value['data']] = $item[$value['data']];
             ++$z;
@@ -86,7 +86,7 @@ $params = array(
     'start_date' => $start,
     'end_date' => $end,
     'page_id' => 1,
-    'page_size' => 25,
+    'page_size' => 10000,
     "grammar" => "",
     "qc_status" => "",
     "intent" => "",
@@ -107,12 +107,12 @@ $status['O'] = 'Other';
 
 $url = URL_API . '/geniespeech/voicelog';
 $response = curlposttoken($url, $params, $token);
-if (1) {
-    $columnslist = $response['result']['header'];
-    $datas = $response['result']['box4'];
+if ($response['result'][0]['code'] == 200) {
+    $columnslist = $response['columnsname'];
+    $datas = $response['recs']['box4'];
 
     foreach ((array)$columnslist as $i => $item) {
-        $columns[$i]['data'] = $item['column_field'];
+        $columns[$i]['data'] = $item['column_data'];
         $columns[$i]['title'] = $item['column_name'];
         $columns[$i]['type'] = $item['column_type'];
 
@@ -122,6 +122,7 @@ if (1) {
 
     $z = 0;
     foreach ((array)$datas as $i => $item) {
+        $z = 0;
         foreach ((array)$columns as $v => $value) {
             if ($value['data'] == 'voice_name') {
 //                    $datalist[$i][$value['data']] = '<i class="glyphicon glyphicon-volume-up"></i>';
@@ -225,7 +226,7 @@ $drawing2->setWorksheet($spreadsheet->getActiveSheet());
 $main->fromArray($column, NULL, 'A23');
 //$main->fromArray($datalist, NULL, 'A24');
 
-$main->getColumnDimension('A')->setWidth(40);
+$main->getColumnDimension('A')->setWidth(43);
 $main->getColumnDimension('B')->setWidth(15);
 $main->getColumnDimension('C')->setWidth(20);
 $main->getColumnDimension('D')->setWidth(20);
