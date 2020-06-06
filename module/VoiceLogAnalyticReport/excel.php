@@ -197,9 +197,9 @@ $drawing->setName('Paid');
 $drawing->setDescription('Paid');
 $drawing->setPath($pathpie); // put your path and image here
 $drawing->setCoordinates('A1');
-$drawing->setOffsetX(110);
-$drawing->getShadow()->setVisible(true);
-$drawing->getShadow()->setDirection(45);
+$drawing->setOffsetX(0);
+//$drawing->getShadow()->setVisible(true);
+//$drawing->getShadow()->setDirection(45);
 $drawing->setWorksheet($spreadsheet->getActiveSheet());
 
 $drawing1 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
@@ -226,7 +226,7 @@ $main->fromArray($column, NULL, 'A23');
 //$main->fromArray($datalist, NULL, 'A24');
 
 $main->getColumnDimension('A')->setWidth(40);
-$main->getColumnDimension('B')->setWidth(20);
+$main->getColumnDimension('B')->setWidth(15);
 $main->getColumnDimension('C')->setWidth(20);
 $main->getColumnDimension('D')->setWidth(20);
 $main->getColumnDimension('E')->setWidth(20);
