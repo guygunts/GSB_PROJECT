@@ -221,7 +221,7 @@ $drawing2->getShadow()->setDirection(45);
 $drawing2->setWorksheet($spreadsheet->getActiveSheet());
 
 $main->fromArray($column, NULL, 'A23');
-$main->fromArray($datalist, NULL, 'A24');
+//$main->fromArray($datalist, NULL, 'A24');
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
