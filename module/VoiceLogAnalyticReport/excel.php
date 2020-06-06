@@ -134,7 +134,7 @@ if ($response['result'][0]['code'] == 200) {
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
             } elseif ($value['data'] == 'qc_status') {
                 $datalistnew[$i][$z] = $status[$item[$value['data']]];
-            } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected') {
+            } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected' || $value['data'] == 'new_sentence' || $value['data'] == 'expec_intent') {
                 switch ($value['data']) {
                     case 'input_qc':
                         $v = 'new_sentence';
