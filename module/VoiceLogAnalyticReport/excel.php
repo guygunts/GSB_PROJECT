@@ -78,7 +78,8 @@ if ($response['result'][0]['code'] == 200) {
 
 }
 
-
+$columnslist = array();
+$datas = array();
 
 
 $params = array(
