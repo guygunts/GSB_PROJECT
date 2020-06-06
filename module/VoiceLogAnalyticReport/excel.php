@@ -225,7 +225,7 @@ $drawing2->getShadow()->setDirection(45);
 $drawing2->setWorksheet($main);
 
 $main->fromArray($column, NULL, 'A23');
-$main->fromArray($datalist, NULL, 'A24');
+//$main->fromArray($datalist, NULL, 'A24');
 
 $main->getColumnDimension('A')->setWidth(43);
 $main->getColumnDimension('B')->setWidth(15);
