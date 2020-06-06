@@ -202,7 +202,7 @@ $drawing->setCoordinates('A1');
 $drawing->setOffsetX(0);
 //$drawing->getShadow()->setVisible(true);
 //$drawing->getShadow()->setDirection(45);
-$drawing->setWorksheet($spreadsheet->getActiveSheet());
+$drawing->setWorksheet($main);
 
 $drawing1 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing1->setName('Paid');
@@ -212,7 +212,7 @@ $drawing1->setCoordinates('G1');
 $drawing1->setOffsetX(110);
 $drawing1->getShadow()->setVisible(true);
 $drawing1->getShadow()->setDirection(45);
-$drawing1->setWorksheet($spreadsheet->getActiveSheet());
+$drawing1->setWorksheet($main);
 
 $drawing2 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing2->setName('Paid');
@@ -222,7 +222,7 @@ $drawing2->setCoordinates('N1');
 $drawing2->setOffsetX(110);
 $drawing2->getShadow()->setVisible(true);
 $drawing2->getShadow()->setDirection(45);
-$drawing2->setWorksheet($spreadsheet->getActiveSheet());
+$drawing2->setWorksheet($main);
 
 $main->fromArray($column, NULL, 'A23');
 $main->fromArray($datalist, NULL, 'A24');
@@ -247,7 +247,7 @@ $sheet->fromArray($columnnew, NULL, 'A1');
 $sheet->fromArray($datalistnew, NULL, 'A2');
 
 
-//$writer = new Xlsx($spreadsheet);
-$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+$writer = new Xlsx($spreadsheet);
+//$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->setPreCalculateFormulas(false);
 $writer->save('php://output');
