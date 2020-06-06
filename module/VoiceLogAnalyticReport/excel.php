@@ -225,14 +225,15 @@ $drawing2->setWorksheet($spreadsheet->getActiveSheet());
 $main->fromArray($column, NULL, 'A23');
 //$main->fromArray($datalist, NULL, 'A24');
 
-$main->getColumnDimension('A')->setWidth(30);
-$main->getColumnDimension('B')->setAutoSize(true);
-$main->getColumnDimension('C')->setAutoSize(true);
-$main->getColumnDimension('D')->setAutoSize(true);
-$main->getColumnDimension('E')->setAutoSize(true);
-$main->getColumnDimension('F')->setAutoSize(true);
-$main->getColumnDimension('G')->setAutoSize(true);
-$main->getColumnDimension('H')->setAutoSize(true);
+$main->getColumnDimension('A')->setWidth(40);
+$main->getColumnDimension('B')->setWidth(20);
+$main->getColumnDimension('C')->setWidth(20);
+$main->getColumnDimension('D')->setWidth(20);
+$main->getColumnDimension('E')->setWidth(20);
+$main->getColumnDimension('F')->setWidth(20);
+$main->getColumnDimension('G')->setWidth(20);
+$main->getColumnDimension('H')->setWidth(20);
+
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
