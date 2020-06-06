@@ -225,7 +225,7 @@ $drawing2->setWorksheet($spreadsheet->getActiveSheet());
 $main->fromArray($column, NULL, 'A23');
 //$main->fromArray($datalist, NULL, 'A24');
 
-$main->getColumnDimension('A')->setAutoSize(true);
+$main->getColumnDimension('A')->setWidth(12);
 $main->getColumnDimension('B')->setAutoSize(true);
 $main->getColumnDimension('C')->setAutoSize(true);
 $main->getColumnDimension('D')->setAutoSize(true);
