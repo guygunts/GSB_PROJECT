@@ -113,14 +113,14 @@ function View(Request $request)
                 'page_size' => $data['page_size']
             );
 
-            PrintR($paramssub);
+//            PrintR($paramssub);
 
             $responsesub = curlposttoken($url, $paramssub, $token);
 
-            PrintR($responsesub);
-            if ($responsesub['code'] == 200) {
-                $columnsublist = $responsesub['result'];
-                $datasub = $responsesub['data'];
+//            PrintR($responsesub);
+            if ($responsesub['result']['code'] == 200) {
+                $columnsublist = $responsesub['columnsname'];
+                $datasub = $responsesub['recs'];
                 $t = 0;
                 foreach ((array)$columnsublist as $m => $items) {
                     $columnssub[$t]['data'] = $items['column_data'];
