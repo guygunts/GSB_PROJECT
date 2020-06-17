@@ -787,10 +787,12 @@ function Enable(Request $request)
 
     $data['user_login'] = $user;
 
-
+    PrintR($data);
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
+
+    PrintR($response);
 
     if ($response['code'] == 200) {
         $result['success'] = 'COMPLETE';
