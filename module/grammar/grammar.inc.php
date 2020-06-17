@@ -488,8 +488,8 @@ function EditSub(Request $request)
 //    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
-//PrintR($data);
-//exit;
+PrintR($data);
+exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
