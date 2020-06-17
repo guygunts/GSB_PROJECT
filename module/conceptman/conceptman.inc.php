@@ -26,9 +26,9 @@ function View(Request $request)
     $response = curlposttoken($url, $params, $token);
 
 
-    if ($response['code'] == 200) {
-        $columnslist = $response['result'];
-        $datas = $response['data'];
+    if ($response['result'][0]['code'] == 200) {
+        $columnslist = $response['columnsname'];
+        $datas = $response['recs'];
 
         $column[0]['className'] = 'details-control';
         $column[0]['title'] = '';
