@@ -26,9 +26,10 @@ function View(Request $request)
     $response = curlposttoken($url, $params, $token);
 
 
-    if ($response['code'] == 200) {
-        $columnslist = $response['result']['header'];
-        $datas = $response['result']['data'];
+    if ($response['result'][0]['code'] == 200) {
+        $columnslist = $response['columnsname'];
+        $datas = $response['recs'];
+
 //        $_SESSION[OFFICE]['ROLE'][0]['menus'] = $datas;
         $column[0]['className'] = 'text-center';
         $column[0]['title'] = 'No';
