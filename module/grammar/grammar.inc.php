@@ -753,7 +753,7 @@ function LoadCboSub(Request $request)
             $datalist[$i]['text'] =$item['category_name'];
             $datalist[$i]['id'] =$item['category_id'];
             $datalist[$i]['main'] =$data['code'];
-            $datalist[$i]['tags'] = ['<button class="btn sub" type="button" id="sub'.$item['category_id'].'"></button>'];
+//            $datalist[$i]['tags'] = ['<button class="btn sub" type="button" id="sub'.$item['category_id'].'"></button>'];
 
         }
 
