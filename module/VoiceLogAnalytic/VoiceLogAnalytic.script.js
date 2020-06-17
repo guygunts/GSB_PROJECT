@@ -220,7 +220,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, random_num 
                                 $.extend(true, {}, buttonCommon, {
                                     extend: 'pdfHtml5',
                                     orientation: 'landscape',
-                                    pageSize: 'A3',
+                                    pageSize: '4A0',
                                     className: 'float-right',
                                     customize: function (doc) {
                                         doc.defaultStyle = {
