@@ -32,9 +32,9 @@ function View(Request $request)
     $url = URL_API . '/geniespeech/grammar';
     $response = curlposttoken($url, $params, $token);
 //    PrintR($response);
-    if ($response['result'][0]['result'] == 200) {
+    if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
-        $recnums['pages'] = $response['result'][0]['page_num'];
+        $recnums['pages'] = $response['result'][0]['pagenum'];
         $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
         $recnums['recordsTotal'] = $response['result'][0]['recnum'];
 
