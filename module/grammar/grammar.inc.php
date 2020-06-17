@@ -435,8 +435,8 @@ function AddSentense(Request $request)
 
     }
 
-//    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
-    $data['project_id'] = 1;
+    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+//    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
 
@@ -675,7 +675,7 @@ function LoadCbo(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
-        'project_id' => 1,
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'page_id' => 1,
         'page_size'=> 100
@@ -722,7 +722,7 @@ function LoadCboSub(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $params = array(
-        'project_id' => 1,
+        'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'category_id' => $data['code'],
         'page_id' => 1,
