@@ -39,7 +39,7 @@ function View(Request $request)
 
         $columnslist = $response['columnsname'];
         $datas = $response['recs'];
-        $name = $response['report_name:'];
+        $name = $response['reportname'];
 
         $column[0]['className'] = 'text-center';
         $column[0]['title'] = 'No';
