@@ -188,6 +188,10 @@ me.LoadCboSub = function (val, menu, code, index) {
                         silent: true,
                         ignoreChildren: false
                     }]);
+                    $.each(data.item, function(i, result) {
+                        $('li#'+result.id).find('.btn-add').css('display','none')
+                    });
+
 
                     break;
                 case "FAIL":
