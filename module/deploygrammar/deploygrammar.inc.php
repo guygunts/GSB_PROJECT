@@ -32,7 +32,7 @@ function View(Request $request)
     $response = curlposttoken($url, $params, $token);
 
 
-    if ($response['result'] == 200) {
+    if ($response['result'][0]['code'] == 200) {
         $columnslist = $response['columnsname'];
         $datas = $response['recs'];
         $name = 'Deploy Grammar';
