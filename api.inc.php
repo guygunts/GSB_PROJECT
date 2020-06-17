@@ -203,7 +203,7 @@ function LoadCbo(Request $request)
     if ($response['result'][0]['code'] == 200) {
 
         /** @noinspection PhpUnusedLocalVariableInspection */
-        $datas = $response['result']['data'];
+        $datas = $response['recs'];
 
         $datalist = [];
         foreach ((array)$datas as $i => $item) {
