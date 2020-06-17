@@ -350,8 +350,8 @@ function Add(Request $request)
 
     }
 
-//    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
-    $data['project_id'] = 1;
+    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+//    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
 
@@ -391,8 +391,8 @@ function AddSub(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-//    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
-    $data['project_id'] = 1;
+    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+//    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
 //PrintR($data);
@@ -476,8 +476,8 @@ function EditSub(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-//    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
-    $data['project_id'] = 1;
+    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+//    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
 //PrintR($data);
@@ -605,8 +605,8 @@ function Del(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-    //    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
-    $data['project_id'] = 1;
+    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+//    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
     $data['intent_del'][0][$data['main']] = $data['code'];
@@ -644,8 +644,8 @@ function DelSub(Request $request)
 
     parse_str($request->getPost()->toString(), $data);
 
-    //    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
-    $data['project_id'] = 1;
+    $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
+//    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
     $data[$data['main']] = $data['code'];
