@@ -118,7 +118,7 @@ function View(Request $request)
             $responsesub = curlposttoken($url, $paramssub, $token);
 
 //            PrintR($responsesub);
-            if ($responsesub['result']['code'] == 200) {
+            if ($responsesub['result'][0]['code'] == 200) {
                 $columnsublist = $responsesub['columnsname'];
                 $datasub = $responsesub['recs'];
                 $t = 0;
@@ -787,12 +787,12 @@ function Enable(Request $request)
 
     $data['user_login'] = $user;
 
-    PrintR($data);
+//    PrintR($data);
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
-    PrintR($response);
+//    PrintR($response);
 
     if ($response['code'] == 200) {
         $result['success'] = 'COMPLETE';
