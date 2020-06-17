@@ -26,9 +26,14 @@ function View(Request $request)
     $response = curlposttoken($url, $params, $token);
 
 
-    if ($response['code'] == 200) {
-        $columnslist = $response['result']['header'];
-        $datas = $response['result']['data'];
+    if ($response['result'][0]['code'] == 200) {
+        $start = $data['start'];
+        $recnums['pages'] = $response['result'][0]['page_num'];
+        $recnums['recordsFiltered'] = $response['result'][0]['rec_num'];
+        $recnums['recordsTotal'] = $response['result'][0]['rec_num'];
+
+        $columnslist = $response['columnsname'];
+        $datas = $response['recs'];
 
         $column[0]['className'] = 'text-center';
         $column[0]['title'] = 'No';
@@ -55,7 +60,8 @@ function View(Request $request)
             $btn = '';
             $item['DT_RowId'] = 'row_' . MD5($item[$columns[1]['data']]);
             $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
-            $datalist[$i]['no'] = ($i + 1);
+            ++$start;
+            $datalist[$i]['no'] = $start;
 
             foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
@@ -81,6 +87,11 @@ function View(Request $request)
 
         $result['columns'] = $column;
         $result['data'] = $datalist;
+
+        $result['draw'] = ($data['draw']*1);
+        $result['recordsTotal'] = $recnums['recordsTotal'];
+        $result['recordsFiltered'] = $recnums['recordsTotal'];
+
         $result['success'] = 'COMPLETE';
 
     } else {
