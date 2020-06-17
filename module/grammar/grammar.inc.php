@@ -113,7 +113,11 @@ function View(Request $request)
                 'page_size' => $data['page_size']
             );
 
+            PrintR($paramssub);
+
             $responsesub = curlposttoken($url, $paramssub, $token);
+
+            PrintR($responsesub);
             if ($responsesub['code'] == 200) {
                 $columnsublist = $responsesub['result'];
                 $datasub = $responsesub['data'];
