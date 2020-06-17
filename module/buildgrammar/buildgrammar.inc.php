@@ -32,10 +32,10 @@ function View(Request $request)
     $url = URL_API . '/geniespeech/grammar';
     $response = curlposttoken($url, $params, $token);
 //    PrintR($response);
-    if ($response['code'] == 200) {
-        $columnslist = $response['result']['header'];
-        $recnums = $response['pagenum'];
-        $datas = $response['data'];
+    if ($response['result'][0]['result'] == 200) {
+        $columnslist = $response['columnsname'];
+        $recnums = $response['result'][0]['recnum'];
+        $datas = $response['recs'];
         $name = 'Upload Grammar';
 
         $status[0] = 'Upload Success';
