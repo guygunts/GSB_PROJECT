@@ -33,8 +33,13 @@ function View(Request $request)
     $response = curlposttoken($url, $params, $token);
 //    PrintR($response);
     if ($response['result'][0]['result'] == 200) {
+        $start = $data['start'];
+        $recnums['pages'] = $response['result'][0]['page_num'];
+        $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
+        $recnums['recordsTotal'] = $response['result'][0]['recnum'];
+
         $columnslist = $response['columnsname'];
-        $recnums = $response['result'][0]['recnum'];
+//        $recnums = $response['result'][0]['recnum'];
         $datas = $response['recs'];
         $name = 'Upload Grammar';
 
@@ -75,7 +80,8 @@ function View(Request $request)
 
 
             $datalist[$i]['DT_RowId'] = 'row_' . $item['project_id'] . '_' . strtotime($item['date_time']);
-            $datalist[$i]['no'] = ($i + 1);
+            ++$start;
+            $datalist[$i]['no'] = $start;
 
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'status') {
@@ -157,7 +163,11 @@ function View(Request $request)
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
         $result['data'] = $datalist;
-        $result['recnums'] = $recnums;
+
+        $result['draw'] = ($data['draw']*1);
+        $result['recordsTotal'] = $recnums['recordsTotal'];
+        $result['recordsFiltered'] = $recnums['recordsTotal'];
+
         $result['success'] = 'COMPLETE';
 
     } else {
