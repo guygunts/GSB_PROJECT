@@ -69,7 +69,7 @@ me.LoadDashBoard = function () {
                     gridTextColor: '#000'
 
                 });
-            };
+            }
 
             if (data.box3) {
                 $('#box3').css('display','');
@@ -110,7 +110,7 @@ me.LoadDashBoard = function () {
                 // });
 
 
-            };
+            }
 
 			if (data.box4.length > 0) {
                 $('#box4').css('display','');

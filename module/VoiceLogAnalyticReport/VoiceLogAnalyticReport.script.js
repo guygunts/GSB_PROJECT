@@ -153,7 +153,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             this.footer().innerHTML = footer_data[i];
                         });
                     }
-                };
+                }
 
 
                     me.table.columns.adjust().draw('true');

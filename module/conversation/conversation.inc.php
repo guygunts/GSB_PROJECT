@@ -22,7 +22,7 @@ function View(Request $request)
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'start_date' => $data['start_date'],
         'end_date' => $data['end_date'],
-        'page_id' => ($data['page_id']?$data['page_id']:1),
+        'page_id' => ($data['page_id'] ? $data['page_id'] : 1),
         'page_size' => $data['page_size'],
         'text_search' => $data['text_search']
     );
@@ -104,7 +104,7 @@ function View(Request $request)
         $result['columns'] = $column;
         $result['data'] = $datalist;
 
-        $result['draw'] = ($data['draw']*1);
+        $result['draw'] = ($data['draw'] * 1);
         $result['recordsTotal'] = $recnums['recordsTotal'];
         $result['recordsFiltered'] = $recnums['recordsTotal'];
         $result['success'] = 'COMPLETE';
@@ -296,7 +296,7 @@ function ViewVOICE(Request $request)
         $result['columns'] = $column;
         $result['data'] = $datalist;
 
-        $result['draw'] = ($data['draw']*1);
+        $result['draw'] = ($data['draw'] * 1);
         $result['recordsTotal'] = $recnums['recordsTotal'];
         $result['recordsFiltered'] = $recnums['recordsTotal'];
         $result['success'] = 'COMPLETE';
