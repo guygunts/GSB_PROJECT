@@ -738,6 +738,8 @@ function LoadCboSub(Request $request)
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlpostmain($url, $params);
 
+    PrintR($response);
+
     if ($response['data']) {
 
         /** @noinspection PhpUnusedLocalVariableInspection */
