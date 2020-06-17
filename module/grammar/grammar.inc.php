@@ -44,14 +44,14 @@ function View(Request $request)
     $response = curlposttoken($url, $params, $token);
 //    PrintR($response);
 
-    if ($response['code'] == 200) {
+    if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
-        $recnums['pages'] = $response['page_num'];
-        $recnums['recordsFiltered'] = $response['rec_num'];
-        $recnums['recordsTotal'] = $response['rec_num'];
+        $recnums['pages'] = $response['result'][0]['page_num'];
+        $recnums['recordsFiltered'] = $response['result'][0]['rec_num'];
+        $recnums['recordsTotal'] = $response['result'][0]['rec_num'];
 
-        $columnslist = $response['result'];
-        $datas = $response['data'];
+        $columnslist = $response['columnsname'];
+        $datas = $response['recs'];
 
         $column[0]['className'] = 'details-control';
         $column[0]['title'] = '';
@@ -62,9 +62,9 @@ function View(Request $request)
         $column[1]['title'] = 'No';
         $column[1]['data'] = 'no';
 
-        $columnslist[0]['column_field'] = 'user_question';
-        $columnslist[1]['column_field'] = 'intent_tag';
-        $columnslist[2]['column_field'] = 'active';
+//        $columnslist[0]['column_field'] = 'user_question';
+//        $columnslist[1]['column_field'] = 'intent_tag';
+//        $columnslist[2]['column_field'] = 'active';
 
         $m = 2;
         foreach ((array)$columnslist as $i => $item) {
