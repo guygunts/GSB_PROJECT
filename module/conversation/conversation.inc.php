@@ -239,9 +239,9 @@ function ViewVOICE(Request $request)
         $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
         $recnums['recordsTotal'] = $response['result'][0]['recnum'];
 
-        $columnslist = $response['columns_name'];
+        $columnslist = $response['columnsname'];
         $datas = $response['recs'];
-        $name = $response['report_name'];
+        $name = $response['reportname'];
 
         $column[0]['className'] = 'text-center';
         $column[0]['title'] = 'No';
