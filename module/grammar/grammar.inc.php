@@ -403,6 +403,8 @@ function AddSub(Request $request)
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
+    PrintR($response);
+
     if ($response['code'] == 200) {
         $result['success'] = 'COMPLETE';
     } else {
