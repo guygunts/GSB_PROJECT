@@ -729,7 +729,7 @@ function LoadCboSub(Request $request)
         'page_size'=> 100
     );
 
-
+    PrintR($params);
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlpostmain($url, $params);
