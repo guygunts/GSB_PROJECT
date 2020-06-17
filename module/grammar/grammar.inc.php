@@ -729,16 +729,15 @@ function LoadCboSub(Request $request)
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'category_id' => $data['code'],
-        'page_id' => 1,
-        'page_size'=> 100
+        'text_search' => ""
     );
 
-    PrintR($params);
+//    PrintR($params);
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlpostmain($url, $params);
 
-    PrintR($response);
+//    PrintR($response);
 
     if ($response['data']) {
 
