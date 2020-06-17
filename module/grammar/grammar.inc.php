@@ -2,19 +2,21 @@
 require_once "../../service/service.php";
 require_once "../../service/vendor.php";
 
-function ShowActive($code, $status){
-    if($status == 0){
-        return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="'.$code.'" onclick="me.Enable(this)">Inactive</button>';
-    }elseif($status == 1){
-        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="'.$code.'" onclick="me.Enable(this)">Active</button>';
+function ShowActive($code, $status)
+{
+    if ($status == 0) {
+        return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="' . $code . '" onclick="me.Enable(this)">Inactive</button>';
+    } elseif ($status == 1) {
+        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="' . $code . '" onclick="me.Enable(this)">Active</button>';
     }
 }
 
-function ShowActiveSub($code, $subcode, $status){
-    if($status == 0){
-        return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="'.$code.'" data-subcode="'.$subcode.'" onclick="me.EnableSub(this)">Inactive</button>';
-    }elseif($status == 1){
-        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="'.$code.'" data-subcode="'.$subcode.'" onclick="me.EnableSub(this)">Active</button>';
+function ShowActiveSub($code, $subcode, $status)
+{
+    if ($status == 0) {
+        return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="' . $code . '" data-subcode="' . $subcode . '" onclick="me.EnableSub(this)">Inactive</button>';
+    } elseif ($status == 1) {
+        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="' . $code . '" data-subcode="' . $subcode . '" onclick="me.EnableSub(this)">Active</button>';
     }
 }
 
@@ -68,7 +70,7 @@ function View(Request $request)
 
         $m = 2;
         foreach ((array)$columnslist as $i => $item) {
-            $column[$m]['className'] = 'text-' . ($item['column_align']?$item['column_align']:'center');
+            $column[$m]['className'] = 'text-' . ($item['column_align'] ? $item['column_align'] : 'center');
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_data'];
 
@@ -80,9 +82,9 @@ function View(Request $request)
         $column[$m]['title'] = '';
         $column[$m]['data'] = 'btn';
 
-        $column[($m+1)]['className'] = 'text-center';
-        $column[($m+1)]['title'] = 'Sentence';
-        $column[($m+1)]['data'] = 'sentence';
+        $column[($m + 1)]['className'] = 'text-center';
+        $column[($m + 1)]['title'] = 'Sentence';
+        $column[($m + 1)]['data'] = 'sentence';
 
         $permiss = LoadPermission();
 
@@ -96,9 +98,9 @@ function View(Request $request)
             $datalist[$i]['no'] = $start;
 
             foreach ((array)$columns as $v => $value) {
-                if($value['data'] == 'active'){
-                    $datalist[$i][$value['data']] = ShowActive($item['intent_id'],$item[$value['data']]);
-                }else{
+                if ($value['data'] == 'active') {
+                    $datalist[$i][$value['data']] = ShowActive($item['intent_id'], $item[$value['data']]);
+                } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
@@ -133,9 +135,9 @@ function View(Request $request)
                     $btnsubsentence = '';
 
                     foreach ((array)$columnssub as $n => $valuesub) {
-                        if($valuesub['data'] == 'active'){
-                            $datalistsub[$z][$valuesub['data']] = ShowActiveSub($item['intent_id'],$itemsub['sub_intent_id'],$itemsub[$valuesub['data']]);
-                        }else{
+                        if ($valuesub['data'] == 'active') {
+                            $datalistsub[$z][$valuesub['data']] = ShowActiveSub($item['intent_id'], $itemsub['sub_intent_id'], $itemsub[$valuesub['data']]);
+                        } else {
                             $datalistsub[$z][$valuesub['data']] = $itemsub[$valuesub['data']];
                         }
 
@@ -163,7 +165,6 @@ function View(Request $request)
             }
 
 
-
             $datalist[$i]['variation'] = json_encode($datalistsub, JSON_HEX_APOS);
 
 
@@ -189,7 +190,7 @@ function View(Request $request)
         $result['columns'] = $column;
         $result['data'] = $datalist;
 
-        $result['draw'] = ($data['draw']*1);
+        $result['draw'] = ($data['draw'] * 1);
         $result['recordsTotal'] = $recnums['recordsTotal'];
         $result['recordsFiltered'] = $recnums['recordsTotal'];
 
@@ -234,12 +235,12 @@ function ViewSub(Request $request)
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
 
-PrintR($response);
+    PrintR($response);
     if ($response['code'] == 200) {
         $start = $data['start'];
         $recnums['pages'] = $response['page_num'];
-        $recnums['recordsFiltered'] = $response['rec_num']?$response['rec_num']:0;
-        $recnums['recordsTotal'] = $response['rec_num']?$response['rec_num']:0;
+        $recnums['recordsFiltered'] = $response['rec_num'] ? $response['rec_num'] : 0;
+        $recnums['recordsTotal'] = $response['rec_num'] ? $response['rec_num'] : 0;
 
         $columnslist = $response['result'];
         $datas = $response['data'];
@@ -259,7 +260,7 @@ PrintR($response);
 
         $m = 2;
         foreach ((array)$columnslist as $i => $item) {
-            $column[$m]['className'] = 'text-' . ($item['column_align']?$item['column_align']:'center');
+            $column[$m]['className'] = 'text-' . ($item['column_align'] ? $item['column_align'] : 'center');
             $column[$m]['title'] = $item['column_name'];
             $column[$m]['data'] = $item['column_data'];
 
@@ -284,15 +285,14 @@ PrintR($response);
             $datalist[$i]['no'] = $start;
 
             foreach ((array)$columns as $v => $value) {
-                if($value['data'] == 'active'){
-                    $datalist[$i][$value['data']] = ShowActive($item['intent_id'],$item[$value['data']]);
-                }else{
+                if ($value['data'] == 'active') {
+                    $datalist[$i][$value['data']] = ShowActive($item['intent_id'], $item[$value['data']]);
+                } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
 
 
             }
-
 
 
             $dataattr = array();
@@ -317,7 +317,7 @@ PrintR($response);
         $result['columns'] = $column;
         $result['data'] = $datalist;
 
-        $result['draw'] = ($data['draw']*1);
+        $result['draw'] = ($data['draw'] * 1);
         $result['recordsTotal'] = $recnums['recordsTotal'];
         $result['recordsFiltered'] = $recnums['recordsTotal'];
 
@@ -687,9 +687,8 @@ function LoadCbo(Request $request)
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'page_id' => 1,
-        'page_size'=> 100
+        'page_size' => 100
     );
-
 
 
     $url = URL_API . '/geniespeech/adminmenu';
@@ -702,9 +701,9 @@ function LoadCbo(Request $request)
 
         $datalist = [];
         foreach ((array)$datas as $i => $item) {
-            $datalist[$i]['text'] =$item[$data['name']];
-            $datalist[$i]['id'] =$item[$data['code']];
-            $datalist[$i]['active'] =$item['active'];
+            $datalist[$i]['text'] = $item[$data['name']];
+            $datalist[$i]['id'] = $item[$data['code']];
+            $datalist[$i]['active'] = $item['active'];
             $datalist[$i]['checkable'] = false;
             $datalist[$i]['lazyLoad'] = true;
 //            $datalist[$i]['tags'] = ['test'];
@@ -751,10 +750,10 @@ function LoadCboSub(Request $request)
 
         $datalist = [];
         foreach ((array)$datas as $i => $item) {
-            $datalist[$i]['text'] =$item['category_name'];
-            $datalist[$i]['id'] =$item['category_id'];
-            $datalist[$i]['active'] =$item['active'];
-            $datalist[$i]['main'] =$data['code'];
+            $datalist[$i]['text'] = $item['category_name'];
+            $datalist[$i]['id'] = $item['category_id'];
+            $datalist[$i]['active'] = $item['active'];
+            $datalist[$i]['main'] = $data['code'];
 //            $datalist[$i]['tags'] = ['<button class="btn sub" type="button" id="sub'.$item['category_id'].'"></button>'];
 
         }
@@ -822,7 +821,6 @@ function EnableSub(Request $request)
     parse_str($request->getPost()->toString(), $data);
 
     $data['user_login'] = $user;
-
 
 
     $url = URL_API . '/geniespeech/adminmenu';

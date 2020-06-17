@@ -72,7 +72,7 @@ me.LoadCbo = function (val, menu, code, name) {
                             //     });
                             // }
 
-                             if (node.level == 1) {
+                            if (node.level == 1) {
                                 $('#frm_addcategory input[name="category_id"]').val('');
                                 $('#frm_addcategory input[name="parentcategory_id"]').val(node.id);
                                 $('#add-modal-form').modal({
@@ -213,8 +213,8 @@ me.LoadCboSub = function (val, menu, code, index) {
                         silent: true,
                         ignoreChildren: false
                     }]);
-                    $.each(data.item, function(i, result) {
-                        $('li#'+result.id).find('.btn-add').css('display','none')
+                    $.each(data.item, function (i, result) {
+                        $('li#' + result.id).find('.btn-add').css('display', 'none')
                     });
 
 
@@ -557,8 +557,8 @@ me.LoadDataSub = function (menu, category_id, intent_id, subintent_id, page_id, 
                                         me.loading = true;
                                         $('#tbViewSub_wrapper').css('display', 'none');
                                         $('#tbView_wrapper').css('display', '');
-                                        $('#btnadd').css('display','');
-                                        $('#btnaddsentense').css('display','none');
+                                        $('#btnadd').css('display', '');
+                                        $('#btnaddsentense').css('display', 'none');
                                     }
                                 }
                             ],
@@ -587,7 +587,7 @@ me.LoadDataSub = function (menu, category_id, intent_id, subintent_id, page_id, 
                                     d.page_size = 30;
                                     d.category_id = me.category_id;
                                     d.intent_id = me.intent_id;
-                                    d.subintent_id = (me.subintent_id?me.subintent_id:0);
+                                    d.subintent_id = (me.subintent_id ? me.subintent_id : 0);
                                     d.menu_action = 'getsentencebyintent';
                                 }
                             }
@@ -657,8 +657,8 @@ me.LoadDataSub_ = function (menu, category_id, intent_id, subintent_id, page_id,
                                             me.loading = true;
                                             $('#tbViewSub_wrapper').css('display', 'none');
                                             $('#tbView_wrapper').css('display', '');
-                                            $('#btnadd').css('display','');
-                                            $('#btnaddsentense').css('display','none');
+                                            $('#btnadd').css('display', '');
+                                            $('#btnaddsentense').css('display', 'none');
                                         }
                                     }
                                 ],
@@ -996,7 +996,7 @@ me.EnableSub = function (e) {
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                data: {intent_id: code, active: active, subintent_id: subcode , menu_action: 'updateIntentActiveStatus'},
+                data: {intent_id: code, active: active, subintent_id: subcode, menu_action: 'updateIntentActiveStatus'},
                 success: function (data) {
                     switch (data.success) {
                         case 'COMPLETE':
@@ -1234,9 +1234,9 @@ me.LoadSentence = function (e) {
     // var attr = JSON.parse($(e).attr('data-item'));
     me.intent_id = intent_id;
     me.subintent_id = subintent_id;
-    me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, (subintent_id?subintent_id:0), 1, 30);
-    $('#btnadd').css('display','none');
-    $('#btnaddsentense').css('display','');
+    me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, (subintent_id ? subintent_id : 0), 1, 30);
+    $('#btnadd').css('display', 'none');
+    $('#btnaddsentense').css('display', '');
 };
 /*================================================*\
   :: DEFAULT ::
