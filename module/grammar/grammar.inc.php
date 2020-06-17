@@ -359,8 +359,8 @@ function Add(Request $request)
 //    unset($data['concept_id']);
     unset($data['sub']);
 
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
 
     $url = URL_API . '/geniespeech/adminmenu';
@@ -397,8 +397,8 @@ function AddSub(Request $request)
 //    $data['project_id'] = 1;
     $data['user_login'] = $user;
 
-PrintR($data);
-exit;
+//PrintR($data);
+//exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
