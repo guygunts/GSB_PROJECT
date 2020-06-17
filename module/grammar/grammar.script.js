@@ -116,7 +116,7 @@ me.LoadCbo = function (val, menu, code, name) {
                             console.log(event)
                             console.log(node)
                             if (node.level == 1) {
-                                alertify.confirm("Do you want Delete.",
+                                alertify.confirm("Do you want Delete Category.",
                                     function () {
                                         $.ajax({
                                             url: me.url + '-DelSub',
@@ -149,15 +149,38 @@ me.LoadCbo = function (val, menu, code, name) {
                                         alertify.error('Cancel Delete');
                                     });
                             } else if (node.level == 2) {
-                                $('#frm_editcategory input[name="category_name"]').val(node.text);
-                                $('#frm_editcategory input[name="category_id"]').val(node.id);
-                                $('#frm_editcategory input[name="active"]').val(node.active);
-                                $('#edit-modal-form').modal({
-                                    backdrop: 'static',
-                                    keyboard: true,
-                                    show: true,
-                                    handleUpdate: true
-                                });
+                                alertify.confirm("Do you want Delete Sub Category.",
+                                    function () {
+                                        $.ajax({
+                                            url: me.url + '-DelSub',
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            cache: false,
+                                            data: {
+                                                'code': node.main,
+                                                'menu_action': me.action.del,
+                                                'main': me.action.main,
+                                                'category_name': node.text,
+                                                'parentcategory_id': node.id,
+                                                'active': node.active
+                                            },
+                                            success: function (data) {
+                                                switch (data.success) {
+                                                    case 'COMPLETE':
+                                                        $('.modal').modal('hide');
+                                                        alertify.success(data.msg);
+                                                        me.LoadCbo('tree', 'getcategory', 'category_id', 'category_name');
+                                                        break;
+                                                    default:
+                                                        alertify.error(data.msg);
+                                                        break;
+                                                }
+                                            }
+                                        });
+                                    },
+                                    function () {
+                                        alertify.error('Cancel Delete');
+                                    });
 
                             }
                         }
