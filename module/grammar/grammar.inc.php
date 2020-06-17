@@ -359,14 +359,14 @@ function Add(Request $request)
 //    unset($data['concept_id']);
     unset($data['sub']);
 
-    PrintR($data);
-    exit;
+//    PrintR($data);
+//    exit;
 
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
 
-//    PrintR($response);
+    PrintR($response);
 
     if ($response['code'] == 200) {
         $result['success'] = 'COMPLETE';
