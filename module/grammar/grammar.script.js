@@ -157,11 +157,11 @@ me.LoadCbo = function (val, menu, code, name) {
                                             dataType: 'json',
                                             cache: false,
                                             data: {
-                                                'code': node.main,
+                                                'code': node.id,
                                                 'menu_action': me.action.del,
                                                 'main': me.action.main,
                                                 'category_name': node.text,
-                                                'parentcategory_id': node.id,
+                                                'parentcategory_id': node.main,
                                                 'active': node.active
                                             },
                                             success: function (data) {
