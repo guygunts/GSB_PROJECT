@@ -33,7 +33,7 @@ function View(Request $request)
 
     if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
-        $columnslist = $response['columns_name'];
+        $columnslist = $response['columnsname'];
 
         $recnums['pages'] = $response['result'][0]['pagenum'];
         $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
@@ -41,7 +41,7 @@ function View(Request $request)
 
 
         $datas = (array)$response['recs'];
-        $name = $response['report_name'];
+        $name = $response['reportname'];
 
         $column[0]['className'] = 'text-center';
         $column[0]['title'] = 'No';
