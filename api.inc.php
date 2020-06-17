@@ -200,7 +200,7 @@ function LoadCbo(Request $request)
     $response = curlposttoken($url, $params, $token);
 
 
-    if ($response['code'] == 200) {
+    if ($response['result'][0]['code'] == 200) {
 
         /** @noinspection PhpUnusedLocalVariableInspection */
         $datas = $response['result']['data'];
