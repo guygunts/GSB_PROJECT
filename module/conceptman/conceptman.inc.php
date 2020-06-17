@@ -20,7 +20,7 @@ function View(Request $request)
         'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
         'menu_action' => $data['menu_action'],
         'page_id' => $data['page_id'],
-        'page_size' => 100000,
+        'page_size' => 25,
     );
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
