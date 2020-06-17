@@ -38,7 +38,7 @@ function View(Request $request)
         $recnums['recordsFiltered'] = $response['result'][0]['recnum'];
         $recnums['recordsTotal'] = $response['result'][0]['recnum'];
 
-        $columnslist = $response['columns_name'];
+        $columnslist = $response['columnsname'];
         $datas = $response['recs'];
         $name = $response['report_name:'];
 
