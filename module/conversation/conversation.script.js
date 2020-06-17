@@ -298,7 +298,7 @@ me.LoadDataCHNN = function(menu, page_id, page_size, start, stop, readd=''){
 										customize: function ( doc ) {
 											doc.defaultStyle = {
 												font:'THSarabunNew',
-												fontSize:16
+												fontSize:12
 											};
 										}
 									},
