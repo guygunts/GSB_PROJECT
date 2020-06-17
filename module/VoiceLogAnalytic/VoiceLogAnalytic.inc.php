@@ -116,7 +116,8 @@ function View(Request $request)
 
             $item['DT_RowId'] = 'row_' . MD5($item[$columns[2]['data']]);
             $datalist[$i]['DT_RowId'] = $item['DT_RowId'];
-            $datalist[$i]['no'] = ($i + 1);
+            ++$start;
+            $datalist[$i]['no'] = $start;
 
 
             foreach ((array)$columns as $v => $value) {
