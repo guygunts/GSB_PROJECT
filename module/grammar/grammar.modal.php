@@ -220,9 +220,9 @@
             <div class="modal-footer">
 
                 <?php if (isset($permiss)) {
-                    if ($permiss[1]) { ?>
-                        <button type="button" id="btn_add" class="btn_add btn btn-danger btn-rounded btn-sm"
-                                onclick="me.AddSentense();" title="Add"><i class="fa fa-plus"></i> Add
+                    if ($permiss[2]) { ?>
+                        <button type="button" id="btn_edit" class="btn_edit btn btn-danger btn-rounded btn-sm"
+                                onclick="me.EditSentense();" title="Edit"><i class="fa fa-save"></i> Edit
                         </button>
                     <?php }
                 }
