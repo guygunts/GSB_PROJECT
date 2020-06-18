@@ -453,12 +453,14 @@ function AddSentense(Request $request)
 //    unset($data['concept_id']);
     unset($data['sub']);
 
-    PrintR($data);
+//    PrintR($data);
 //    exit;
 
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
+
+    PrintR($response);
 
     if ($response['code'] == 200) {
         $result['success'] = 'COMPLETE';
