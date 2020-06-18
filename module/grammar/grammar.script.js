@@ -1242,6 +1242,11 @@ me.LoadSub = function (e) {
     var attr = JSON.parse($(e).attr('data-item'));
     console.log(attr);
     var result = [];
+    if(attr.sentence_type_name == 'Voice'){
+        attr.sentence_type_name = 2;
+    }else if(attr.sentence_type_name == 'Text'){
+        attr.sentence_type_name = 1;
+    }
 
     for (var i in attr)
         // if(i == 'sentence_type_name'){
