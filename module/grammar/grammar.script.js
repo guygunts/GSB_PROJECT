@@ -1258,7 +1258,7 @@ me.LoadSub = function (e) {
     // $('#frm_editsentenseedit input[name="category_id"]').val(me.category_id);
     // $('#frm_editsentenseedit input[name="intent_id"]').val(attr.intent_id);
     // $('#frm_editsentenseedit input[name="menu_action"]').val(me.action.edit);
-
+console.log(result);
     $('.btn_edit').show();
     $('.btn_add').hide();
 
