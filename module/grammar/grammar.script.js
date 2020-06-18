@@ -47,7 +47,7 @@ me.LoadCbo = function (val, menu, code, name) {
                             // console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
                             if (data.level == 1) {
                                 me.category_id = data.id;
-                                me.subintent_id = 0;
+                                // me.subintent_id = 0;
                                 if (!data.nodes) {
                                     me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
                                 } else {
