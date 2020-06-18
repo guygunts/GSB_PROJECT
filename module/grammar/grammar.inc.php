@@ -230,20 +230,20 @@ function ViewSub(Request $request)
         'text_search' => $data['text_search']
     );
 
-    PrintR($params);
+//    PrintR($params);
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $params, $token);
 
-    PrintR($response);
-    if ($response['code'] == 200) {
+//    PrintR($response);
+    if ($response['result'][0]['code'] == 200) {
         $start = $data['start'];
-        $recnums['pages'] = $response['page_num'];
-        $recnums['recordsFiltered'] = $response['rec_num'] ? $response['rec_num'] : 0;
-        $recnums['recordsTotal'] = $response['rec_num'] ? $response['rec_num'] : 0;
+        $recnums['pages'] = $response['result'][0]['pagenum'];
+        $recnums['recordsFiltered'] = $response['result'][0]['recnum'] ? $response['result'][0]['recnum'] : 0;
+        $recnums['recordsTotal'] = $response['result'][0]['recnum'] ? $response['result'][0]['recnum'] : 0;
 
-        $columnslist = $response['result'];
-        $datas = $response['data'];
+        $columnslist = $response['columnsname'];
+        $datas = $response['recs'];
 
         $column[0]['className'] = 'details-control';
         $column[0]['title'] = '';
@@ -261,11 +261,11 @@ function ViewSub(Request $request)
         $m = 2;
         foreach ((array)$columnslist as $i => $item) {
             $column[$m]['className'] = 'text-' . ($item['column_align'] ? $item['column_align'] : 'center');
-            $column[$m]['title'] = $item['column_name'];
-            $column[$m]['data'] = $item['column_data'];
+            $column[$m]['title'] = $item['columnname'];
+            $column[$m]['data'] = $item['columndata'];
 
-            $columns[$m]['data'] = $item['column_data'];
-            $columns[$m]['type'] = $item['column_type'];
+            $columns[$m]['data'] = $item['columndata'];
+            $columns[$m]['type'] = $item['columntype'];
             ++$m;
         }
         $column[$m]['className'] = 'text-center';
