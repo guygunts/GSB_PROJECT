@@ -1244,6 +1244,8 @@ me.LoadSentence = function (e) {
     me.subintent_id = subintent_id;
     if(Object.entries(me.tablesentence).length > 0){
         me.tablesentence.page.len(25).draw();
+        $('#tbViewSub_wrapper').css('display', '');
+        $('#tbView_wrapper').css('display', 'none');
     }else{
         me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, (subintent_id ? subintent_id : 0), 1, 30);
     }
