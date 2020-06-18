@@ -245,20 +245,20 @@ function ViewSub(Request $request)
         $columnslist = $response['columnsname'];
         $datas = $response['recs'];
 
-        $column[0]['className'] = 'details-control';
-        $column[0]['title'] = '';
-        $column[0]['data'] = null;
-        $column[0]['defaultContent'] = '';
+//        $column[0]['className'] = 'details-control';
+//        $column[0]['title'] = '';
+//        $column[0]['data'] = null;
+//        $column[0]['defaultContent'] = '';
 
-        $column[1]['className'] = 'text-center';
-        $column[1]['title'] = 'No';
-        $column[1]['data'] = 'no';
+        $column[0]['className'] = 'text-center';
+        $column[0]['title'] = 'No';
+        $column[0]['data'] = 'no';
 
 //        $columnslist[0]['column_field'] = 'user_question';
 //        $columnslist[1]['column_field'] = 'intent_tag';
 //        $columnslist[2]['column_field'] = 'active';
 
-        $m = 2;
+        $m = 1;
         foreach ((array)$columnslist as $i => $item) {
             $column[$m]['className'] = 'text-' . ($item['column_align'] ? $item['column_align'] : 'center');
             $column[$m]['title'] = $item['columnname'];
@@ -286,7 +286,7 @@ function ViewSub(Request $request)
 
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'active') {
-                    $datalist[$i][$value['data']] = ShowActive($item['intent_id'], $item[$value['data']]);
+                    $datalist[$i][$value['data']] = ShowActiveSub($item['sentence_id'], $item[$value['data']]);
                 } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
@@ -300,12 +300,12 @@ function ViewSub(Request $request)
 //            $dataattr[$i]['variation'] = json_encode($datasubattr,JSON_FORCE_OBJECT);
 
             if ($permiss[2]) {
-                $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
-                $btnsuntence .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSentence(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                $btn .= '<button data-code="' . $item['sentence_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
+                $btnsuntence .= '<button data-code="' . $item['sentence_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSentence(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
 
             }
             if ($permiss[3]) {
-                $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
+                $btn .= '<button data-code="' . $item['sentence_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Del(this)"  type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> ' . $permiss[3]['name'] . '</button>';
             }
 
             $datalist[$i]['btn'] = $btn;
