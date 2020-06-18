@@ -1236,6 +1236,36 @@ me.Load = function (e) {
 
 };
 
+me.LoadSub = function (e) {
+    me.ClearData();
+    var code = $(e).attr('data-code');
+    var attr = JSON.parse($(e).attr('data-item'));
+    console.log(attr);
+    var result = [];
+
+    for (var i in attr)
+        result.push({name: i, value: attr [i]});
+
+
+    // $('#frm_editsentenseedit input[name="code"]').val(code);
+    // $('#frm_editsentenseedit input[name="category_id"]').val(me.category_id);
+    // $('#frm_editsentenseedit input[name="intent_id"]').val(attr.intent_id);
+    // $('#frm_editsentenseedit input[name="menu_action"]').val(me.action.edit);
+
+    $('.btn_edit').show();
+    $('.btn_add').hide();
+
+    ft.PutFormID('frm_editsentenseedit', result);
+    $('#frm_editsentenseedit input[name="category_id"]').val(me.category_id);
+    $('#frm_editsentenseedit input[name="intent_id"]').val(me.intent_id);
+    $('#frm_editsentenseedit input[name="subintent_id"]').val(me.subintent_id);
+    $('#frm_editsentenseedit input[type="checkbox"]').val(1);
+    $('#frm_editsentenseedit input[type="checkbox"]').iCheck('check');
+    $('#editsentense-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
+
+
+};
+
 me.Del = function (e) {
     var code = $(e).attr('data-code');
     var attr = JSON.parse($(e).attr('data-item'));
