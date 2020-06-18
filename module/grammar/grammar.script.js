@@ -47,6 +47,7 @@ me.LoadCbo = function (val, menu, code, name) {
                             // console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
                             if (data.level == 1) {
                                 me.category_id = data.id;
+                                me.subintent_id = 0;
                                 if (!data.nodes) {
                                     me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
                                 } else {
@@ -55,7 +56,9 @@ me.LoadCbo = function (val, menu, code, name) {
                                 }
                                 me.LoadData(me.action.menu, data.id, 1, 30);
                             } else if (data.level == 2) {
-
+                                me.category_id = data.main;
+                                me.subintent_id = data.id
+                                me.LoadData(me.action.menu, data.id, 1, 30);
                             }
 
                         },
@@ -328,6 +331,10 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                             $('#' + rowData[0].name.replace(' ', '-')).DataTable().destroy();
                         } else {
                             // Open this row
+
+                            if(rowData[0]){
+
+
                             row.child(me.format(rowData[0])).show();
                             var id = rowData[0].name.replace(' ', '-');
 
@@ -357,6 +364,7 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
 
                             tr.addClass('shown');
                             me.tablesub.columns.adjust().draw('true');
+                            }
                         }
                     });
                     break;
