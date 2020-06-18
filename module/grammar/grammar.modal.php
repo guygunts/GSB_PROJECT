@@ -184,19 +184,19 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="sentence_origin" class="control-label">Sentence Text</label>
-                                    <input id="sentence_origin" name="sentence_origin" type="text" required="required"
+                                    <input id="sentence_text_origin" name="sentence_origin" type="text" required="required"
                                            maxlength="100"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="sentence_process" class="control-label">Sentence Process</label>
-                                    <input id="sentence_process" name="sentence_process" type="text" required="required"
+                                    <input id="sentence_text_process" name="sentence_process" type="text" required="required"
                                            maxlength="100"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="type" class="control-label">Sentence Type</label>
-                                    <select id="type" name="type" class="select form-control lang" required="required">
+                                    <select id="sentence_type_name" name="type" class="select form-control lang" required="required">
                                         <option value="1" selected>Text</option>
                                         <option value="2">Voice</option>
                                     </select>

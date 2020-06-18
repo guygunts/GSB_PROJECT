@@ -1244,6 +1244,13 @@ me.LoadSub = function (e) {
     var result = [];
 
     for (var i in attr)
+        if(i == 'sentence_type_name'){
+            if(attr [i] == 'Voice'){
+                attr [i] = 2;
+            }else if(attr [i] == 'Text'){
+                attr [i] = 1;
+            }
+        }
         result.push({name: i, value: attr [i]});
 
 
