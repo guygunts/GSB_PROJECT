@@ -286,7 +286,7 @@ function ViewSub(Request $request)
 
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'active') {
-                    $datalist[$i][$value['data']] = ShowActiveSub($item['sentence_id'], $item[$value['data']]);
+                    $datalist[$i][$value['data']] = ShowActive($item['sentence_id'], $item[$value['data']]);
                 } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
