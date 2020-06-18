@@ -1242,8 +1242,11 @@ me.LoadSentence = function (e) {
     // var attr = JSON.parse($(e).attr('data-item'));
     me.intent_id = intent_id;
     me.subintent_id = subintent_id;
-    me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, (subintent_id ? subintent_id : 0), 1, 30);
-    me.tablesentence.page.len(25).draw();
+    if(Object.entries(me.tablesentence).length > 0){
+        me.tablesentence.page.len(25).draw();
+    }else{
+        me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, (subintent_id ? subintent_id : 0), 1, 30);
+    }
     $('#btnadd').css('display', 'none');
     $('#btnaddsentense').css('display', '');
 };
