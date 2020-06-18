@@ -1243,6 +1243,7 @@ me.LoadSentence = function (e) {
     me.intent_id = intent_id;
     me.subintent_id = subintent_id;
     me.LoadDataSub('getsentencebyintent', me.category_id, me.intent_id, (subintent_id ? subintent_id : 0), 1, 30);
+    me.tablesentence.draw();
     $('#btnadd').css('display', 'none');
     $('#btnaddsentense').css('display', '');
 };
