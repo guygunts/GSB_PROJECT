@@ -56,9 +56,9 @@ me.LoadCbo = function (val, menu, code, name) {
                                 }
                                 me.LoadData(me.action.menu, data.id, 1, 30);
                             } else if (data.level == 2) {
-                                me.category_id = data.main;
-                                me.subintent_id = data.id
-                                me.LoadData(me.action.menu, data.id, 1, 30);
+                                // me.category_id = data.main;
+                                // me.subintent_id = data.id
+                                // me.LoadData(me.action.menu, data.id, 1, 30);
                             }
 
                         },
