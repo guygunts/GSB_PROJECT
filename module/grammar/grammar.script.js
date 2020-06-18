@@ -332,7 +332,7 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                         } else {
                             // Open this row
                             console.log(rowData);
-                            if(rowData[0]){
+                            if(rowData){
 
 
                             row.child(me.format(rowData[0])).show();
