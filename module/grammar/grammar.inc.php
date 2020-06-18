@@ -11,6 +11,15 @@ function ShowActive($code, $status)
     }
 }
 
+function ShowActiveSentent($code, $status)
+{
+    if ($status == 0) {
+        return '<button type="button" class="btn btn-default btn-xs" data-type="1" data-code="' . $code . '" onclick="me.EnableSentent(this)">Inactive</button>';
+    } elseif ($status == 1) {
+        return '<button type="button" class="btn btn-warning btn-xs" data-type="0" data-code="' . $code . '" onclick="me.EnableSentent(this)">Active</button>';
+    }
+}
+
 function ShowActiveSub($code, $subcode, $status)
 {
     if ($status == 0) {
@@ -286,7 +295,7 @@ function ViewSub(Request $request)
 
             foreach ((array)$columns as $v => $value) {
                 if ($value['data'] == 'active') {
-                    $datalist[$i][$value['data']] = ShowActive($item['sentence_id'], $item[$value['data']]);
+                    $datalist[$i][$value['data']] = ShowActiveSentent($item['sentence_id'], $item[$value['data']]);
                 } else {
                     $datalist[$i][$value['data']] = $item[$value['data']];
                 }
