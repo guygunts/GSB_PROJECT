@@ -736,12 +736,12 @@ function LoadCboSub(Request $request)
         'text_search' => ""
     );
 
-//    PrintR($params);
+    PrintR($params);
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlpostmain($url, $params);
 
-//    PrintR($response);
+    PrintR($response);
 
     if ($response['data']) {
 
