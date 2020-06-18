@@ -331,7 +331,7 @@ me.LoadData = function (menu, id, page_id, page_size, readd = '') {
                             $('#' + rowData[0].name.replace(' ', '-')).DataTable().destroy();
                         } else {
                             // Open this row
-
+                            console.log(rowData);
                             if(rowData[0]){
 
 
