@@ -1,9 +1,9 @@
 <?php
 require_once "../../service/service.php";
 require_once '../../vendor/autoload.php';
-//header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-//header('Content-Disposition: attachment;filename="Voice Log Analytics Report-' . date('mdYHms') . '.xlsx"');
-//header('Cache-Control: max-age=0');
+header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+header('Content-Disposition: attachment;filename="Voice Log Analytics Report-' . date('mdYHms') . '.xlsx"');
+header('Cache-Control: max-age=0');
 
 $datalist = array();
 $datalistnew = array();
@@ -236,9 +236,9 @@ $sheet->setTitle("Data QC Report");
 $sheet->fromArray($columnnew, NULL, 'A1');
 $sheet->fromArray($datalistnew, NULL, 'A2');
 
-$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
-$writer->save('write.xls');
+$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+//$writer->save('write.xls');
 //$writer = new Xlsx($spreadsheet);
 //$writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 //$writer->setPreCalculateFormulas(false);
-//$writer->save('php://output');
+$writer->save('php://output');
