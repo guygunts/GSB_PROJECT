@@ -189,7 +189,35 @@ me.LoadCbo = function (val, menu, code, name) {
                         }
 
                     });
+                    var treemodal = $('#treemodal').treeview({
+                        enableLinks: true,
+                        preventUnselect: true,
+                        allowReselect: true,
+                        data: data.item,
+                        onNodeSelected: function (event, data) {
 
+                            tree.treeview(true).revealNode(data, {silent: true});
+                            // $('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
+                            // $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
+                            // console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
+                            if (data.level == 1) {
+                                me.category_id = data.id;
+                                // me.subintent_id = 0;
+                                if (!data.nodes) {
+                                    me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
+                                } else {
+                                    $('#' + val).treeview('removeNode', [data.nodes, {silent: true}]);
+                                    me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
+                                }
+                                me.LoadData(me.action.menu, data.id, 1, 30);
+                            } else if (data.level == 2) {
+                                // me.category_id = data.main;
+                                // me.subintent_id = data.id
+                                // me.LoadData(me.action.menu, data.id, 1, 30);
+                            }
+
+                        },
+                    });
                     break;
                 default:
                     alertify.alert(data.msg);
@@ -1326,6 +1354,11 @@ me.LoadSentence = function (e) {
     }
     $('#btnadd').css('display', 'none');
     $('#btnaddsentense').css('display', '');
+};
+
+me.Move = function (e){
+    var code = $(e).attr('data-code');
+
 };
 /*================================================*\
   :: DEFAULT ::
