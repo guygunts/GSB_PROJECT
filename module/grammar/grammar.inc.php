@@ -876,6 +876,8 @@ function Move(Request $request)
     $data['project_id'] = $_SESSION[OFFICE]['PROJECT_ID'];
     $data['user_login'] = $user;
 
+    PrintR($data);
+    exit;
 
     $url = URL_API . '/geniespeech/adminmenu';
     $response = curlposttoken($url, $data, $token);
