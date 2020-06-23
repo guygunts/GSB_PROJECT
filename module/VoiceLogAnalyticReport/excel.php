@@ -70,9 +70,9 @@ if ($response['result'][0]['code'] == 200) {
 
         foreach ((array)$columns as $v => $value) {
             $datalist[$z][$i][$value['data']] = $item[$value['data']];
-            ++$z;
-        }
 
+        }
+        ++$z;
     }
 
 }
