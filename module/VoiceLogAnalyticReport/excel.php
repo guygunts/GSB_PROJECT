@@ -65,14 +65,14 @@ if ($response['result'][0]['code'] == 200) {
         ++$m;
     }
 
-    $z = 0;
-    foreach ((array)$datas as $i => $item) {
 
+    foreach ((array)$datas as $i => $item) {
+        $j = 0;
         foreach ((array)$columns as $v => $value) {
-            $datalist[$z][$i][$value['data']] = $item[$value['data']];
+            $datalist[$j][$i][$value['data']] = $item[$value['data']];
 
         }
-        ++$z;
+        ++$j;
     }
 
 }
