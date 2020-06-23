@@ -14,10 +14,10 @@
 
                             <?php }
                         } ?>
-                        &nbsp;&nbsp;<button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"
-                                title="Move">
-                            <i class="fa fa-plus"></i> Move
-                        </button>
+<!--                        &nbsp;&nbsp;<button type="button" class="btn btn-primary btn-flat btn-sm" onclick="me.NewCat();"-->
+<!--                                title="Move">-->
+<!--                            <i class="fa fa-plus"></i> Move-->
+<!--                        </button>-->
                     </div>
                 </div>
                 <!-- /.box-header -->

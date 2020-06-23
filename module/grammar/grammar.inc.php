@@ -157,6 +157,8 @@ function View(Request $request)
                     $datasubattr = array();
                     $datasubattr[$z] = $itemsub;
 
+                    $btnsub .= '<button data-code="' . $itemsub['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.MoveSub(this)" type="button" class="btn btn-xs btn-info"><i class="fa fa-retweet"></i> Move</button>&nbsp;&nbsp;';
+
                     if ($permiss[2]) {
                         $btnsub .= '<button data-code="' . $itemsub['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
                         $btnsubsentence .= '<button data-intent_id="' . $item['intent_id'] . '" data-subintent_id="' . $itemsub['sub_intent_id'] . '" data-item=' . "'" . json_encode($datasubattr[$z], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSentence(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
@@ -180,6 +182,8 @@ function View(Request $request)
             $dataattr = array();
             $dataattr[$i] = $item;
 //            $dataattr[$i]['variation'] = json_encode($datasubattr,JSON_FORCE_OBJECT);
+
+            $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Move(this)" type="button" class="btn btn-xs btn-info"><i class="fa fa-retweet"></i> Move</button>&nbsp;&nbsp;';
 
             if ($permiss[2]) {
                 $btn .= '<button data-code="' . $item['intent_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.Load(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
@@ -307,6 +311,8 @@ function ViewSub(Request $request)
             $dataattr = array();
             $dataattr[$i] = $item;
 //            $dataattr[$i]['variation'] = json_encode($datasubattr,JSON_FORCE_OBJECT);
+
+//            $btn .= '<button data-code="' . $item['sentence_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
 
             if ($permiss[2]) {
                 $btn .= '<button data-code="' . $item['sentence_id'] . '" data-item=' . "'" . json_encode($dataattr[$i], JSON_HEX_APOS) . "'" . ' onclick="me.LoadSub(this)" type="button" class="btn btn-xs btn-success"><i class="fa fa-save"></i> ' . $permiss[2]['name'] . '</button>&nbsp;&nbsp;';
