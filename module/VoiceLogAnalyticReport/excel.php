@@ -236,8 +236,8 @@ $sheet->setTitle("Data QC Report");
 //$spreadsheet->setTitle("Data QC Report");
 
 //$sheet->fromArray($columnnew, NULL, 'A1');
-//$sheet->fromArray($datalistnew, NULL, 'A2');
-$sheet->getCell('A2')->setValue($datalistnew[0][0]);
+$sheet->fromArray($datalistnew, NULL, 'A2');
+//$sheet->getCell('A2')->setValue($datalistnew[0][0]);
 $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 //$writer->save('write.xls');
 //$writer = new Xlsx($spreadsheet);
