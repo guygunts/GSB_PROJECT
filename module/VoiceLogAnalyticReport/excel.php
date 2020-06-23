@@ -1,9 +1,9 @@
 <?php
 require_once "../../service/service.php";
 require_once '../../vendor/autoload.php';
-header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-header('Content-Disposition: attachment;filename="Voice Log Analytics Report-' . date('mdYHms') . '.xlsx"');
-header('Cache-Control: max-age=0');
+//header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+//header('Content-Disposition: attachment;filename="Voice Log Analytics Report-' . date('mdYHms') . '.xlsx"');
+//header('Cache-Control: max-age=0');
 
 $datalist = array();
 $datalistnew = array();
