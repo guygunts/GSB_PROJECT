@@ -29,16 +29,16 @@ $url = URL_API . '/geniespeech/report';
 $response = curlposttoken($url, $params, $token);
 
 if ($response['result'][0]['code'] == 200) {
-    $response['column_name'][0]['column_data'] = 'Intent';
-    $response['column_name'][1]['column_data'] = 'Pass%';
-    $response['column_name'][2]['column_data'] = 'Pass';
-    $response['column_name'][3]['column_data'] = 'Fail';
-    $response['column_name'][4]['column_data'] = 'Garbage';
-    $response['column_name'][5]['column_data'] = 'Other';
-    $response['column_name'][6]['column_data'] = 'Valid';
-    $response['column_name'][7]['column_data'] = 'Totalcall';
+    $responsenew['column_name'][0]['column_data'] = 'Intent';
+    $responsenew['column_name'][1]['column_data'] = 'Pass%';
+    $responsenew['column_name'][2]['column_data'] = 'Pass';
+    $responsenew['column_name'][3]['column_data'] = 'Fail';
+    $responsenew['column_name'][4]['column_data'] = 'Garbage';
+    $responsenew['column_name'][5]['column_data'] = 'Other';
+    $responsenew['column_name'][6]['column_data'] = 'Valid';
+    $responsenew['column_name'][7]['column_data'] = 'Totalcall';
 
-    $columnslist = $response['column_name'];
+    $columnslist = $responsenew['column_name'];
     $datas = $response['recs'];
     $data_footer = $response['grand_total'];
     $name = $response['report_name:'];
@@ -186,10 +186,10 @@ $path = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
 
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
 //$spreadsheet = new Spreadsheet();
-$main = $spreadsheet->getActiveSheet();
+$main = $spreadsheet->setActiveSheetIndex(0);
 //$main->getColumnDimension('A')->setWidth(12);
-
-$main->setTitle("Summary Qc Report");
+$main->fromArray($datalist, NULL, 'A17');
+//$main->setTitle("Summary Qc Report");
 
 
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
@@ -223,14 +223,14 @@ $drawing2->getShadow()->setDirection(45);
 $drawing2->setWorksheet($main);
 
 //$main->fromArray($column, NULL, 'A23');
-$main->fromArray($datalist, NULL, 'A17');
+
 
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
 //$sheet = $spreadsheet->createSheet();
 $sheet = $spreadsheet->setActiveSheetIndex(1);
-$sheet->setTitle("Data QC Report");
+//$sheet->setTitle("Data QC Report");
 //$spreadsheet->setTitle("Data QC Report");
 
 //$sheet->fromArray($columnnew, NULL, 'A1');
