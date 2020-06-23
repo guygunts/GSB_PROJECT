@@ -186,7 +186,9 @@ $path = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-$spreadsheet = new Spreadsheet();
+
+$spreadsheet = ฃPhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
+//$spreadsheet = new Spreadsheet();
 $main = $spreadsheet->getActiveSheet();
 //$main->getColumnDimension('A')->setWidth(12);
 
@@ -208,7 +210,7 @@ $drawing1 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing1->setName('Paid');
 $drawing1->setDescription('Paid');
 $drawing1->setPath($pathbar); // put your path and image here
-$drawing1->setCoordinates('G1');
+$drawing1->setCoordinates('D1');
 $drawing1->setOffsetX(110);
 $drawing1->getShadow()->setVisible(true);
 $drawing1->getShadow()->setDirection(45);
@@ -218,23 +220,15 @@ $drawing2 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing2->setName('Paid');
 $drawing2->setDescription('Paid');
 $drawing2->setPath($path); // put your path and image here
-$drawing2->setCoordinates('N1');
+$drawing2->setCoordinates('G1');
 $drawing2->setOffsetX(110);
 $drawing2->getShadow()->setVisible(true);
 $drawing2->getShadow()->setDirection(45);
 $drawing2->setWorksheet($main);
 
-$main->fromArray($column, NULL, 'A23');
-//$main->fromArray($datalist, NULL, 'A24');
+//$main->fromArray($column, NULL, 'A23');
+$main->fromArray($datalist, NULL, 'A17');
 
-$main->getColumnDimension('A')->setWidth(43);
-$main->getColumnDimension('B')->setWidth(15);
-$main->getColumnDimension('C')->setWidth(20);
-$main->getColumnDimension('D')->setWidth(20);
-$main->getColumnDimension('E')->setWidth(20);
-$main->getColumnDimension('F')->setWidth(20);
-$main->getColumnDimension('G')->setWidth(20);
-$main->getColumnDimension('H')->setWidth(20);
 
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
