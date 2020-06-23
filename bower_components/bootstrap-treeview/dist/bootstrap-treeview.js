@@ -981,6 +981,12 @@
 			node.$el.attr('title', node.tooltip);
 		}
 
+		if (this._options.showBtn) {
+			node.$el.append(this._template.button.add.clone());
+			node.$el.append(this._template.button.edit.clone());
+			node.$el.append(this._template.button.remove.clone());
+		}
+
 		// Add indent/spacer to mimic tree structure
 		for (var i = 0; i < (node.level - 1); i++) {
 			node.$el.append(this._template.indent.clone());
@@ -1047,9 +1053,7 @@
 		// 		}
 		// 	}, this));
 		// }
-		node.$el.append(this._template.button.add.clone());
-		node.$el.append(this._template.button.edit.clone());
-		node.$el.append(this._template.button.remove.clone());
+
 		// Set various node states
 		this._setSelected(node, node.state.selected);
 		this._setChecked(node, node.state.checked);
@@ -1095,6 +1099,14 @@
  				);
  		}
  	}
+
+	// Tree.prototype._addBtn = function (node) {
+	// 	if (this._options.showBtn) {
+	// 		node.$el.append(this._template.button.add.clone());
+	// 		node.$el.append(this._template.button.edit.clone());
+	// 		node.$el.append(this._template.button.remove.clone());
+	// 	}
+	// }
 
 	// Creates a new node element from template and
 	// ensures the template is inserted at the correct position

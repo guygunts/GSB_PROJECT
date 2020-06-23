@@ -231,3 +231,33 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade moveintentmodalform" id="moveintent-modal-form" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Move Intent</h5>
+            </div>
+            <div class="modal-body">
+                <form id="frm_moveintent" method="post" onsubmit="return false;">
+                    <button type="submit" style="display: none" id="btnsubmitmoveintent"></button>
+                    <!--                    <input type="hidden" name="category_id">-->
+                    <input type="hidden" name="menu_action" value="moveintent">
+
+                    <div class="box box-danger">
+                        <div class="box-body">
+                            <div class="col-md-12">
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
