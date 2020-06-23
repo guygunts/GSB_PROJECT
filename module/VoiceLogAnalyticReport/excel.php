@@ -229,13 +229,14 @@ $drawing2->setWorksheet($main);
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
 //$spreadsheet->addSheet($myWorkSheet, 0);
-$sheet = $spreadsheet->createSheet();
+//$sheet = $spreadsheet->createSheet();
+$sheet = $spreadsheet->setActiveSheetIndex(1);
 $sheet->setTitle("Data QC Report");
 //$spreadsheet->setTitle("Data QC Report");
 
 //$sheet->fromArray($columnnew, NULL, 'A1');
 //$sheet->fromArray($datalistnew, NULL, 'A2');
-$sheet->getCell('A2')->setValue($datalistnew);
+$sheet->getCell('A2')->setValue($datalistnew[0][0]);
 $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 //$writer->save('write.xls');
 //$writer = new Xlsx($spreadsheet);
