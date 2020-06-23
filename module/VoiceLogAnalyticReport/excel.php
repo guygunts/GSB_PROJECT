@@ -196,7 +196,7 @@ $drawing->setDescription('Paid');
 $drawing->setPath($pathpie); // put your path and image here
 $drawing->setCoordinates('A1');
 //$drawing->setOffsetX(0);
-$drawing2->setHeight(110);
+$drawing->setHeight(110);
 //$drawing->getShadow()->setVisible(true);
 //$drawing->getShadow()->setDirection(45);
 $drawing->setWorksheet($main);
@@ -207,7 +207,7 @@ $drawing1->setDescription('Paid');
 $drawing1->setPath($pathbar); // put your path and image here
 $drawing1->setCoordinates('C1');
 //$drawing1->setOffsetX(0);
-$drawing2->setHeight(110);
+$drawing1->setHeight(110);
 //$drawing1->getShadow()->setVisible(true);
 //$drawing1->getShadow()->setDirection(45);
 $drawing1->setWorksheet($main);
