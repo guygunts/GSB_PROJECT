@@ -79,9 +79,10 @@ if ($response['result'][0]['code'] == 200) {
 
     foreach ((array)$data_footer as $i => $item) {
         $z = 0;
+        $i = ($count + $i);
         foreach ((array)$item as $v => $item2) {
-            $datalist[$count][$z] = $item2;
-            ++$count;
+            $datalist[$i][$z] = $item2;
+
             ++$z;
         }
 
