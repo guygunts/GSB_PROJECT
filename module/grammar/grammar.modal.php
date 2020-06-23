@@ -248,6 +248,7 @@
                     <!--                    <input type="hidden" name="category_id">-->
                     <input type="hidden" name="menu_action" value="moveintent">
                     <input type="hidden" name="intent_id">
+                    <input type="hidden" name="category_id">
 
                     <div class="box box-danger">
                         <div class="box-body">

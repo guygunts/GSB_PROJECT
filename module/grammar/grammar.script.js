@@ -196,25 +196,7 @@ me.LoadCbo = function (val, menu, code, name) {
                         data: data.item,
                         onNodeSelected: function (event, data) {
 
-                            tree.treeview(true).revealNode(data, {silent: true});
-                            // $('#'+val).treeview('toggleNodeExpanded', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
-                            // $('#'+val).treeview('toggleNodeSelected', [ $('#'+val).treeview('getSelected'), { silent: true } ]);
-                            // console.log( _.size($('#'+val).treeview('getParents', $('#'+val).treeview('getSelected'))))
-                            if (data.level == 1) {
-                                me.category_id = data.id;
-                                // me.subintent_id = 0;
-                                if (!data.nodes) {
-                                    me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
-                                } else {
-                                    $('#' + val).treeview('removeNode', [data.nodes, {silent: true}]);
-                                    me.LoadCboSub('tree', 'getsubcategory', data.id, data.index);
-                                }
-                                me.LoadData(me.action.menu, data.id, 1, 30);
-                            } else if (data.level == 2) {
-                                // me.category_id = data.main;
-                                // me.subintent_id = data.id
-                                // me.LoadData(me.action.menu, data.id, 1, 30);
-                            }
+                            me.MoveSelect(data.id);
 
                         },
                     });
@@ -258,6 +240,49 @@ me.LoadCboSub = function (val, menu, code, index) {
             }
         }
     });
+};
+
+me.MoveSelect = function (code) {
+
+    $('#frm_moveintent input[name="category_id"]').val(code);
+    $('#btnsubmitmoveintent').click(function (e) {
+        e.stopPropagation();
+        $('form#frm_moveintent').submit(function () {
+            var form = $(this);
+            $('.modal').modal('hide');
+            alertify.confirm("Do you want Move Intent to Select Catalog.",
+                function () {
+                    $.ajax({
+                        url: me.url + '-Edit',
+                        type: 'POST',
+                        dataType: 'json',
+                        cache: false,
+                        data: form.serialize({
+                            checkboxesAsBools: true
+                        }),
+                        success: function (data) {
+                            switch (data.success) {
+                                case 'COMPLETE':
+                                    $('.modal').modal('hide');
+                                    alertify.success(data.msg);
+                                    // $('#btnsearchsubmit').click();
+                                    // me.table.clear().draw();
+                                    me.LoadData(me.action.menu, 1, 30, 1);
+                                    break;
+                                default:
+                                    alertify.error(data.msg);
+                                    break;
+                            }
+                        }
+                    });
+                },
+                function () {
+                    alertify.error('Cancel Move Intent');
+                });
+
+        });
+
+    }).click();
 };
 
 me.LoadData = function (menu, id, page_id, page_size, readd = '') {
