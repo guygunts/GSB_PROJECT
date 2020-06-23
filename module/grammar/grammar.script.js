@@ -253,7 +253,7 @@ me.MoveSelect = function (code) {
             alertify.confirm("Do you want Move Intent to Select Catalog.",
                 function () {
                     $.ajax({
-                        url: me.url + '-Edit',
+                        url: me.url + '-Move',
                         type: 'POST',
                         dataType: 'json',
                         cache: false,
