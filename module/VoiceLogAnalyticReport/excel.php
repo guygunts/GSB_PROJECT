@@ -88,12 +88,13 @@ $params = array(
     'page_id' => 1,
     'page_size' => 10000,
     "grammar" => "",
-    "qc_status" => "",
+        "qc_status" => "",
     "intent" => "",
     "confiden" => "",
     "text_search" => "",
     "random_num" => 0,
-    "export_qc" => 1
+    "export_qc" => 1,
+    "flag_edit" => ""
 
 );
 
