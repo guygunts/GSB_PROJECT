@@ -56,7 +56,7 @@ if ($response['result'][0]['code'] == 200) {
     }
 
     foreach ((array)$columnslist as $i => $item) {
-        $column[$i] = $item['column_name'];
+        $column[$i] = $item['column_data'];
 
         $columns[$m]['data'] = $item['column_data'];
         $columns[$m]['type'] = '';
@@ -70,9 +70,9 @@ if ($response['result'][0]['code'] == 200) {
         $z = 0;
         foreach ((array)$columns as $v => $value) {
             $datalist[$i][$z][$value['data']] = $item[$value['data']];
-
+            ++$z;
         }
-        ++$z;
+
     }
 
 }
@@ -88,7 +88,7 @@ $params = array(
     'page_id' => 1,
     'page_size' => 10000,
     "grammar" => "",
-        "qc_status" => "",
+    "qc_status" => "",
     "intent" => "",
     "confiden" => "",
     "text_search" => "",
@@ -182,8 +182,6 @@ $img = substr(explode(";", $img)[1], 7); //this extract the exact image
 $target = time() . '_img.png';
 $image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($img));
 $path = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
-
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
