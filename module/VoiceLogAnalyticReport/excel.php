@@ -46,22 +46,19 @@ if ($response['result'][0]['code'] == 200) {
 
     $m = 0;
     $z = 0;
-    $newfooter = array();
-    foreach ((array)$data_footer as $i => $item) {
-        foreach ((array)$item as $v => $item2) {
-            $newfooter[$z] = $item2;
-            ++$z;
-        }
-
-    }
+//    $newfooter = array();
+//    foreach ((array)$data_footer as $i => $item) {
+//        foreach ((array)$item as $v => $item2) {
+//            $newfooter[$z] = $item2;
+//            ++$z;
+//        }
+//
+//    }
 
     foreach ((array)$columnslist as $i => $item) {
-        $column[$i] = $item['column_data'];
-
+//        $column[$i] = $item['column_data'];
         $columns[$m]['data'] = $item['column_data'];
-        $columns[$m]['type'] = '';
-
-
+//        $columns[$m]['type'] = '';
         ++$m;
     }
 
@@ -69,7 +66,8 @@ if ($response['result'][0]['code'] == 200) {
     foreach ((array)$datas as $i => $item) {
         $z = 0;
         foreach ((array)$columns as $v => $value) {
-            $datalist[$i][$z][$value['data']] = $item[$value['data']];
+            $datalist[$i][$z] = $item[$value['data']];
+//            $datalist[$i][$z][$value['data']] = $item[$value['data']];
             ++$z;
         }
 
