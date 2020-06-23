@@ -28,7 +28,7 @@ me.LoadCbo = function (val, menu, code, name) {
             switch (data.success) {
                 case "COMPLETE":
                     var tree = $('#' + val).treeview({
-
+                        showBtn:true,
                         enableLinks: true,
                         preventUnselect: true,
                         allowReselect: true,
