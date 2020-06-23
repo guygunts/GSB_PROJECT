@@ -46,14 +46,16 @@ if ($response['result'][0]['code'] == 200) {
 
     $m = 0;
     $z = 0;
-//    $newfooter = array();
-//    foreach ((array)$data_footer as $i => $item) {
-//        foreach ((array)$item as $v => $item2) {
-//            $newfooter[$z] = $item2;
-//            ++$z;
-//        }
-//
-//    }
+    $newfooter = array();
+    foreach ((array)$data_footer as $i => $item) {
+        foreach ((array)$item as $v => $item2) {
+            $newfooter[$z] = $item2;
+            ++$z;
+        }
+
+    }
+
+    $datas = array_merge($datas,$newfooter);
 
     foreach ((array)$columnslist as $i => $item) {
 //        $column[$i] = $item['column_data'];
