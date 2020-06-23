@@ -65,14 +65,14 @@ if ($response['result'][0]['code'] == 200) {
         ++$m;
     }
 
-    $j = 0;
+    $z = 0;
     foreach ((array)$datas as $i => $item) {
-
+        $z = 0;
         foreach ((array)$columns as $v => $value) {
-            $datalist[$j][$i][$value['data']] = $item[$value['data']];
+            $datalist[$i][$z][$value['data']] = $item[$value['data']];
 
         }
-        ++$j;
+        ++$z;
     }
 
 }
@@ -225,7 +225,7 @@ $drawing2->getShadow()->setDirection(45);
 $drawing2->setWorksheet($main);
 
 //$main->fromArray($column, NULL, 'A23');
-//$main->fromArray($datalist, NULL, 'A17');
+$main->fromArray($datalist, NULL, 'A17');
 
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
