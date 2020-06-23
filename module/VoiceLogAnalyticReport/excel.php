@@ -20,7 +20,7 @@ $params = array(
     'project_id' => $_SESSION[OFFICE]['PROJECT_ID'],
     'report_name' => 'QC',
     'start_date' => $start,
-    'end_date' =>$end,
+    'end_date' => $end,
     'user_login' => $user
 );
 
@@ -65,12 +65,11 @@ if ($response['result'][0]['code'] == 200) {
         ++$m;
     }
 
-
+    $z = 0;
     foreach ((array)$datas as $i => $item) {
 
-        $z = 0;
         foreach ((array)$columns as $v => $value) {
-            $datalist[$i][$z][$value['data']] = $item[$value['data']];
+            $datalist[$z][$i][$value['data']] = $item[$value['data']];
             ++$z;
         }
 
@@ -183,7 +182,6 @@ $target = time() . '_img.png';
 $image = file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target, base64_decode($img));
 $path = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 
@@ -193,7 +191,6 @@ $main = $spreadsheet->getActiveSheet();
 //$main->getColumnDimension('A')->setWidth(12);
 
 $main->setTitle("Summary Qc Report");
-
 
 
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
@@ -228,7 +225,6 @@ $drawing2->setWorksheet($main);
 
 //$main->fromArray($column, NULL, 'A23');
 $main->fromArray($datalist, NULL, 'A17');
-
 
 
 //$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, 'My Data');
