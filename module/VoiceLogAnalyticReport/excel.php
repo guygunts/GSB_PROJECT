@@ -186,7 +186,7 @@ $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
 //$spreadsheet = new Spreadsheet();
 $main = $spreadsheet->setActiveSheetIndex(0);
 //$main->getColumnDimension('A')->setWidth(12);
-$main->fromArray($datalist, NULL, 'A17');
+$main->fromArray($datalist, NULL, 'A20');
 //$main->setTitle("Summary Qc Report");
 
 
