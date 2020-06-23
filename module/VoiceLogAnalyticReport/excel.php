@@ -68,7 +68,7 @@ if ($response['result'][0]['code'] == 200) {
     $count = 0;
     foreach ((array)$datas as $i => $item) {
         ++$count;
-        $z = 0;
+//        $z = 0;
         foreach ((array)$columns as $v => $value) {
             $datalist[$i][$z] = $item[$value['data']];
 //            $datalist[$i][$z][$value['data']] = $item[$value['data']];
