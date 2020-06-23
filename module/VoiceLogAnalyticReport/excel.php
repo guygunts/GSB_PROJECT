@@ -185,7 +185,7 @@ $path = $_SERVER['DOCUMENT_ROOT'] . '/imagefolder/' . $target;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 
-$spreadsheet = ฃPhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
+$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
 //$spreadsheet = new Spreadsheet();
 $main = $spreadsheet->getActiveSheet();
 //$main->getColumnDimension('A')->setWidth(12);
