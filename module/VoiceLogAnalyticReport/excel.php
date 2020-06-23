@@ -55,7 +55,7 @@ if ($response['result'][0]['code'] == 200) {
 
     }
 
-    $datas = array_merge($datas,$newfooter);
+//    $datas = array_merge($datas,$newfooter);
 
     foreach ((array)$columnslist as $i => $item) {
 //        $column[$i] = $item['column_data'];
@@ -65,7 +65,9 @@ if ($response['result'][0]['code'] == 200) {
     }
 
     $z = 0;
+    $count = 0;
     foreach ((array)$datas as $i => $item) {
+        ++$count;
         $z = 0;
         foreach ((array)$columns as $v => $value) {
             $datalist[$i][$z] = $item[$value['data']];
@@ -74,6 +76,15 @@ if ($response['result'][0]['code'] == 200) {
         }
 
     }
+
+    foreach ((array)$data_footer as $i => $item) {
+        foreach ((array)$item as $v => $item2) {
+            $datalist[$count][$z] = $item2;
+            ++$z;
+        }
+
+    }
+
 
 }
 
