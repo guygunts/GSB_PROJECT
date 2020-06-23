@@ -1358,7 +1358,8 @@ me.LoadSentence = function (e) {
 
 me.Move = function (e){
     var code = $(e).attr('data-code');
-
+    $('#frm_moveintent input[name="intent_id"]').val(code);
+    $('#moveintent-modal-form').modal({backdrop: 'static', keyboard: true, show: true, handleUpdate: true});
 };
 /*================================================*\
   :: DEFAULT ::
