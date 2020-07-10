@@ -117,9 +117,9 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             .DataTable({
                                 dom: 'Bfrtip',
                                 buttons: [
-                                        $.extend( true, {}, buttonCommon, {
-                                            extend: 'excelHtml5'
-                                        } )
+                                        // $.extend( true, {}, buttonCommon, {
+                                        //     extend: 'excelHtml5'
+                                        // } )
                                     ],
                                     searching: false,
                                     retrieve: true,
