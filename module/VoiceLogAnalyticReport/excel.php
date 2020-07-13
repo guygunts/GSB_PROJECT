@@ -95,7 +95,7 @@ if ($response['result'][0]['code'] == 200) {
     }
     $z = 0;
 
-    $datalist[($count+1)] = $newfooter;
+//    $datalist[($count+1)] = $newfooter;
 //    --$count;
 //    foreach ((array)$data_footer as $i => $item) {
 //        $z = 0;
