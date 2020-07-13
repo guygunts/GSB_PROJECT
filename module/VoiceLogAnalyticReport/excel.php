@@ -228,7 +228,7 @@ $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
 //$spreadsheet = new Spreadsheet();
 $main = $spreadsheet->setActiveSheetIndex(0);
 //$main->getColumnDimension('A')->setWidth(12);
-$main->fromArray($datalists, 0, 'A24');
+$main->fromArray($datalists, NULL, 'A24');
 //$main->setCellValue('A24', $datalist[0]['Intent']);
 $main->setCellValue('G2', $customer);
 $main->setCellValue('G4', $project);
