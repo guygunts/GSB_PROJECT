@@ -94,7 +94,7 @@ if ($response['result'][0]['code'] == 200) {
 }
 
 $columnslist = array();
-$datas = array();
+$datass = array();
 
 
 $params = array(
@@ -126,7 +126,7 @@ $url = URL_API . '/geniespeech/voicelog';
 $response = curlposttoken($url, $params, $token);
 if ($response['result'][0]['code'] == 200) {
     $columnslist = $response['columnsname'];
-    $datas = $response['recs']['box4'];
+    $datass = $response['recs']['box4'];
 
     foreach ((array)$columnslist as $i => $item) {
         $columns[$i]['data'] = $item['column_data'];
@@ -140,7 +140,7 @@ if ($response['result'][0]['code'] == 200) {
     $action = array('0' => 'None' , '1' => 'Train' , '2' => 'Test' , '3' => 'Test&Train');
 
     $z = 0;
-    foreach ((array)$datas as $i => $item) {
+    foreach ((array)$datass as $i => $item) {
         $z = 0;
         foreach ((array)$columns as $v => $value) {
             if ($value['data'] == 'voice_name') {
@@ -258,6 +258,7 @@ $sheet = $spreadsheet->setActiveSheetIndex(1);
 
 //$sheet->fromArray($columnnew, NULL, 'A1');
 $sheet->fromArray($datalistnew, NULL, 'A2');
+$sheet = $spreadsheet->setActiveSheetIndex(0);
 //$sheet->getCell('A2')->setValue($datalistnew[0][0]);
 $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
 //$writer->save('write.xls');
