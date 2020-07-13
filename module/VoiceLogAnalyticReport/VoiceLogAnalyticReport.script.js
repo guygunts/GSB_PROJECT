@@ -115,6 +115,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             .addClass('nowrap')
                             .removeAttr('width')
                             .DataTable({
+                                order: [[ 0, "ASC" ]],
                                 dom: 'Bfrtip',
                                 buttons: [
                                         // $.extend( true, {}, buttonCommon, {
