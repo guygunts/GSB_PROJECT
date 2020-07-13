@@ -153,9 +153,9 @@ function View(Request $request)
             ++$m;
         }
 
-
+        $count = 1;
         foreach ((array)$datas as $i => $item) {
-
+            $count += $i;
             $z = 0;
             foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
@@ -165,6 +165,7 @@ function View(Request $request)
 
         }
 
+        $datalists[($count+1)] = $newfooter;
 
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;

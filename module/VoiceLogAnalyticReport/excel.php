@@ -87,9 +87,9 @@ if ($response['result'][0]['code'] == 200) {
         $count += $i;
         $z = 0;
         foreach ((array)$columns as $v => $value) {
-            $value['data'] = $item[$value['data']];
-            $datalist[$i][$z] = $value['data'];
-//            $datalist[$i][$z] = $item[$value['data']];
+//            $value['data'] = $item[$value['data']];
+//            $datalist[$i][$z] = $value['data'];
+            $datalist[$i][$z] = $item[$value['data']];
 //            $datalist[$i][$value['data']] = $item[$value['data']];
             ++$z;
         }
@@ -97,7 +97,7 @@ if ($response['result'][0]['code'] == 200) {
     }
 //    $z = 0;
 
-//    $datalist[($count+1)] = $newfooter;
+    $datalist[($count+1)] = $newfooter;
 //    --$count;
 //    foreach ((array)$data_footer as $i => $item) {
 //        $z = 0;
