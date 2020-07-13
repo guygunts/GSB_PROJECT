@@ -38,16 +38,16 @@ $url = URL_API . '/geniespeech/report';
 $response = curlposttoken($url, $params, $token);
 
 if ($response['result'][0]['code'] == 200) {
-    $responsenew['column_name'][0]['column_data'] = 'Intent';
-    $responsenew['column_name'][1]['column_data'] = 'Pass%';
-    $responsenew['column_name'][2]['column_data'] = 'Pass';
-    $responsenew['column_name'][3]['column_data'] = 'Fail';
-    $responsenew['column_name'][4]['column_data'] = 'Garbage';
-    $responsenew['column_name'][5]['column_data'] = 'Other';
-    $responsenew['column_name'][6]['column_data'] = 'Valid';
-    $responsenew['column_name'][7]['column_data'] = 'Totalcall';
+    $response['column_name'][0]['column_data'] = 'Intent';
+    $response['column_name'][1]['column_data'] = 'Pass%';
+    $response['column_name'][2]['column_data'] = 'Pass';
+    $response['column_name'][3]['column_data'] = 'Fail';
+    $response['column_name'][4]['column_data'] = 'Garbage';
+    $response['column_name'][5]['column_data'] = 'Other';
+    $response['column_name'][6]['column_data'] = 'Valid';
+    $response['column_name'][7]['column_data'] = 'Totalcall';
 
-    $columnslist = $responsenew['column_name'];
+    $columnslist = $response['column_name'];
     $datas = $response['recs'];
     $data_footer = $response['grand_total'];
     $name = $response['report_name:'];
@@ -75,22 +75,23 @@ if ($response['result'][0]['code'] == 200) {
 //    $datas = array_merge($datas,$newfooter);
 
     foreach ((array)$columnslist as $i => $item) {
-//        $column[$i] = $item['column_data'];
+        $column[$m]['className'] = 'text-center';
+        $column[$m]['title'] = $item['column_name'];
+        $column[$m]['data'] = $item['column_data'];
+
         $columns[$m]['data'] = $item['column_data'];
-//        $columns[$m]['type'] = '';
+        $columns[$m]['type'] = '';
         ++$m;
     }
 
-    $z = 0;
-    $count = 1;
+
+    $count = 0;
     foreach ((array)$datas as $i => $item) {
         ++$count;
         $z = 0;
         foreach ((array)$columns as $v => $value) {
-//            $value['data'] = $item[$value['data']];
-//            $datalist[$i][$z] = $value['data'];
-            $datalists[$i][$z] = $item[$value['data']];
 //            $datalist[$i][$value['data']] = $item[$value['data']];
+            $datalists[$i][$z] = $item[$value['data']];
             ++$z;
         }
 
