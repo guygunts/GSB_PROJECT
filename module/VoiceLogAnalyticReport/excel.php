@@ -5,7 +5,7 @@ header('Content-Type: application/vnd.ms-excel; charset=utf-8');
 header('Content-Disposition: attachment;filename="Voice Log Analytics Report-' . date('mdYHms') . '.xlsx"');
 header('Cache-Control: max-age=0');
 
-$datalist = array();
+$datalists = array();
 $datalistnew = array();
 $columns = array();
 $column = array();
@@ -89,14 +89,14 @@ if ($response['result'][0]['code'] == 200) {
         foreach ((array)$columns as $v => $value) {
 //            $value['data'] = $item[$value['data']];
 //            $datalist[$i][$z] = $value['data'];
-            $datalist[$i][$z] = $item[$value['data']];
+            $datalists[$i][$z] = $item[$value['data']];
 //            $datalist[$i][$value['data']] = $item[$value['data']];
             ++$z;
         }
 
     }
 //    $z = 0;
-    $datalist[$count] = $newfooter;
+    $datalists[$count] = $newfooter;
 //    $datalist[($count+1)] = $newfooter;
 //    --$count;
 //    foreach ((array)$data_footer as $i => $item) {
@@ -227,7 +227,7 @@ $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
 //$spreadsheet = new Spreadsheet();
 $main = $spreadsheet->setActiveSheetIndex(0);
 //$main->getColumnDimension('A')->setWidth(12);
-$main->fromArray($datalist, 0, 'A24');
+$main->fromArray($datalists, 0, 'A24');
 //$main->setCellValue('A24', $datalist[0]['Intent']);
 $main->setCellValue('G2', $customer);
 $main->setCellValue('G4', $project);
