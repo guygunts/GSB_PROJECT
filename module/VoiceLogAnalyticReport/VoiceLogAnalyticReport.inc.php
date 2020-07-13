@@ -165,7 +165,7 @@ function View(Request $request)
 
         }
 
-        $datalists[($count+1)] = $newfooter;
+        $datalists[$count] = $newfooter;
 
         $result['name'] = SITE . ' : ' . $name;
         $result['columns'] = $column;
