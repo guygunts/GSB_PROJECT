@@ -87,8 +87,8 @@ if ($response['result'][0]['code'] == 200) {
         $count += $i;
         $z = 0;
         foreach ((array)$columns as $v => $value) {
-            $datalist[0][$z] = $item[$value['data']];
-//            $datalist[$i][$z][$value['data']] = $item[$value['data']];
+//            $datalist[0][$z] = $item[$value['data']];
+            $datalist[$i][$value['data']] = $item[$value['data']];
             ++$z;
         }
 
@@ -225,7 +225,8 @@ $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
 //$spreadsheet = new Spreadsheet();
 $main = $spreadsheet->setActiveSheetIndex(0);
 //$main->getColumnDimension('A')->setWidth(12);
-$main->fromArray($datalist, NULL, 'A24');
+//$main->fromArray($datalist, NULL, 'A24');
+$main->setCellValue('A24', $datalist[0]);
 $main->setCellValue('G2', $customer);
 $main->setCellValue('G4', $project);
 $main->setCellValue('G6', $testdate);
