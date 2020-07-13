@@ -258,16 +258,16 @@ $drawing1->setHeight(400);
 //$drawing1->getShadow()->setDirection(45);
 $drawing1->setWorksheet($main);
 
-$drawing2 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
-$drawing2->setName('Paid');
-$drawing2->setDescription('Paid');
-$drawing2->setPath($path); // put your path and image here
-$drawing2->setCoordinates('F1');
-
-$drawing2->setHeight(400);
-//$drawing2->getShadow()->setVisible(true);
-//$drawing2->getShadow()->setDirection(45);
-$drawing2->setWorksheet($main);
+//$drawing2 = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+//$drawing2->setName('Paid');
+//$drawing2->setDescription('Paid');
+//$drawing2->setPath($path); // put your path and image here
+//$drawing2->setCoordinates('F1');
+//
+//$drawing2->setHeight(400);
+////$drawing2->getShadow()->setVisible(true);
+////$drawing2->getShadow()->setDirection(45);
+//$drawing2->setWorksheet($main);
 
 //$main->fromArray($column, NULL, 'A23');
 
