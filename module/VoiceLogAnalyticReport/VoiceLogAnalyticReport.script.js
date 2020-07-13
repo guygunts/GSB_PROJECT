@@ -117,24 +117,30 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             .DataTable({
                                 order: [[ 0, "DESC" ]],
                                 dom: 'Bfrtip',
-                                searching: false,
-                                retrieve: true,
-                                deferRender: true,
-                                stateSave: false,
-                                iDisplayLength: page_size,
-                                responsive: true,
-                                scrollX: true,
-                                pageLength: page_size,
-                                paging: false,
-                                lengthChange: false,
-                                bLengthChange: false,
-                                bPaginate: false,
-                                bInfo: false,
-                                data: data.data,
-                                columns: data.columns,
-                                initComplete: initCompleteFunction
+                                buttons: [
+                                        // $.extend( true, {}, buttonCommon, {
+                                        //     extend: 'excelHtml5'
+                                        // } )
+                                    ],
+                                    searching: false,
+                                    retrieve: true,
+                                    deferRender: true,
+                                    stateSave: false,
+                                    iDisplayLength: page_size,
+                                    responsive: true,
+                                    scrollX: true,
+                                    pageLength: page_size,
+                                    paging: false,
+                                    lengthChange: false,
+                                    bLengthChange: false,
+                                    bPaginate: false,
+                                    bInfo: false,
+                                    data: data.data,
+                                    columns: data.columns,
+                                    initComplete: initCompleteFunction
 
-                            });
+                                }
+                            );
 
                     }
 
