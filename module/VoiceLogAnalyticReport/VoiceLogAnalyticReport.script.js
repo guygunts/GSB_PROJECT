@@ -115,7 +115,7 @@ me.LoadDataReport = function (menu, page_id, page_size, start, stop, readd = '')
                             .addClass('nowrap')
                             .removeAttr('width')
                             .DataTable({
-                                order: [[ 2, "DESC" ]],
+                                order: [[ 0, "DESC" ]],
                                 dom: 'Bfrtip',
                                 searching: false,
                                 retrieve: true,
