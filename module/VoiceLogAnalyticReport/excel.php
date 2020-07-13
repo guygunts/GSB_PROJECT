@@ -230,7 +230,7 @@ $main = $spreadsheet->setActiveSheetIndex(0);
 //$main->getColumnDimension('A')->setWidth(12);
 //$datalistss = [['0',null,'0','0','0','0','0','0'],['Total','0','0','0','0','0','0','0']];
 
-$main->fromArray($datalists, NULL, 'A24');
+$main->fromArray($datalists, 0, 'A24');
 //$main->setCellValue('A24', $datalist[0]['Intent']);
 $main->setCellValue('G2', $customer);
 $main->setCellValue('G4', $project);
