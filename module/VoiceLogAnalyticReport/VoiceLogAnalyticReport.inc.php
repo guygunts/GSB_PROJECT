@@ -153,9 +153,9 @@ function View(Request $request)
             ++$m;
         }
 
-        $count = 1;
+        $count = 0;
         foreach ((array)$datas as $i => $item) {
-            $count += $i;
+            ++$count;
             $z = 0;
             foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
