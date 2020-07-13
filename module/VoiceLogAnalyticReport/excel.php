@@ -137,6 +137,8 @@ if ($response['result'][0]['code'] == 200) {
 
     }
 
+    $action = array('0' => 'None' , '1' => 'Train' , '2' => 'Test' , '3' => 'Test&Train');
+
     $z = 0;
     foreach ((array)$datas as $i => $item) {
         $z = 0;
@@ -150,6 +152,8 @@ if ($response['result'][0]['code'] == 200) {
 //                    $datalist[$i][$value['data']] = '<a href="javascript:void(0)" onclick="me.OpenCHNN(' . "'" . $item['chnn'] . "'," . $data['page_id'] . ',' . $data['page_size'] . ",'" . $data['start_date'] . "','" . $data['end_date'] . "'" . ')"><i class="glyphicon glyphicon-volume-up"></i></a>';
             } elseif ($value['data'] == 'qc_status') {
                 $datalistnew[$i][$z] = $status[$item[$value['data']]];
+            } elseif ($value['data'] == 'action') {
+                $datalistnew[$i][$z] = $action[$item[$value['data']]];
             } elseif ($value['data'] == 'input_qc' || $value['data'] == 'remark' || $value['data'] == 'Expected' || $value['data'] == 'new_sentence' || $value['data'] == 'expec_intent') {
                 switch ($value['data']) {
                     case 'input_qc':
