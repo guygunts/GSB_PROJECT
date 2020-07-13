@@ -70,7 +70,7 @@ function View(Request $request)
         $mydata .= '<td></td><td align="left">' . $response['Summary'][1]['Valid_calls'] . ' Valid calls</td>';
         $mydata .= '</tr>';
         $mydata .= '<tr>';
-        $mydata .= '<td></td><td align="left">' . $response['Summary'][2]['Passed_calls'] . ' Passed alls</td>';
+        $mydata .= '<td></td><td align="left">' . $response['Summary'][2]['Passed_calls'] . ' Passed calls</td>';
         $mydata .= '</tr>';
 
         $mydata .= '</tbody>';

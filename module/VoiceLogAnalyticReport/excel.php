@@ -11,6 +11,15 @@ $columns = array();
 $column = array();
 $columnnew = array();
 
+$customer = '';
+$project = '';
+$testdate = '';
+$reportdate = '';
+$sumtotalcall = 0;
+$sumvalidcall = 0;
+$sumpasscall = 0;
+$sumaccuary = 0;
+
 $start = $_POST['start_date'];
 $end = $_POST['end_date'];
 $user = $_SESSION[OFFICE]['DATA']['user_name'];
@@ -42,6 +51,14 @@ if ($response['result'][0]['code'] == 200) {
     $datas = $response['recs'];
     $data_footer = $response['grand_total'];
     $name = $response['report_name:'];
+    $customer = $response['Customer'];
+    $project = $response['Project'];
+    $testdate = $response['Test_Start_Date'];
+    $reportdate = $response['Report_Date'];
+    $sumtotalcall = $response['Summary'][0]['Total_calls'];
+    $sumvalidcall = $response['Summary'][1]['Valid_calls'];
+    $sumpasscall = $response['Summary'][2]['Passed_calls'];
+    $sumaccuary = $response['Summary'][3]['Accuary'];
 
 
     $m = 0;
@@ -209,7 +226,14 @@ $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('template.xlsx');
 $main = $spreadsheet->setActiveSheetIndex(0);
 //$main->getColumnDimension('A')->setWidth(12);
 $main->fromArray($datalist, NULL, 'A24');
-//$main->setTitle("Summary Qc Report");
+$main->setCellValue('G2', $customer);
+$main->setCellValue('G4', $project);
+$main->setCellValue('G6', $testdate);
+$main->setCellValue('G8', $reportdate);
+$main->setCellValue('G10', $sumtotalcall);
+$main->setCellValue('G12', $sumvalidcall);
+$main->setCellValue('G14', $sumpasscall);
+$main->setCellValue('F18', $sumaccuary);
 
 
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
