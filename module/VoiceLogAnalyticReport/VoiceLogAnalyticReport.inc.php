@@ -156,10 +156,11 @@ function View(Request $request)
 
         foreach ((array)$datas as $i => $item) {
 
-
+            $z = 0;
             foreach ((array)$columns as $v => $value) {
                 $datalist[$i][$value['data']] = $item[$value['data']];
-
+                $datalists[$i][$z] = $item[$value['data']];
+            ++$z;
             }
 
         }
@@ -172,6 +173,7 @@ function View(Request $request)
         $result['barchart'] = $barcharts;
         $result['text'] = $mydata;
         $result['data'] = $datalist;
+        $result['datatest'] = $datalists;
         $result['success'] = 'COMPLETE';
 
     } else {
